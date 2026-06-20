@@ -1,0 +1,58 @@
+{
+  "collapse-filter": false,
+  "search": "path:wiki/concepts OR path:wiki/entities OR path:wiki/queries OR  path:index.md",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "showOrphans": false,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:wiki/concepts  ",
+      "color": {
+        "a": 1,
+        "rgb": 16646401
+      }
+    },
+    {
+      "query": "path:wiki/entities  ",
+      "color": {
+        "a": 1,
+        "rgb": 16771584
+      }
+    },
+    {
+      "query": "path:wiki/papers  ",
+      "color": {
+        "a": 1,
+        "rgb": 14701269
+      }
+    },
+    {
+      "query": "path:wiki/queries  ",
+      "color": {
+        "a": 1,
+        "rgb": 61440
+      }
+    },
+    {
+      "query": "path:/",
+      "color": {
+        "a": 1,
+        "rgb": 65450
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1.12242838541667,
+  "lineSizeMultiplier": 1.313037109375,
+  "collapse-forces": true,
+  "centerStrength": 0.499593098958333,
+  "repelStrength": 10,
+  "linkStrength": 1,
+  "linkDistance": 250,
+  "scale": 0.6666666666666666,
+  "close": true
+}
