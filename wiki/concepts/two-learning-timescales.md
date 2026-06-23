@@ -3,9 +3,9 @@ title: "Two Learning Timescales"
 type: concept
 tags: [learning, memory, complementary-learning-systems, fast-slow-learning, hebbian, replay]
 created: 2026-06-09
-updated: 2026-06-20 (5)
-sources: [engram-transcript, memory-gate-transcript, bolzman-machine-transcript, reservoir-computing-transcript, Metalearning_and_Neuromodulation, PFC_as_a_meta_RL_system, Recurrent neural networks with transient trajectory explain working memory encoding mechanisms, Robust and brain-like working memory through short-term synaptic plasticity, Hopfield Networks Neural Memory Machines, Complementary Learning Systems, Complementary learning systems Why - Claude summary, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, Exploring the cognitive and motor functions of the basal ganglia an integrative review of computational cognitive neuroscience models]
-related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/replay.md, wiki/concepts/engrams.md, wiki/concepts/information-theory.md, wiki/concepts/predictive-coding.md, wiki/concepts/neuromodulation.md, wiki/concepts/meta-learning.md, wiki/concepts/working-memory.md, wiki/concepts/associative-memory.md, wiki/concepts/abstract-reasoning.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/tem-model.md, wiki/entities/boltzmann-machine.md, wiki/entities/reservoir-computing.md, wiki/entities/place-cells.md, wiki/entities/basal-ganglia.md, wiki/entities/trnn-model.md, wiki/papers/engram-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/boltzmann-machine-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/metalearning-neuromodulation-doya-2002.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/trnn-liu-2025.md, wiki/papers/stsp-kozachkov-2022.md, wiki/papers/hopfield-networks-crouse-2022.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/building-machine-thinks-like-people-lake-2016.md, wiki/papers/helie-ccn-bg-2013.md]
+updated: 2026-06-22
+sources: [engram-transcript, memory-gate-transcript, bolzman-machine-transcript, reservoir-computing-transcript, Metalearning_and_Neuromodulation, PFC_as_a_meta_RL_system, Recurrent neural networks with transient trajectory explain working memory encoding mechanisms, Robust and brain-like working memory through short-term synaptic plasticity, Hopfield Networks Neural Memory Machines, Complementary Learning Systems, Complementary learning systems Why - Claude summary, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, Exploring the cognitive and motor functions of the basal ganglia an integrative review of computational cognitive neuroscience models, High-capacity flexible hippocampal associative and episodic memory enabled by prestructured "spatial" representations, kanerva-sdm-1993]
+related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/replay.md, wiki/concepts/engrams.md, wiki/concepts/information-theory.md, wiki/concepts/predictive-coding.md, wiki/concepts/neuromodulation.md, wiki/concepts/meta-learning.md, wiki/concepts/working-memory.md, wiki/concepts/associative-memory.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/hebbian-learning.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/tem-model.md, wiki/entities/boltzmann-machine.md, wiki/entities/reservoir-computing.md, wiki/entities/place-cells.md, wiki/entities/basal-ganglia.md, wiki/entities/trnn-model.md, wiki/entities/vector-hash-model.md, wiki/papers/engram-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/boltzmann-machine-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/metalearning-neuromodulation-doya-2002.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/trnn-liu-2025.md, wiki/papers/stsp-kozachkov-2022.md, wiki/papers/hopfield-networks-crouse-2022.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/building-machine-thinks-like-people-lake-2016.md, wiki/papers/helie-ccn-bg-2013.md, wiki/papers/vector-hash-chandra-2023.md, wiki/entities/sdm-model.md, wiki/papers/kanerva-sdm-1993.md, wiki/entities/cerebellum.md]
 ---
 
 # Two Learning Timescales
@@ -108,7 +108,17 @@ Engram research [[wiki/concepts/engrams.md]] makes the fast M system concrete at
 
 - **Which cells get written:** excitability competition via inhibitory interneurons — the most excitable cells at training time suppress neighbors and win allocation. This is the biological softmax: winner-take-most with lateral inhibition enforcing sparsity.
 - **How sparse:** 2–6% in dentate gyrus; 10–20% in amygdala — homeostically conserved across memory strength and valence. TEM assumes sparse p codes; engram data specifies the quantitative constraint.
-- **Temporal interference:** elevated excitability persists ~6h. Events within this window share neurons → linked memories. TEM's idealized M treats each environment independently; biology introduces a time-dependent interference channel that could couple or corrupt episodic bindings.
+- **Temporal interference:** elevated excitability persists ~5–24h. Events within this window share neurons → linked memories. TEM's idealized M treats each environment independently; biology introduces a time-dependent interference channel that could couple or corrupt episodic bindings.
+
+**CREB as a third timescale.** The molecular mechanism behind the linkage window is CREB (cAMP-responsive element-binding protein): LTP at encoding triggers the ERK→CREB cascade; CREB reduces K⁺ conductance for hours; recently-potentiated neurons remain more excitable, biasing allocation for subsequent memories. This defines a **third learning timescale** that interpolates between fast-M (seconds, BTSP single-shot write) and slow-W (days–years, SWR replay consolidation):
+
+| Timescale | Mechanism | Duration | Function |
+|---|---|---|---|
+| **Fast M** | BTSP / STDP synaptic write | Seconds | Encode node or edge content |
+| **CREB eligibility** | K⁺ conductance reduction via ERK→CREB | Hours (~5–24h) | Bias allocation, link temporally proximate memories |
+| **Slow W** | SWR replay → cortical STDP | Nights / years | Extract cross-environment structural regularity |
+
+The CREB timescale is not a memory store — it is an eligibility window that determines *which* fast-M writes form a linked cluster. Assembly consolidation hypothesis adds a second CREB-timescale effect: CREB-elevated cells are more likely to be recruited into SWRs, biasing the awake-SWR bookmarking step toward recently-potentiated cells — coupling the CREB hours-timescale directly to the consolidation pipeline.
 
 ---
 
@@ -197,6 +207,21 @@ Liu et al. 2025 ([[wiki/papers/trnn-liu-2025.md]]) and Kozachkov et al. 2022 ([[
 
 ---
 
+## SDM A/C Split: Circuit-Level Instantiation of the Slow/Fast Timescale
+
+Kanerva's **Sparse Distributed Memory (SDM)** [[wiki/entities/sdm-model.md]] makes the slow-W/fast-M distinction concrete at the level of two distinct synaptic populations with physically different update rules:
+
+| SDM component | Timescale analog | Biological parallel |
+|---|---|---|
+| Hard-address matrix **A** (random, never modified) | Slow-W: structural projection scaffold | MEC grid cell weights; Vector-HaSH scaffold; DG granule cell mossy-fiber connectivity |
+| Contents matrix **C** (Hebbian write per episode) | Fast-M: episodic content accumulation | HC mossy fiber → CA3 synaptic weights; parallel fiber → Purkinje LTD |
+
+**Key property:** **A** is sampled at random once during construction and never updated — it provides the stable address vocabulary into which all episodic writes are indexed. **C** accumulates outer-product Hebbian writes from each episode. This is the most explicit circuit-level implementation of the two-timescale split: not just "slow weights vs. fast activations" but two distinct synapse populations with physically different update rules (none for **A**, Hebbian for **C**).
+
+**Why this matters architecturally:** SDM proves that the structural projection (**A**) does not need to be learned — a random draw already provides near-orthogonal addressing for any uniform random input distribution, with activation-set overlaps of only p² × M ≈ 0 for typical p. The only thing requiring episodic writes is the content layer (**C**). This licenses the design choice (confirmed by Vector-HaSH [[wiki/entities/vector-hash-model.md]]) of holding the fast-M store's address scaffold fixed while training only its content layer — the simplest biologically realizable version of the slow/fast factorization.
+
+---
+
 ## Cholinergic Gating of the Timescale Switch
 
 Doya 2002 ([[wiki/concepts/neuromodulation.md]]) provides the biological signal that determines which timescale is active at any moment:
@@ -224,7 +249,8 @@ W update requires backpropagation — no clear neural mechanism. Leading candida
 - **[[wiki/concepts/factorized-representations.md]]** — W and M are the slow/fast update rules for the factorized codes: W updates the structural code and transition rules; M updates the episodic binding of g to x.
 - **[[wiki/concepts/replay.md]]** — replay is the candidate biological mechanism for the slow W update: HC de-aliased sequences replayed during sleep → cortex extracts structural regularities across many environments.
 - **[[wiki/entities/hippocampal-entorhinal-system.md]]** — the dual map/memory roles of HC map onto the two timescales: early in a new environment HC = fast map builder; later HC = memory index that frees cortex to hold the slow structural model.
-- **[[wiki/concepts/engrams.md]]** — engrams are the cellular substrate of fast M; excitability competition is the biological softmax that produces sparse p codes; the 6h temporal linkage window is a biological interference property not captured by TEM's idealized M.
+- **[[wiki/concepts/engrams.md]]** — engrams are the cellular substrate of fast M; CREB-mediated excitability competition is the biological softmax that produces sparse p codes; the CREB ~5–24h eligibility window is a third timescale (between fast-M and slow-W) not captured by TEM's idealized M; CREB also links temporally proximate memories via shared ensemble allocation and may bias SWR participation (assembly consolidation hypothesis).
+- **[[wiki/papers/lisman-memory-allocation-2018.md]]** — source for CREB as the third timescale mechanism: dual-pathway coincidence detection, allocate-to-link hypothesis with Ca²⁺ imaging confirmation, and assembly consolidation hypothesis linking CREB excitability to SWR consolidation.
 - **[[wiki/concepts/information-theory.md]]** — slow W and fast M each minimize cross-entropy over different distributions (cross-environment structural regularity vs. single-environment episodic binding); the two-timescale split is formally two nested KL minimization problems with different data distributions.
 - **[[wiki/concepts/predictive-coding.md]]** — the Free Energy Principle decomposes into exactly the same two-timescale structure: fast perceptual inference (minimize F w.r.t. recognition model activations, ~100ms) and slow learning (minimize F w.r.t. generative model weights), providing the principled theoretical justification for the slow-W/fast-M split.
 - **[[wiki/papers/memory-gate-transcript.md]]** — SWR consolidation timeline provides mechanistic specificity: awake SWRs bookmark via local HC plasticity (fast-M tagging); sleep SWRs perform repeated compressed transfer to cortex (slow-W); temporal compression to ~100ms enables cortical STDP.
@@ -249,3 +275,9 @@ W update requires backpropagation — no clear neural mechanism. Leading candida
 - **[[wiki/entities/basal-ganglia.md]]** — BG is the biological substrate for the SPEED slow-W writing mechanism: direct-pathway DA RL trains cortico-cortical Hebbian connections that become the permanent, BG-independent substrate for automatic skills; also the meta-RL slow-loop trainer for PFC LSTM weights.
 - **[[wiki/papers/helie-ccn-bg-2013.md]]** — source for SPEED automaticity model and the three-route slow-W comparison (consolidation vs. meta-RL vs. SPEED); also TAN catastrophic interference prevention as the BG-level analog of CLS interference protection.
 - **[[wiki/entities/trnn-model.md]]** — TRNN is the recommended Block 3B episodic layer — transient trajectory coding is a third fast-M mechanism complementary to Hebbian M and LSTM hidden state.
+- **[[wiki/concepts/hebbian-learning.md]]** — the fast-M write is a Hebbian operation ($W = Y^\top Y / n$); BTSP and STDP are its molecular substrates at behavioral and spike timescales respectively; Hebbian instability is the formal reason fast-M writes require sparse SDR codes — unconstrained co-activation produces exponentially diverging weights.
+- **[[wiki/entities/vector-hash-model.md]]** — Vector-HaSH formalizes the fast-M operation as *heteroassociation* (plastic HC↔neocortex bidirectional weights), distinct from the scaffold (fixed grid-HC circuit); the scaffold plays an intermediate developmental role between slow-W (structural extraction) and fast-M (episodic binding) — it is neither, but enables fast-M writes to be interference-free.
+- **[[wiki/papers/vector-hash-chandra-2023.md]]** — source for the scaffold/heteroassociation decomposition of the fast-M system; sequence memory via shift operator as an efficient low-dimensional alternative to pairwise cortical associations.
+- **[[wiki/entities/sdm-model.md]]** — SDM's fixed-**A** / modifiable-**C** decomposition is the most explicit circuit-level instantiation of the slow-W/fast-M split: the address matrix **A** (random, never updated) = slow-W analog; the contents matrix **C** (Hebbian per episode) = fast-M; this is not just a conceptual analogy but an exact correspondence with distinct synapse populations.
+- **[[wiki/papers/kanerva-sdm-1993.md]]** — source for the fixed-A/variable-C architecture and its biological grounding in both HC (random granule cell connectivity = fixed address structure, CA3 synapses = content) and cerebellum (granule cell connectivity = fixed, Purkinje fiber synapses = LTD-trained).
+- **[[wiki/entities/cerebellum.md]]** — cerebellar A (granule cell random connectivity, fixed) / C (parallel fiber synapses, trained via climbing fiber LTD) is a second biological realization of the slow/fast split in a motor learning circuit; confirms that the A-fixed/C-plastic decomposition is a domain-general biological design principle, not hippocampus-specific.

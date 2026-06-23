@@ -122,6 +122,51 @@ TEM's factorized split does not merely make structural generalization *easier*: 
 
 ---
 
+## CT Model Expressivity: Trajectory Length as a Temporal Manifold Measure
+
+Hasani et al. 2021 ([[wiki/papers/ltc-hasani-2021.md]]) introduce **trajectory length** — arc length of the hidden-activation path in PCA latent space, measured against a circular input `{sin(t), cos(t)}` for `t ∈ [0, 2π]` — as a rigorous, weight-agnostic measure of how much of the temporal manifold a CT model can sweep:
+
+| Model | Typical trajectory length | Growth rate with width |
+|---|---|---|
+| Neural ODE | ~10² | Exponential (then saturates) |
+| CT-RNN | ~10²–10³ | Slower exponential |
+| **LTC** | **~10⁴** | Linear (Theorem 5); faster-than-linear with σ²_w |
+
+LTCs trace orders-of-magnitude more complex paths through their temporal trajectory space than CT-RNNs or Neural ODEs, across activation functions, widths, depths, and ODE solvers. This is not just a quantitative difference: it means LTCs can represent temporal patterns that CT-RNNs cannot express regardless of weight tuning, analogous to how the motor cortex BCI reversal failure shows patterns outside the anatomical manifold are unreachable regardless of training.
+
+**Connection to the TRNN trajectory manifold:** dPCA on TRNN delay-period activity (Liu et al. 2025) shows a low-D *task-structured* trajectory manifold — stimulus-separated paths with orthogonal decision submanifolds. Trajectory length (LTC) and dPCA trajectory structure (TRNN) are complementary: length measures *how much* manifold a model sweeps; dPCA structure reveals *how organized* the sweep is. A reasoning model needs both — expressive enough to separate complex patterns, structured enough to decode them linearly.
+
+This extends the manifold taxonomy to five types (see also type 6 below):
+1. **Spatial (motor cortex, HC):** hard anatomical constraint
+2. **Task-plastic (HC):** reshapes to encode current behavioral dimensions
+3. **Temporal WM (TRNN dPCA):** trajectory path encodes identity; constant velocity; orthogonal decision submanifold
+4. **Hierarchical perceptual (IT):** each stage improves hyperplane separability
+5. **Expressive CT (LTC trajectory length):** how much of temporal manifold space a CT model can sweep; determines which temporal patterns are representable
+
+---
+
+## Representational Geometry: Type 6 Manifold
+
+Bernardi et al. 2020 ([[wiki/papers/geometry-abstraction-bernardi-2020.md]]) identify a sixth manifold type — the **CCGP/SD configuration** of firing-rate space arrangements:
+
+| Axis | Measure | Biological value (HPC/PFC) |
+|---|---|---|
+| Abstraction | CCGP (cross-condition generalization performance) | High for 2–3 variables (context, value, action) |
+| Flexibility | SD (shattering dimensionality) | Near-maximal |
+| Geometry | PS (parallelism score) | High for abstract variables |
+
+This differs from types 1–5 in that it characterizes not *where* activity lives in neural state space but the *coding-direction structure* across experimental conditions. A representation lies on the CCGP manifold when its coding directions for key variables are parallel across condition subsets — placing zero-shot generalization in the reachable set for a downstream linear readout without sacrificing the SD needed for flexible responses.
+
+The full manifold taxonomy is now six types:
+1. **Spatial:** hard anatomical constraint (BCI reversal failure)
+2. **Task-plastic:** reshapes to encode current behavioral dimensions (HC UMAP)
+3. **Temporal WM:** trajectory path encodes identity (TRNN dPCA)
+4. **Hierarchical perceptual:** each stage improves hyperplane separability (IT)
+5. **Expressive CT:** how much of temporal manifold a CT model sweeps (LTC trajectory length)
+6. **Representational geometry:** CCGP/SD configuration; coding-direction parallelism for abstract variables (HPC/PFC)
+
+---
+
 ## Open Problems
 
 - **Manifold modification by learning:** plasticity changes the landscape — can it make previously unreachable patterns reachable, or is reshaping itself bounded by a meta-manifold?
@@ -146,3 +191,7 @@ TEM's factorized split does not merely make structural generalization *easier*: 
 - **[[wiki/papers/trnn-liu-2025.md]]** — source for dPCA trajectory manifold analysis; shows decision-manifold orthogonality to memory-manifold during delay; velocity constancy as evidence against fixed-point attractors.
 - **[[wiki/concepts/hierarchical-representations.md]]** — the IT object identity manifold is shaped by a hierarchy of CLSU sub-networks; hierarchical representations are the construction mechanism for the fourth manifold type added here; each level produces a measurably better-separated manifold geometry.
 - **[[wiki/papers/dicarlo-visual-object-recognition-2012.md]]** — source for object identity manifolds; hyperplane separability as the per-level criterion; four-level ventral stream manifold evidence; temporal contiguity learning as the mechanism that shapes manifold geometry from saccade statistics.
+- **[[wiki/entities/ltc-model.md]]** — trajectory length is the expressivity measure for CT temporal manifolds; LTCs demonstrate that liquid τ allows sweeping orders of magnitude more of the temporal manifold than CT-RNNs or Neural ODEs; extends the manifold taxonomy to a fifth type (expressive CT manifold).
+- **[[wiki/papers/ltc-hasani-2021.md]]** — source for trajectory length bounds (Theorems 4 & 5) and empirical trajectory length comparisons across activations, widths, and depths.
+- **[[wiki/concepts/representational-geometry.md]]** — defines the sixth manifold type (CCGP/SD configuration); coding-direction parallelism for abstract variables is the geometric property that determines whether zero-shot generalization is in the reachable set for a downstream linear readout.
+- **[[wiki/papers/geometry-abstraction-bernardi-2020.md]]** — source for the CCGP/SD coexistence finding in HPC, DLPFC, and ACC; introduces the representational geometry framework and its correlation with behavioral accuracy.

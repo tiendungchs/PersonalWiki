@@ -3,9 +3,9 @@ title: "Path Integration"
 type: concept
 tags: [path-integration, navigation, recurrent-networks, compression, graph-traversal]
 created: 2026-06-09
-updated: 2026-06-13
+updated: 2026-06-22
 sources: [t-TEM, reservoir-computing-transcript, landmark-orientation]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/attention.md, wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/htm-thousand-brains.md, wiki/entities/reservoir-computing.md, wiki/entities/insect-central-complex.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/seelig-jayaraman-2015.md]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/attention.md, wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/htm-thousand-brains.md, wiki/entities/reservoir-computing.md, wiki/entities/insect-central-complex.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/seelig-jayaraman-2015.md, wiki/concepts/ring-attractor.md, wiki/papers/acann-li-chu-wu-2024.md]
 ---
 
 # Path Integration
@@ -92,3 +92,5 @@ Thousand Brains Theory [[wiki/entities/htm-thousand-brains.md]] proposes that L6
 - **[[wiki/entities/insect-central-complex.md]]** — P-EN neurons implement path integration in the Drosophila CX; bump-shift mechanism via asymmetric velocity drive is the best-characterized biological path integrator in any identified circuit.
 - **[[wiki/papers/seelig-jayaraman-2015.md]]** — primary source for direct in vivo confirmation of drift accumulation and landmark-correction cycle in CX path integration.
 - **[[wiki/concepts/latent-graph-discovery.md]]** — path integration solves the path-consistency requirement of latent graph discovery: the structural code g must commute (reach the same meta-graph position via any traversal path), which path integration enforces by accumulating edge transitions rather than memorizing node addresses.
+- **[[wiki/concepts/ring-attractor.md]]** — ring attractor is the biological implementation substrate for CANN-based path integration; the bump-shift mechanism (P-EN asymmetric velocity drive) implements g_{t+1} = f(g_t, a_t) on a circular manifold; A-CANN extends the static-bump path integrator to traveling-wave and anticipative modes via SFA adaptation.
+- **[[wiki/papers/acann-li-chu-wu-2024.md]]** — provides the first full analytical phase diagram for CANN path integration: traveling-wave mode (bump precedes true position by constant t_ant), anticipative tracking, and oscillatory theta modes emerge from a single network; adaptation strength m and input strength α are the two control parameters that determine which path-integration regime operates.

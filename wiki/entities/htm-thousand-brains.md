@@ -5,7 +5,7 @@ tags: [thousand-brains, htm, cortical-columns, sensorimotor, numenta, hawkins]
 created: 2026-06-12
 updated: 2026-06-20
 sources: [150000-mini-brain-transcript, convergence-wiring-transcript, reservoir-computing-transcript, sparse_representations]
-related: [wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/small-world-networks.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/grid-cells.md, wiki/entities/tem-model.md, wiki/entities/reservoir-computing.md, wiki/concepts/predictive-coding.md, wiki/concepts/sparse-distributed-representations.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/ahmad-hawkins-sdr-2016.md]
+related: [wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/small-world-networks.md, wiki/concepts/canonical-microcircuit.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/grid-cells.md, wiki/entities/tem-model.md, wiki/entities/reservoir-computing.md, wiki/concepts/predictive-coding.md, wiki/concepts/sparse-distributed-representations.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/ahmad-hawkins-sdr-2016.md]
 ---
 
 # Thousand Brains Theory / HTM
@@ -79,3 +79,4 @@ Both independently arrive at g/x/p factorization: TEM from the outer-product mem
 - **[[wiki/papers/reservoir-computing-transcript.md]]** — source for the neocortex-as-reservoir framing of TBT.
 - **[[wiki/concepts/sparse-distributed-representations.md]]** — HTM is built entirely on SDR theory; Ahmad & Hawkins 2016 (co-authored by Hawkins) formally proves that the sparse columnar representations TBT assumes achieve near-zero false positive rates with only 20–30 synapses per dendritic segment, providing the mathematical foundation for HTM's pattern recognition claims.
 - **[[wiki/papers/ahmad-hawkins-sdr-2016.md]]** — primary mathematical source for TBT's SDR representational substrate.
+- **[[wiki/concepts/canonical-microcircuit.md]]** — TBT's layer anatomy (L4=sensory, L2/3=consensus/binding, L6=path integration, L5=output) is a specific instantiation of the canonical L4→L2/3→L5→L6→L4 loop; TBT's lateral L2/3 consensus voting is the canonical horizontal WTA mechanism applied across 150,000 columns rather than within patches of one area.

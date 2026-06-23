@@ -2,6 +2,8 @@
 title: "The Tolman-Eichenbaum Machine"
 type: paper
 tags: [hippocampus, entorhinal-cortex, structural-generalization, grid-cells, place-cells, foundational]
+created: 2026-06-20
+updated: 2026-06-20
 sources: [TEM.pdf]
 related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/two-learning-timescales.md, wiki/entities/tem-model.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/queries/tem-implementation-vs-theory.md]
 ---

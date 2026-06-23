@@ -17,13 +17,20 @@ This wiki is a persistent, compounding knowledge base for research on **brain-in
 ```
 PersonalWiki/
 ├── CLAUDE.md               ← this file: schema and operating rules
-├── index.md                ← content catalog (updated every operation)
+├── index.md                ← lightweight routing file (links to wiki indexes)
 ├── log.md                  ← append-only chronological log
 ├── raw/                    ← immutable source documents (never modify)
 │   └── assets/             ← locally downloaded images
+├── tools/
+│   └── qmd-index.sh        ← hybrid BM25+vector search script
 └── wiki/                   ← all LLM-generated content
     ├── overview.md         ← high-level synthesis of the research area
-    ├── entities/           ← researchers, labs, models, datasets, benchmarks
+    ├── open-problems.md    ← current architectural gaps and priority tasks
+    ├── glossary.md         ← abbreviation expansions
+    ├── index-papers.md     ← papers list
+    ├── index-concepts.md   ← concepts list
+    ├── index-entities.md   ← models, benchmarks, biological systems list
+    ├── entities/           ← models, benchmarks, biological systems
     ├── concepts/           ← core ideas, techniques, mechanisms
     ├── papers/             ← per-paper summary pages
     └── queries/            ← filed answers to significant queries
@@ -90,14 +97,16 @@ Triggered when the user drops a new source in `raw/` and says "ingest [filename]
 **Steps (in order):**
 1. Read the source file fully. If it references images, note them but continue.
 2. **Discuss first** — briefly surface key takeaways relevant to the main goal and confirm the user wants to proceed with those emphases.
-3. Create a paper/source page under `wiki/papers/[slug].md`.
-4. Identify all entities (brain regions, models, datasets, benchmarks) mentioned. Create or update their pages under `wiki/entities/`.
-5. Identify all concepts touched. Create or update their pages under `wiki/concepts/`.
-6. Update cross-references: add links from new pages to existing ones and vice versa.
-7. If this source contradicts an existing claim in the wiki, flag it explicitly in both pages with a `> **Contradiction:**` blockquote.
-8. If this source significantly changes the synthesis, update `wiki/overview.md`.
-9. Update `index.md`: add the new paper page and any new entity/concept pages.
-10. Append to `log.md`: `## [YYYY-MM-DD] ingest | [Source Title]` followed by a 2-sentence summary of what changed.
+3. Run qmd search on the paper title and key terms to find related pages.
+4. Read `wiki/index-concepts.md` + `wiki/index-entities.md` in parallel to verify what exists.
+5. Create a paper/source page under `wiki/papers/[slug].md`.
+6. Identify all entities and concepts touched. Create or update their pages under `wiki/entities/` and `wiki/concepts/`.
+7. Update cross-references: add links from new pages to existing ones and vice versa.
+8. If this source contradicts an existing claim in the wiki, flag it explicitly in both pages with a `> **Contradiction [YYYY-MM-DD]:**` blockquote.
+9. If this source significantly changes the synthesis, update `wiki/overview.md`.
+10. Update `wiki/index-papers.md`; update `wiki/index-concepts.md` and/or `wiki/index-entities.md` if new pages were created.
+11. Append one-liner to `log.md`: `## YYYY-MM-DD | ingest | [Title] | created: ...; updated: ...`
+12. Update `wiki/open-problems.md` if new gaps or tensions surfaced.
 
 **Scope:** a single ingest typically touches 3–8 wiki pages. Prefer updating existing pages over creating new ones. Only create a new page for a concept or model that has no existing home.
 
@@ -106,12 +115,13 @@ Triggered when the user drops a new source in `raw/` and says "ingest [filename]
 Triggered when the user asks a question.
 
 **Steps:**
-1. Read `index.md` to find relevant pages.
-2. Read all relevant wiki pages.
-3. Synthesize an answer with explicit citations: `[[wiki/concepts/foo.md]]`.
-4. **Decide:** is this answer significant enough to file? File it if: it synthesizes multiple sources, reveals a non-obvious connection, or the user is likely to return to this question. If filing, create `wiki/queries/[slug].md` and add it to `index.md`.
-5. Update cross-references if the synthesis reveals new connections between existing pages.
-6. Append to `log.md`: `## [YYYY-MM-DD] query | [Question summary]`.
+1. Run qmd search on the question terms to find the most relevant pages.
+2. Read `wiki/index-concepts.md` + `wiki/index-entities.md` to ensure complete coverage.
+3. Read all relevant wiki pages.
+4. Synthesize an answer with explicit citations: `[[wiki/concepts/foo.md]]`.
+5. **Decide:** is this answer significant enough to file? File it if: it synthesizes multiple sources, reveals a non-obvious connection, or the user is likely to return to this question. If filing, create `wiki/queries/[slug].md` and add it to `index.md`.
+6. Update cross-references if the synthesis reveals new connections between existing pages.
+7. Append one-liner to `log.md`: `## YYYY-MM-DD | query | [Question summary] | filed: [slug or no]`
 
 ### LINT
 
@@ -126,7 +136,7 @@ Triggered when the user says "lint the wiki" or periodically suggested after eve
 - Gaps: important sub-topics with no coverage
 - **Abbreviations:** scan all wiki pages for uppercase sequences of 2–5 letters (e.g. HTM, SDR, PFC). For each: (a) check it appears with its full expansion on first use in that page as "Full Term (ABBR)"; (b) check it is listed in `wiki/glossary.md`. Report missing expansions per page and any abbreviations absent from the glossary.
 
-**Output:** a markdown report filed as `wiki/queries/lint-YYYY-MM-DD.md` listing findings and suggested follow-up sources.
+**Output:** a markdown report filed as `wiki/queries/lint-YYYY-MM-DD.md` listing findings and suggested follow-up sources and update wiki/open-problems.md.
 
 ### WEB SEARCH
 
@@ -149,7 +159,7 @@ qmd is **installed and operational** at `/home/compromises/miniconda3/envs/TEM/b
 cd /home/compromises/PersonalWiki && ./tools/qmd-index.sh
 ```
 
-**To search during a query operation:**
+**To search at the start of any INGEST or QUERY:**
 ```bash
 cd /home/compromises/PersonalWiki && ./tools/qmd-index.sh search "query terms"
 ```
@@ -211,15 +221,21 @@ This wiki covers the intersection of neuroscience-inspired AI and abstract reaso
 ## Session Start Checklist
 
 At the start of every new session:
-1. Read `CLAUDE.md` (this file).
-2. Read `log.md` — last 10 entries — to understand recent activity.
-3. Read `index.md` to get the current map of the wiki.
-4. Confirm with the user what they want to do today.
+1. Read `wiki/open-problems.md` — current architectural gaps, empirical tensions, and priority tasks.
+2. Confirm with the user what they want to do today.
 
 ---
 
-## index.md and log.md Format
+## Index and Log Format
 
-**index.md** — organized by category. Each entry: `- [Title](path/to/page.md) — one-line description`. Keep it under 300 lines; use section headers `## Papers`, `## Entities`, `## Concepts`, `## Queries`.
+**index.md** — lightweight routing file only: links to `wiki/open-problems.md`, `wiki/index-papers.md`, `wiki/index-concepts.md`, `wiki/index-entities.md`, and the queries list. Keep it under 30 lines.
 
-**log.md** — entries start with `## [YYYY-MM-DD] <operation> | <title>`. Append only; never edit past entries.
+**wiki/index-papers.md** — papers list only. Each entry: `- [Title](path) — one-line description`. Updated after each ingest.
+
+**wiki/index-concepts.md** — concepts list only. Same format. Updated when a new concept page is created.
+
+**wiki/index-entities.md** — models, benchmarks, and biological systems. Same format. Updated when a new entity page is created.
+
+**log.md** — append-only, one line per operation:
+`## YYYY-MM-DD | operation | title | created: x,y; updated: a,b,c`
+No prose. The concept and entity pages hold the insights.

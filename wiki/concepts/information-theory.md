@@ -1,11 +1,11 @@
 ---
 title: "Information Theory (Entropy, KL Divergence)"
 type: concept
-tags: [information-theory, entropy, kl-divergence, cross-entropy, training-objectives]
+tags: [information-theory, entropy, kl-divergence, cross-entropy, training-objectives, compression, solomonoff, algorithmic-information-theory]
 created: 2026-06-12
-updated: 2026-06-12
-sources: [cross-entropy-first-principles-transcript, bolzman-machine-transcript]
-related: [wiki/concepts/two-learning-timescales.md, wiki/entities/tem-model.md, wiki/concepts/predictive-coding.md, wiki/entities/boltzmann-machine.md, wiki/papers/boltzmann-machine-transcript.md]
+updated: 2026-06-21
+sources: [cross-entropy-first-principles-transcript, bolzman-machine-transcript, Language Modeling Is Compression, hutter-aixi-2000]
+related: [wiki/concepts/two-learning-timescales.md, wiki/entities/tem-model.md, wiki/concepts/predictive-coding.md, wiki/entities/boltzmann-machine.md, wiki/papers/boltzmann-machine-transcript.md, wiki/papers/language-modeling-compression-deletang-2023.md]
 ---
 
 # Information Theory (Entropy, KL Divergence)
@@ -86,6 +86,54 @@ The Free Energy Principle (Friston) is the neuroscience interpretation: the brai
 | TEM fast weights M | Local prediction-error reduction within one environment |
 | Predictive coding / FEP | Perception = minimize F = −E_q[log p(o\|z)] + KL[q(z\|o) ‖ p(z)]; learning = adjust p(o\|z), p(z) parameters |
 | Generative models (VAEs, diffusion) | Maximize log-likelihood = minimize cross-entropy with data distribution |
+| LLM + arithmetic coding | Training log-loss = lossless compression rate; Chinchilla 70B beats domain-specific compressors (PNG/FLAC) on images/audio despite text-only training — evidence that large-scale prediction extracts modality-agnostic structure |
+
+---
+
+## Compression-Prediction Equivalence
+
+**Shannon's source coding theorem:** the expected code length for any lossless encoder is bounded by `H(ρ)`. Arithmetic coding achieves code length `≈ −log₂ ρ̂(x₁:ₙ)` — 1-bit overhead regardless of sequence length. The expected code length is therefore the cross-entropy:
+
+```
+E[code length] ≈ H(ρ, ρ̂) = E_{x∼ρ}[−log₂ ρ̂(xᵢ | x<ᵢ)]
+```
+
+**Minimizing log-loss = minimizing lossless compression rate.** The cross-entropy training objective for all language models — and the accuracy term `−E_q[log p(o|z)]` in variational free energy — are maximum-compression objectives. FEP minimization is compression rate minimization.
+
+### Solomonoff Predictor — Theoretical Ceiling
+
+Optimal *universal* lossless compression (over all computable distributions) recovers the **Solomonoff predictor**: a Bayesian mixture over all Turing-computable programs weighted by description length:
+
+```
+S(x₁:ₙ) = Σ_{q ∈ Q} 2^{−|q|} · q(x₁:ₙ)
+```
+
+Prior weight `2^{−|q|}` is Occam's razor operationalized — shorter programs receive exponentially larger mass. **Predicting optimally ≡ compressing optimally ≡ Solomonoff induction.** LLMs are parameter-bounded, training-distribution-limited approximations. The gap to the Solomonoff predictor is the formal statement of why current models fail at abstract reasoning over genuinely novel domains: their compression prior was formed over a finite training distribution, not all computable programs.
+
+### Active Extension: AIXI and the Passive/Active Boundary
+
+The Solomonoff predictor applies only to **passive** environments — sequences the agent observes but does not influence. Hutter 2000 (AIXI [[wiki/papers/hutter-aixi-2000.md]]) extends ξ to ξ^AI, conditioned on the agent's full action history, enabling the universal prior to drive active decision-making:
+
+```
+AIXI selects action y_k = argmax_{y_k} Σ_{x_k} ... Σ_{x_{m_k}} max_{y_{m_k}} Σ_q 2^{-l(q)} [c(x_k) + ... + c(x_{m_k})]
+```
+
+This is the formal limit of the compression-prediction equivalence:
+
+| Regime | Credit/error bounds | Examples |
+|--------|-------------------|---------|
+| **Passive** (agent output does not affect stream) | K(µ)-bounded — tight, proven by Solomonoff | Sequence prediction, classification, LLMs |
+| **Active** (agent output selects what information is revealed) | No K(µ)-bounded bound; proven impossible | Games, exploration, function minimization, ARC-AGI-3 |
+
+The boundary is not a limitation of AIXI — it is a formal impossibility result. No unbiased agent can guarantee bounded regret in active environments solely as a function of K(µ). This formalizes why pattern-recognition architectures (which solve only the passive case) are architecturally insufficient for abstract reasoning requiring exploration and planning.
+
+### Scaling Law Twist
+
+Standard log-loss rewards larger models unconditionally. *Adjusted* compression rate — (model bytes + compressed bytes) / raw bytes — has a critical point: beyond the optimal model size for each dataset size, additional parameters cost more than the compression gain they provide. Dataset size is a hard upper bound on usable model size. Chinchilla's compute-optimal scaling laws follow as a corollary of this compression theorem.
+
+### Tokenization as Pre-Compression
+
+Tokenization is lossless pre-compression: reduces sequence length (more information per context token) at the cost of a larger vocabulary (harder per-step prediction). The two effects cancel exactly in theory. In practice: small models benefit from larger vocabularies; large models do not. **Reasoning model implication:** tokenizer granularity determines the information density of the in-context WM window — the effective capacity of the fast inner loop.
 
 ---
 
@@ -140,3 +188,5 @@ Each step makes the same optimization more tractable or more biologically plausi
 - **[[wiki/concepts/predictive-coding.md]]** — FEP frames the cross-entropy + KL objective as Bayesian brain inference: free energy F = −ELBO = accuracy cost + KL complexity; minimizing F unifies perceptual inference (fast, activations) and model learning (slow, weights) under a single variational objective.
 - **[[wiki/entities/boltzmann-machine.md]]** — partition function Z is the concrete instance of the log p(o) intractability that motivates the ELBO; the conceptual lineage from Boltzmann machine through variational Bayes to FEP is the historical progression from intractable to tractable optimization of the same objective.
 - **[[wiki/papers/boltzmann-machine-transcript.md]]** — source for Boltzmann distribution derivation and partition function; motivates why variational inference exists.
+- **[[wiki/papers/language-modeling-compression-deletang-2023.md]]** — empirical and theoretical grounding: log-loss = compression rate via arithmetic coding; Chinchilla 70B cross-modal compression as evidence that large-scale prediction extracts modality-agnostic structure; Solomonoff predictor as the ceiling; scaling law twist from adjusted compression rates; tokenization as pre-compression stage.
+- **[[wiki/papers/hutter-aixi-2000.md]]** — extends Solomonoff's passive predictor to the active decision-making case via ξ^AI; establishes the passive/active boundary as a formal impossibility — K(µ)-bounded credit bounds exist only in passive environments; exploration emerges as a theorem from the Kolmogorov simplicity prior.

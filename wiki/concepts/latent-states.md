@@ -3,9 +3,9 @@ title: "Latent States"
 type: concept
 tags: [latent-states, aliasing, sequence-learning, abstract-reasoning, hippocampus]
 created: 2026-06-12
-updated: 2026-06-19
+updated: 2026-06-21
 sources: [cognitivemap, PFC_as_a_meta_RL_system]
-related: [wiki/concepts/structural-generalization.md, wiki/concepts/path-integration.md, wiki/concepts/factorized-representations.md, wiki/concepts/predictive-coding.md, wiki/concepts/meta-learning.md, wiki/entities/cscg-model.md, wiki/entities/tem-model.md, wiki/entities/place-cells.md, wiki/entities/prefrontal-cortex.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/whittington-cognitive-map-2022.md]
+related: [wiki/concepts/structural-generalization.md, wiki/concepts/path-integration.md, wiki/concepts/factorized-representations.md, wiki/concepts/predictive-coding.md, wiki/concepts/meta-learning.md, wiki/entities/cscg-model.md, wiki/entities/tem-model.md, wiki/entities/place-cells.md, wiki/entities/prefrontal-cortex.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/whittington-cognitive-map-2022.md, wiki/concepts/representational-geometry.md, wiki/papers/geometry-abstraction-bernardi-2020.md]
 ---
 
 # Latent States
@@ -49,6 +49,19 @@ TEM reproduces all four cell types without being designed to — they fall out o
 
 ---
 
+## Context as Abstract Latent Variable: The CCGP Criterion
+
+Bernardi et al. 2020 ([[wiki/papers/geometry-abstraction-bernardi-2020.md]]) operationalize latent-state representation as a geometry problem: context is in **abstract format** when a linear decoder trained on a subset of task conditions generalizes to held-out conditions (CCGP >> chance), i.e., the coding direction for context is parallel across condition groupings.
+
+Key findings for latent-state architecture:
+- **HPC** represents context in abstract format before *and after* the decision epoch — the persistent abstract latent-state store.
+- **DLPFC** loses context abstraction during the decision (context non-linearly mixed with stimulus identity for action computation), recovering it before the next trial.
+- **Behavior correlation:** CCGP for context drops on error trials; traditional decoding accuracy does not — the latent state must be in abstract format, not just decodable, to support flexible behavior.
+
+This adds a precision that CSCG/TEM/PFC-meta-RL accounts lack: they specify *what* latent states are; CCGP specifies the *geometric criterion* the representation must satisfy to generalize to novel contexts.
+
+---
+
 ## Implication for Reasoning Models
 
 Any system claiming to handle abstract tasks must maintain **running hidden state** across an episode — not just process the current frame. The latent state is the task-relevant context accumulated from the sequence so far. Feedforward single-frame architectures (CNNs, single-step transformers) cannot do this.
@@ -67,3 +80,5 @@ Any system claiming to handle abstract tasks must maintain **running hidden stat
 - **[[wiki/papers/pfc-meta-rl-wang-2018.md]]** — Fig. 4c: LSTM activation space clusters by task latent state prior to any trial observation, demonstrating that PFC recurrent dynamics represent latent states as an emergent property of meta-RL training.
 - **[[wiki/entities/prefrontal-cortex.md]]** — PFC is the biological substrate for within-episode latent-state tracking; dlPFC WM interference resistance and the LSTM hidden state are both mechanisms for maintaining latent-state estimates across a delay; ACC unsigned PE drives updates when the latent state must change.
 - **[[wiki/papers/whittington-cognitive-map-2022.md]]** — primary source for the latent-states account of all non-spatial HC cells (splitter, lap, evidence cells); latent-states.md distills the core unification argument from this paper.
+- **[[wiki/concepts/representational-geometry.md]]** — CCGP provides the geometric criterion that distinguishes an abstract latent state (coding direction parallel across conditions) from a merely decodable one; HPC satisfies this for context persistently; DLPFC temporarily loses it during action computation.
+- **[[wiki/papers/geometry-abstraction-bernardi-2020.md]]** — empirical source for the CCGP/context finding; serial reversal-learning task; HPC vs. DLPFC temporal dynamics; correlation with behavioral accuracy on error trials.

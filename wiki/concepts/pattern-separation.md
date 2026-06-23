@@ -1,11 +1,11 @@
 ---
 title: "Pattern Separation"
 type: concept
-tags: [pattern-separation, dentate-gyrus, hippocampus, orthogonalization, competitive-learning, place-cells]
+tags: [pattern-separation, dentate-gyrus, hippocampus, orthogonalization, competitive-learning, place-cells, sdm]
 created: 2026-06-20
-updated: 2026-06-20
-sources: [The mechanisms for pattern completion and pattern separation in the hippocampus, Structure and function of the hippocampal CA3 module, sparse_representations, Pattern separation in the hippocampus.md]
-related: [wiki/concepts/associative-memory.md, wiki/concepts/neuromodulation.md, wiki/concepts/engrams.md, wiki/concepts/sparse-distributed-representations.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/place-cells.md, wiki/entities/grid-cells.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/ca3-sammons-2023.md, wiki/papers/ahmad-hawkins-sdr-2016.md, wiki/papers/yassa-stark-pattern-separation-2011.md]
+updated: 2026-06-22
+sources: [The mechanisms for pattern completion and pattern separation in the hippocampus, Structure and function of the hippocampal CA3 module, sparse_representations, Pattern separation in the hippocampus.md, kanerva-sdm-1993]
+related: [wiki/concepts/associative-memory.md, wiki/concepts/neuromodulation.md, wiki/concepts/engrams.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/hebbian-learning.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/place-cells.md, wiki/entities/grid-cells.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/ca3-sammons-2023.md, wiki/papers/ahmad-hawkins-sdr-2016.md, wiki/papers/yassa-stark-pattern-separation-2011.md, wiki/entities/sdm-model.md, wiki/papers/kanerva-sdm-1993.md, wiki/entities/cerebellum.md]
 ---
 
 # Pattern Separation
@@ -60,6 +60,26 @@ With $C_{RC} = 12{,}000$ (rat CA3 recurrent collaterals per cell) and $a = 0.02$
 | 5 | **Adult neurogenesis** | Novel mossy fiber connections for new memories without disturbing existing CA3 attractors |
 
 **Grid→place via competitive learning:** Each DG granule cell learns to respond to a unique combination of co-active MEC grid cell patterns — that combination uniquely identifies a place. Feed-forward connectivity without competitive learning produces broad overlapping fields unsuitable for episodic storage. In primates, the same mechanism produces *spatial view cells*: the fovea covers ~10–20° of visual angle, so each DG combination encodes a viewed patch rather than a body location.
+
+---
+
+## SDM as the Formal Model of DG Pattern Separation
+
+The DG→CA3 circuit is formally a biological SDM using the **hyperplane design** (Jaeckel 1989, Marr 1969 [[wiki/papers/kanerva-sdm-1993.md]]), where each hard location (granule cell) receives only k=3–5 mossy fiber inputs rather than the full N-dimensional EC input [[wiki/entities/sdm-model.md]]:
+
+| SDM component | DG→CA3 biological analog |
+|---|---|
+| Address space (N-dim) | EC population (thousands of grid/place/LEC inputs) |
+| Hard locations (M rows of **A**) | DG granule cells (M ≈ 10⁶ in rat) |
+| Sparse address rows (k=3–5 nonzeros) | Each granule cell receives ~3–5 mossy fiber inputs |
+| Activation y (hyperplane threshold) | k-WTA inhibitory competition among granule cells |
+| Optimal p maintenance | GABAergic interneurons (Golgi cell functional analog) regulate ~2–6% active fraction |
+| Contents matrix **C** | Mossy fiber→CA3 synapses (~46/CA3 cell; strong, detonator-type) |
+| Majority-vote output z | CA3 recurrent attractor completion |
+
+**Quantitative correspondence:** SDM's p_opt = (2MT)^{-1/3} gives the optimal active fraction as a function of M (granule cells) and T (stored episodes). For M = 10⁶ and T = 10⁴: p_opt ≈ 0.037% — far below DG's observed 2–6%. The discrepancy suggests DG operates in a more fault-tolerant regime (higher p) that trades some capacity for robustness to noisy partial cues — appropriate for retrieval from impoverished EC inputs rather than exact-address queries.
+
+**Why expansion is the key mechanism:** Expanding N EC inputs to M = 10⁶ DG cells makes any two input patterns nearly orthogonal in the activation space: their activation-set overlap drops from correlated EC inputs to p² × M ≈ 0.15 locations on average at p = 0.037%. This is the DG's pattern separation mechanism formalized in SDM terms — not *decorrelation* (a continuous operation) but *near-exact orthogonalization* (a discrete threshold operation in the expanded space).
 
 ---
 
@@ -151,3 +171,7 @@ Perforant path degradation (structural)
 - **[[wiki/papers/ca3-sammons-2023.md]]** — provides empirical CA3 connectivity rates (~9–11%) that feed into the capacity formula; random connectivity result confirms diluted connectivity is sufficient for attractor dynamics without motif enrichment.
 - **[[wiki/concepts/sparse-distributed-representations.md]]** — SDR scaling laws provide the mathematical basis for why DG sparsity enables the capacity formula: high-dimensional sparse codes (n > 2000, a/n < 5%) achieve near-zero dendritic false positive rates, making each CA3 attractor basin interference-free at the levels the formula predicts.
 - **[[wiki/papers/ahmad-hawkins-sdr-2016.md]]** — derives the hypergeometric false positive formula and union property for SDR recognition; directly explains why DG expansion followed by k-WTA is the right preprocessing for maximizing $p_\text{max}$.
+- **[[wiki/concepts/hebbian-learning.md]]** — DG competitive Hebbian learning is the mechanism by which grid cell co-activity patterns become sparse non-overlapping place codes; lateral inhibition enforces winner-take-all convergence so that the Hebbian write produces distinct attractors rather than correlated overlapping representations.
+- **[[wiki/entities/sdm-model.md]]** — DG→CA3 is a biological SDM using the hyperplane design: granule cells = hard locations, k=3–5 mossy fiber inputs per cell = sparse **A** rows, k-WTA inhibition = p_opt regulation; the SDM capacity formula τ ≈ 0.1 and the DG capacity formula p_max ≈ k×C_RC/a are two views of the same interference-avoidance result.
+- **[[wiki/papers/kanerva-sdm-1993.md]]** — source for the hyperplane design, Marr (1969)/Albus (1971) biological correspondence, quantitative granule cell mapping, and the proof that near-exact orthogonalization (not just decorrelation) is the outcome of high-dimensional random expansion.
+- **[[wiki/entities/cerebellum.md]]** — cerebellar granule cells implement the same expansion + k=3–5 sparse address design as DG granule cells, with Golgi cells playing the equivalent role of competitive inhibition in maintaining p near p_opt; convergent architecture in two independent learning circuits.

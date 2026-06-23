@@ -1,11 +1,11 @@
 ---
 title: "Hippocampal Replay"
 type: concept
-tags: [replay, memory-consolidation, credit-assignment, offline-learning, state-space-construction]
+tags: [replay, memory-consolidation, credit-assignment, offline-learning, state-space-construction, cann, traveling-wave]
 created: 2026-06-09
-updated: 2026-06-20
-sources: [engram-transcript, memory-gate-transcript, Complementary Learning Systems, Complementary learning systems Why - Claude summary, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus]
-related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/factorized-representations.md, wiki/concepts/engrams.md, wiki/concepts/neural-manifolds.md, wiki/concepts/structural-generalization.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/engram-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/whittington-cognitive-map-2022.md]
+updated: 2026-06-22
+sources: [engram-transcript, memory-gate-transcript, Complementary Learning Systems, Complementary learning systems Why - Claude summary, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, acann-li-2024]
+related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/factorized-representations.md, wiki/concepts/engrams.md, wiki/concepts/neural-manifolds.md, wiki/concepts/structural-generalization.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/engram-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/whittington-cognitive-map-2022.md, wiki/concepts/ring-attractor.md, wiki/papers/acann-li-chu-wu-2024.md]
 ---
 
 # Hippocampal Replay
@@ -113,6 +113,23 @@ The common thread: replay filters for *generalizable structure* and suppresses i
 
 ---
 
+## Traveling Wave as Intrinsic Memory Search
+
+The A-CANN framework (Li, Chu & Wu 2024) provides a complementary, **trigger-free** replay mechanism: when SFA adaptation strength exceeds m > τ/τ_v, the network's own adaptation spontaneously destabilizes the static bump and drives it through the attractor space, revisiting stored states in sequence. Unlike SWR replay, no CA3 sharp-wave trigger or E/I competition is required.
+
+| Property | SWR replay | Traveling-wave replay |
+|---|---|---|
+| Trigger | CA3 sharp wave → E/I competition | None — SFA threshold crossing |
+| Content selection | Strongest engrams win E/I competition | All states visited; speed ∝ v_int |
+| Displacement statistics | Episodic sequence; fixed-length | Power-law Lévy flights near m ≈ τ/τ_v |
+| Phase of sleep | NREM SWS (primarily) | Quiet wakefulness / lighter sleep (proposed) |
+
+**Lévy flight statistics:** when adaptation noise fluctuates m around the traveling-wave boundary, displacement follows p(||Δz||) ∝ ||Δz||^{−1−α} with α = 1 + 2μ/γ². Pfeiffer & Foster 2015 report this exact power-law in sequential place-cell reactivation at rest — the A-CANN provides the mechanistic origin from first principles.
+
+**Neuromodulatory control:** ACh modulation of K⁺ conductance adjusts SFA timescale τ_v, setting m relative to the τ/τ_v threshold and thereby controlling which replay mode is active — making the traveling-wave search mode a **neuromodulatory function**, not a separate circuit.
+
+---
+
 ## Connections
 
 - **[[wiki/concepts/two-learning-timescales.md]]** — replay is the proposed biological mechanism for the slow W update: replayed HC sequences give cortex the clean (latent state → next state) pairs it needs to extract shared structural regularities across environments.
@@ -126,3 +143,5 @@ The common thread: replay filters for *generalizable structure* and suppresses i
 - **[[wiki/papers/learning-fast-slow-liao-2024.md]]** — source for adaptive replay selectivity (Terada 2022, Grosmark 2021, Berners-Lee 2022 synthesis) and inhibitory plasticity as the computational mechanism; establishes that SWRs actively filter for generalizable structure rather than replaying verbatim experience.
 - **[[wiki/concepts/structural-generalization.md]]** — adaptive replay selectivity is the HC-level implementation of structural generalization: filtering idiosyncratic content and amplifying transferable regularities is the same operation structural generalization requires but expressed in the HC offline consolidation process.
 - **[[wiki/papers/whittington-cognitive-map-2022.md]]** — source for the offline state-space construction framing of replay (distinct from the credit assignment and consolidation views); the GVC binding account derives from this paper.
+- **[[wiki/concepts/ring-attractor.md]]** — traveling-wave state of A-CANN is an intrinsic memory-search mechanism in which SFA spontaneously drives the activity bump through all attractor states; Lévy flight statistics near the adaptation boundary match the power-law place-cell reactivation patterns documented in vivo.
+- **[[wiki/papers/acann-li-chu-wu-2024.md]]** — primary source for the traveling-wave replay mechanism, the Lévy flight power-law statistics from noisy adaptation, and the neuromodulatory (ACh/τ_v) control of the WM-vs-search mode transition.

@@ -3,9 +3,9 @@ title: "Working Memory"
 type: concept
 tags: [working-memory, transient-trajectory, attractor, RNN, PFC, delay-period, recurrent-networks, STSP, activity-silent]
 created: 2026-06-19
-updated: 2026-06-20
-sources: [Recurrent neural networks with transient trajectory explain working memory encoding mechanisms, PFC_as_a_meta_RL_system, PBWM_oreilly_frank_2006, Robust and brain-like working memory through short-term synaptic plasticity, transformer_wm_limit, The role of prefrontal cortex in cognitive control and executive function, Exploring the cognitive and motor functions of the basal ganglia an integrative review of computational cognitive neuroscience models]
-related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/meta-learning.md, wiki/concepts/neural-manifolds.md, wiki/concepts/neuromodulation.md, wiki/concepts/binding-problem.md, wiki/concepts/attention.md, wiki/concepts/cognitive-control.md, wiki/concepts/associative-memory.md, wiki/entities/reservoir-computing.md, wiki/entities/prefrontal-cortex.md, wiki/entities/basal-ganglia.md, wiki/entities/trnn-model.md, wiki/papers/trnn-liu-2025.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/pbwm-oreilly-frank-2006.md, wiki/papers/stsp-kozachkov-2022.md, wiki/papers/transformer-wm-limit-gong-2024.md, wiki/papers/pfc-cognitive-control-friedman-2021.md, wiki/papers/helie-ccn-bg-2013.md, wiki/papers/bogacz-gurney-bg-msprt-2007.md, wiki/queries/building-blocks-mec-hc-pfc.md]
+updated: 2026-06-23
+sources: [Recurrent neural networks with transient trajectory explain working memory encoding mechanisms, PFC_as_a_meta_RL_system, PBWM_oreilly_frank_2006, Robust and brain-like working memory through short-term synaptic plasticity, transformer_wm_limit, The role of prefrontal cortex in cognitive control and executive function, Exploring the cognitive and motor functions of the basal ganglia an integrative review of computational cognitive neuroscience models, Spike frequency adaptation bridging neural models and neuromorphic applications, Hybrid computing using a neural network with dynamic external memory, maass-lsm-2002]
+related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/meta-learning.md, wiki/concepts/neural-manifolds.md, wiki/concepts/neuromodulation.md, wiki/concepts/binding-problem.md, wiki/concepts/attention.md, wiki/concepts/cognitive-control.md, wiki/concepts/associative-memory.md, wiki/concepts/spike-frequency-adaptation.md, wiki/concepts/sequence-memory.md, wiki/entities/reservoir-computing.md, wiki/entities/prefrontal-cortex.md, wiki/entities/basal-ganglia.md, wiki/entities/trnn-model.md, wiki/entities/dnc-model.md, wiki/papers/trnn-liu-2025.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/pbwm-oreilly-frank-2006.md, wiki/papers/stsp-kozachkov-2022.md, wiki/papers/transformer-wm-limit-gong-2024.md, wiki/papers/pfc-cognitive-control-friedman-2021.md, wiki/papers/helie-ccn-bg-2013.md, wiki/papers/bogacz-gurney-bg-msprt-2007.md, wiki/papers/sfa-ganguly-2024.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/papers/long-sequence-hopfield-chaudhry-2023.md, wiki/papers/dnc-graves-2016.md, wiki/entities/gwt-model.md, wiki/papers/gnw-mashour-2020.md, wiki/papers/maass-lsm-2002.md]
 ---
 
 # Working Memory
@@ -56,7 +56,7 @@ Three modifications to a vanilla RNN produce high-TI transient dynamics: (1) **s
 
 ---
 
-## Four Fast WM Mechanisms
+## Fast WM Mechanisms
 
 | Mechanism | Storage medium | Write step? | Capacity constraint | Structural robustness |
 |---|---|---|---|---|
@@ -64,8 +64,11 @@ Three modifications to a vanilla RNN produce high-TI transient dynamics: (1) **s
 | **LSTM hidden state (PFC meta-RL)** | Recurrent activation vector h_t | Implicit (gated accumulation) | ≈ hidden dimension; no slot limit | High (LSTM most robust to process noise) |
 | **Transient trajectory (TRNN)** | Sequential neuron firing chain | None — dynamics propagate by self-inhibition | Scales with neuron count N (neuron-count limited) | Not measured |
 | **STSP / PS-hebb (PFC activity-silent)** | Transiently modified synaptic efficacy (calcium dynamics) | None — spikes automatically drive calcium update | Not established; bounded by calcium decay timescale (~200ms) | High: 50% synapse ablation with minimal loss; fixed-synapse fails at 10–20% |
+| **SFA / adaptive threshold (LSNN)** | Adaptive spiking threshold $a_j(t)$ — leaky trace of spike history in the threshold variable | None — each spike increments threshold; trace decays with $\tau_a$ | Scales with $\tau_a$; DEXAT two-timescale ($\tau_{b1}$=30ms, $\tau_{b2}$=300ms) achieves 1200ms WM more efficiently than single matched $\tau_a$ | Not measured; intrinsic — independent of synaptic structure |
+| **External augmented memory (DNC)** | N×W external memory matrix M; accessed via soft attention read/write heads | Explicit soft write via attention weighting + erase/add vectors | N locations (expandable without retraining; behavior size-independent) | Not measured; architecture-level, not neuron-level mechanism |
+| **GNW ignition (active broadcast)** | Globally sustained firing across PFC-parietal hub network (GNW neurons, layer II/III + V) | Implicit threshold: feedforward input to PFC above threshold triggers NMDA-mediated self-sustaining recurrent loop | 1 conscious object at a time (serial bottleneck); multiple items require sequential ignition cycles | Not measured at model level; disrupted by NMDA antagonists (ketamine) or frontal-parietal disconnection |
 
-These four are the fast-timescale mechanisms identified across the wiki's brain-region coverage. Short-Term Synaptic Plasticity (STSP) is uniquely characterized by: (a) storage in synaptic state rather than neural state, (b) brain-likeness confirmed via NHP PFC comparison, and (c) provable stability in the PS-hebb variant.
+These six are the fast-timescale mechanisms identified across the wiki's brain-region coverage. SFA is unique in being entirely intrinsic — the memory trace lives in the neuron's own threshold variable, not in synaptic weights or activation state. 20–40% of excitatory neocortical neurons exhibit SFA by default (Allen Institute data). Short-Term Synaptic Plasticity (STSP) is uniquely characterized by: (a) storage in synaptic state rather than neural state, (b) brain-likeness confirmed via NHP PFC comparison, and (c) provable stability in the PS-hebb variant.
 
 ---
 
@@ -124,6 +127,19 @@ WM *updating* is the second of three dissociable CC components (after response i
 
 ---
 
+## GNW: Active vs. Activity-Silent Distinction
+
+Mashour et al. (2020) establish the mechanistic difference between WM as *store* and WM as *workspace*:
+
+- **Activity-silent items** (STSP, synaptic traces): bridge delays but **cannot be transformed** — MEG decoding (Trübutschek et al. 2017) shows decodable information is present but produces no ignition signature; mental rotation and sequence navigation fail on silent items
+- **GNW-active items** (globally sustained firing in PFC-parietal hub): can be mentally rotated, sequenced, and reasoned over; Trübutschek et al. 2019 confirms that whenever WM content must be transformed, active firing reemerges
+
+The ignition threshold is the WM entry gate: when feedforward input to PFC is strong enough, NMDA-gated recurrent loops self-sustain and broadcast the representation globally to all specialized processors.
+
+**Design implication:** A reasoning model's hub module must maintain representations in an active broadcast state for any downstream transformation step. Storage mechanisms (STSP, SFA, DNC memory) support the *buffer*; GNW ignition supports the *workspace*. A model relying solely on activity-silent storage for multi-step reasoning will fail when chained transformations are required — each step must reinstate the intermediate result into active broadcast before the next step can apply.
+
+---
+
 ## Relationship to Abstract Reasoning
 
 WM is prerequisite for:
@@ -143,6 +159,7 @@ Transformer-based architectures have a specific WM liability: even within contex
 - What prevents trajectory divergence in longer delays without explicit end-of-delay signal? (TRNN uses fixed-length training)
 - Does the neuron-recruitment capacity model predict the 7±2 limit quantitatively, or only qualitatively?
 - Are the TRNN's three modifications sufficient for abstract (non-sensory) WM, or does symbolic content require additional structure?
+- LSM Theorem 1 proves that any fading-memory filter is computable from transient liquid states, provided SP holds. The open question for WM in reasoning tasks: does the Separation Property of neocortical circuits hold for abstract (relational) inputs, or is SP guaranteed only for sensory inputs matched to evolutionary circuit priors?
 - Can STSP and TRNN be combined? STSP provides structural robustness + activity-silent bridging; TRNN provides high multi-item capacity. A combined model could alternate between silent (STSP) and active (trajectory) phases.
 - What is the read-out mechanism in STSP networks? "Spiking pings synaptic state" is the informal account — the mechanistic details of how a burst at test time selectively reads the correct synaptic pattern are unspecified.
 - Can auxiliary WM modules (TRNN/STSP) be coupled to a transformer backbone to overcome the N-back attention entropy limit? The transformer's global softmax competes over all positions; the WM module would maintain selected items outside that budget — what is the interface mechanism?
@@ -158,11 +175,14 @@ Transformer-based architectures have a specific WM liability: even within contex
 - **[[wiki/concepts/neuromodulation.md]]** — D1/D2 dopamine gating of DLPFC activity (stability/flexibility) maps onto TRNN's self-inhibition coefficient γ: high D1 = low γ (less self-inhibition, more persistence); high D2 = high γ (strong self-inhibition, faster trajectory); the γ parameter is the neuromodulatory dial.
 - **[[wiki/concepts/binding-problem.md]]** — multi-item WM requires binding multiple representations to independent temporal slots; TRNN's neuron-count-limited capacity formalizes this as temporal multiplexing rather than attractor coexistence.
 - **[[wiki/entities/reservoir-computing.md]]** — reservoirs have naturally high TI (transient dynamics, spectral radius < 1); Barak 2013 showed reservoir already outperforms pure attractor vanilla RNN on delay tasks; TRNN adds learned hierarchical structure to the reservoir's inherently transient dynamics.
+- **[[wiki/papers/maass-lsm-2002.md]]** — Theorem 1 is the formal proof that transient dynamics alone can implement any fading-memory computation (via SP+AP); readout equivalence classes are the specific mechanism by which stable WM output emerges from variable liquid states; dynamic synapse results establish that short-term synaptic plasticity is computationally required for >30ms fading memory, directly grounding the STSP mechanism.
 - **[[wiki/entities/trnn-model.md]]** — TRNN entity page: full architecture (three modifications + TI metric), capacity and energy tables, variable delay mechanism, and comparison to other WM mechanisms.
 - **[[wiki/papers/trnn-liu-2025.md]]** — primary source for TRNN; Liu et al. 2025.
 - **[[wiki/papers/pfc-meta-rl-wang-2018.md]]** — Wang et al. 2018; LSTM-based WM (hidden-state mechanism) for comparison.
 - **[[wiki/papers/pbwm-oreilly-frank-2006.md]]** — PBWM; BG-gated stripe-based WM as a third biological instantiation (dynamic variable binding into independent slots via BG gating, distinct from both attractor and transient trajectory).
 - **[[wiki/papers/stsp-kozachkov-2022.md]]** — Kozachkov et al. 2022; source for STSP as 4th mechanism; NHP PFC empirical validation; PS-hebb robustness and stability results.
+- **[[wiki/concepts/spike-frequency-adaptation.md]]** — SFA adds a 5th fast WM mechanism: the adaptive threshold $a_j(t)$ is a leaky trace of spike history stored in the threshold variable itself; $\tau_a$ sets the WM duration; DEXAT's two-timescale composition (fast $\tau_{b1}$ + slow $\tau_{b2}$) shows the same multi-timescale superiority principle already established for CLS.
+- **[[wiki/papers/sfa-ganguly-2024.md]]** — Ganguly et al. 2024 review; source for ALIF/DEXAT/LSNN benchmarks (93.7% SMNIST, 95% STORE-RECALL at 1200ms); 20–40% neocortical SFA prevalence; e-prop biologically plausible alternative to BPTT.
 - **[[wiki/concepts/cognitive-control.md]]** — WM updating is the second of three dissociable CC components; the active maintenance of goals in dlPFC is itself the mechanism of cognitive control (not just a side-effect), linking WM directly to top-down bias and response inhibition.
 - **[[wiki/concepts/attention.md]]** — transformer self-attention is both WM's implementation mechanism (attending to past items) and its capacity bottleneck (softmax mass divided among all preceding positions); the localism gap in compositional generalization and the N-back entropy limit are two distinct failure modes of the same global-receptive-field property.
 - **[[wiki/concepts/associative-memory.md]]** — the classical attractor theory of WM (Fuster, Goldman-Rakic) is a Hopfield network held at a stored pattern; the attractor vs. transient-trajectory debate is whether WM uses Hopfield fixed points or dynamic trajectory paths; Hopfield capacity (~0.14N) predicts the slot limit and the failure mode under pattern interference.
@@ -170,5 +190,11 @@ Transformer-based architectures have a specific WM liability: even within contex
 - **[[wiki/queries/building-blocks-mec-hc-pfc.md]]** — Block 3B (WM/context maintenance) bridge should prefer TRNN over vanilla LSTM based on capacity and spatial navigation evidence; STSP could supplement Block 3B for within-trial structural robustness; Gong & Zhang 2024 confirms that a pure-transformer Block 3B will fail on N-back-style context retrieval regardless of context length.
 - **[[wiki/entities/prefrontal-cortex.md]]** — dlPFC is the primary biological substrate for WM interference resistance and updating; transient delay-period activity (majority of dlPFC neurons are non-persistent) is consistent with TRNN over attractor models; the hierarchical PFC gradient grounds the multi-level WM context stack in Block 3C.
 - **[[wiki/entities/basal-ganglia.md]]** — BG gating is the biological mechanism that controls which PFC WM slots are updated vs. held; the three-architecture debate (thalamo-cortical/cortico-cortical/BG-in-loop) determines how abstractly the BG gate can be treated in a model; MSPRT specifies the selection criterion independently of architecture.
+- **[[wiki/concepts/sequence-memory.md]]** — sequence memory (DenseNet) propels the network through a stored ordered trajectory; MixedNet's fast/slow synapse split (stay vs. transition) parallels the WM maintenance/readout distinction; the two mechanisms differ in function (hold vs. propel) but share dual-timescale synaptic dynamics and the same CBGT biological substrate.
+- **[[wiki/papers/long-sequence-hopfield-chaudhry-2023.md]]** — MixedNet variable-timing architecture is relevant to WM's temporal gating function: $\lambda$ parameter controlling transition speed corresponds to the deliberate-pause mechanism (hyperdirect Hold); the fast/slow synapse split maps onto AMPA/NMDA timescales used in WM models.
 - **[[wiki/papers/helie-ccn-bg-2013.md]]** — source for the BG-WM three-architecture debate; COVIS dual-system categorization as a WM-gating context (BG gates rule switching in hypothesis-testing system); also source for BG gating-vs-maintenance architectural distinction.
 - **[[wiki/papers/bogacz-gurney-bg-msprt-2007.md]]** — specifies the Bayesian selection objective (MSPRT) for BG gating: the gating criterion is log-posterior over candidate WM updates, with normalization provided by the STN-GP log-softmax subsystem; specifies Block 3D's selection module design requirement independently of the three-architecture debate.
+- **[[wiki/entities/dnc-model.md]]** — DNC external memory is the 6th fast WM mechanism: N×W matrix accessed by soft attention; uniquely provides unlimited expandable capacity without modifying any weight, making it the only mechanism where WM capacity can be grown at test time; also the only mechanism with bidirectional read-modify-write (erase + add vectors per location), enabling prospective planning via write-before-execute.
+- **[[wiki/papers/dnc-graves-2016.md]]** — source: DNC architecture; Mini-SHRDLU planning decode (89% first-action accuracy at goal-write time); graph traversal LSTM vs. DNC empirical gap (37% vs. 98.8%) establishing necessity of external read-write memory for structured reasoning.
+- **[[wiki/entities/gwt-model.md]]** — GNW ignition is the 7th fast WM mechanism and the only one enabling mental transformation; activity-silent STSP items are stores — they cannot be mentally rotated, sequenced, or reasoned over until reinstated into GNW active firing (Trübutschek et al. 2017, 2019).
+- **[[wiki/papers/gnw-mashour-2020.md]]** — source for the active vs. activity-silent WM distinction; AMPA/NMDA feedforward/feedback dissociation; dynamic state repertoire collapse under anesthesia as the GNW operational indicator.

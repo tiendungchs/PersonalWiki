@@ -3,9 +3,9 @@ title: "Factorized Representations"
 type: concept
 tags: [factorized-representations, structural-generalization, architecture, world-models, compositional]
 created: 2026-06-09
-updated: 2026-06-20
-sources: [t-TEM, convergence-wiring-transcript, reservoir-computing-transcript]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/path-integration.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/attention.md, wiki/concepts/predictive-coding.md, wiki/concepts/neural-manifolds.md, wiki/concepts/small-world-networks.md, wiki/concepts/hierarchical-representations.md, wiki/entities/tem-model.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/entities/htm-thousand-brains.md, wiki/entities/reservoir-computing.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/dicarlo-visual-object-recognition-2012.md, wiki/papers/whittington-cognitive-map-2022.md]
+updated: 2026-06-22
+sources: [t-TEM, convergence-wiring-transcript, reservoir-computing-transcript, High-capacity flexible hippocampal associative and episodic memory enabled by prestructured "spatial" representations, kanerva-sdm-1993, barlow_twins]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/path-integration.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/attention.md, wiki/concepts/predictive-coding.md, wiki/concepts/neural-manifolds.md, wiki/concepts/small-world-networks.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/associative-memory.md, wiki/entities/tem-model.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/entities/htm-thousand-brains.md, wiki/entities/reservoir-computing.md, wiki/entities/vector-hash-model.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/dicarlo-visual-object-recognition-2012.md, wiki/papers/whittington-cognitive-map-2022.md, wiki/papers/vector-hash-chandra-2023.md, wiki/entities/sdm-model.md, wiki/papers/kanerva-sdm-1993.md, wiki/papers/barlow-twins-zbontar-2021.md]
 ---
 
 # Factorized Representations
@@ -68,6 +68,16 @@ Grid cells warp toward rewarded locations (Boccara 2019, Butler 2019), apparentl
 
 ---
 
+## Disentanglement ≠ Abstraction: The CCGP/SD Constraint
+
+Factorized/disentangled representations achieve high cross-condition generalization performance (CCGP) for each encoded variable — but at the cost of severely reduced shattering dimensionality (SD). In a perfectly factorized representation, XOR dichotomies are linearly unseparable, hard-limiting the responses a downstream linear readout can generate.
+
+Bernardi et al. 2020 ([[wiki/papers/geometry-abstraction-bernardi-2020.md]]) show that HPC, DLPFC, and ACC achieve near-maximal SD *simultaneously* with high CCGP for context, value, and action. The observed geometry is not fully disentangled: a small distortion of the factorized arrangement recovers near-maximal SD without sacrificing CCGP for the key variables. Mixed selectivity (linear combinations of multiple variable tunings) is the substrate — it corresponds to a rotation of the factorized code that preserves CCGP under linear readouts.
+
+**Design implication:** the target for a reasoning model is not maximum disentanglement but the CCGP/SD balance. Full disentanglement limits behavioral flexibility. See [[wiki/concepts/representational-geometry.md]].
+
+---
+
 ## Transformer Validation
 
 TEM-t [[wiki/papers/t-tem-whittington-2022.md]] independently confirms the factorized split is architecturally optimal. Restricting transformer keys/queries to structural code `g̃` and values to sensory code `x̃` is not a design choice — it is a *derivation* from the outer-product memory structure `p = flatten(x̃ᵀ g̃)`. Retrieving `x̃` given `g̃_t` reduces to attending over past `g̃` values, leaving sensory values untouched in V. Any mixing of structural and sensory information in keys/queries would corrupt retrieval. The factorization is necessary.
@@ -85,6 +95,37 @@ TBT [[wiki/entities/htm-thousand-brains.md]] arrives at the same g/x/p factoriza
 | L2-3 | Binding + lateral consensus voting | Conjunctive code p |
 
 The L5→L6 efference copy loop is TBT's answer to "where does `a_t` come from?": the column generates its own action signal from motor predictions, feeding it into the path integrator internally. TEM receives `a_t` externally. If ~150,000 cortical columns each run this circuit, factorization is not a design choice for a specialized HC formation — it is the universal cortical algorithm.
+
+---
+
+## Vector-HaSH: A Second Factorization Axis
+
+TEM's factorization separates *structural* (g) from *sensory* (x) codes, enabling cross-environment transfer of transition weights W. Vector-HaSH (Chandra et al. 2023 [[wiki/papers/vector-hash-chandra-2023.md]]) reveals a **second orthogonal factorization axis**: separating *dynamics* (scaffold, fixed) from *content* (heteroassociation, plastic).
+
+| Factorization | Fixed component | Plastic component | What transfers |
+|---|---|---|---|
+| **TEM** (structural/sensory) | W transition weights | Hebbian M per environment | Structural rules across environments |
+| **Vector-HaSH** (dynamics/content) | Scaffold (grid circuit + fixed projections) | Heteroassociative HC-cortex weights | Attractor dynamics across all stored items |
+
+These two factorizations are multiplicatively useful: a full HC-based reasoning model should implement both — W/g for cross-environment structural generalization, scaffold/content for high-capacity episodic memory without interference.
+
+**Scaffold reuse as domain generalization.** A spatial scaffold (grid phases indexed to spatial locations) can be heteroassociated with arbitrary non-spatial content — the memory palace phenomenon. This is factorization in time: the scaffold is learned from spatial experience; any domain content can be attached later. The scaffold provides a stable *representational basis* that any content domain can exploit, analogous to how transfer learning exploits a pretrained feature space.
+
+**ML implication:** the scaffold/content factorization suggests a two-layer memory design for reasoning models — a fixed high-capacity scaffold layer (learned from structural traversal) and a rapidly-updated heteroassociative layer (written per episode). The scaffold layer should be frozen once trained on sufficient structural experience; only the heteroassociative layer should receive fast-M updates.
+
+## SDM: A Third Factorization Axis
+
+Kanerva's SDM (Kanerva 1993 [[wiki/papers/kanerva-sdm-1993.md]]) establishes a **third factorization axis** — *address scaffold vs. content* — nested within the two axes already in the wiki:
+
+| Factorization | Fixed component | Plastic component | Scope |
+|---|---|---|---|
+| **TEM** (structural / sensory) | W transition weights (g-code structure) | Hebbian M per environment (x/p bindings) | Cross-environment structural rules |
+| **Vector-HaSH** (dynamics / content) | Scaffold (grid circuit + fixed projections) | Heteroassociative HC↔cortex weights | Cross-episode attractor stability |
+| **SDM** (address scaffold / content) | Address matrix **A** (random, fixed) | Contents matrix **C** (Hebbian, per episode) | Within a single memory store |
+
+These three axes are **hierarchically nested**: TEM's structural/sensory split determines which information reaches the fast-M store; Vector-HaSH's scaffold ensures the fast-M store has non-interfering fixed points; SDM's A/C split determines how content is addressed and written within those fixed points.
+
+**SDM proves the random scaffold suffices:** A random draw of **A** — no training required — already provides near-orthogonal addressing for uniform random patterns (activation-set overlaps p² × M ≈ 0). This means the "scaffold" factored out by Vector-HaSH and TEM does not need to learn *geometry* — any fixed projection works; random is the simplest choice and the biologically observed one (DG granule cell connectivity is random; cerebellar granule cell connectivity is random). The scaffold's only requirement is fixedness, not trainedness.
 
 ---
 
@@ -121,3 +162,10 @@ TEM's g/x split is the *global* factorization achieved at the top of this staged
 - **[[wiki/papers/dicarlo-visual-object-recognition-2012.md]]** — source for CLSU as staged local factorization; temporal contiguity learning as the unsupervised mechanism that factorizes identity from transformation variables at each level without labels.
 - **[[wiki/concepts/latent-graph-discovery.md]]** — factorized representations are the architectural solution to two-level entanglement in latent graph discovery: the g/x split allows meta-graph position (g) and node content (x) to be learned at different timescales, which is the core requirement of the two-level hierarchy.
 - **[[wiki/papers/whittington-cognitive-map-2022.md]]** — primary source for the factorized vs. entangled representation phase concept; the generalization pressure that drives the g/x/p factorization is operationalized in this paper's CSCG+TEM integration discussion.
+- **[[wiki/concepts/representational-geometry.md]]** — disentanglement is a limiting case of the CCGP/SD trade-off: maximum CCGP at the cost of minimum SD; the brain achieves the balance via a distorted factorized geometry with mixed selectivity; the reasoning model design target is not maximum disentanglement but this balance.
+- **[[wiki/entities/vector-hash-model.md]]** — Vector-HaSH introduces a second factorization axis (dynamics vs. content) orthogonal to TEM's structural/sensory split; scaffold reuse for non-spatial content is the key design implication for domain-general episodic memory.
+- **[[wiki/concepts/associative-memory.md]]** — the scaffold/content factorization is what prevents the Hopfield memory cliff; the two factorizations (TEM g/x and Vector-HaSH scaffold/content) together define a full two-axis architecture for the HC fast-M system.
+- **[[wiki/papers/vector-hash-chandra-2023.md]]** — source for the second factorization axis, scaffold reuse argument, and the claim that spatial codes are a special case of a domain-general representational structure.
+- **[[wiki/entities/sdm-model.md]]** — SDM introduces a third factorization axis (address scaffold **A** vs. content **C**) nested within the TEM and Vector-HaSH axes; the proof that a random **A** suffices establishes that the scaffold does not require learned geometry — fixedness alone is the requirement, enabling random initialization as the simplest biologically plausible design.
+- **[[wiki/papers/kanerva-sdm-1993.md]]** — source for the three-axis factorization hierarchy, the random-scaffold-suffices argument, and biological evidence from cerebellar and DG granule cell random connectivity confirming that fixed-random projections are evolutionarily selected over learned address structures.
+- **[[wiki/papers/barlow-twins-zbontar-2021.md]]** — Barlow's factorial code (1961) is the formal statement that sensory processing should produce statistically independent component codes; BT operationalizes this in ML as a cross-correlation decorrelation objective, providing empirical evidence that factorized/independent representations are learnable from data without labels and benefit from high dimensionality.

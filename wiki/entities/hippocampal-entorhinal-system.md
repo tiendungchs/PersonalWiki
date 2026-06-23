@@ -3,9 +3,9 @@ title: "Hippocampal-Entorhinal System"
 type: entity
 tags: [hippocampus, entorhinal-cortex, MEC, LEC, memory, navigation, relational-inference]
 created: 2026-06-09
-updated: 2026-06-20 (2)
-sources: [gridlikecode, t-TEM, engram-transcript, convergence-wiring-transcript, jumping-spiders-cognition, convergent-brain-structures-spatial-memory, Metalearning_and_Neuromodulation, Structure and function of the hippocampal CA3 module, The mechanisms for pattern completion and pattern separation in the hippocampus, Complementary Learning Systems, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, Pattern separation in the hippocampus.md]
-related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/latent-states.md, wiki/concepts/attention.md, wiki/concepts/engrams.md, wiki/concepts/small-world-networks.md, wiki/concepts/binding-problem.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/neuromodulation.md, wiki/concepts/associative-memory.md, wiki/concepts/pattern-separation.md, wiki/concepts/replay.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/entities/tem-model.md, wiki/entities/cscg-model.md, wiki/entities/htm-thousand-brains.md, wiki/entities/insect-central-complex.md, wiki/entities/arthropod-mushroom-bodies.md, wiki/entities/cephalopod-vertical-lobe.md, wiki/papers/gridlikecode-constantinescu-2016.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/engram-transcript.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/jumping-spiders-cognition.md, wiki/papers/metalearning-neuromodulation-doya-2002.md, wiki/papers/ca3-sammons-2023.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/learning-fast-slow-liao-2024.md]
+updated: 2026-06-22
+sources: [gridlikecode, t-TEM, engram-transcript, convergence-wiring-transcript, jumping-spiders-cognition, convergent-brain-structures-spatial-memory, Metalearning_and_Neuromodulation, Structure and function of the hippocampal CA3 module, The mechanisms for pattern completion and pattern separation in the hippocampus, Complementary Learning Systems, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, Pattern separation in the hippocampus.md, Neuroscience-Inspired Artificial Intelligence, High-capacity flexible hippocampal associative and episodic memory enabled by prestructured "spatial" representations]
+related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/latent-states.md, wiki/concepts/attention.md, wiki/concepts/engrams.md, wiki/concepts/small-world-networks.md, wiki/concepts/binding-problem.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/neuromodulation.md, wiki/concepts/associative-memory.md, wiki/concepts/pattern-separation.md, wiki/concepts/replay.md, wiki/concepts/continual-learning.md, wiki/concepts/phase-precession.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/entities/tem-model.md, wiki/entities/cscg-model.md, wiki/entities/htm-thousand-brains.md, wiki/entities/insect-central-complex.md, wiki/entities/arthropod-mushroom-bodies.md, wiki/entities/cephalopod-vertical-lobe.md, wiki/entities/vector-hash-model.md, wiki/entities/dnc-model.md, wiki/papers/gridlikecode-constantinescu-2016.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/engram-transcript.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/jumping-spiders-cognition.md, wiki/papers/metalearning-neuromodulation-doya-2002.md, wiki/papers/ca3-sammons-2023.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/hassabis-neuroscience-ai-2017.md, wiki/papers/spiking-tem-kawahara-2025.md, wiki/papers/vector-hash-chandra-2023.md, wiki/papers/dnc-graves-2016.md]
 ---
 
 # Hippocampal-Entorhinal System
@@ -101,6 +101,27 @@ DG competitive learning (Hebbian + lateral inhibition) orthogonalizes entorhinal
 
 ---
 
+## Vector-HaSH: Resolving the Spatial/Episodic Dual Role
+
+The long-standing question — why does HC support both spatial navigation and episodic memory? — is resolved by Vector-HaSH (Chandra et al. 2023 [[wiki/papers/vector-hash-chandra-2023.md]]) via a third hypothesis: the nominally "spatial" architecture (grid codes + HC coupling) is equally optimal for non-spatial episodic memory.
+
+**Circuit decomposition:**
+
+| Layer | Anatomy | Weights | Function in Vector-HaSH |
+|---|---|---|---|
+| Grid scaffold | MEC (M modules, K_i torus phases each) | Fixed (developmental) | Generates ⟨K⟩^M stable fixed points — content-free hash library |
+| Scaffold projection | Grid→HC (random) + HC→Grid (learned once) | Fixed | Converts grid states to sparse HC attractors |
+| Heteroassociation | HC ↔ neocortex | Bidirectional plastic | Attaches sensory content to scaffold states — the fast-M write |
+| Shift operator | HC → MEC velocity signal | Trained | Drives grid phase transitions for sequence memory |
+
+**Why the dual role is not a coincidence:** The grid scaffold is domain-agnostic by construction — its invariance across all tasks is precisely what makes it a reusable hash index. Spatial navigation exploits the metric/ordered property (adjacent phases = adjacent locations; velocity updates phase continuously). Episodic sequence memory exploits the same shift mechanism driven by HC state rather than self-motion. Memory palace is a direct consequence: a learned spatial scaffold is accessible from spatial cues, and heteroassociation overlays any content on it.
+
+**Key difference from TEM:** TEM explains cross-environment structural generalization (W transfers across environments; M is per-environment). Vector-HaSH explains high-capacity item + sequence memory within the same circuit, by keeping the scaffold fixed and making the heteroassociative layer do all the learning. The two models are complementary — Vector-HaSH specifies how the scaffold generates fixed points; TEM specifies how the structural code enables generalization.
+
+**Graceful tradeoff vs. Hopfield cliff:** Because scaffold fixed points are generated independently of content, adding the N+1th item does not affect items 1…N. Capacity degrades gracefully: more items → lower fidelity per item, but no catastrophic erasure. This is the circuit-level mechanism for why HC can accumulate memories over a lifetime.
+
+---
+
 ## Dual Role: Map vs. Memory
 
 Long-standing debate: does HC implement a relational map (SR, CSCG view) or episodic memories binding cortical representations (TEM/SMP view)?
@@ -179,6 +200,23 @@ The vmPFC and the broader default mode network (PCC, TPJ, RSC, LPC) also functio
 
 ---
 
+## MECII vs. MECIII Functional Dissociation
+
+Spiking TEM ([[wiki/papers/spiking-tem-kawahara-2025.md]]) provides a mechanistic account of why MECII and MECIII serve distinct temporal coding roles — a distinction that is implicit in the anatomy but unresolved in TEM 2020:
+
+| Layer | Temporal mode | Functional role | Mechanism |
+|---|---|---|---|
+| **MECII** | Phase-precessing | Current state + look-ahead (t, t+1, ...) encoder | Neuromodulatory gain G drives spike-phase advance |
+| **MECIII** | Phase-locked | Predicted next state (t+1) encoder | Theta inhibitory input stabilizes phase; MECIII neurons have highest gridness at position t+1 |
+
+**Mapping to TEM architecture:** MECIII implements the generative model (predict future from current latent state); MECII implements the inference model output (current structural code). The G + theta_MECIII combination that produces this dissociation is the biological realization of the TEM generative/inference split.
+
+**Control experiment:** removing G → both layers lock (no look-ahead); removing theta_MECIII → both precess. The biological MECII/MECIII split requires *both* mechanisms simultaneously — a concrete architectural constraint for any spiking implementation of TEM.
+
+See [[wiki/concepts/phase-precession.md]] for the full formalism.
+
+---
+
 ## Theta-Phase Encoding/Retrieval Oscillation
 
 The theta rhythm (4–8 Hz) creates a constant fine-grained alternation: retrieval sub-phase (CA3 dominant → expectation) and encoding sub-phase (EC dominant → outcome). The delta between phases drives contrastive Hebbian weight updates — HC continuously corrects its own retrieval errors at theta frequency, not just writes Hebbianly. Full account in [[wiki/concepts/replay.md]] and [[wiki/concepts/two-learning-timescales.md]].
@@ -217,6 +255,65 @@ Jumping spider mushroom bodies represent an independent evolutionary derivation 
 
 ---
 
+## HPC as Persistent Abstract-State Maintainer
+
+Bernardi et al. 2020 ([[wiki/papers/geometry-abstraction-bernardi-2020.md]]) record HPC and PFC simultaneously during a serial reversal-learning task with an uncued hidden variable (context):
+
+| Brain area | Pre-stimulus context CCGP | Decision-epoch context CCGP | Post-decision |
+|---|---|---|---|
+| **HPC** | High (abstract) | **Maintained** | High |
+| DLPFC | High | **Drops to chance** | Recovers |
+| ACC | High | Weak | Recovers |
+
+**HPC is not merely a pattern completer for episodic content — it persistently maintains abstract latent-state representations that PFC uses for action selection.** The conjunctive code p = f(g, x) satisfies the CCGP criterion: the coding direction for context is parallel across all stimulus-context combinations, enabling zero-shot generalization when context structure is familiar from prior experience.
+
+DLPFC loses context abstraction during the decision epoch because context must be non-linearly combined with stimulus identity to select the correct action — a computational cost that HPC avoids by not computing the action itself. CCGP for context correlates with behavioral accuracy (error trials → reduced CCGP, unchanged traditional decoding). See [[wiki/concepts/representational-geometry.md]] for the full CCGP/SD/PS framework.
+
+---
+
+## DNC as an Engineered HC/PFC Implementation
+
+The Differentiable Neural Computer (DNC; Graves et al. 2016 [[wiki/papers/dnc-graves-2016.md]]) is the most explicit engineered implementation of HC computational function in the ML literature. Its three core mechanisms map directly onto three HC subsystem functions:
+
+| DNC mechanism | HC analog | Functional role |
+|---|---|---|
+| **Content-based lookup** (cosine similarity over memory rows) | CA3/CA1 associative LTP — pattern completion from partial cue | Retrieve episode-specific content from a partial key; soft attention = energy minimization approximation |
+| **Temporal link matrix** L[i,j] (tracks write order) | Temporal context model (Howard & Kahana 2002) — free-recall order | Recover write-order sequences; forward/backward reads traverse the stored sequence without STDP accumulation |
+| **Dynamic memory allocation** (usage vector u; free gates) | DG neurogenesis + representational sparsity | Allocate new locations for new inputs; free locations after use; prevent interference between stored episodes |
+
+**Controller = PFC, memory = HC:**
+
+The DNC controller (LSTM) learns global regularities across episodes — analogous to slow-W PFC/cortical learning. The memory matrix M stores episode-specific variables (instance-graph edges, goal constraints, graph triples) and is reset between episodes — analogous to HC's fast-M episodic role. This mapping is not metaphorical: the *information-theoretic* separation is identical. Controller weights encode what the agent *knows across experience*; memory contents encode what the agent *saw in this episode*.
+
+**Prospective planning as emergent write-then-read:**
+
+In Mini-SHRDLU, the DNC writes goal constraints to memory at goal-presentation time (many steps before execution) and later reads them out selectively. A decoder applied to those memory contents predicts the first action with 89% accuracy at write time — 5× chance. This mirrors hippocampal preplay at spatial choice points: HC activates future-trajectory representations *before* the animal moves. In both cases, the system commits its plan to a readable memory medium in advance of execution, not in the weight trace of hidden unit dynamics.
+
+**What DNC does not implement:**
+
+DNC lacks the slow-W structural generalization that MEC/cortex provides. The controller LSTM must re-derive meta-graph rules from scratch for each environment family — it cannot transfer the relational structure of graph traversal to a new graph format without retraining. TEM addresses exactly this gap via the factorized g/x/p code. The ideal architecture combines DNC's external read-write memory (fast M, unbounded capacity, one-shot writes) with TEM's factorized structural code (slow W, cross-environment meta-graph generalization) — a combination neither model achieves alone.
+
+---
+
+## Hippocampal Preplay and Simulation-Based Planning
+
+At spatial choice points (T-junctions, maze forks), hippocampal SWR events activate sequential representations of candidate future paths *before* the animal moves — preplay rather than retrospective replay. Activated sequences resemble those recorded during subsequent actual navigation.
+
+| Event | Neural signature | Computational role |
+|---|---|---|
+| Animal pauses at choice point | Theta suppression; SWR onset | Switch from active navigation to internal simulation |
+| HC preplay SWR | Sequential place cell activation, ~10–20× time-compressed | Forward rollout along a candidate trajectory |
+| OFC / striatum activity | Value modulation correlated with replayed trajectory content | Evaluate simulated outcome |
+| Action selection | Post-SWR; committed navigation | Execute highest-value simulated path |
+
+**HC as active generative world model:** Preplay reveals HC as a forward simulator, not merely a memory retrieval system. PFC sets the goal (which destination is relevant?); HC generates candidate state sequences; OFC/striatum evaluates outcomes. This PFC-queries-HC architecture parallels the Differential Neural Computer (DNC): a neural network controller reads/writes an external content-addressable memory matrix — HC is the memory matrix; PFC is the controller.
+
+**AI analog:** Model-based RL (Dyna algorithm), Monte Carlo tree search (AlphaGo), and deep generative models for trajectory simulation all implement the same decomposition. HC preplay provides biological evidence that this controller-model separation is not an engineering choice but an evolved architectural solution to the planning problem.
+
+**Compositional simulation:** Human imagination assembles novel scenarios by recombining familiar elements — never-experienced trajectories from remembered components. HC's generative role requires combinatorial assembly across episodic memories, not just verbatim replay. This is the fast-M analog of compositional generalization: systematic recombination operating in the HC simulation regime rather than the slow-W structural extraction regime, and is why compositional representations in HC are a prerequisite for human-like planning.
+
+---
+
 ## Connections
 
 - **[[wiki/concepts/factorized-representations.md]]** — the MEC/LEC/HC anatomy is the factorized architecture made concrete: MEC = structural code `g`, LEC = sensory input `x`, HC = conjunctive code `p`; understanding the anatomy grounds the abstraction.
@@ -235,6 +332,8 @@ Jumping spider mushroom bodies represent an independent evolutionary derivation 
 - **[[wiki/concepts/small-world-networks.md]]** — HC's hub status in the brain's small-world network is the anatomical explanation for why it can bind distributed cortical representations: hub connectivity enables cross-regional indexing without requiring direct cortex-cortex links for every pair.
 - **[[wiki/papers/convergence-wiring-transcript.md]]** — source for small-world topology, hub nodes, and wiring cost arguments.
 - **[[wiki/concepts/binding-problem.md]]** — the HC formation's core function is multi-modal binding (MEC + LEC → HC conjunctive code); mushroom body convergent evolution confirms cross-modal binding as the conserved computation — independent of hippocampal anatomy.
+- **[[wiki/concepts/representational-geometry.md]]** — HPC satisfies the CCGP criterion for abstract representation of the hidden context variable throughout the decision epoch; this provides the geometric operationalization of "HC maintains the latent state" in measurable terms.
+- **[[wiki/papers/geometry-abstraction-bernardi-2020.md]]** — source for the HPC vs. DLPFC temporal CCGP dynamics; empirically establishes HPC as the persistent abstract-state maintainer and demonstrates that CCGP (not traditional decoding) tracks behavioral accuracy.
 - **[[wiki/papers/jumping-spiders-cognition.md]]** — source for mushroom body convergent evolution; allocentric place cells and grid-like coding achieved without hippocampus in <500k neurons, setting a lower bound on the minimal substrate for HC-equivalent computation.
 - **[[wiki/concepts/convergent-allocentric-coding.md]]** — master comparative table across all convergent systems; HC formation is the highest-complexity, highest-generalization entry; the comparison table makes explicit what each system adds over the basic motif.
 - **[[wiki/entities/insect-central-complex.md]]** — the cleanest mechanistically characterized convergent system; CX heading ring + path integrator + goal vector ≈ the MEC-like (structural coordinates) component of what HC formation does, without the HC's cross-environment W generalization.
@@ -247,3 +346,11 @@ Jumping spider mushroom bodies represent an independent evolutionary derivation 
 - **[[wiki/papers/cls-oreilly-2011.md]]** — source for CA1 invertible mapper role, theta-phase error-driven learning, consolidation-as-transformation, and bidirectional HC-neocortex synergy; foundational CLS review establishing the biological two-timescale architecture.
 - **[[wiki/papers/learning-fast-slow-liao-2024.md]]** — source for BTSP mechanism in CA1; EC as instructive signal source for plateau potentials; BTSP+STDP within-HC two-timescale hierarchy; adaptive replay selectivity and inhibitory plasticity as structural filtering mechanism.
 - **[[wiki/papers/yassa-stark-pattern-separation-2011.md]]** — source for CA3 bidirectional transfer function (completion for small Δinput, separation for large Δinput) and CA1 linear response; multi-species convergent validation of the DG→CA3→CA1 three-zone model.
+- **[[wiki/concepts/continual-learning.md]]** — HC's CLS architecture is the primary biological solution to catastrophic forgetting: DG sparsity orthogonalizes stored patterns, preventing interference; SWR replay drives neocortical consolidation; HC preplay extends the fast-M simulation function beyond retrospective recall to prospective planning without requiring new slow-W updates.
+- **[[wiki/papers/hassabis-neuroscience-ai-2017.md]]** — source for HC preplay as internal forward simulation at choice points; PFC-controller/HC-world-model architecture for simulation-based planning; experience replay in DQN as a "primitive hippocampus" implementing complementary learning in silico.
+- **[[wiki/concepts/phase-precession.md]]** — MECII phase precession and MECIII phase locking are two expressions of theta-phase organization; MECIII's predictive role maps directly onto TEM's generative model; the G + theta_MECIII mechanism is the concrete biological implementation of the generative/inference split.
+- **[[wiki/papers/spiking-tem-kawahara-2025.md]]** — source for MECII/MECIII functional dissociation; establishes that neuromodulatory gain G and theta inhibition together control which temporal coding mode each MEC layer adopts.
+- **[[wiki/entities/vector-hash-model.md]]** — Vector-HaSH instantiates the MEC-HC circuit as a scaffold/heteroassociation split; resolves the spatial/episodic dual role by showing that the same grid scaffold is optimal for both via the shift operator; the model makes the "graceful capacity-detail tradeoff" a circuit-level prediction.
+- **[[wiki/papers/vector-hash-chandra-2023.md]]** — source for the Vector-HaSH circuit model, memory palace account, and formal argument that grid codes are domain-general rather than spatially specific.
+- **[[wiki/entities/dnc-model.md]]** — DNC instantiates the PFC-queries-HC architecture as a fully differentiable system: controller=PFC (slow W), memory matrix=HC (fast M), content lookup=CA3 pattern completion, temporal links=temporal context model, allocation=DG neurogenesis; the clearest engineered instantiation of HC computation in ML; what DNC lacks (structural W generalization) is exactly what TEM provides.
+- **[[wiki/papers/dnc-graves-2016.md]]** — source: three-mechanism HC mapping (content lookup/temporal links/allocation); Mini-SHRDLU prospective planning (89% first-action decode at goal-write time); graph traversal necessity of external memory (LSTM: 37%, DNC: 98.8%).

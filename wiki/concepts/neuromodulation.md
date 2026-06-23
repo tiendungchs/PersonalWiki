@@ -3,9 +3,9 @@ title: "Neuromodulation"
 type: concept
 tags: [neuromodulation, reinforcement-learning, dopamine, serotonin, noradrenaline, acetylcholine, meta-learning, learning-rate, basal-ganglia]
 created: 2026-06-19
-updated: 2026-06-20
-sources: [Metalearning_and_Neuromodulation, PFC_as_a_meta_RL_system, making_working_mem_work, The role of prefrontal cortex in cognitive control and executive function, Pattern separation in the hippocampus.md, Modulation of striatal projection systems by dopamine]
-related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/predictive-coding.md, wiki/concepts/meta-learning.md, wiki/concepts/cognitive-control.md, wiki/concepts/associative-memory.md, wiki/concepts/pattern-separation.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/prefrontal-cortex.md, wiki/entities/basal-ganglia.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/papers/metalearning-neuromodulation-doya-2002.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/pbwm-oreilly-frank-2006.md, wiki/papers/pfc-cognitive-control-friedman-2021.md, wiki/papers/podlaski-context-modular-memory-2025.md, wiki/papers/yassa-stark-pattern-separation-2011.md, wiki/papers/gerfen-surmeier-dopamine-striatum-2011.md]
+updated: 2026-06-21
+sources: [Metalearning_and_Neuromodulation, PFC_as_a_meta_RL_system, making_working_mem_work, The role of prefrontal cortex in cognitive control and executive function, Pattern separation in the hippocampus.md, Modulation of striatal projection systems by dopamine, The free-energy principle - a rough guide to the brain]
+related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/predictive-coding.md, wiki/concepts/meta-learning.md, wiki/concepts/cognitive-control.md, wiki/concepts/associative-memory.md, wiki/concepts/pattern-separation.md, wiki/concepts/spike-frequency-adaptation.md, wiki/concepts/phase-precession.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/prefrontal-cortex.md, wiki/entities/basal-ganglia.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/papers/metalearning-neuromodulation-doya-2002.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/pbwm-oreilly-frank-2006.md, wiki/papers/pfc-cognitive-control-friedman-2021.md, wiki/papers/podlaski-context-modular-memory-2025.md, wiki/papers/yassa-stark-pattern-separation-2011.md, wiki/papers/gerfen-surmeier-dopamine-striatum-2011.md, wiki/papers/friston-free-energy-2009.md, wiki/papers/sfa-ganguly-2024.md, wiki/papers/spiking-tem-kawahara-2025.md]
 ---
 
 # Neuromodulation
@@ -102,6 +102,38 @@ This is the biological mechanism for the fast-M/slow-W switch in [[wiki/concepts
 
 ---
 
+## SFA: Single-Neuron Intrinsic Gain Control
+
+Spike frequency adaptation (SFA, [[wiki/concepts/spike-frequency-adaptation.md]]) is the most local scale of intrinsic gain modulation — the neuron adapts its own firing threshold based on its own spike history, without any external signal:
+
+$$a_j(t + \delta t) = \rho_j \cdot a_j(t) + (1-\rho_j)\cdot z_j(t), \quad v_{th,j} = b_0 + \beta \cdot a_j(t)$$
+
+This sits below the neuromodulatory and liquid-τ levels in a hierarchy of gain adaptation:
+
+| Scale | Mechanism | What adapts | Signal source |
+|---|---|---|---|
+| Global neuromodulation (ACh, NA, DA) | Diffuse chemical broadcast | Integration window / learning rate for an entire circuit | Basal forebrain / LC / VTA |
+| Local synaptic conductance (liquid τ) | Per-neuron input-driven recurrent gate | Per-neuron integration time constant, per-timestep | Current synaptic inputs |
+| **SFA / adaptive threshold** | **Per-neuron spike-triggered trace** | **Per-neuron firing threshold, per-spike** | **Own spike history** |
+
+**Design implication for reasoning models:** SFA provides gain control that is maximally local and requires no dedicated modulatory pathway. A network can implement coarse gain control via neuromodulation (Blocks 2C/3B), fine time-constant adaptation via liquid τ, and finest-grained activity-history sensitivity via SFA — all three can co-exist in the same neuron population.
+
+---
+
+## Liquid τ: Input-Dependent Time-Constant Modulation
+
+Neuromodulators shift neural time constants globally — ACh shortens HC integration windows by suppressing Schaffer collaterals; NA modulates LC pacemaker timing; DA affects striatal up-state dwell times. LTCs ([[wiki/entities/ltc-model.md]]) formalize an analogous mechanism at the local, continuous level: the effective time constant of each neuron becomes `τ_sys = τ / (1 + τ·f(x, I, t, θ))`, adapting per-neuron integration windows based on what is currently arriving — a *self-modulating* time constant that does not require a separate chemical signal.
+
+| Scale | Mechanism | What changes |
+|---|---|---|
+| Global neuromodulation (ACh, NA, DA) | Diffuse chemical broadcast | Integration window for an entire circuit or region |
+| Local synaptic conductance (gl in cable eq.) | Per-synapse receptor kinetics | Integration window of a single dendritic compartment |
+| **Liquid τ (LTC)** | **Input-dependent recurrent gate** | **Per-neuron integration window, updated at each timestep** |
+
+The liquid τ is therefore a mechanistic formalization of neuromodulatory time-constant control at the unit level, derived from the same cable equation that describes biological leaky integration. Unlike neuromodulation (which requires a separate broadcast signal), τ_sys adapts intrinsically. This suggests a design principle: a reasoning model's time constants should be input-dependent, allowing fast integration during rapid sensory transitions and slow integration during steady-state maintenance — without requiring a dedicated neuromodulatory signal.
+
+---
+
 ## Dynamic Interactions — Metalearning Loop
 
 The four modulators are co-regulated, not independent:
@@ -130,6 +162,14 @@ Doya's framework grounds three building blocks from [[wiki/queries/building-bloc
 ---
 
 **PVLV (O'Reilly & Frank 2006):** A biologically grounded non-TD alternative for the BG DA signal — more robust than TD chaining when intermediate stimuli are unpredictable. Full account in [[wiki/concepts/meta-learning.md]] (PVLV section), where it belongs alongside PBWM as the DA algorithm underlying the BG slow outer loop. See also [[wiki/entities/basal-ganglia.md]].
+
+---
+
+## DA = Precision vs. DA = TD Error (Friston 2009 vs. Doya 2002)
+
+> **Contradiction [2026-06-21]:** Friston (2009, [[wiki/papers/friston-free-energy-2009.md]]) argues dopamine encodes the **precision of prior predictions** (incentive salience / "the value of prediction error"), not the **prediction error on value** (TD error). Under this account: (a) action is only triggered when predictions are sufficiently precise; (b) Parkinson's bradykinesia = low DA = imprecise priors = small action-triggering prediction errors = poverty of movement — without requiring any reward computation; (c) all four neuromodulators encode precision in anatomically distinct hierarchies (ACh in exteroceptive/posterior, DA in interoceptive/motor/prior systems), not four distinct RL metaparameters. The Doya 2002 account ([[wiki/papers/metalearning-neuromodulation-doya-2002.md]]) maps DA to the TD error δ(t) = r(t) + γV(s(t)) − V(s(t−1)), requiring an explicit reward signal. Both accounts make similar predictions for standard Pavlovian conditioning (both predict DA burst to reward/cue, dip to omission). They diverge for instrumental/motor tasks without explicit reward: Friston predicts DA governs motor action initiation via prior precision; Doya predicts DA signals value prediction error across episodes. The Gerfen & Surmeier 2011 D1/D2 cellular mechanism is compatible with either account — it specifies *how* DA gates plasticity, not *what* it signals computationally.
+
+**Partial reconciliation (Friston 2009):** Friston notes DA may encode the "value of prediction error" = incentive salience (Berridge 2007 [[wiki/papers/gerfen-surmeier-dopamine-striatum-2011.md]] for mechanism). If incentive salience = precision of goal-predicting priors, then the precision account subsumes value-learning: goal pursuit = making precise predictions about desired states self-fulfilling via action. The DA dual role (Wang et al. 2018) — DA as plasticity signal (slow, shaping PFC weights) and as activity input (fast, informing PFC recurrent dynamics) — is compatible with the precision account if the activity channel carries precision estimates rather than raw TD error.
 
 ---
 
@@ -163,6 +203,28 @@ The NA/RIFG/STN inhibitory circuit is a separate response-gating mechanism disti
 
 ---
 
+## Neuromodulation as Temporal Coding Mode Controller
+
+Spiking TEM ([[wiki/papers/spiking-tem-kawahara-2025.md]]) introduces a dimension of neuromodulatory function not captured by Doya's RL-metaparameter account: neuromodulation controls *which temporal coding regime* a network layer operates in, not just how fast it learns.
+
+The model's gain factor G scales total synaptic input per neuron:
+$$I(t) = G \cdot \sum_j w_{ij} \cdot s_j(t)$$
+
+G is a learnable parameter initialized at 1.0 and optimized via backpropagation. Applied to MECII and MECIII output layers, it acts as an acetylcholine/dopamine analog for gain modulation.
+
+| Condition | MECII temporal mode | MECIII temporal mode |
+|---|---|---|
+| G on, theta_MECIII on (biological) | Phase-precessing (80.2%) | Phase-locked (86.7%) |
+| G on, theta_MECIII off | Phase-precessing | Phase-precessing |
+| G off, theta_MECIII on | Phase-locked | Phase-locked |
+| G off, theta_MECIII off | (impaired grid formation) | (impaired grid formation) |
+
+**Implication:** neuromodulation is not just a learning rate dial — it determines whether a neural layer encodes a *temporal sequence* (precession = ordered look-ahead) or a *stable reference state* (locking = anchored phase). A reasoning model that needs to switch between sequential state tracking and stable state maintenance should implement G-like gain modulation per layer, not just globally.
+
+See [[wiki/concepts/phase-precession.md]] for the phase precession formalism.
+
+---
+
 ## Open Problems
 
 - Serotonin's role is the least settled: Daw et al. (2002) propose 5-HT = average reward (not γ); discriminating experiment requires comparing 5-HT effects when V(s) is positive vs. negative — not yet done definitively.
@@ -191,3 +253,10 @@ The NA/RIFG/STN inhibitory circuit is a separate response-gating mechanism disti
 - **[[wiki/papers/podlaski-context-modular-memory-2025.md]]** — perisomatic interneurons (neuronal gating) and dendrite-targeting interneurons (synaptic gating) are the proposed biological mechanisms for the context-dependent inhibitory masks analyzed in the model.
 - **[[wiki/entities/prefrontal-cortex.md]]** — DA D1 inverted-U (dlPFC WM stability), NA/RIFG→STN (response inhibition), and ACC unsigned PE are all PFC-subregion-specific neuromodulatory mechanisms; the entity page is the biological substrate for all three CC-component-specific neuromodulator mappings identified in the Friedman & Robbins analysis.
 - **[[wiki/papers/gerfen-surmeier-dopamine-striatum-2011.md]]** — source for D1/D2 cellular mechanisms (PKA→LTP vs. EC→CB1→LTD) that ground the DA=TD-error metaparameter in receptor biochemistry; also source for striatal cholinergic temporal gating — a context-sensitive pathway routing function (ACh burst-pause on salience) distinct from the HC ACh storage/retrieval switch.
+- **[[wiki/entities/ltc-model.md]]** — the liquid time constant τ_sys is a local continuous-time formalization of neuromodulatory time-constant control: τ adapts per-neuron integration windows based on inputs, mechanistically equivalent to synaptic conductance modulation but implemented as an intrinsic recurrent gate.
+- **[[wiki/papers/ltc-hasani-2021.md]]** — source for the liquid τ derivation from C. elegans cable equation; biological grounding in leakage conductance gl and synaptic current steady-state approximation.
+- **[[wiki/papers/friston-free-energy-2009.md]]** — primary source for the DA=precision hypothesis (Contradiction entry); also grounds the claim that all four neuromodulators may encode precision in different hierarchical systems, with ACh handling exteroceptive and DA handling interoceptive/motor precision.
+- **[[wiki/concepts/spike-frequency-adaptation.md]]** — SFA is the most local level of the gain-adaptation hierarchy: per-neuron spike-triggered threshold adaptation requires no external signal, complementing global neuromodulatory and per-neuron liquid-τ adaptation; all three scales can co-exist in one neural population.
+- **[[wiki/papers/sfa-ganguly-2024.md]]** — source for SFA biological prevalence (20–40% neocortical excitatory neurons), adaptive threshold formalism, and intrinsic gain-control characterization.
+- **[[wiki/concepts/phase-precession.md]]** — neuromodulatory gain G is the sufficient condition for phase precession in SpikingTEM; the G + theta_MECIII combination produces the biologically observed MECII/MECIII temporal coding dissociation, establishing neuromodulation as a coding-mode controller beyond its RL-metaparameter role.
+- **[[wiki/papers/spiking-tem-kawahara-2025.md]]** — source for the G-controlled temporal coding mode result; ablation table quantifying the four jointly necessary mechanisms for grid cell formation.

@@ -2,9 +2,10 @@
 title: "Overview — Brain-Inspired Models for Abstract Reasoning"
 type: overview
 tags: [overview, abstract-reasoning, brain-inspired-ai]
-updated: 2026-06-20
-sources: [TEM.pdf, cognitivemap.md, gridlikecode.md, t-TEM.md, engram-transcript, cross-entropy-first-principles-transcript, free-energy-principle-transcript, brain-learning-algorithm-transcript, brain-learning-limits-transcript, memory-gate-transcript, 150000-mini-brain-transcript, convergence-wiring-transcript, bolzman-machine-transcript, reservoir-computing-transcript, jumping-spiders-cognition, landmark-orientation.md, convergent-brain-structures-transcript, metalearning-neuromodulation-doya-2002, pfc-meta-rl-wang-2018, pbwm-oreilly-frank-2006, compositionality-decomposed-hupkes-2020, mlc-lake-baroni-2023, trnn-liu-2025, stsp-kozachkov-2022, transformer-wm-limit-gong-2024, pfc-cognitive-control-friedman-2021, pfc-wood-grafman-2003, arc-agi-overview, arc-agi-3-paper, hopfield-networks-crouse-2022, ca3-sammons-2023, pattern-completion-rolls-2013, cls-oreilly-2011, cls-mcclelland-1995, podlaski-context-modular-memory-2025, learning-fast-slow-liao-2024, building-machine-thinks-like-people-lake-2016, analogy-holyoak-2012, ahmad-hawkins-sdr-2016, yassa-stark-pattern-separation-2011, dicarlo-visual-object-recognition-2012, gerfen-surmeier-dopamine-striatum-2011, helie-ccn-bg-2013, bogacz-gurney-bg-msprt-2007]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/predictive-coding.md, wiki/concepts/neural-manifolds.md, wiki/concepts/neuromodulation.md, wiki/concepts/meta-learning.md, wiki/concepts/working-memory.md, wiki/concepts/cognitive-control.md, wiki/concepts/compositional-generalization.md, wiki/concepts/convergent-allocentric-coding.md, wiki/entities/tem-model.md, wiki/entities/tiwm-model.md, wiki/entities/arc-agi.md, wiki/entities/basal-ganglia.md, wiki/entities/prefrontal-cortex.md]
+created: 2026-06-20
+updated: 2026-06-23
+sources: [TEM.pdf, cognitivemap.md, gridlikecode.md, t-TEM.md, engram-transcript, cross-entropy-first-principles-transcript, free-energy-principle-transcript, brain-learning-algorithm-transcript, brain-learning-limits-transcript, memory-gate-transcript, 150000-mini-brain-transcript, convergence-wiring-transcript, bolzman-machine-transcript, reservoir-computing-transcript, jumping-spiders-cognition, landmark-orientation.md, convergent-brain-structures-transcript, metalearning-neuromodulation-doya-2002, pfc-meta-rl-wang-2018, pbwm-oreilly-frank-2006, compositionality-decomposed-hupkes-2020, mlc-lake-baroni-2023, trnn-liu-2025, stsp-kozachkov-2022, transformer-wm-limit-gong-2024, pfc-cognitive-control-friedman-2021, pfc-wood-grafman-2003, arc-agi-overview, arc-agi-3-paper, hopfield-networks-crouse-2022, ca3-sammons-2023, pattern-completion-rolls-2013, cls-oreilly-2011, cls-mcclelland-1995, podlaski-context-modular-memory-2025, learning-fast-slow-liao-2024, building-machine-thinks-like-people-lake-2016, analogy-holyoak-2012, ahmad-hawkins-sdr-2016, yassa-stark-pattern-separation-2011, dicarlo-visual-object-recognition-2012, gerfen-surmeier-dopamine-striatum-2011, helie-ccn-bg-2013, bogacz-gurney-bg-msprt-2007, douglas-martin-neocortex-2004, bastos-canonical-microcircuit-2012, Equilibrium Propagation Bridging the Gap, scellier-bengio-eqprop-2017, bartunov-scalability-bio-dl-2018, bengio-bioplausible-dl-2015, theories-backprop-brain-whittington-2019, maass-lsm-2002, maass-snn-third-gen-1997, snn-encoding-auge-2021, tavanaei-deep-snn-2018, gardner-gruning-supervised-snn, gnw-mashour-2020, ferrante-adversarial-gnwt-iit-2025, raccah-pfc-consciousness-2021, spiking-tem-kawahara-2025]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/predictive-coding.md, wiki/concepts/neural-manifolds.md, wiki/concepts/neuromodulation.md, wiki/concepts/meta-learning.md, wiki/concepts/working-memory.md, wiki/concepts/cognitive-control.md, wiki/concepts/compositional-generalization.md, wiki/concepts/convergent-allocentric-coding.md, wiki/entities/equilibrium-propagation.md, wiki/concepts/canonical-microcircuit.md, wiki/entities/snn.md, wiki/entities/tem-model.md, wiki/entities/tiwm-model.md, wiki/entities/arc-agi.md, wiki/entities/basal-ganglia.md, wiki/entities/prefrontal-cortex.md, wiki/entities/gwt-model.md]
 ---
 
 # Overview — Brain-Inspired Models for Abstract Reasoning
@@ -13,7 +14,7 @@ related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-gene
 
 ## The Central Thesis
 
-Current deep learning fails at out-of-distribution systematic generalization. Biological brains do not. The hypothesis: the brain treats all reasoning as **latent graph discovery** — infer the hidden relational structure of a domain from observations, then navigate it. The key architectural principle enabling this is **factorization of structural knowledge from sensory content**, extended by a BG/PFC control layer that gates, modulates, and hierarchically structures the inference process.
+Current deep learning fails at out-of-distribution systematic generalization. Biological brains do not. The hypothesis: the brain treats all reasoning as **latent graph discovery** — infer the hidden relational structure of a domain from observations, then navigate it. The key architectural principle enabling this is **factorization of structural knowledge from sensory content**, extended by a BG/PFC control layer that gates, modulates, and hierarchically structures the inference process. The hardware is spiking cortical columns running a canonical microcircuit; the learning algorithm is contrastive Hebbian at energy equilibrium.
 
 ---
 
@@ -38,7 +39,7 @@ Every domain has a **two-level hierarchy**: a slow meta-graph (shared rules acro
 
 ## Current Best Understanding
 
-### Five Core Architectural Principles
+### Six Core Architectural Principles
 
 | # | Principle | Brain substrate | Why needed |
 |---|-----------|----------------|------------|
@@ -47,6 +48,7 @@ Every domain has a **two-level hierarchy**: a slow meta-graph (shared rules acro
 | 3 | **Two-timescale learning** | Slow W (cortex/MEC) + fast Hebbian M (HC) | Slow W builds shared meta-graph; fast M stores episode-specific instance-graph |
 | 4 | **Gate and modulate via BG/neuromodulation** | Basal ganglia + DA/ACh/5-HT/NA | Credit assignment: D1→LTP (Go), D2→LTD (NoGo) from a single phasic DA event; ACh gates storage vs. retrieval |
 | 5 | **Hierarchical control** | PFC rostro-caudal gradient (BA-8 → BA-9/46 → BA-10) | Rules about rules: lower levels handle stimulus-response; mid-lateral maintains task-set context; frontopolar manages branching rule chains |
+| 6 | **Canonical hardware substrate** | L4→L2/3→L5→L6→L4 microcircuit | Recurrent amplification of weak inputs; horizontal WTA selects hypotheses; SLN% encodes hierarchy; explore (superficial) / exploit (deep) split maps to inference / action |
 
 ### Key Unification Results
 
@@ -54,16 +56,23 @@ Every domain has a **two-level hierarchy**: a slow meta-graph (shared rules acro
 - **Grid cells = SR eigenvectors = optimal path-integration bases** — the periodic grid code is optimal for graph matching and multi-step planning via the same mechanism
 - **Place cells = SR rows = p = f(g, x)** — "anomalous" HC cells (splitter, lap, evidence) are the same model with hidden task dimensions added to the graph
 - **FEP grounds TEM's objective** — the two-timescale training objective (slow W, fast M) is the factorized ELBO; all cross-entropy training is Bayesian brain inference
-- **D1/D2 opponent plasticity = cellular credit assignment** — a single phasic DA event simultaneously drives PKA→LTP in direct (Go) SPNs and EC→CB1→LTD in indirect (NoGo) SPNs; credit assignment in the brain is structurally opponent, not scalar. PD as natural experiment confirms this
+- **EqProp proves local Hebbian is exact backprop** — Theorem 1 (Scellier & Bengio 2017): ΔW ∝ (1/β)[ρ(u^β)ρ(u^β) − ρ(u⁰)ρ(u⁰)] computes ∂J/∂W exactly as β→0; the free phase IS the inference phase; no separate backward circuit required. Resolves the theoretical half of Gap 4.
+- **Canonical microcircuit = canonical PC circuit** — Bastos et al. 2012 maps PC's error/prediction split onto L2/3 (error, gamma, feedforward) vs. L5/6 (prediction, beta, feedback); spectral asymmetry is a mathematical consequence of the laminar anatomy
+- **D1/D2 opponent plasticity = cellular credit assignment** — a single phasic DA event simultaneously drives PKA→LTP in direct (Go) SPNs and EC→CB1→LTD in indirect (NoGo) SPNs; credit assignment in the brain is structurally opponent, not scalar
 - **PVLV implements this biologically** — DA drives slow W update; ACh gates the M write/read switch; NA sets exploration breadth; 5-HT sets planning horizon
+- **SNN type B > sigmoidal > threshold** — Maass 1997 Theorem: a single type B spiking neuron computes CD_n (coincidence detection) with Ω(n²) fewer sigmoidal units. Synchrony codes are exponentially cheaper than rate codes for binding.
 
 ### The Learning Algorithm Lineage
 
 ```
 Hopfield (1982)
-  ↓ deterministic; memorization only; no generative capacity
-Boltzmann Machine (1985)
-  ↓ stochastic; learns P(data); intractable Z = Σ exp(−E/T)
+  ↓ stochastic → Boltzmann Machine (1985) — learns P(data); intractable Z
+      ↓ CHL approximation of BM gradient
+Contrastive Hebbian Learning (Movellan 1990)
+  ↓ full clamp (β→∞) → mode-mismatch bug (J_CHL can be negative)
+Equilibrium Propagation (Scellier & Bengio 2017)
+  ↓ weak nudge (β small) → exact gradient via Theorem 1; no backward circuit
+      [Parallel track]
 Predictive Coding / FEP
   ↓ local error propagation; replaces Z with tractable F = −ELBO
 TEM (2020) / TEM-t (2022)
@@ -71,6 +80,8 @@ TEM (2020) / TEM-t (2022)
 TIWM (proposed)
   ↓ adds inverse path integrator: infer latent edge labels from (g_in, g_out) pairs
 ```
+
+**Biologically plausible learning (Gap 4):** Bartunov et al. 2018 quantified the scaling gap — FA, DTP, SDTP all reach >93% top-1 error on ImageNet vs. backprop's 71%. EqProp excluded (computationally prohibitive at scale). The exactness-vs-symmetry tradeoff between EqProp (exact, requires W_{ij}=W_{ji}) and targetprop (biased approximation, no symmetry constraint) is the unresolved practical design choice. Analog hardware that physically relaxes to equilibrium is the expected substrate for EqProp at scale.
 
 ### Architecture Determines Feasibility
 
@@ -84,20 +95,26 @@ Neural manifold constraints ([[wiki/concepts/neural-manifolds.md]]) make this an
 
 | Model | Structural basis (W) | Task-specific code (M) | Timescale |
 |---|---|---|---|
-| Reservoir computing | Random, frozen | Linear readout, one-shot | W never trained |
+| Reservoir computing | Random, frozen | Linear readout, one-shot | W never trained; LSM Theorem 1: universal fading-memory with separation property |
 | TEM | Slow backprop across environments | Hebbian, per-environment | W: slow; M: fast |
 | Standard DNN | Jointly trained (entangled) | None (no factorization) | Single timescale |
 | Meta-RL LSTM (Wang 2018) | Outer-loop weights = slow W | Hidden state = fast M policy | W: meta-training; M: within-episode |
 
-### The Extended Architecture: 11 Functional Blocks
+**Reservoir → TEM gap (Gap 5):** LSM establishes universal fading-memory as the starting condition; TEM W is the endpoint (structured, transferable basis). How in-liquid plasticity adapts toward natural stimulus distributions, and how structural W emerges from a random basis without destroying universality, is open.
 
-The full model decomposes into three regions (see [[wiki/queries/building-blocks-mec-hc-pfc.md]]):
+### The Extended Architecture: 11 Functional Blocks + GNW Hub
+
+The full model decomposes into three regions plus a broadcasting hub (see [[wiki/queries/building-blocks-mec-hc-pfc.md]]):
 
 **MEC (structural engine):** 1A Grid substrate (toroidal g) → 1B Path integration (continuous SO(N) rotation) → 1C Landmark correction (Kalman update)
 
 **HC (fast binding):** 2A Bidirectional binding (g↔x) → 2B Pattern completion (iterative modern Hopfield) → 2C Importance gate (SWR/prediction-error write) → 2D Sparse allocation (top-k engram)
 
 **PFC (hierarchy and goals):** 3A Transformation Inferrer — **critical missing block** (inverse path integrator; set-attention over Δg → W posterior) → 3B Working memory (TRNN episodic + meta-RL LSTM policy) → 3C Hierarchical stack (three-level: BA-10 → BA-9/46 hub → BA-8) → 3D Goal generator (g_goal → argmin W)
+
+**GNW Hub (broadcasting):** Long-range L2/3+L5 neurons select one representation from competing processor outputs and ignite global broadcasting via NMDA recurrence (~300ms onset). This provides the workspace-update mechanism between PFC reasoning cycles — but **offset ignition is absent** (Ferrante 2025), meaning the release/replacement mechanism is empirically unspecified. PFC encodes abstract category (not identity/orientation), confirming the abstract-hub/perceptual-satellite architecture: the hub manages relational tokens, not sensory pixels.
+
+**Hardware layer:** Each region implements the **canonical microcircuit** — L4 receives afferent input (thalamic or long-range cortical), seeds recurrent amplification via the L4→L2/3→L5→L6→L4 loop, and selects hypotheses via horizontal WTA inhibition. Feedforward projections (L3→L4, gamma, high SLN%) carry prediction errors; feedback projections (L5/6→L1/5/6, beta, low SLN%) carry predictions. The laminar anatomy enforces the PC message hierarchy structurally.
 
 ### Convergent Evolution: Strongest Empirical Argument
 
@@ -121,19 +138,23 @@ Conclusion: this motif is not just a good design choice — **convergent evoluti
 1. **Type 2 task gap (transformation inference)** — TEM and all current factorized models require the action vocabulary to be given externally. Discovering latent edge labels from (observation_before, observation_after) pairs — as required by ARC-AGI — is architecturally absent. TIWM proposes the Inverse Path Integrator as a bridge but is unimplemented.
 2. **Multi-level meta-graph** — flat W cannot represent compositional rule chains (apply rule A, get context for rule B). Three-level PFC hierarchy (Block 3C) needs formalization as a nested latent graph.
 3. **Vocabulary co-discovery** — the action alphabet itself must be inferred alongside graph structure. No current model handles both simultaneously without a pre-given symbol set.
-4. **Biologically plausible slow W** — PC local updates (`Δw ∝ ε·x`) support within-network learning; cross-environment structural W-generalization via local rules remains open. Contrastive Hebbian is the best candidate.
-5. **Reservoir to structured basis** — no model specifies the developmental trajectory from a random basis (reservoir) to a learned structured basis (TEM); how does W acquire structure through experience?
+4. **Biologically plausible slow W** — EqProp (Scellier & Bengio 2017) resolves the theoretical problem: local contrastive Hebbian at equilibrium computes exact gradients. The practical problem remains: symmetric weights required; free-phase depth scaling is exponential on digital hardware; no large-scale empirical validation. Targetprop is the alternative (no symmetry required, but high-bias; Bartunov 2018 shows both fail at ImageNet). Analog neuromorphic hardware is the expected resolution path.
+5. **Reservoir → structured basis** — LSM Theorem 1 establishes universal fading-memory as the starting condition; TEM W is the endpoint (structured, transferable). The developmental trajectory — how in-liquid plasticity tunes separation property toward natural statistics, and how W emerges without destroying universality — is unspecified.
 6. **Active inference** — FEP extended to minimize expected future free energy (epistemic foraging) connects to goal-directed reasoning; not formalized in current architecture.
+7. **Workspace release/update mechanism** — Ferrante 2025 shows PFC offset ignition is absent at content transitions; no current architecture specifies how the GNW hub releases one representation and admits the next. Must design an explicit workspace-update trigger.
+8. **Abstract hub / perceptual satellite split** — Ferrante 2025 shows PFC encodes category but not identity or orientation; a reasoning model needs two distinct tiers: (a) a hub module operating on discrete/abstract representations + (b) a posterior module maintaining fine-grained perceptual content. The binding interface between these tiers is unspecified.
 
 ---
 
 ## Promising Directions
 
 - **TIWM (Block 3A)** — highest-impact addition to TEM; enables Type 2 / ARC-AGI tasks. Architecturally: set-attention over Δg vectors to produce soft posterior over W vocabulary; W jointly trained by forward and inverse path integration
+- **EqProp on analog hardware** — the theoretical barrier to biologically plausible slow-W is resolved (Theorem 1); the path forward is analog circuits that physically relax to equilibrium (eliminating the O(L³) digital free-phase cost). Memristor/phase-change crossbar arrays are the candidate substrate.
+- **Canonical microcircuit as architecture template** — the L4→L2/3→L5→L6→L4 loop is a solved recurrent-amplification + soft-WTA + two-output design. A reasoning model block that seeds a recurrent loop with a sparse goal signal and reads out hypothesis selection (L2/3 WTA) and action (L5) separately is more anatomically faithful than flat transformer layers.
 - **TEM + CSCG unification** — fast de-novo mapping (CSCG) for novel environments + structural transfer (TEM) for familiar domains; would formalize the HC map → memory transition
-- **Contrastive Hebbian → slow W** — positive/negative phase with counterfactual environment generation may support cross-environment structural generalization; connects PC local learning to TEM's global W update
 - **TRNN for working memory (Block 3B)** — self-inhibition + sparse + hierarchical topology; outperforms attractor RNN on WM capacity, spatial navigation, distractor robustness; γ parameter approximates D1/D2 balance; directly applicable as the fast-M layer
 - **Neuromodulation circuit as meta-learning** — DA/ACh/5-HT/NA jointly implement the outer metalearning loop; D1/D2 cellular mechanisms now grounded at receptor level; connecting PVLV to the Block 3B WM gate is a tractable next step
+- **SNN gamma-band binding** — LISA model demonstrates gamma-band temporal synchrony for role-filler binding at WM capacity ≤2–3 propositions; an SNN substrate at the binding stage (Block 2A/2B) would implement this with exponentially fewer units than a rate-coded equivalent (CD_n theorem)
 - **Insect CX as minimal implementation target** — ring attractor heading (1A/1B) + P-EN path integration (1B) + PFL goal vector (3D) fully instantiated in a known connectome; a CX-inspired module could provide the MEC core without requiring emergence
 
 ---
@@ -141,14 +162,16 @@ Conclusion: this motif is not just a good design choice — **convergent evoluti
 ## Major Controversies
 
 - **Type 1 vs. Type 2 boundary** — the wiki assumes TEM handles Type 1 (familiar environments, known transformation vocabulary) and TIWM handles Type 2 (novel transformation rules); whether this is the right decomposition or whether a unified model can handle both is open
+- **GNW offset ignition absent (Ferrante 2025)** — preregistered adversarial collaboration (n=256, fMRI+MEG+iEEG) confirms onset ignition but finds no PFC offset ignition at content transitions; GNW's symmetric onset/offset prediction fails the causal test; constitutive vs. enabling PFC role is the active resolution. Both GNW and IIT failed at least one preregistered prediction — no clean winner.
+- **PFC constitutive vs. enabling** — iES null result (Raccah 2021, n=100 intracranial) and category/identity dissociation (Ferrante 2025) both challenge GNW's claim that PFC activity *constitutes* conscious experience; the working resolution is that PFC is necessary but not sufficient (enabling), with the posterior cortex as the constitutive locus. Architectural implication: the hub module manages selection, not the phenomenal content.
 - **TBT evolutionary claim** — that every cortical column recapitulates the HC formation (MEC/LEC/HC as L6/L4/L2-3) is interpretive; significant circuit differences exist; efference copy driving L6 confirmed only in motor cortex
 - **Manifold plasticity** — motor cortex manifold constraints shown hard (BCI reversal failure); HC manifold appears more plastic (UMAP drifts with learning); whether hard structural manifold boundaries exist throughout cortex is empirically open
 - **Grid code universality** — abstract grid codes shown in vmPFC during 2D conceptual navigation (Constantinescu 2016); extension to non-2D domains (causal graphs, linguistic structure) is unconfirmed
-- **Contrastive Hebbian vs. backprop** — biologically plausible in linear networks; approximation degrades with nonlinear activations and deep hierarchies; degree of degradation in realistic cortical circuits is empirically open
+- **EqProp exactness vs. practical viability** — Theorem 1 is exact in the limit β→0; finite β introduces approximation; symmetric weights required; no result beyond MNIST. The claim that EqProp is the resolved solution to Gap 4 is theoretical only — experimental validation at scale is absent.
 - **CA3 connectivity and capacity** — Sammons 2023 found 9–11% pyramidal-to-pyramidal connectivity (10× above prior estimates); this significantly increases estimated biological capacity but is a single dataset
 
 ---
 
 ## Source Count
 
-Papers: **43** | Concepts: **27** | Entities (models): **8** | Entities (benchmarks): **1** | Entities (biological): **10** | Queries: **5**
+Papers: **83** | Concepts: **41** | Entities (models): **15** | Entities (benchmarks): **2** | Entities (biological): **11** | Queries: **5**

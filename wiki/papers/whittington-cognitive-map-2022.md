@@ -2,6 +2,8 @@
 title: "How to build a cognitive map"
 type: paper
 tags: [cognitive-map, latent-states, successor-representation, replay, structural-generalization, review]
+created: 2026-06-20
+updated: 2026-06-20
 sources: [cognitivemap.md, cognitivemap.pdf]
 related: [wiki/concepts/structural-generalization.md, wiki/concepts/latent-states.md, wiki/concepts/successor-representation.md, wiki/concepts/factorized-representations.md, wiki/concepts/replay.md, wiki/concepts/two-learning-timescales.md, wiki/entities/tem-model.md, wiki/entities/cscg-model.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/tem-whittington-2020.md]
 ---

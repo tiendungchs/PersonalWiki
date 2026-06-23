@@ -3,8 +3,8 @@ title: "MLC (Meta-Learning for Compositional generalization)"
 type: entity
 tags: [meta-learning, compositional-generalization, systematicity, transformer, seq2seq]
 created: 2026-06-19
-updated: 2026-06-19
-sources: [Human-like_systematic_generalization]
+updated: 2026-06-21
+sources: [Human-like systematic generalization through a meta-learning neural network]
 related: [wiki/concepts/meta-learning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/structural-generalization.md, wiki/papers/mlc-lake-baroni-2023.md, wiki/papers/compositionality-decomposed-hupkes-2020.md, wiki/papers/arc-agi-3-paper.md]
 ---
 
@@ -18,40 +18,67 @@ Lake & Baroni, Nature 2023. A transformer meta-trained on episodic compositional
 
 | Component | Description |
 |---|---|
-| **Base model** | Transformer encoder-decoder |
-| **Training paradigm** | Episodic meta-learning: each of 100K training episodes uses a *different* context-free grammar to generate input→output mappings |
-| **Fast mechanism** | Transformer attention over in-context study instructions (few examples of the episode's grammar) |
-| **Slow mechanism** | Backprop across 100K episodes shapes weights to capture cross-episode compositional structure |
-| **Task format** | Seq2seq: nonsense words → color sequences; rules like `wif` = triple; `kiki` = permute |
+| **Base model** | Standard seq2seq transformer (encoder-decoder) |
+| **Parameters** | ~1.4M |
+| **Layers** | 3 encoder + 3 decoder |
+| **Attention heads** | 8 per layer |
+| **Hidden / embedding dim** | 128 |
+| **FFN hidden size** | 512 |
+| **Activation** | GELU (GPT-style, not ReLU) |
+| **Positional encoding** | Sinusoidal |
+| **Training paradigm** | Episodic meta-learning: each of 100K episodes uses a *different* randomly generated interpretation grammar |
+| **Fast mechanism** | Encoder attends over concatenated [query input + study examples]; decoder generates output — no weight update at test time |
+| **Slow mechanism** | Backprop across 100K episodes shapes weights to embed cross-episode rule-learning capacity |
+| **Task format** | Seq2seq: nonsense words → abstract output sequences (colour circles); rules like function1=triple, function3=reverse-concatenate |
+| **Optimizer** | Adam, lr=0.001, batch=25 episodes, 50 epochs |
 
 **Variants:**
-- **MLC** — trained on few-shot instruction task only
-- **MLC (algebraic only)** — trained on the algebraic subset of the instruction task
-- **MLC (joint)** — additionally trained on open-ended human response data
+- **MLC** — few-shot instruction task, mixed algebraic + biased outputs (80/20)
+- **MLC (algebraic only)** — same episodes, purely algebraic target outputs
+- **MLC (joint)** — additionally meta-trained on open-ended human response data
+- **MLC (copy only)** — trained on copy task only; control showing 0% systematic generalization
+
+**Scalability architecture for long in-context sequences (SCAN/COGS):** Copy query N times, concatenate each copy with one study example → N short source sequences processed independently by shared encoder. Index embeddings mark study-example origin. Decoder cross-attends over combined set via standard cross-attention. Reduces O(S²) encoder self-attention to O(S·T) decoder cost.
 
 ---
 
 ## Key Results
 
-| Model | Few-shot instruction accuracy | Novel rule accuracy |
-|---|---|---|
-| **MLC** | 92.9% (SD 8.2) | 99.3% |
-| **MLC (joint)** | 96.8% (SD 5.2) | 99.8% |
-| **MLC (algebraic only)** | 93.6% (SD 9.0) | 99.4% |
-| **GPT-4** (sorted, batched) | 58.0% (SD 14.0) | — |
-| **GPT-4** (random order) | 14.0% (SD 19.0) | — |
-| **Humans** | 80.7% | — |
+### Human Behavioural Comparison
 
-**Novel rule test:** 26 rules held out from all 100K training episodes; evaluated at 130 test episodes (5 per rule). MLC infers and applies novel rules purely from frozen weights + in-context examples.
+| Model | Few-shot accuracy | Sampled accuracy | ME adherence |
+|---|---|---|---|
+| **Humans** | 80.7% | — | 93.1% |
+| **MLC** | 100% (best run, greedy) | 82.4% | — |
+| **MLC (joint)** | 96.8% | — | 99% (too rigid) |
+| **Basic seq2seq** | **0%** | — | — |
+| **GPT-4 (sorted)** | 58% | — | — |
+| **GPT-4 (random order)** | 14% | — | — |
+
+Human error types: one-to-one translations = 24.4% of errors; iconic concatenation = 23.3% of function-3 errors. MLC matches these within 2×.
+
+### Machine Learning Benchmarks (SCAN / COGS)
+
+| Benchmark | Split type | MLC error | Basic seq2seq |
+|---|---|---|---|
+| SCAN | add jump (lexical) | 0.22% | ~7× higher |
+| SCAN | around right (lexical) | ≤0.22% | ~7× higher |
+| SCAN | opposite right (lexical) | ≤0.22% | ~7× higher |
+| COGS | 18 lexical generalization types | 0.87% | ~7× higher |
+| SCAN | length split (productivity) | **100%** | 100% |
+| COGS | 3 structural types | **100%** | 100% |
+
+**Critical split:** lexical generalization (new word meanings, recombination of known structural forms) ≈ solved. Structural/productivity generalization (new sentence structures, longer-than-trained sequences) = completely unsolved by current MLC.
 
 ---
 
 ## Limitations
 
-- Task-specialist: must be meta-trained on target compositional domain; not plug-and-play for arbitrary new domains.
-- MLC (joint) applies mutual exclusivity too rigidly (98%) vs. humans (68%) — overfits to the modal inductive prior rather than learning the distribution.
-- Vocabulary is fixed (nonsense words, colors); extension to open-vocabulary domains requires re-training or architectural modification.
-- Source is SI only; full training details and architecture hyperparameters are in the main paper.
+- Fails completely on structural/productivity generalization (100% error on length/novel-structure splits).
+- Task-specialist: requires meta-training on target compositional domain; not plug-and-play for new domains.
+- MLC (joint) applies mutual exclusivity too rigidly (99%) vs. humans (93.1%) — overfits to modal prior distribution.
+- Vocabulary is fixed (nonsense words, colours); open-vocabulary extension requires architectural modification.
+- LRM knowledge-boundedness applies: fast inner loop cannot generalize beyond the slow outer loop's 100K-grammar training distribution.
 
 ---
 
@@ -59,7 +86,7 @@ Lake & Baroni, Nature 2023. A transformer meta-trained on episodic compositional
 
 | Model | Systematicity mechanism | Localism | Novel rule generalization | Requires task-specific training |
 |---|---|---|---|---|
-| **MLC** | Episodic meta-learning | High (inferred from context) | Yes (99%+) | Yes (100K episodes) |
+| **MLC** | Episodic meta-learning | High (inferred from context) | Yes (99%+, lexical) | Yes (100K episodes) |
 | **Transformer (Hupkes 2020)** | Attention over full sequence | 0.54 | No | Standard seq2seq |
 | **GPT-4** | In-context pattern matching | Fragile (collapses with order change) | Partial | No (pre-trained) |
 | **TEM** | Factorized W/M + Hebbian binding | — (spatial domain) | W transfers to new environments | Yes (training environments) |
@@ -69,8 +96,8 @@ Lake & Baroni, Nature 2023. A transformer meta-trained on episodic compositional
 ## Connections
 
 - **[[wiki/concepts/meta-learning.md]]** — MLC is the compositional-generalization instantiation of slow/fast meta-learning: slow backprop across episodes trains weights; fast transformer attention infers grammar rules within each episode without weight updates.
-- **[[wiki/concepts/compositional-generalization.md]]** — MLC addresses the chunking failure identified by Hupkes et al. 2020: episodic training with a different grammar per episode prevents co-occurrence chunking and forces atomic rule learning.
-- **[[wiki/concepts/structural-generalization.md]]** — MLC demonstrates that the training objective (episodic meta-learning vs. standard next-token prediction) is as important as the architecture for achieving structural transfer; a transformer with the right training regime generalizes where the same architecture with standard training fails.
-- **[[wiki/papers/mlc-lake-baroni-2023.md]]** — primary source (SI); main paper contains full architecture and benchmark.
-- **[[wiki/papers/compositionality-decomposed-hupkes-2020.md]]** — Hupkes et al. 2020 established the five-facet benchmark against which MLC's improvement should be measured; MLC targets the systematicity/localism facets where all 2020 architectures failed.
-- **[[wiki/papers/arc-agi-3-paper.md]]** — the LRM knowledge-boundedness theorem applies to MLC: the fast inner loop cannot generalize beyond the slow outer loop's 100K-grammar training distribution, making MLC subject to the same ceiling as other LRMs on genuinely novel grammatical domains.
+- **[[wiki/concepts/compositional-generalization.md]]** — MLC addresses chunking by ensuring no grammar-specific co-occurrence statistics exist across episodes; 0% basic seq2seq vs. 100% MLC accuracy confirms training objective primacy; lexical/structural split defines the remaining open problem.
+- **[[wiki/concepts/structural-generalization.md]]** — MLC demonstrates that training objective is as important as architecture for structural transfer; the lexical vs. structural split maps to within-distribution vs. out-of-distribution grammar variation at the slow-loop level.
+- **[[wiki/papers/mlc-lake-baroni-2023.md]]** — primary source; full architecture, behavioral data, SCAN/COGS results.
+- **[[wiki/papers/compositionality-decomposed-hupkes-2020.md]]** — Hupkes et al. five-facet benchmark; MLC targets systematicity/localism where all 2020 architectures failed.
+- **[[wiki/papers/arc-agi-3-paper.md]]** — LRM knowledge-boundedness theorem applies to MLC: the fast inner loop cannot generalize beyond the slow outer loop's training distribution, so structural/productivity failure is not a fixable fine-tuning problem — it requires either a broader slow-loop distribution or a different architecture class.

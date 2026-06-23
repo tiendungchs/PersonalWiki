@@ -1,40 +1,46 @@
 ---
 title: "Human-like Systematic Generalization — Lake & Baroni, Nature 2023"
 type: paper
-tags: [meta-learning, compositional-generalization, systematicity, inductive-biases, seq2seq]
+tags: [meta-learning, compositional-generalization, systematicity, inductive-biases, seq2seq, human-behavior]
 created: 2026-06-19
-updated: 2026-06-19
-sources: [Human-like_systematic_generalization]
-related: [wiki/entities/mlc-model.md, wiki/concepts/compositional-generalization.md, wiki/concepts/meta-learning.md, wiki/concepts/structural-generalization.md, wiki/papers/compositionality-decomposed-hupkes-2020.md]
+updated: 2026-06-21
+sources: [Human-like systematic generalization through a meta-learning neural network]
+related: [wiki/entities/mlc-model.md, wiki/concepts/compositional-generalization.md, wiki/concepts/meta-learning.md, wiki/concepts/structural-generalization.md, wiki/concepts/abstract-reasoning.md, wiki/papers/compositionality-decomposed-hupkes-2020.md]
 ---
 
 # Human-like Systematic Generalization — Lake & Baroni, Nature 2023
 
-**Citation:** Lake, B. M. & Baroni, M. (2023). Human-like systematic generalization through a meta-learning neural network. *Nature*, 623, 115–121. *(Source: Supplementary Information only.)*
+**Citation:** Lake, B. M. & Baroni, M. (2023). Human-like systematic generalization through a meta-learning neural network. *Nature*, 623, 115–121.
 
 ---
 
 ## Key Computational Insights
 
-- **Meta-training installs rule-learning in frozen weights.** MLC is trained on 100K episodic seq2seq tasks with a different compositional grammar per episode. At test time weights are frozen; new rules are inferred purely from in-context instructions. Novel rules (never in meta-training) are acquired at 99%+ accuracy — proving the fast algorithm generalizes beyond its training vocabulary.
-- **GPT-4 fragility exposes surface-pattern dependence.** GPT-4 achieves 58% on the few-shot instruction task with sorted examples but collapses to 14% when example order is randomized. MLC is robust to this permutation. The diagnostic: LLMs learn order-dependent co-occurrence statistics, not abstract compositional rules — operationalising the "chunking" failure mode from Hupkes et al. 2020.
-- **Meta-learning surpasses general pre-training for systematic generalization.** MLC: 92.9–96.8% exact match. GPT-4 (best setting): 58%. Humans: 80.7%. Targeted episodic training on a compositional task distribution outperforms billion-parameter models pre-trained on internet text.
-- **Human inductive biases are gradable context-sensitive priors, not rigid rules.** Three priors identified: (1) mutual exclusivity (novel word → novel meaning); (2) iconic concatenation (compound meaning = concatenation of parts); (3) one-to-one (word-meaning bijection). ME weakens with contradictory evidence (β=1.76, p<0.001) and larger response pools (β=2.05, p<0.01). MLC (within-sample) matches human nuance at 68.6% ME-consistent; MLC (joint) is too rigid at 98%.
-- **MLC (joint) over-rigidity reveals meta-training distribution bias.** Adding open-ended human data improves compositional accuracy but applies ME too absolutely — indicating that meta-learning can overfit to the modal inductive prior rather than learning the *distribution* of human biases.
+- **Episodic meta-training installs rule-learning capacity, not rule instances.** Each of 100K training episodes uses a *different* randomly generated interpretation grammar. The slow outer loop cannot absorb grammar-specific co-occurrence patterns — there are none stable across episodes. Test-time weights are frozen; new grammars are inferred purely from in-context study examples. 26 rules held entirely out of training are acquired at 99%+ accuracy, proving the fast mechanism generalizes beyond its training vocabulary.
+
+- **Lexical generalization is solved; structural/productivity generalization is not.** On SCAN lexical splits MLC achieves ≤0.22% error; on COGS lexical types 0.87% error — basic seq2seq is ≥7× worse. But on SCAN length (productivity) and COGS structural splits, MLC scores **100% error** — same as a random model. Meta-learning addresses within-distribution grammar variation; generalization to genuinely out-of-distribution structural forms requires something beyond the current paradigm.
+
+- **Human behavioral data provides precise design targets.** Few-shot instruction task (n=25): 80.7% algebraic accuracy. MLC matches this at 82.4% (sampled). Quantitative error type breakdown: one-to-one translations = 24.4% of errors; iconic concatenation = 23.3% of errors involving function 3. Open-ended task (n=29): mutual exclusivity adherence = 93.1%. MLC (joint) is too rigid at 99% ME — it overfits to the modal inductive bias rather than the distribution.
+
+- **Standard transformer: 0% exact match, same architecture.** A basic seq2seq transformer trained in the standard way on the same instruction task (same architecture, same optimizer) achieves 0% exact-match accuracy. The architecture is not the bottleneck — the training objective is. This is the cleanest controlled demonstration that episodic training objective matters more than model capacity for systematic generalization.
+
+- **Scalability architecture for long in-context sequences.** Vanilla concatenation of all study examples + query hits O(S²) encoder self-attention with S ≈ 1,500 on COGS. Fix: copy query N times, concatenate each copy with one study example → N short source sequences processed independently. Index embeddings mark study-example origin; decoder cross-attends over the combined set. Same standard transformer components; O(S·T) decoder cost only.
 
 ---
 
 ## Limitations
 
-- Source is SI only; main paper has full architecture, training details, and primary benchmark results.
-- MLC is task-specialist: requires meta-training on the target compositional domain — not transferable to arbitrary new domains without retraining the slow outer loop.
-- Human inductive bias nuance (context-sensitive ME, one-to-one/ME trade-offs) requires within-sample optimization (MLC within-sample), not just the out-of-distribution meta-learned model.
+- MLC fails completely on structural/productivity generalization (length split, novel sentence structure): 100% error on SCAN length and COGS structural types. Meta-learning succeeds when the test episode is in-distribution with respect to training grammar variation but fails when entire episode types are out-of-distribution.
+- Task-specialist: requires domain-specific meta-training. Not transferable across domains without retraining the slow outer loop.
+- MLC (joint) applies mutual exclusivity too absolutely (99%) vs. human 93.1% / human within-context variation. Meta-learning can overfit to the modal prior rather than learning its distribution.
+- Untested on natural language at scale, visual modalities, or multi-step causal chains (ARC-AGI-style rule hierarchies).
 
 ---
 
 ## Links
 
-- [[wiki/entities/mlc-model.md]] — MLC architecture and benchmark results
-- [[wiki/concepts/compositional-generalization.md]] — where MLC results update the five-facet picture
-- [[wiki/concepts/meta-learning.md]] — MLC as non-RL instantiation of the slow/fast meta-learning structure
-- [[wiki/papers/compositionality-decomposed-hupkes-2020.md]] — Hupkes et al. 2020 established the five-facet failure profile that MLC addresses
+- [[wiki/entities/mlc-model.md]] — MLC architecture (1.4M params, 3L/8H/128D), benchmark results table, scalability technique
+- [[wiki/concepts/compositional-generalization.md]] — lexical/structural split updates open problem 2; 0% basic seq2seq confirms training-objective primacy
+- [[wiki/concepts/meta-learning.md]] — MLC as non-RL instantiation of slow/fast meta-learning structure; knowledge-boundedness instantiated at grammar level
+- [[wiki/papers/compositionality-decomposed-hupkes-2020.md]] — Hupkes et al. five-facet framework MLC builds on
+- [[wiki/concepts/abstract-reasoning.md]] — human behavioral rates (80.7% accuracy, quantified error types) as design targets for human-like reasoning

@@ -5,7 +5,7 @@ tags: [analogy, relational-reasoning, abstract-reasoning, binding-problem, schem
 created: 2026-06-20
 updated: 2026-06-20
 sources: [analogy_reasoning.md]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/binding-problem.md, wiki/concepts/working-memory.md, wiki/concepts/cognitive-control.md, wiki/concepts/meta-learning.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/hierarchical-representations.md, wiki/entities/prefrontal-cortex.md, wiki/papers/analogy-holyoak-2012.md]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/binding-problem.md, wiki/concepts/working-memory.md, wiki/concepts/cognitive-control.md, wiki/concepts/meta-learning.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/hierarchical-representations.md, wiki/entities/prefrontal-cortex.md, wiki/papers/analogy-holyoak-2012.md, wiki/entities/lisa-model.md]
 ---
 
 # Analogical Reasoning
@@ -125,5 +125,6 @@ This is the analogical-level implementation of slow-W structure extraction from 
 - **[[wiki/concepts/compositional-generalization.md]]** — the relational shift (object similarity → structural role dominance in development) parallels the chunking/systematicity failure in neural networks; both reflect failure to represent role-filler bindings independently of specific content.
 - **[[wiki/entities/prefrontal-cortex.md]]** — frontopolar cortex (BA-10) is the neural bottleneck for the mapping stage: it integrates multiple simultaneous relational constraints, with the inferior frontal gyrus handling distractor suppression separately.
 - **[[wiki/papers/analogy-holyoak-2012.md]]** — primary source; covers multiconstraint theory, LISA model, four-component decomposition, developmental evidence, and neuroimaging.
+- **[[wiki/entities/lisa-model.md]]** — entity page for Learning and Inference with Schemas and Analogies; the LISA section in this page provides the functional description; the entity page holds the full architecture, capacity limits (≤2–3 simultaneous propositions from anti-phase population limit), and comparison with alternative binding mechanisms.
 - **[[wiki/concepts/latent-graph-discovery.md]]** — analogy is a special case of latent edge discovery: given a source graph (understood causal model) and a target (partially observed), CWSG maps source edge labels onto target nodes and infers unobserved target edges; schema induction from two analogs is meta-graph discovery — building a new meta-graph entry from episodic comparison.
 - **[[wiki/concepts/hierarchical-representations.md]]** — the ventral-stream identity factorization (CLSU stages) provides the role-filler-separated representations that analogical mapping operates on; feedforward hierarchy is the perceptual prerequisite for relational structure extraction.

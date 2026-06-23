@@ -1,11 +1,11 @@
 ---
 title: "Ring Attractor"
 type: concept
-tags: [ring-attractor, path-integration, head-direction, continuous-attractor, working-memory, navigation]
+tags: [ring-attractor, path-integration, head-direction, continuous-attractor, working-memory, navigation, traveling-wave, levy-flights]
 created: 2026-06-13
-updated: 2026-06-13
-sources: [landmark-orientation]
-related: [wiki/concepts/path-integration.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/binding-problem.md, wiki/concepts/neural-manifolds.md, wiki/entities/insect-central-complex.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/seelig-jayaraman-2015.md, wiki/papers/turner-evans-neuron-2020.md]
+updated: 2026-06-22
+sources: [landmark-orientation, acann-li-2024]
+related: [wiki/concepts/path-integration.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/binding-problem.md, wiki/concepts/neural-manifolds.md, wiki/entities/insect-central-complex.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/seelig-jayaraman-2015.md, wiki/papers/turner-evans-neuron-2020.md, wiki/concepts/spike-frequency-adaptation.md, wiki/concepts/replay.md, wiki/papers/acann-li-chu-wu-2024.md]
 ---
 
 # Ring Attractor
@@ -93,6 +93,33 @@ Equivalent to a 2D recurrent unit on the unit circle. For richer dynamics: use a
 
 ---
 
+## A-CANN: Adaptive Extension for Flexible State Dynamics
+
+Adding SFA as a slow negative feedback (Li, Chu & Wu 2024) extends the CANN to an **adaptive CANN (A-CANN)** with four dynamical modes controlled by adaptation strength **m** and input strength **α**:
+
+$$\tau_v \frac{dV(x,t)}{dt} = -V(x,t) + mU(x,t), \quad \tau_v \gg \tau$$
+
+**Spontaneous dynamics (no external input):**
+
+| Condition | Mode | Role |
+|---|---|---|
+| m < τ/τ_v, k < k_c2 | **Static bump** | Working memory — holds state without input |
+| m > τ/τ_v | **Traveling wave** v_int = (2a/τ_v)√(mτ_v/τ − √(mτ_v/τ)) | Memory search; hippocampal replay |
+
+**Tracking dynamics (with external input α):**
+
+| Condition | Mode | Key property |
+|---|---|---|
+| m − τ/τ_v < α/A_u | **Anticipative tracking** | Leads input by constant t_ant ∝ τ_v (m − τ/τ_v) |
+| Intermediate (Hopf bifurcation) | **Oscillatory tracking** | Theta-band ω ∝ √(αk(1+m)/ττ_v); phase precession/procession |
+| m − τ/τ_v ≫ α/A_u | **Traveling wave** | Adaptation overwhelms input |
+
+**Architectural implication:** all four modes — WM, memory search, predictive tracking, and theta oscillations — emerge from **one network** by varying m (neuromodulation) and α (input salience). A reasoning model needs all four; this points to a single A-CANN-type circuit with neuromodulatory mode switching rather than four separate subsystems.
+
+**Noisy regime → Lévy flights:** when adaptation noise fluctuates m around the traveling-wave boundary, displacement statistics follow p(||Δz||) ∝ ||Δz||^{−1−α}, α = 1 + 2μ/γ² — an efficient search prior matching place-cell reactivation statistics at rest.
+
+---
+
 ## Open Problems
 
 1. **Symmetry breaking:** how does the ring attractor select an initial bump position when first activated — noise, sensory bias, or prior state?
@@ -111,3 +138,6 @@ Equivalent to a 2D recurrent unit on the unit circle. For richer dynamics: use a
 - **[[wiki/concepts/binding-problem.md]]** — landmark anchoring (ring neurons → E-PG bump) is a specific binding operation: landmark identity is bound to an abstract heading state, enabling allocentric rather than egocentric coding.
 - **[[wiki/papers/seelig-jayaraman-2015.md]]** — primary empirical source; all five ring attractor signatures confirmed in a single in vivo preparation.
 - **[[wiki/papers/turner-evans-neuron-2020.md]]** — (tentative) synaptic-level circuit substrate for the E-PG/P-EN dynamics.
+- **[[wiki/concepts/spike-frequency-adaptation.md]]** — SFA is the adaptation mechanism in A-CANN; the traveling-wave threshold m = τ/τ_v shows how SFA timescale τ_v determines whether the network is in WM mode or spontaneous search mode; neuromodulation of SFA timescale is the biological mode-switching interface.
+- **[[wiki/concepts/replay.md]]** — the traveling-wave state of A-CANN provides an intrinsic, trigger-free mechanism for sequential memory search, complementing the SWR-triggered replay mechanism; Lévy flight statistics from noisy adaptation match stochastic reactivation patterns observed in vivo.
+- **[[wiki/papers/acann-li-chu-wu-2024.md]]** — primary source for the A-CANN phase diagram, four-mode analytical framework, and all derived quantities including v_int, t_ant, ω, and the Lévy flight exponent α = 1 + 2μ/γ².

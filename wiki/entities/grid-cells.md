@@ -3,9 +3,9 @@ title: "Grid Cells"
 type: entity
 tags: [grid-cells, MEC, path-integration, structural-generalization, successor-representation]
 created: 2026-06-09
-updated: 2026-06-20
-sources: [gridlikecode]
-related: [wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/convergent-allocentric-coding.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/htm-thousand-brains.md, wiki/entities/arthropod-mushroom-bodies.md, wiki/papers/gridlikecode-constantinescu-2016.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/jumping-spiders-cognition.md, wiki/papers/pattern-completion-rolls-2013.md]
+updated: 2026-06-22
+sources: [gridlikecode, spiking-tem-kawahara-2025, High-capacity flexible hippocampal associative and episodic memory enabled by prestructured "spatial" representations]
+related: [wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/phase-precession.md, wiki/concepts/associative-memory.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/htm-thousand-brains.md, wiki/entities/arthropod-mushroom-bodies.md, wiki/entities/vector-hash-model.md, wiki/papers/gridlikecode-constantinescu-2016.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/jumping-spiders-cognition.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/spiking-tem-kawahara-2025.md, wiki/papers/vector-hash-chandra-2023.md]
 ---
 
 # Grid Cells
@@ -47,6 +47,36 @@ The same hexagonal code also appears in human representations of social hierarch
 
 Grid cells emerge without supervision as the solution to the uniqueness + path-consistency constraints on `g`; periodicity is the optimal basis for predicting future observations across structured environments.
 
+## Temporal Coding: Phase Precession and MECIII Prediction
+
+Spiking TEM ([[wiki/papers/spiking-tem-kawahara-2025.md]]) extends the grid-cell picture with two temporal coding results:
+
+**Phase precession (MECII):** MECII grid cells advance their spike timing to earlier phases of the theta cycle (~8 Hz) as the agent traverses a firing field. This temporal sequence compression enables STDP to learn forward transition weights without any global credit assignment. Controlled by neuromodulatory gain G.
+
+**Predictive grid cells (MECIII):** MECIII neurons have higher gridness when evaluated at the *next* position (t+1) rather than current position (p = 2.98×10⁻⁶). MECIII is a prospective encoder; MECII is a current-state encoder. The generative model's role (predicting future observations from internal state) is exactly what MECIII implements anatomically.
+
+**Sensory-ambiguity drive:** grid cells form most strongly (~60%) when ~20/64 sensory neurons encode 64 positions (ambiguous). They are largely absent when sensory information uniquely determines position. Grid codes are a compensatory internal coordinate system for aliased environments — directly relevant to latent-graph discovery under partial observability.
+
+See [[wiki/concepts/phase-precession.md]] for the full formalism and mechanism debate.
+
+## Vector-HaSH: Grid Cells as Domain-General Memory Scaffold
+
+Vector-HaSH (Chandra et al. 2023 [[wiki/papers/vector-hash-chandra-2023.md]]) provides the strongest formal argument for grid codes as domain-general structures rather than spatial-specific maps.
+
+**The argument:** each grid module constrains its population to a 2D torus — a fixed, invariant set of states independent of task or sensory content. M modules with K_i states (coprime) yield ⟨K⟩^M distinct joint states. Fixed random projections from grid cells to HC turn each joint state into a sparse HC pattern; the HC pattern, fed back to grid via a once-learned fixed projection, becomes a stable attractor. The grid scaffold thus generates ⟨K⟩^M error-correcting fixed points **without any content information** — it is a content-free hash library.
+
+The "spatial" interpretation of grid cells is then a special case: when the external input is self-motion velocity, grid phases update to track location. But the same scaffold works for any domain where a sequence of inputs needs to be indexed — grid codes are the ordered topology that makes the scaffold efficient to learn (O(MK_max) training visits to cover all ⟨K⟩^M states vs. exponential without metric structure).
+
+**Sequence memory:** the shift operator that advances grid phases during spatial navigation is learned from HC→MEC projections and can be driven by any HC state — enabling non-spatial episodic sequence chaining via the same low-dimensional path-integration mechanism.
+
+| Use mode | What drives grid-phase shift | Content attached via |
+|---|---|---|
+| Spatial navigation | Self-motion velocity | Location-landmark heteroassociation |
+| Episodic sequence memory | HC state (learned shift operator) | Sensory content heteroassociation |
+| Memory palace | Spatial sequence (reused scaffold) | New non-spatial content |
+
+The metric structure of the torus (adjacent phases are similar) is what makes strong generalization possible — a crucial property not present in random fixed-point constructions.
+
 ## Proposed Universal Distribution (TBT)
 
 Thousand Brains Theory [[wiki/entities/htm-thousand-brains.md]] proposes that grid-cell-like neurons exist in **L6 of every cortical column**, not only in MEC. The path integration signal is an efference copy from L5 motor outputs rather than a velocity input from MEC. If confirmed, grid-like structural coding is universal across neocortex — the same mechanism operating at every hierarchy level over increasingly abstract reference frames — rather than a MEC specialization.
@@ -72,3 +102,8 @@ Thousand Brains Theory [[wiki/entities/htm-thousand-brains.md]] proposes that gr
 - **[[wiki/entities/arthropod-mushroom-bodies.md]]** — dedicated page for the arthropod mushroom body system; the (tentative) grid-like coding in jumping spiders is one component of the convergent allocentric coding evidence.
 - **[[wiki/concepts/convergent-allocentric-coding.md]]** — places grid-like periodic coding in the broader context of convergent allocentric systems; the periodic structure code appears to be one of the most conserved elements across independent evolutionary derivations.
 - **[[wiki/papers/pattern-completion-rolls-2013.md]]** — source for the DG competitive learning transformation of grid inputs into place fields; grid cells are the upstream input that DG processes to produce the orthogonal CA3 representations required for high-capacity episodic memory.
+- **[[wiki/concepts/phase-precession.md]]** — grid cells in MECII phase-precess (encode current + look-ahead state) while MECIII grid cells phase-lock (encode predicted next state); neuromodulatory gain G governs which mode a layer adopts.
+- **[[wiki/papers/spiking-tem-kawahara-2025.md]]** — source for emergent phase precession, predictive MECIII grid cells, and sensory-ambiguity-driven grid emergence; ablation results establish four jointly necessary mechanisms.
+- **[[wiki/entities/vector-hash-model.md]]** — Vector-HaSH formalizes grid modules as a content-free scaffold: the torus topology, coprime-scale state count, and invariance properties are the three features that give the scaffold exponential capacity at logarithmic neuron cost.
+- **[[wiki/concepts/associative-memory.md]]** — grid scaffold generates the fixed points that Vector-HaSH heteroassociates with content; the scaffold/content factorization is what prevents the Hopfield memory cliff.
+- **[[wiki/papers/vector-hash-chandra-2023.md]]** — primary source for the scaffold capacity analysis, strong-generalization metric-topology argument, and domain-general grid-code claim.

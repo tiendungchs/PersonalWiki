@@ -3,9 +3,9 @@ title: "Place Cells"
 type: entity
 tags: [place-cells, hippocampus, latent-states, successor-representation, conjunctive-code]
 created: 2026-06-09
-updated: 2026-06-20
-sources: [t-TEM, engram-transcript, jumping-spiders-cognition, The mechanisms for pattern completion and pattern separation in the hippocampus, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus]
-related: [wiki/concepts/latent-states.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/structural-generalization.md, wiki/concepts/attention.md, wiki/concepts/engrams.md, wiki/concepts/binding-problem.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/two-learning-timescales.md, wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/cscg-model.md, wiki/entities/arthropod-mushroom-bodies.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/engram-transcript.md, wiki/papers/jumping-spiders-cognition.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/learning-fast-slow-liao-2024.md]
+updated: 2026-06-21
+sources: [t-TEM, engram-transcript, jumping-spiders-cognition, The mechanisms for pattern completion and pattern separation in the hippocampus, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, spiking-tem-kawahara-2025]
+related: [wiki/concepts/latent-states.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/structural-generalization.md, wiki/concepts/attention.md, wiki/concepts/engrams.md, wiki/concepts/binding-problem.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/two-learning-timescales.md, wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/cscg-model.md, wiki/entities/arthropod-mushroom-bodies.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/engram-transcript.md, wiki/papers/jumping-spiders-cognition.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/spiking-tem-kawahara-2025.md]
 ---
 
 # Place Cells
@@ -51,6 +51,17 @@ In tasks with hidden task-relevant variables, the cognitive map expands to inclu
 | Tower accumulation | Cue evidence difference | Evidence cells |
 
 All are place cells in a higher-dimensional cognitive map. See [[wiki/concepts/latent-states.md]].
+
+---
+
+## Sparsity and Remapping in Spiking TEM
+
+Spiking TEM ([[wiki/papers/spiking-tem-kawahara-2025.md]]) reproduces two place cell properties in a biologically plausible spiking model without explicit silence rules:
+
+- **Silent cells:** 50.3% of CA1 neurons remain silent per environment (matches in vivo ~60%); DG shows 90% silence (vs. 85.8% in vivo) — confirming sparse place coding is a natural consequence of theta-gated inhibitory drive plus hippocampal sparsity loss, not a post-hoc constraint.
+- **Global remapping with preserved grid structure:** when sensory inputs change (one-hot → two-hot), CA1 place fields remap globally while MECII maintains its gridness, confirming that the g/x/p factorization holds in a biologically plausible spiking implementation.
+
+Theta inhibitory modulation is the proximate cause of CA1 sparsity: removing it eliminates spatial tuning before training is even attempted (Fig. 4B,C).
 
 ---
 
@@ -108,3 +119,4 @@ Jumping spiders (*Salticidae*) achieve allocentric spatial mapping without a hip
 - **[[wiki/papers/pattern-completion-rolls-2013.md]]** — source for the DG competitive learning theory of place cell formation from grid inputs; explains why both sparse DG representation and Hebbian learning are required, and why the same mechanism produces spatial view cells in primates.
 - **[[wiki/papers/learning-fast-slow-liao-2024.md]]** — source for BTSP as the actual molecular mechanism of one-shot place field acquisition; establishes the mechanistic distinction between BTSP (concept, one-shot) and STDP (sequence, many-shot) within HC.
 - **[[wiki/concepts/two-learning-timescales.md]]** — place cell BTSP write is the cellular implementation of the fast-M update; the field acquisition mechanism grounds the abstract "one-shot Hebbian" label in a specific dendritic plateau-potential circuit.
+- **[[wiki/papers/spiking-tem-kawahara-2025.md]]** — source for biologically realistic silent-cell proportions and global remapping under sensory context change in a spiking TEM; theta inhibition is the proximate cause of CA1 sparsity and spatial tuning.

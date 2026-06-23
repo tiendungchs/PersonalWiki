@@ -3,9 +3,9 @@ title: "TEM (Tolman-Eichenbaum Machine)"
 type: entity
 tags: [model, structural-generalization, world-models, relational-memory, hippocampus]
 created: 2026-06-09
-updated: 2026-06-12
-sources: [t-TEM, TEM]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/latent-states.md, wiki/concepts/attention.md, wiki/concepts/information-theory.md, wiki/entities/cscg-model.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/tem-whittington-2020.md]
+updated: 2026-06-21
+sources: [t-TEM, TEM, spiking-tem-kawahara-2025]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/latent-states.md, wiki/concepts/attention.md, wiki/concepts/information-theory.md, wiki/concepts/phase-precession.md, wiki/entities/cscg-model.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/tem-whittington-2020.md, wiki/papers/spiking-tem-kawahara-2025.md]
 ---
 
 # TEM — The Tolman-Eichenbaum Machine
@@ -76,6 +76,27 @@ TEM handles structural generalization; CSCG handles fast local map learning in n
 
 ---
 
+## Spiking TEM (Kawahara & Fujisawa 2025)
+
+[[wiki/papers/spiking-tem-kawahara-2025.md]] extends TEM with LIF spiking neurons, STDP for fast-M (M), surrogate-gradient backprop for slow-W, theta-modulated inhibitory input, and a learnable neuromodulatory gain factor G.
+
+**Key results beyond TEM 2020:**
+
+| Result | Detail |
+|---|---|
+| Phase precession emerges | MECII grid cells advance spike phase across field; no oscillatory interference needed — G + LIF dynamics sufficient |
+| Predictive grid cells | MECIII represents position t+1 (higher gridness at next position, p = 2.98×10⁻⁶); MECII represents current state |
+| Neuromodulation controls coding mode | G → phase precession; theta_MECIII inhibition → phase locking; biological MECII/MECIII split requires both |
+| Sensory ambiguity drives grid emergence | Peak grid proportion at ~20/64 sensory neurons; absent at full resolution |
+| Biological sparsity reproduced | CA1 50.3% silent cells; DG 90% silent — matching in vivo proportions without explicit silence rule |
+
+**Additional limitations (Spiking TEM):**
+- Square/diamond grids, not hexagonal; non-negative weight constraints likely needed for hexagonal geometry
+- No phase diversity across grid cells → missing toroidal population code
+- BPTT + surrogate gradient still biologically implausible
+
+---
+
 ## Connections
 
 - **[[wiki/concepts/structural-generalization.md]]** — TEM is the reference proof-of-concept; it demonstrates that the five minimal ingredients produce zero-shot structural generalization empirically.
@@ -88,3 +109,5 @@ TEM handles structural generalization; CSCG handles fast local map learning in n
 - **[[wiki/concepts/information-theory.md]]** — TEM's training objective is cross-entropy minimization over sensory predictions; the KL-to-cross-entropy equivalence explains why code uses cross-entropy loss despite the theory framing learning as KL divergence minimization.
 - **[[wiki/papers/tem-whittington-2020.md]]** — primary source paper; foundational Cell 2020 results for structural generalization, emergent cell types, and zero-shot inference on transitive/social hierarchy tasks.
 - **[[wiki/concepts/latent-graph-discovery.md]]** — TEM is the reference implementation of two-level latent graph discovery: W encodes the meta-graph, M encodes the instance-graph, and the g/x/p factorization solves two-level entanglement; TEM's limitations (pre-given action vocabulary, flat hierarchy) mark the open frontiers of the latent graph discovery problem.
+- **[[wiki/concepts/phase-precession.md]]** — Spiking TEM demonstrates that TEM's generative/inference split naturally produces a MECII (phase-precessing, current state) vs. MECIII (phase-locked, t+1 prediction) functional dissociation — temporal coding is an emergent property of the factorized architecture.
+- **[[wiki/papers/spiking-tem-kawahara-2025.md]]** — source for Spiking TEM results: emergent phase precession, predictive MECIII cells, neuromodulation as coding mode controller, sensory-ambiguity-driven grid emergence, and the four-factor minimum mechanism package.

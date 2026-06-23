@@ -3,9 +3,9 @@ title: "Attention (Transformer Self-Attention)"
 type: concept
 tags: [attention, transformer, hopfield, positional-encodings, associative-memory]
 created: 2026-06-12
-updated: 2026-06-19
+updated: 2026-06-22
 sources: [t-TEM, convergence-wiring-transcript, bolzman-machine-transcript, Compositionality_decomposed]
-related: [wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/small-world-networks.md, wiki/concepts/compositional-generalization.md, wiki/concepts/associative-memory.md, wiki/entities/tem-model.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/boltzmann-machine.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/boltzmann-machine-transcript.md, wiki/papers/compositionality-decomposed-hupkes-2020.md, wiki/papers/hopfield-networks-crouse-2022.md]
+related: [wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/small-world-networks.md, wiki/concepts/compositional-generalization.md, wiki/concepts/associative-memory.md, wiki/concepts/canonical-microcircuit.md, wiki/entities/tem-model.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/boltzmann-machine.md, wiki/entities/ltc-model.md, wiki/entities/gwt-model.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/boltzmann-machine-transcript.md, wiki/papers/compositionality-decomposed-hupkes-2020.md, wiki/papers/hopfield-networks-crouse-2022.md, wiki/papers/ltc-emergentmind-overview.md, wiki/papers/language-modeling-compression-deletang-2023.md, wiki/papers/gnw-mashour-2020.md]
 ---
 
 # Attention (Transformer Self-Attention)
@@ -92,6 +92,41 @@ On PCFG SET, transformer leads 4 of 5 compositional facets but is specifically w
 
 ---
 
+## Context Length as Compression Window
+
+The compression-prediction equivalence ([[wiki/papers/language-modeling-compression-deletang-2023.md]]) reveals that transformer in-context learning is in-context compression: the frozen slow-W parameters are a compression prior; the context window is the compression window. Two design trade-offs follow directly:
+
+| Dimension | Effect | Compression interpretation |
+|---|---|---|
+| Longer context | More sequential dependencies exploitable | Wider compression window → lower rate |
+| Larger token vocabulary (tokenization) | More information per context step, harder per-step prediction | Pre-compression with larger alphabet — small models benefit; large models do not |
+| More slow-W parameters | Richer prior over the data distribution | Better approximation to the Solomonoff predictor |
+
+The O(n²) attention complexity makes extending context length expensive — a hard architectural constraint that maps directly to WM capacity limits in biology. For reasoning models, this makes the context length vs. vocabulary size trade-off a primary design decision about what can fit in the in-context WM window at inference time.
+
+---
+
+## GNW: Attention as the Ignition Gate
+
+The Global Neuronal Workspace (Mashour et al. 2020) provides the biological mechanism linking attention, WM, and conscious access in sequence:
+
+1. **Attention selects** one representation from competing candidates in specialized processors — amplifies signal strength via pre-conscious AMPA-mediated feedforward pathways
+2. **Ignition fires** when the selected representation's feedforward input to PFC crosses threshold — NMDA-mediated recurrent loops self-sustain, creating a globally reverberant state (~300ms post-stimulus)
+3. **Broadcasting** makes the ignited content simultaneously available to all specialized processors via long-range GNW neurons (layer II/III + V in the PFC-parietal hub core)
+
+**Attention ≠ consciousness:** Multiple dissociation paradigms confirm that spatial attention is directed pre-consciously; ignition is the additional threshold event that converts attended information into globally accessible conscious content. Attended but sub-threshold stimuli can persist for >1 second in decaying activity without igniting.
+
+**Two-stage design for reasoning models:**
+
+| Stage | Receptor analog | Timing | Function |
+|---|---|---|---|
+| Fast selection (pre-conscious) | AMPA: fast attention head amplifies candidate from input streams | Early | Candidate representation reaches PFC above noise |
+| Workspace entry (conscious) | NMDA: slow recurrent hub sustains representation globally | Late | Representation broadcast to all processors for transformation |
+
+Only representations reaching Stage 2 (GNW-active ignition) can be transformed by downstream reasoning processors — the same constraint as the active vs. activity-silent WM distinction ([[wiki/concepts/working-memory.md]]).
+
+---
+
 ## Connections
 
 - **[[wiki/concepts/factorized-representations.md]]** — the key/value factorization (Q=K=f(g), V=f(x)) is the structural/sensory split; this is not a transformer design choice but a derivation from the TEM memory structure.
@@ -107,3 +142,8 @@ On PCFG SET, transformer leads 4 of 5 compositional facets but is specifically w
 - **[[wiki/concepts/compositional-generalization.md]]** — transformer's global receptive field gives it the best score on 4 of 5 compositional facets but is a structural liability for localism; the five-facet breakdown provides the diagnostic profile for transformer architecture choices in reasoning models.
 - **[[wiki/papers/compositionality-decomposed-hupkes-2020.md]]** — empirical source for transformer's compositional failure profile on PCFG SET; `reverse` exception reveals the architectural signature of global vs. local processing.
 - **[[wiki/concepts/associative-memory.md]]** — the modern Hopfield update rule (Ramsauer 2020) is mathematically identical to transformer self-attention; associative-memory provides the classical Hopfield foundation (binary, one-shot Hebbian, energy proof) that the Hopfield↔attention derivation on this page builds upon.
+- **[[wiki/entities/ltc-model.md]]** — Liquid-S4 fuses LTC's input-dependent liquid kernel with the SSM DPLR framework, producing causal convolutions that capture multi-way input correlations; this is a convergence point between continuous-time adaptive-memory (LTC) and the discrete sequence modeling thread (attention/SSM), achieving 87.32% LRA SOTA — suggesting liquid τ dynamics are a productive inductive bias for long-range sequence tasks where standard SSMs and transformers saturate.
+- **[[wiki/papers/language-modeling-compression-deletang-2023.md]]** — establishes that the context window is a compression window; tokenization is a pre-compression stage that trades sequence length for vocabulary size; larger slow-W is a better compression prior; the O(n²) cost of extending context maps to the WM capacity limit for in-context reasoning.
+- **[[wiki/entities/gwt-model.md]]** — GNW is the biological mechanism that converts attentional selection into global broadcasting; the two-stage AMPA (fast selection) / NMDA (sustained ignition) design separates attentional amplification from workspace entry; only GNW-active items can be transformed downstream.
+- **[[wiki/papers/gnw-mashour-2020.md]]** — source for the attention-consciousness-WM tripartite relationship in GNW; ignition as the threshold phase transition; hub core as the anatomical routing mechanism.
+- **[[wiki/concepts/canonical-microcircuit.md]]** — horizontal smooth cells (basket/chandelier) in L2/3 implement the biological soft WTA that is the neural analog of softmax attention: the temperature → 0 limit corresponds to strong lateral inhibition; the patch structure determines which candidates compete (local patches, not all-to-all).

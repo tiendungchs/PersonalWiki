@@ -3,9 +3,9 @@ title: "Latent Graph Discovery"
 type: concept
 tags: [latent-graph-discovery, abstract-reasoning, structural-generalization, problem-framing, graph-inference]
 created: 2026-06-20
-updated: 2026-06-20
+updated: 2026-06-22
 sources: []
-related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/path-integration.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/analogical-reasoning.md, wiki/concepts/latent-states.md, wiki/entities/tem-model.md, wiki/entities/arc-agi.md, wiki/entities/cscg-model.md, wiki/entities/tiwm-model.md]
+related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/path-integration.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/analogical-reasoning.md, wiki/concepts/latent-states.md, wiki/entities/tem-model.md, wiki/entities/arc-agi.md, wiki/entities/cscg-model.md, wiki/entities/tiwm-model.md, wiki/entities/dnc-model.md, wiki/papers/hutter-aixi-2000.md, wiki/papers/dnc-graves-2016.md]
 ---
 
 # Latent Graph Discovery
@@ -77,6 +77,14 @@ And to the factorized code ([[wiki/concepts/factorized-representations.md]]):
 
 ---
 
+## Formal Ceiling: AIXI
+
+**AIXI** (Hutter 2000 [[wiki/papers/hutter-aixi-2000.md]]) is the only known system that satisfies all four hardness sources simultaneously. It maintains a Bayesian mixture over **all computable environments** q weighted by 2^{-l(q)} — i.e., over all possible latent graphs, edge vocabularies, aliasing structures, and topologies — and acts via expectimax to maximize universal-prior-expected credit. The full history conditions ξ^AI, so aliasing is always resolved.
+
+AIXI fails only on computability grounds: it is uncomputable. Every entry in the table below is a bounded-program approximation to it, failing on whichever hardness sources its program-search budget cannot reach.
+
+---
+
 ## Why Current Architectures Fail
 
 | Architecture | Satisfies | Fails |
@@ -85,9 +93,12 @@ And to the factorized code ([[wiki/concepts/factorized-representations.md]]):
 | Reservoir computing | Temporal memory | No structured transition rules; cannot compress meta-graph across environments |
 | CSCG | De-aliasing (source 3) | No cross-environment meta-graph; two-level entanglement unaddressed |
 | TEM | Two-level separation; path-consistency; factorization; de-aliasing | Pre-given action vocabulary; flat (non-hierarchical) meta-graph |
+| **DNC** | Instance-graph binding (fast M externalized); sequential path retrieval (temporal links); path traversal (empirically verified: 98.8% graph traversal, 81.8% inference) | Meta-graph cross-environment learning (controller W fixed); vocabulary co-discovery; no aliasing disambiguation |
 | LLMs / LRMs | In-context adaptation within training distribution | Knowledge-bounded: fast inner loop cannot generalize beyond pretraining envelope to genuinely novel graph structures |
+| **AIXI** | All four hardness sources; universal over all computable environments | Uncomputable; O(t̃ · 2^{l̃}) even in bounded form |
+| **LAPA (VLA latent action)** | Vocabulary co-discovery (source 2, partial): learns discrete action codebook jointly with world model from unlabeled video; VQ-VAE on frame differences discovers a finite action alphabet | Alphabet is domain-specific (manipulation video); does not generalize across environments; no meta-graph structure |
 
-No current architecture satisfies all four hardness sources simultaneously.
+No *computable* architecture satisfies all four hardness sources simultaneously.
 
 ---
 
@@ -137,3 +148,7 @@ ARC-AGI is the primary empirical instantiation of latent edge discovery:
 - **[[wiki/concepts/compositional-generalization.md]]** — compositional generalization addresses the case where meta-graph edges are themselves composed of atomic primitives; latent graph discovery must recover atomic edge types, not just their chunks.
 - **[[wiki/concepts/analogical-reasoning.md]]** — analogy is latent edge discovery: given a source graph (understood causal model) and target (partially observed), map source edge labels onto target and infer unobserved target edges via CWSG; schema induction builds new meta-graph entries from episodic comparison.
 - **[[wiki/entities/tiwm-model.md]]** — TIWM is the primary architectural proposal for Type 2 latent-edge discovery; the Transformation Inferrer is the mechanism for recovering hidden edge labels from sparse (g_in, g_out) pairs using the W vocabulary bidirectionally.
+- **[[wiki/papers/hutter-aixi-2000.md]]** — AIXI is the formal ceiling for latent graph discovery: maintains ξ^AI over all computable environments, satisfying all four hardness sources; every feasible architecture is a bounded-program approximation to it; the active/passive boundary proves that exploration-based graph discovery requires active architecture beyond passive compression.
+- **[[wiki/entities/dnc-model.md]]** — DNC is the first architecture in the wiki empirically verified to solve graph traversal (98.8%), shortest-path (55.3%), and relational inference (81.8%) tasks via external read-write memory; demonstrates that instance-graph binding (fast M) and sequential path retrieval (temporal links) are sufficient for these tasks but that cross-environment meta-graph learning requires more than externalizing memory — the controller W must also generalize.
+- **[[wiki/papers/dnc-graves-2016.md]]** — source: graph task results; LSTM-vs-DNC 37%-vs-98.8% gap establishing external memory necessity; Mini-SHRDLU demonstrating prospective planning (write-before-execute) as an emergent property of read-write memory.
+- **[[wiki/papers/vla-survey-kawaharazuka-2025.md]]** — LAPA provides a partial solution to vocabulary co-discovery (hardness source 2): VQ-VAE on (frame_t, frame_{t+H}) differences learns a discrete action codebook jointly with a visual world model; the codebook is the discovered action alphabet; limitation is that it is domain-specific to the training video distribution and does not generalize meta-graph structure across environments.

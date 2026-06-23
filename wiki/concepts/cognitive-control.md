@@ -3,9 +3,9 @@ title: "Cognitive Control"
 type: concept
 tags: [cognitive-control, executive-function, PFC, goal-maintenance, inhibition, working-memory, set-shifting, hierarchy]
 created: 2026-06-19
-updated: 2026-06-20
-sources: [The role of prefrontal cortex in cognitive control and executive function, pfc-wood-grafman-2003.md]
-related: [wiki/concepts/meta-learning.md, wiki/concepts/working-memory.md, wiki/concepts/neuromodulation.md, wiki/concepts/predictive-coding.md, wiki/concepts/attention.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/papers/pfc-cognitive-control-friedman-2021.md, wiki/papers/pfc-wood-grafman-2003.md, wiki/entities/prefrontal-cortex.md, wiki/entities/basal-ganglia.md, wiki/concepts/analogical-reasoning.md, wiki/papers/analogy-holyoak-2012.md, wiki/papers/bogacz-gurney-bg-msprt-2007.md]
+updated: 2026-06-23
+sources: [The role of prefrontal cortex in cognitive control and executive function, pfc-wood-grafman-2003.md, A Path Towards Autonomous Machine Intelligence]
+related: [wiki/concepts/meta-learning.md, wiki/concepts/working-memory.md, wiki/concepts/neuromodulation.md, wiki/concepts/predictive-coding.md, wiki/concepts/attention.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/papers/pfc-cognitive-control-friedman-2021.md, wiki/papers/pfc-wood-grafman-2003.md, wiki/entities/prefrontal-cortex.md, wiki/entities/basal-ganglia.md, wiki/concepts/analogical-reasoning.md, wiki/papers/analogy-holyoak-2012.md, wiki/papers/bogacz-gurney-bg-msprt-2007.md, wiki/entities/gwt-model.md, wiki/papers/gnw-mashour-2020.md, wiki/papers/raccah-pfc-consciousness-2021.md, wiki/entities/jepa-model.md, wiki/concepts/world-models.md]
 ---
 
 # Cognitive Control
@@ -86,6 +86,7 @@ This "active bias" account subsumes response inhibition (goal causes inhibition 
 | Mental set-shifting | Block 3A (Transformation Inferrer) | New transformation W selected; old task-set suppressed |
 | Hierarchical PFC (BA-8→9/46→10) | Block 3C (hierarchical stack) | Three-level W: stimulus-response → contextual rule → rule-of-rules |
 | BG selection objective (proficient phase) | Block 3D (action selection module) | MSPRT (Bogacz & Gurney 2007): log-posterior selection via STN exp + GP log-softmax; not argmax — requires global normalization S(T) = ln(Σ exp(salience_j)) |
+| **Configurator (LeCun 2022)** | All modules (world model, perception, cost, actor) | Task-specific modulation of parameters + attention circuits; single configurable world model engine; subgoal decomposition is the hardest unspecified component |
 
 ---
 
@@ -96,6 +97,16 @@ The Predicted Response Outcome model (Botvinick / Rushworth): ACC computes *unsi
 - **Proactive CC:** anticipatory bias adjustment before expected conflict (risk-avoidance, foraging)
 
 Distinct from DA/TD error: unsigned (not signed reward prediction error), multi-timescale, modulates control effort not value. See [[wiki/concepts/predictive-coding.md]].
+
+---
+
+## GNW as the CC Hub Circuit
+
+The PFC's CC role (goal maintenance, bias signaling) is mechanistically grounded in its role as the highest-density node in the Global Neuronal Workspace hub. The GNW provides the structural implementation of Miller & Cohen's biased competition model:
+
+- **Goal representations = GNW broadcasting:** long-range GNW neurons in PFC broadcast goal-congruent bias top-down to all specialized processors simultaneously, making goal maintenance equivalent to sustained GNW ignition of the goal representation
+- **Raven's Progressive Matrices** — identified in GNW theory as the canonical multi-processor integration task: solving requires integrating feature, count, spatial, and rule-relation representations across distributed cortical areas via the hub core — identical to the Block 3C hierarchical CC requirement
+- **Dynamic repertoire as the CC signature:** the GNW hub's richer-than-anatomical functional connectivity diversity in the waking brain reflects CC-enabled flexible routing; loss of CC (anesthesia, frontal lesion) collapses this diversity to the fixed anatomical connectivity matrix
 
 ---
 
@@ -122,3 +133,8 @@ Distinct from DA/TD error: unsigned (not signed reward prediction error), multi-
 - **[[wiki/papers/analogy-holyoak-2012.md]]** — source for the BA-10 multi-relational integration specificity and its dissociation from BA-44/45 interference control; refines what "frontopolar" means in the Block 3C template.
 - **[[wiki/entities/basal-ganglia.md]]** — BG provides two distinct CC contributions: (1) hyperdirect Hold signal implements response inhibition (the common CC factor); (2) MSPRT in the proficient phase specifies the Bayesian selection objective for Block 3D; the three CC components map onto Go/NoGo/Hold + MSPRT as the complete CC-BG interface.
 - **[[wiki/papers/bogacz-gurney-bg-msprt-2007.md]]** — algorithmic source for Block 3D's BG selection objective: MSPRT = log-posterior Bayesian selection; the same hyperdirect STN pathway that implements Hold/response inhibition also provides the global competition term S(T) in MSPRT; Hick's Law derivation shows decision time ∝ log(N) in any log-softmax selection system.
+- **[[wiki/entities/gwt-model.md]]** — GNW hub is the structural substrate for CC goal maintenance; PFC's high density of long-range GNW neurons is the mechanistic basis for why goal representations in dlPFC bias downstream processing; Raven's Matrices as the canonical GNW/CC task requiring multi-processor integration.
+- **[[wiki/papers/gnw-mashour-2020.md]]** — source for GNW as CC hub; dynamic state repertoire diversity as the CC operational indicator; anesthesia/frontal lesion as natural experiments confirming hub necessity.
+- **[[wiki/papers/raccah-pfc-consciousness-2021.md]]** — iES evidence that lateral PFC is not constitutive of consciousness (near-zero phenomenal elicitation rate) does not challenge CC: PFC's role in goal maintenance, WM, and hierarchical rule use is enabling, not constitutive of phenomenal experience; the ACC consciousness finding (emotional/motivational iES effects) is consistent with ACC's conflict and proactive CC functions.
+- **[[wiki/entities/jepa-model.md]]** — the configurator in LeCun's cognitive architecture is the computational CC module: it takes inputs from all other modules and primes the world model, perception, cost, and actor for the task at hand — directly instantiating goal-maintenance as dynamic parameter modulation rather than a static goal representation.
+- **[[wiki/concepts/world-models.md]]** — the configurator operates on a single configurable world model; goal maintenance in CC = the configurator holding the current task configuration active while the world model runs; subgoal decomposition (the hardest open piece) maps to how the hierarchical PFC gradient sequences subgoals over time.
