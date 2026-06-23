@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "path:wiki/concepts OR path:wiki/entities OR path:wiki/queries OR  path:index.md",
+  "search": "path:wiki/concepts OR path:wiki/entities OR path:wiki/queries OR path:wiki/overview.md OR path:wiki/open-problems.md OR path:wiki/index",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": true,
@@ -43,16 +43,16 @@
       }
     }
   ],
-  "collapse-display": true,
+  "collapse-display": false,
   "showArrow": false,
   "textFadeMultiplier": 0,
   "nodeSizeMultiplier": 1.12242838541667,
   "lineSizeMultiplier": 1.313037109375,
-  "collapse-forces": true,
+  "collapse-forces": false,
   "centerStrength": 0.499593098958333,
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.6666666666666666,
+  "scale": 1.0282164781361012,
   "close": true
 }
