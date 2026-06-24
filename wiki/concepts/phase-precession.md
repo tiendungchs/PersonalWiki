@@ -32,8 +32,8 @@ where $x$ is position within the firing field, $\beta \in [0.2, 0.6]$ rad/positi
 | Source | System | Key finding |
 |---|---|---|
 | O'Keefe & Recce 1993 | Rat CA1 place cells | Phase advances systematically across field; first documentation |
-| Hafting et al. 2008 | Rat MEC grid cells | Phase precession in EC is hippocampus-independent — an intrinsic MEC computation |
-| SpikingTEM (Kawahara 2025) | MECII model neurons | Emergent from neuromodulatory gain G + LIF dynamics without explicit oscillatory interference |
+| Hafting et al. 2008 | Rat MEC grid cells | Phase precession in EC (Entorhinal Cortex) is hippocampus-independent — an intrinsic MEC computation |
+| SpikingTEM (Kawahara 2025) | MECII model neurons | Emergent from neuromodulatory gain G + LIF (Leaky Integrate-and-Fire) dynamics without explicit oscillatory interference |
 
 ---
 
@@ -46,7 +46,7 @@ Three biological accounts, all plausible:
 | **Oscillatory interference** (Burgess 2007) | Multiple VCOs at slightly different frequencies interfere to produce traveling phase | Dominant theoretical model; VCO cells found in MEC |
 | **Somatic-dendritic** | Intrinsic somatic theta + faster dendritic oscillation cancel/reinforce to shift phase | Plausible; supported by LFP/intracellular data |
 | **Attractor dynamics** | Asymmetric forward connections push activity bump forward each half-cycle | Explains grid-cell phase precession without per-cell VCOs |
-| **A-CANN oscillatory tracking** (Li et al. 2024) | Hopf bifurcation at intermediate SFA strength drives limit-cycle bump oscillations at ω ∝ √(αk(1+m)/ττ_v) | Analytic; tunable to theta band; directly produces both precession (forward sweep) and procession (backward sweep) |
+| **A-CANN oscillatory tracking** (Li et al. 2024) | Hopf bifurcation at intermediate SFA (Spike Frequency Adaptation) strength drives limit-cycle bump oscillations at ω ∝ √(αk(1+m)/ττ_v) | Analytic; tunable to theta band; directly produces both precession (forward sweep) and procession (backward sweep) |
 
 SpikingTEM provides a **fourth** account: neuromodulatory gain G (no explicit oscillatory interference) is sufficient for phase precession to emerge in learned grid cells. This suggests the phenomenon may be mechanism-agnostic — achievable by any spiking dynamics that amplify temporal asymmetry. A-CANN oscillatory tracking provides a **fifth** account via bifurcation dynamics: at intermediate adaptation strength in a CANN, a Hopf bifurcation produces limit-cycle sweeps with analytically derived frequency; both forward and backward sweeps are predicted, matching the co-occurrence of precession and procession observed in hippocampal place cells.
 

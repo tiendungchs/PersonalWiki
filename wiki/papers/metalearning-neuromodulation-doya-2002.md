@@ -16,11 +16,11 @@ related: [wiki/concepts/neuromodulation.md, wiki/concepts/two-learning-timescale
 
 ## Key Computational Insights
 
-- **One-to-one RL metaparameter mapping:** DA → TD error δ; 5-HT → discount factor γ; NA → inverse temperature β; ACh → learning rate α. Neuromodulators carry parameter values, not content signals, enabling global coordination of distributed learning.
-- **Basal ganglia as actor-critic RL machine:** Striatum (patch/matrix compartments) = critic/actor; SNc/VTA dopaminergic neurons = TD error signal; cortico-striatal synapses implement TD-weighted plasticity. DA-dependent reversal of plasticity direction (Reynolds & Wickens 2001) is the cellular substrate of the TD weight update rule.
+- **One-to-one RL metaparameter mapping:** Dopamine → TD (Temporal Difference) error δ; 5-HT → discount factor γ; NA (Noradrenaline / Norepinephrine) → inverse temperature β; ACh → learning rate α. Neuromodulators carry parameter values, not content signals, enabling global coordination of distributed learning.
+- **Basal ganglia as actor-critic RL machine:** Striatum (patch/matrix compartments) = critic/actor; SNc/VTA dopaminergic neurons = TD (Temporal Difference) error signal; cortico-striatal synapses implement TD-weighted plasticity. DA-dependent reversal of plasticity direction (Reynolds & Wickens 2001) is the cellular substrate of the TD (Temporal Difference) weight update rule.
 - **ACh storage/retrieval switch in HC (Hasselmo & Bower 1993):** High ACh suppresses CA3→CA1 Schaffer collateral transmission and enables LEC→CA1 direct encoding (storage mode). Low ACh restores CA3 pattern completion (retrieval mode). This is the biological mechanism for the fast-M/slow-W timescale switch.
 - **Noradrenaline and urgency gating:** LC neurons activate phasically in urgent/aversive situations, increasing action selection determinism (β ↑ → winner-take-all). Amphetamine (↑NA) produces stereotyped behavior — the exploitation limit.
-- **Closed metalearning loop:** High DA variance → suppress 5-HT (γ ↓); high 5-HT → suppress NA (β ↓) + ACh (α ↓); extremes of V(s) → NA ↑; frequent DA sign reversals → ACh ↓ (delta-bar-delta). The system self-tunes toward stable, patient, focused learning as uncertainty decreases.
+- **Closed metalearning loop:** High Dopamine variance → suppress 5-HT (γ ↓); high 5-HT → suppress NA (Noradrenaline / Norepinephrine) (β ↓) + ACh (α ↓); extremes of V(s) → NA (Noradrenaline / Norepinephrine) ↑; frequent Dopamine sign reversals → ACh ↓ (delta-bar-delta). The system self-tunes toward stable, patient, focused learning as uncertainty decreases.
 
 ## Limitations
 
@@ -32,5 +32,5 @@ related: [wiki/concepts/neuromodulation.md, wiki/concepts/two-learning-timescale
 
 - [[wiki/concepts/neuromodulation.md]] — full concept page: four-neuromodulator theory, equations, interactions
 - [[wiki/concepts/two-learning-timescales.md]] — ACh storage/retrieval switch grounds the fast-M/slow-W split biologically
-- [[wiki/concepts/predictive-coding.md]] — DA = TD error is the RL realization of the prediction error principle
+- [[wiki/concepts/predictive-coding.md]] — Dopamine = TD (Temporal Difference) error is the RL realization of the prediction error principle
 - [[wiki/entities/hippocampal-entorhinal-system.md]] — ACh gating of HC encoding vs. retrieval modes

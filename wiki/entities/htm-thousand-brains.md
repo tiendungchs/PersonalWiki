@@ -36,13 +36,13 @@ The L5→L6 efference copy loop is the key addition over the bare HC formation: 
 - **Consensus voting:** lateral L2-3 connections propagate consistency signals; columns with agreeing hypotheses mutually excite; inconsistent ones suppress via E/I dynamics; percept emerges from convergence without hierarchical readout.
 - **Hierarchical abstraction:** L5 output of one column → sensory input of a higher column; higher columns navigate increasingly abstract reference frames (sensory features → objects → concepts) using identical L6 path integration.
 - **Universal cortical algorithm:** structural generalization is not a specialization of MEC but the universal cortical primitive — evolution solved it by transplanting the HC formation 150,000 times.
-- **SDR as the representational substrate:** every columnar computation in HTM assumes high-dimensional sparse representations (~2% active out of 4,096 mini-columns per column). Ahmad & Hawkins 2016 [[wiki/papers/ahmad-hawkins-sdr-2016.md]] formally proves that SDR recognition achieves $P(\text{FP}) \approx 10^{-27}$ with just 30 synapses per dendritic segment — the mathematical justification for why sparse columnar coding enables reliable large-scale pattern storage despite noisy, incomplete inputs.
+- **SDR as the representational substrate:** every columnar computation in HTM (Hierarchical Temporal Memory) assumes high-dimensional sparse representations (~2% active out of 4,096 mini-columns per column). Ahmad & Hawkins 2016 [[wiki/papers/ahmad-hawkins-sdr-2016.md]] formally proves that SDR (Sparse Distributed Representations) recognition achieves $P(\text{FP}) \approx 10^{-27}$ with just 30 synapses per dendritic segment — the mathematical justification for why sparse columnar coding enables reliable large-scale pattern storage despite noisy, incomplete inputs.
 
 ---
 
 ## Comparison to TEM
 
-| Dimension | TEM | TBT |
+| Dimension | TEM | TBT (Thousand Brains Theory) |
 |-----------|-----|-----|
 | Architecture basis | Formal generative model (variational) | Anatomical / evolutionary |
 | Number of world models | 1 | ~150,000 |
@@ -50,7 +50,7 @@ The L5→L6 efference copy loop is the key addition over the bare HC formation: 
 | Perception | Sequential inference | Distributed columnar consensus |
 | Validation | Computational (emergent cell types) | Anatomical (cortical layer correspondence) |
 
-Both independently arrive at g/x/p factorization: TEM from the outer-product memory structure; TBT from the cortical layer anatomy.
+Both independently arrive at g/x/p factorization: TEM from the outer-product memory structure; TBT (Thousand Brains Theory) from the cortical layer anatomy.
 
 ---
 
@@ -65,18 +65,18 @@ Both independently arrive at g/x/p factorization: TEM from the outer-product mem
 
 ## Connections
 
-- **[[wiki/concepts/factorized-representations.md]]** — TBT independently derives g/x/p from cortical anatomy (L6/L4/L2-3); anatomical convergence with TEM's formal derivation strengthens the case that factorization is architecturally necessary, not a modeling convenience.
+- **[[wiki/concepts/factorized-representations.md]]** — TBT (Thousand Brains Theory) independently derives g/x/p from cortical anatomy (L6/L4/L2-3); anatomical convergence with TEM's formal derivation strengthens the case that factorization is architecturally necessary, not a modeling convenience.
 - **[[wiki/concepts/path-integration.md]]** — L6 grid-like path integration via efference copy is TBT's structural code update; extending this to every cortical column makes path integration a proposed universal cortical primitive, not a MEC specialization.
 - **[[wiki/concepts/structural-generalization.md]]** — if every column runs the factorized world-model circuit, structural generalization is the organizing principle of the entire neocortex, not a specialization; strengthens the universality of the feasibility argument.
-- **[[wiki/entities/hippocampal-entorhinal-system.md]]** — TBT proposes the HC formation as evolutionary template; each cortical column recapitulates MEC/LEC/HC as L6/L4/L2-3 with an added L5 efference copy loop.
-- **[[wiki/entities/grid-cells.md]]** — TBT proposes grid-cell-like L6 neurons in every cortical column; if confirmed, grid-like path integration is universal rather than an MEC specialization.
-- **[[wiki/entities/tem-model.md]]** — complementary derivations of the same architecture; TEM provides formal validation (emergent cell types, zero-shot transfer); TBT provides anatomical grounding and evolutionary motivation.
+- **[[wiki/entities/hippocampal-entorhinal-system.md]]** — TBT (Thousand Brains Theory) proposes the HC formation as evolutionary template; each cortical column recapitulates MEC/LEC/HC as L6/L4/L2-3 with an added L5 efference copy loop.
+- **[[wiki/entities/grid-cells.md]]** — TBT (Thousand Brains Theory) proposes grid-cell-like L6 neurons in every cortical column; if confirmed, grid-like path integration is universal rather than an MEC specialization.
+- **[[wiki/entities/tem-model.md]]** — complementary derivations of the same architecture; TEM provides formal validation (emergent cell types, zero-shot transfer); TBT (Thousand Brains Theory) provides anatomical grounding and evolutionary motivation.
 - **[[wiki/concepts/predictive-coding.md]]** — TBT's L1 (top-down prediction) vs. L4 (sensory input) circuit is structurally identical to PC's two-population architecture (representational vs. error neurons); the frameworks converge on the same cortical organization from different starting points.
 - **[[wiki/papers/150000-mini-brain-transcript.md]]** — primary source.
-- **[[wiki/concepts/small-world-networks.md]]** — ~150,000 cortical columns are locally-clustered processing modules (high C within each column) with lateral L2-3 consensus voting connections acting as inter-module shortcuts (short L) enabling rapid cross-column hypothesis convergence — TBT describes a biological small-world architecture instantiated at the column scale.
+- **[[wiki/concepts/small-world-networks.md]]** — ~150,000 cortical columns are locally-clustered processing modules (high C within each column) with lateral L2-3 consensus voting connections acting as inter-module shortcuts (short L) enabling rapid cross-column hypothesis convergence — TBT (Thousand Brains Theory) describes a biological small-world architecture instantiated at the column scale.
 - **[[wiki/papers/convergence-wiring-transcript.md]]** — source for the small-world topology framework that frames TBT's columnar architecture as modules + shortcuts.
 - **[[wiki/entities/reservoir-computing.md]]** — the transcript explicitly frames the neocortex as a reservoir of cortical columns: fixed anatomical wiring = reservoir W_res; theta/gamma oscillations = pacemaker signal; learned plasticity = linear readout; TBT's columnar architecture is the structured biological counterpart to the idealized random reservoir.
 - **[[wiki/papers/reservoir-computing-transcript.md]]** — source for the neocortex-as-reservoir framing of TBT.
-- **[[wiki/concepts/sparse-distributed-representations.md]]** — HTM is built entirely on SDR theory; Ahmad & Hawkins 2016 (co-authored by Hawkins) formally proves that the sparse columnar representations TBT assumes achieve near-zero false positive rates with only 20–30 synapses per dendritic segment, providing the mathematical foundation for HTM's pattern recognition claims.
-- **[[wiki/papers/ahmad-hawkins-sdr-2016.md]]** — primary mathematical source for TBT's SDR representational substrate.
-- **[[wiki/concepts/canonical-microcircuit.md]]** — TBT's layer anatomy (L4=sensory, L2/3=consensus/binding, L6=path integration, L5=output) is a specific instantiation of the canonical L4→L2/3→L5→L6→L4 loop; TBT's lateral L2/3 consensus voting is the canonical horizontal WTA mechanism applied across 150,000 columns rather than within patches of one area.
+- **[[wiki/concepts/sparse-distributed-representations.md]]** — HTM (Hierarchical Temporal Memory) is built entirely on SDR (Sparse Distributed Representations) theory; Ahmad & Hawkins 2016 (co-authored by Hawkins) formally proves that the sparse columnar representations TBT (Thousand Brains Theory) assumes achieve near-zero false positive rates with only 20–30 synapses per dendritic segment, providing the mathematical foundation for HTM's pattern recognition claims.
+- **[[wiki/papers/ahmad-hawkins-sdr-2016.md]]** — primary mathematical source for TBT's SDR (Sparse Distributed Representations) representational substrate.
+- **[[wiki/concepts/canonical-microcircuit.md]]** — TBT's layer anatomy (L4=sensory, L2/3=consensus/binding, L6=path integration, L5=output) is a specific instantiation of the canonical L4→L2/3→L5→L6→L4 loop; TBT's lateral L2/3 consensus voting is the canonical horizontal WTA (Winner-Take-All) mechanism applied across 150,000 columns rather than within patches of one area.

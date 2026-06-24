@@ -28,5 +28,5 @@ Turner-Evans DB, et al. *Neuron*. 2020 Oct 14;108(1):145–163.e10.
 ## Relevant Pages
 
 - [[wiki/concepts/ring-attractor.md]] — (tentative) connectome confirmation of E-PG/P-EN circuit; completes the functional picture from Seelig & Jayaraman
-- [[wiki/entities/insect-central-complex.md]] — CX anatomy and circuit; this paper provides synaptic-level grounding
+- [[wiki/entities/insect-central-complex.md]] — CX (Central Complex) anatomy and circuit; this paper provides synaptic-level grounding
 - [[wiki/papers/seelig-jayaraman-2015.md]] — functional counterpart; this paper provides the anatomical substrate for those dynamics

@@ -3,9 +3,9 @@ title: "Hippocampal Replay"
 type: concept
 tags: [replay, memory-consolidation, credit-assignment, offline-learning, state-space-construction, cann, traveling-wave]
 created: 2026-06-09
-updated: 2026-06-22
-sources: [engram-transcript, memory-gate-transcript, Complementary Learning Systems, Complementary learning systems Why - Claude summary, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, acann-li-2024]
-related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/factorized-representations.md, wiki/concepts/engrams.md, wiki/concepts/neural-manifolds.md, wiki/concepts/structural-generalization.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/engram-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/whittington-cognitive-map-2022.md, wiki/concepts/ring-attractor.md, wiki/papers/acann-li-chu-wu-2024.md]
+updated: 2026-06-24
+sources: [engram-transcript, memory-gate-transcript, Complementary Learning Systems, Complementary learning systems Why - Claude summary, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, acann-li-2024, inferential-reasoning-dupret-2020]
+related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/factorized-representations.md, wiki/concepts/engrams.md, wiki/concepts/neural-manifolds.md, wiki/concepts/structural-generalization.md, wiki/concepts/prospective-coding.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/engram-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/whittington-cognitive-map-2022.md, wiki/concepts/ring-attractor.md, wiki/papers/acann-li-chu-wu-2024.md, wiki/papers/inferential-reasoning-dupret-2020.md, wiki/papers/kessler-continual-dreamer-2023.md]
 ---
 
 # Hippocampal Replay
@@ -49,10 +49,10 @@ During active waking, HC alternates constantly between encoding and retrieval at
 
 | Sub-phase | Dominant pathway | Signal |
 |---|---|---|
-| **Retrieval (minus)** | CA3 strong, EC weak | Prior memory recalled → expectation |
-| **Encoding (plus)** | EC strong, CA3 weak | Actual current input → outcome |
+| **Retrieval (minus)** | CA3 strong, EC (Entorhinal Cortex) weak | Prior memory recalled → expectation |
+| **Encoding (plus)** | EC (Entorhinal Cortex) strong, CA3 weak | Actual current input → outcome |
 
-The delta between minus and plus is a prediction error driving contrastive Hebbian (Leabra-style) weight updates inside HC. Replay during waking is not a distinct process — it is the *retrieval sub-phase* of the theta oscillation; what we call "waking replay" is this sub-phase when the CA3 pattern diverges substantially from current EC input.
+The delta between minus and plus is a prediction error driving contrastive Hebbian (Leabra-style) weight updates inside HC. Replay during waking is not a distinct process — it is the *retrieval sub-phase* of the theta oscillation; what we call "waking replay" is this sub-phase when the CA3 pattern diverges substantially from current EC (Entorhinal Cortex) input.
 
 **REM sleep directionality reverses:** SWS sends HC sequences to cortex (consolidation). REM sends neocortical activity *back into* HC — endogenous CA3 activity and cortical input equalize memory strengths and re-encode HC representations to reduce interference between similar memories. This is memory *protection* for HC, not consolidation transfer.
 
@@ -88,9 +88,9 @@ The E/I competition is structurally identical to engram allocation [[wiki/concep
 | **Awake SWR** | Brief pause after reward | Replay recent trajectory; trigger local HC plasticity tagging pattern for sleep | Cortex not consolidation-receptive during waking; HC must maintain ongoing map |
 | **Sleep SWR** | Offline sleep | Repeatedly replay bookmarked patterns; transfer to cortex | Cortex enters receptive state; many repetitions required; HC freed from online mapping |
 
-**Evidence for the pipeline:** awake SWR content (decoded via UMAP projection onto maze manifold) specifically matches the most recent successful trial and trajectory. Post-learning sleep SWRs decode as the same patterns. Pre-learning sleep SWRs decode as completely different content.
+**Evidence for the pipeline:** awake SWR (Sharp Wave Ripple) content (decoded via UMAP projection onto maze manifold) specifically matches the most recent successful trial and trajectory. Post-learning sleep SWRs decode as the same patterns. Pre-learning sleep SWRs decode as completely different content.
 
-The temporal compression (~100ms) is functionally critical: compressed replays arrive within cortical STDP windows, enabling synaptic strengthening. Awake SWR bookmarking solves the scheduling conflict — HC cannot both build the current map *and* run consolidation in parallel during waking.
+The temporal compression (~100ms) is functionally critical: compressed replays arrive within cortical STDP windows, enabling synaptic strengthening. Awake SWR (Sharp Wave Ripple) bookmarking solves the scheduling conflict — HC cannot both build the current map *and* run consolidation in parallel during waking.
 
 ---
 
@@ -113,20 +113,59 @@ The common thread: replay filters for *generalizable structure* and suppresses i
 
 ---
 
+## SWR (Sharp Wave Ripple) Shortcuts for Inferred (Non-Experienced) Relationships
+
+Dupret et al. 2020 ([[wiki/papers/inferential-reasoning-dupret-2020.md]]) extend the adaptive-selectivity account: SWRs do not merely replay and filter *experienced* content — they can also construct representations of **logically implied but never co-experienced** relationships.
+
+In a sensory preconditioning paradigm (X→Y learned, Y→Z conditioned, X→Z never directly experienced), across multiple recording days:
+
+| SWR (Sharp Wave Ripple) content | Early days | Late days | Set bias |
+|---|---|---|---|
+| Triplets (X, Y, Z) co-active | Low | **Increased** | Set 1 (rewarded) only |
+| Doublets (X, Z) co-active, Y absent | Low | **Increased** | Set 1 only |
+| Reverse order (Z fires before X) in awake SWRs | — | Present | Set 1 only; absent in sleep |
+
+The critical finding is the X-Z doublet: the brain constructs a **cognitive shortcut** — a direct mnemonic link between X and Z — even though those cues were never experienced together. This is not retrieval of a stored experience; it is composition of a new relational structure from two separate memories (X→Y and Y→Z).
+
+**Reward-biased content selection** is essential: the shortcut grows only for the rewarded set, consistent with the adaptive selectivity account ([[wiki/papers/learning-fast-slow-liao-2024.md]]). Set 2 (neutral) pairs show no increase, ruling out task-structure replay alone.
+
+**Reverse replay (awake SWRs only):** Z-tuned cells fire before X-tuned cells during rewarded pair SWRs — the reverse of the inferred direction (X→Z). This occurs during awake rest but not sleep, consistent with evidence that reverse replay during reward-motivated waking behavior coordinates hippocampal output with the dopaminergic midbrain. Proposed function: retrospective credit assignment to X, which never directly experienced reward.
+
+**Relationship to the two-stage SWR (Sharp Wave Ripple) architecture:** awake SWR (Sharp Wave Ripple) shortcuts are built during task-interleaved rest; they interact with the "bookmark + consolidate" pipeline by providing new content that was not simply copied from waking experience — SWRs generate as well as replay.
+
+---
+
 ## Traveling Wave as Intrinsic Memory Search
 
-The A-CANN framework (Li, Chu & Wu 2024) provides a complementary, **trigger-free** replay mechanism: when SFA adaptation strength exceeds m > τ/τ_v, the network's own adaptation spontaneously destabilizes the static bump and drives it through the attractor space, revisiting stored states in sequence. Unlike SWR replay, no CA3 sharp-wave trigger or E/I competition is required.
+The A-CANN framework (Li, Chu & Wu 2024) provides a complementary, **trigger-free** replay mechanism: when SFA (Spike Frequency Adaptation) adaptation strength exceeds m > τ/τ_v, the network's own adaptation spontaneously destabilizes the static bump and drives it through the attractor space, revisiting stored states in sequence. Unlike SWR (Sharp Wave Ripple) replay, no CA3 sharp-wave trigger or E/I competition is required.
 
-| Property | SWR replay | Traveling-wave replay |
+| Property | SWR (Sharp Wave Ripple) replay | Traveling-wave replay |
 |---|---|---|
-| Trigger | CA3 sharp wave → E/I competition | None — SFA threshold crossing |
+| Trigger | CA3 sharp wave → E/I competition | None — SFA (Spike Frequency Adaptation) threshold crossing |
 | Content selection | Strongest engrams win E/I competition | All states visited; speed ∝ v_int |
 | Displacement statistics | Episodic sequence; fixed-length | Power-law Lévy flights near m ≈ τ/τ_v |
 | Phase of sleep | NREM SWS (primarily) | Quiet wakefulness / lighter sleep (proposed) |
 
 **Lévy flight statistics:** when adaptation noise fluctuates m around the traveling-wave boundary, displacement follows p(||Δz||) ∝ ||Δz||^{−1−α} with α = 1 + 2μ/γ². Pfeiffer & Foster 2015 report this exact power-law in sequential place-cell reactivation at rest — the A-CANN provides the mechanistic origin from first principles.
 
-**Neuromodulatory control:** ACh modulation of K⁺ conductance adjusts SFA timescale τ_v, setting m relative to the τ/τ_v threshold and thereby controlling which replay mode is active — making the traveling-wave search mode a **neuromodulatory function**, not a separate circuit.
+**Neuromodulatory control:** ACh modulation of K⁺ conductance adjusts SFA (Spike Frequency Adaptation) timescale τ_v, setting m relative to the τ/τ_v threshold and thereby controlling which replay mode is active — making the traveling-wave search mode a **neuromodulatory function**, not a separate circuit.
+
+---
+
+## Experience Replay in RL vs. Biological Replay
+
+**Functional parallel, different mechanism:** both biological SWR (Sharp Wave Ripple) replay and RL experience replay buffers serve the same purpose — reactivating past experience to prevent catastrophic forgetting. The mechanisms differ fundamentally.
+
+| Dimension | Biological SWR (Sharp Wave Ripple) replay | RL experience replay |
+|---|---|---|
+| **Content selection** | Active: upsamples generalizable structure, suppresses idiosyncratic events (Liao & Losonczy 2024) | Passive: determined by buffer management algorithm |
+| **Buffer management** | None — engram allocation + E/I competition selects what enters HC | Explicit strategies: uniform, reservoir, priority, recent-biased |
+| **Compression** | 10–20× temporal compression to fit STDP windows | None — episodes replayed at original length |
+| **Best strategy (empirical)** | Content-selective (structural regularities prioritized) | Reservoir sampling: uniform distribution over all past tasks |
+
+**Reservoir sampling** (Kessler et al. 2023): accept episode $t$ into buffer with probability $\min(n/t, 1)$ where $n$ = buffer capacity. Guarantees a uniform distribution over all past tasks as the buffer fills. Outperforms distance-based (coverage maximization) and recent-biased (50:50) strategies in multi-task continual RL on Minigrid and Minihack.
+
+**The convergence is notable:** biological replay is strongly content-selective (Liao & Losonczy), yet RL replay converges on uniform reservoir sampling as the best strategy. The difference may be that a world model (DreamerV2) extracts structural regularities *from* a uniformly sampled buffer — offloading the content-selection job from the buffer to the model.
 
 ---
 
@@ -135,13 +174,16 @@ The A-CANN framework (Li, Chu & Wu 2024) provides a complementary, **trigger-fre
 - **[[wiki/concepts/two-learning-timescales.md]]** — replay is the proposed biological mechanism for the slow W update: replayed HC sequences give cortex the clean (latent state → next state) pairs it needs to extract shared structural regularities across environments.
 - **[[wiki/concepts/factorized-representations.md]]** — replay constructs factorized state-space maps offline: the GVC binding mechanism assembles local (goal-vector) bases with specific hippocampal locations, building the full compositional map without online experience.
 - **[[wiki/entities/hippocampal-entorhinal-system.md]]** — replay is an HC phenomenon; the specific prediction that replay radiates outward from reward locations follows from the GVC binding account and is a testable signature of offline state-space construction.
-- **[[wiki/concepts/engrams.md]]** — co-retrieval is the waking analog of replay-driven engram linking: both involve offline co-activation of existing memory traces to build new shared representations encoding relational structure between memories. SWR E/I competition selects which engram gets replayed using the same winner-take-most mechanism as engram allocation.
-- **[[wiki/concepts/neural-manifolds.md]]** — the UMAP maze manifold is the reference frame for decoding SWR replay content; off-manifold SWRs represent other cognitive processes that lie outside the task-learned subspace; the HC manifold encodes both spatial position and learning progress in the same low-dimensional structure.
-- **[[wiki/papers/memory-gate-transcript.md]]** — source for SWR mechanism (E/I competition, temporal compression), two-stage bookmarking + consolidation architecture, UMAP decoding of replay content and off-manifold events.
+- **[[wiki/concepts/engrams.md]]** — co-retrieval is the waking analog of replay-driven engram linking: both involve offline co-activation of existing memory traces to build new shared representations encoding relational structure between memories. SWR (Sharp Wave Ripple) E/I competition selects which engram gets replayed using the same winner-take-most mechanism as engram allocation.
+- **[[wiki/concepts/neural-manifolds.md]]** — the UMAP maze manifold is the reference frame for decoding SWR (Sharp Wave Ripple) replay content; off-manifold SWRs represent other cognitive processes that lie outside the task-learned subspace; the HC manifold encodes both spatial position and learning progress in the same low-dimensional structure.
+- **[[wiki/papers/memory-gate-transcript.md]]** — source for SWR (Sharp Wave Ripple) mechanism (E/I competition, temporal compression), two-stage bookmarking + consolidation architecture, UMAP decoding of replay content and off-manifold events.
 - **[[wiki/papers/cls-mcclelland-1995.md]]** — foundational argument that replay must be *interleaved* (not just delivered): catastrophic interference in monolithic networks proves cortex needs a mixed diverse stream; replay is the scheduling mechanism that provides that stream, not merely a copying operation.
 - **[[wiki/papers/cls-oreilly-2011.md]]** — source for theta-phase encoding/retrieval oscillation as the waking mechanism underlying continuous HC replay; REM = cortex→HC memory protection (reversal of SWS direction); HC-neocortex synergy establishing that consolidation is a transformation, not a literal transfer.
 - **[[wiki/papers/learning-fast-slow-liao-2024.md]]** — source for adaptive replay selectivity (Terada 2022, Grosmark 2021, Berners-Lee 2022 synthesis) and inhibitory plasticity as the computational mechanism; establishes that SWRs actively filter for generalizable structure rather than replaying verbatim experience.
 - **[[wiki/concepts/structural-generalization.md]]** — adaptive replay selectivity is the HC-level implementation of structural generalization: filtering idiosyncratic content and amplifying transferable regularities is the same operation structural generalization requires but expressed in the HC offline consolidation process.
 - **[[wiki/papers/whittington-cognitive-map-2022.md]]** — source for the offline state-space construction framing of replay (distinct from the credit assignment and consolidation views); the GVC binding account derives from this paper.
-- **[[wiki/concepts/ring-attractor.md]]** — traveling-wave state of A-CANN is an intrinsic memory-search mechanism in which SFA spontaneously drives the activity bump through all attractor states; Lévy flight statistics near the adaptation boundary match the power-law place-cell reactivation patterns documented in vivo.
+- **[[wiki/concepts/ring-attractor.md]]** — traveling-wave state of A-CANN is an intrinsic memory-search mechanism in which SFA (Spike Frequency Adaptation) spontaneously drives the activity bump through all attractor states; Lévy flight statistics near the adaptation boundary match the power-law place-cell reactivation patterns documented in vivo.
 - **[[wiki/papers/acann-li-chu-wu-2024.md]]** — primary source for the traveling-wave replay mechanism, the Lévy flight power-law statistics from noisy adaptation, and the neuromodulatory (ACh/τ_v) control of the WM-vs-search mode transition.
+- **[[wiki/papers/inferential-reasoning-dupret-2020.md]]** — source for SWR (Sharp Wave Ripple) shortcuts in the cognitive inference domain: reward-biased X-Z doublet construction across recording days, reverse replay for credit assignment, and the distinction between online prospective code (per trial) and offline SWR (Sharp Wave Ripple) caching (persistent shortcut).
+- **[[wiki/concepts/prospective-coding.md]]** — online counterpart to SWR (Sharp Wave Ripple) shortcuts: prospective coding provides a per-trial look-ahead (X→Y) while SWR (Sharp Wave Ripple) shortcuts cache the full-chain result (X→Z) offline; together they serve the same inference function on different timescales.
+- **[[wiki/papers/kessler-continual-dreamer-2023.md]]** — source for the RL experience replay vs. biological replay comparison; reservoir sampling as the dominant strategy for model-based CRL; the convergence between uniform ML replay and selective biological replay when a world model handles content filtering.

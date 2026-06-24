@@ -5,12 +5,12 @@ tags: [energy-based-models, self-supervised-learning, contrastive-learning, worl
 created: 2026-06-23
 updated: 2026-06-23
 sources: [A Path Towards Autonomous Machine Intelligence, barlow_twins, vicreg]
-related: [wiki/entities/jepa-model.md, wiki/concepts/world-models.md, wiki/concepts/predictive-coding.md, wiki/entities/boltzmann-machine.md, wiki/concepts/associative-memory.md, wiki/concepts/abstract-reasoning.md, wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md, wiki/papers/barlow-twins-zbontar-2021.md, wiki/papers/vicreg-bardes-2022.md]
+related: [wiki/entities/jepa-model.md, wiki/concepts/world-models.md, wiki/concepts/predictive-coding.md, wiki/entities/boltzmann-machine.md, wiki/concepts/associative-memory.md, wiki/concepts/abstract-reasoning.md, wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md, wiki/papers/barlow-twins-zbontar-2021.md, wiki/papers/vicreg-bardes-2022.md, wiki/papers/lejepa-balestriero-lecun-2025.md, wiki/papers/weak-sigreg-akbar-2026.md]
 ---
 
 # Energy-Based Models (EBM)
 
-**An EBM is a scalar-valued function F(x, y; w) that measures compatibility between two variables — producing low energy when x and y are consistent and high energy when they are not — without requiring a normalized probability distribution.**
+**An EBM (Energy-Based Model) is a scalar-valued function F(x, y; w) that measures compatibility between two variables — producing low energy when x and y are consistent and high energy when they are not — without requiring a normalized probability distribution.**
 
 ---
 
@@ -22,7 +22,7 @@ F_w(x, y) → scalar energy
   F_w(x, y) high  ⟺   x and y are incompatible
 ```
 
-**Latent-variable EBM (LVEBM):** add unobserved z to capture residual uncertainty:
+**Latent-variable EBM (Energy-Based Model) (LVEBM):** add unobserved z to capture residual uncertainty:
 ```
 E_w(x, y, z)  →  F_w(x, y) = min_z E_w(x, y, z)
 ```
@@ -111,14 +111,14 @@ min_{p(z|x)}  I(f(X); Z)  +  β · H(X | Z)
 
 ## Reasoning as Energy Minimization
 
-Mode-2 planning in LeCun's architecture is EBM inference over action sequences:
+Mode-2 planning in LeCun's architecture is EBM (Energy-Based Model) inference over action sequences:
 ```
 â = argmin_a Σ_t C(s_t)
 where s_t = WorldModel(s_{t-1}, a_{t-1})
 ```
 Gradient-based search works when world model and cost are differentiable and smooth. For discrete action spaces: MCTS, dynamic programming, beam search.
 
-More broadly: any reasoning task that can be formulated as constraint satisfaction is an EBM inference problem. This includes:
+More broadly: any reasoning task that can be formulated as constraint satisfaction is an EBM (Energy-Based Model) inference problem. This includes:
 - Probabilistic inference in factor graphs (log-factors = energy terms)
 - Analogical mapping (minimize structural/semantic constraint violations)
 - Planning (minimize cumulative cost over predicted trajectory)
@@ -127,7 +127,7 @@ More broadly: any reasoning task that can be formulated as constraint satisfacti
 
 ## Relationship to Existing Wiki Concepts
 
-The EBM framework unifies several architectures already in the wiki:
+The EBM (Energy-Based Model) framework unifies several architectures already in the wiki:
 
 | System | Energy function | Training | What minimization achieves |
 |---|---|---|---|
@@ -143,23 +143,23 @@ The EBM framework unifies several architectures already in the wiki:
 
 - Optimal regularization strategy for latent z (discrete, sparse, noisy, low-dim) remains an open design choice; each has different collapse prevention guarantees
 - N(0,I) optimality (Theorem 1) assumes continuous data manifolds with smooth density; whether it extends to abstract/discrete/graph-structured embedding spaces (relevant for ARC-AGI action vocabulary) is unproven
-- Non-contrastive EBM (I-JEPA) scales to ImageNet-scale image pretraining; V-JEPA extends to video; VL-JEPA (Chen et al. 2025) extends to vision-language with InfoNCE in embedding space, achieving SoTA world modeling — confirms non-contrastive EBM training generalizes across modalities
+- Non-contrastive EBM (Energy-Based Model) (I-JEPA) scales to ImageNet-scale image pretraining; V-JEPA extends to video; VL-JEPA (Chen et al. 2025) extends to vision-language with InfoNCE in embedding space, achieving SoTA world modeling — confirms non-contrastive EBM (Energy-Based Model) training generalizes across modalities
 
 ---
 
 ## Connections
 
-- **[[wiki/entities/jepa-model.md]]** — JEPA is the non-contrastive EBM architecture for world models; JEPA's training via VICReg is the canonical non-contrastive regularized EBM method.
-- **[[wiki/concepts/world-models.md]]** — world model planning = iterative EBM inference over action sequences; the differentiable cost and differentiable world model form a joint EBM that can be minimized via gradient descent.
-- **[[wiki/concepts/predictive-coding.md]]** — PC's free energy F = −ELBO is an EBM energy function; PC is the neuroscience instantiation of an EBM where the energy function is the hierarchical squared prediction error; the local ε·x update rule is gradient descent on this energy.
-- **[[wiki/entities/boltzmann-machine.md]]** — Boltzmann machine is a probabilistic EBM trained with contrastive Hebbian learning; the historically foundational EBM for unsupervised learning in neural networks.
-- **[[wiki/concepts/associative-memory.md]]** — Hopfield networks are EBMs; memory retrieval = energy minimization; modern Hopfield networks (polynomial/exponential capacity) extend the EBM formalism to higher-capacity retrieval.
+- **[[wiki/entities/jepa-model.md]]** — JEPA is the non-contrastive EBM (Energy-Based Model) architecture for world models; JEPA's training via VICReg is the canonical non-contrastive regularized EBM (Energy-Based Model) method.
+- **[[wiki/concepts/world-models.md]]** — world model planning = iterative EBM (Energy-Based Model) inference over action sequences; the differentiable cost and differentiable world model form a joint EBM (Energy-Based Model) that can be minimized via gradient descent.
+- **[[wiki/concepts/predictive-coding.md]]** — PC's free energy F = −ELBO is an EBM (Energy-Based Model) energy function; PC (Predictive Coding) is the neuroscience instantiation of an EBM (Energy-Based Model) where the energy function is the hierarchical squared prediction error; the local ε·x update rule is gradient descent on this energy.
+- **[[wiki/entities/boltzmann-machine.md]]** — Boltzmann machine is a probabilistic EBM (Energy-Based Model) trained with contrastive Hebbian learning; the historically foundational EBM (Energy-Based Model) for unsupervised learning in neural networks.
+- **[[wiki/concepts/associative-memory.md]]** — Hopfield networks are EBMs; memory retrieval = energy minimization; modern Hopfield networks (polynomial/exponential capacity) extend the EBM (Energy-Based Model) formalism to higher-capacity retrieval.
 - **[[wiki/concepts/abstract-reasoning.md]]** — reasoning as energy minimization is the EBM-based alternative to symbolic logic: any constraint satisfaction (analogical mapping, rule inference, planning) can be formulated as finding the low-energy configuration; Mode-2 planning in LeCun's architecture implements this.
-- **[[wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md]]** — primary source for this page's EBM framing, collapse taxonomy, training strategies, and reasoning-as-energy-minimization argument.
-- **[[wiki/papers/barlow-twins-zbontar-2021.md]]** — mechanistic instantiation of non-contrastive regularized EBM training; cross-correlation matrix → identity as the principled collapse-prevention objective; IB interpretation under Gaussian approximation explains the high-dimensional embedding benefit.
-- **[[wiki/papers/assran-ijepa-2023.md]]** — empirical confirmation that non-contrastive EBM training (EMA target encoder + information maximization) scales to ImageNet-level pretraining without contrastive samples or view augmentations.
-- **[[wiki/papers/byol-grill-2020.md]]** — first demonstration that EMA target + asymmetric predictor enables non-contrastive collapse-free SSL without negatives; the design pattern directly inherited by DINO, DINOv2, and the JEPA family.
+- **[[wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md]]** — primary source for this page's EBM (Energy-Based Model) framing, collapse taxonomy, training strategies, and reasoning-as-energy-minimization argument.
+- **[[wiki/papers/barlow-twins-zbontar-2021.md]]** — mechanistic instantiation of non-contrastive regularized EBM (Energy-Based Model) training; cross-correlation matrix → identity as the principled collapse-prevention objective; IB interpretation under Gaussian approximation explains the high-dimensional embedding benefit.
+- **[[wiki/papers/assran-ijepa-2023.md]]** — empirical confirmation that non-contrastive EBM (Energy-Based Model) training (EMA target encoder + information maximization) scales to ImageNet-level pretraining without contrastive samples or view augmentations.
 - **[[wiki/papers/vlm-intro-bordes-2024.md]]** — derives the rate-distortion unification of all VLM training objectives; the information-theoretic unification section above follows from §2.3.3 of this paper.
-- **[[wiki/papers/vicreg-bardes-2022.md]]** — provides exact VICReg loss formulas and ablations; the std-dev-not-variance insight and per-branch-independence design are the concrete implementation of the non-contrastive regularized EBM strategy described in this page.
+- **[[wiki/papers/vicreg-bardes-2022.md]]** — provides exact VICReg loss formulas and ablations; the std-dev-not-variance insight and per-branch-independence design are the concrete implementation of the non-contrastive regularized EBM (Energy-Based Model) strategy described in this page.
 - **[[wiki/papers/lejepa-balestriero-lecun-2025.md]]** — theoretical source of the isotropic Gaussian optimality theorem and SIGReg; proves that N(0,I) uniquely minimizes downstream risk and that SIGReg's characteristic-function matching is the provably correct way to enforce it.
 - **[[wiki/papers/weak-sigreg-akbar-2026.md]]** — supervised adaptation of LeJEPA's SIGReg; adds the Dean-Kawasaki particle dynamics framing of collapse and demonstrates that single-term full-covariance regularization (`||Cov − I||_F`) generalizes outside SSL to BN-free supervised training.
+- **[[wiki/concepts/shortcut-reasoning.md]]** — discriminative EBMs (cross-entropy classifiers) are maximally shortcut-prone because the energy is minimized as soon as any sufficient discriminative predictor is found; generative/reconstruction EBMs must model all training variation, forcing representations onto causally relevant features and making shortcuts structurally harder to exploit.

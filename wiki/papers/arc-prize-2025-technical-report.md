@@ -16,7 +16,7 @@ related: [wiki/entities/arc-agi.md, wiki/concepts/refinement-loops.md, wiki/conc
 
 ## Key Computational Insights
 
-- **Refinement loop as 2025's defining paradigm:** All top-performing ARC-AGI-2 solutions implement a generate-verify-refine cycle. The loop operates in four distinct spaces: (1) weight space via test-time training, (2) weight space from scratch (zero-pretraining), (3) symbolic/NL program space via evolutionary synthesis, (4) natural language program space via application-layer CoT harnesses. The unifying structure — not the implementation space — is what makes these approaches converge [[wiki/concepts/refinement-loops.md]].
+- **Refinement loop as 2025's defining paradigm:** All top-performing ARC-AGI-2 solutions implement a generate-verify-refine cycle. The loop operates in four distinct spaces: (1) weight space via test-time training, (2) weight space from scratch (zero-pretraining), (3) symbolic/NL program space via evolutionary synthesis, (4) natural language program space via application-layer CoT (Chain of Thought) harnesses. The unifying structure — not the implementation space — is what makes these approaches converge [[wiki/concepts/refinement-loops.md]].
 
 - **Zero-pretraining deep learning achieves competitive performance with tiny networks:** TRM (Jolicoeur-Martineau, Paper Award 1st): 7M parameters, no pretraining, trains from scratch at test time on task examples only → 45% ARC-AGI-1, 8% ARC-AGI-2. CompressARC (Liao & Gu, Paper Award 3rd): 76K parameters, MDL-based (minimizes VAE loss with decoder regularization as a substitute for combinatorial search) → 20% ARC-AGI-1, 4% ARC-AGI-2 in ~20 minutes/puzzle on a single GPU. These results establish that per-task optimization from a random initialization can rival large pretrained models, suggesting the bottleneck for ARC-AGI is the quality of the refinement loop, not the scale of pretraining.
 
@@ -24,7 +24,7 @@ related: [wiki/entities/arc-agi.md, wiki/concepts/refinement-loops.md, wiki/conc
 
 - **Application-layer harnesses significantly boost commercial models:** Gemini 3 Pro without harness: 31% at $0.81/task. Gemini 3 Pro with refinement harness (Poetiq): 54% at $31/task. Claude Opus 4.5 with same harness: comparable accuracy to Gemini 3 Pro at ~$60/task. Critical dependency: harnesses require a task-level verifier (exact grid match). Where a verifier exists, iterative application-layer refinement is currently the highest-leverage engineering lever on commercial models.
 
-- **Knowledge-dependent reasoning ceiling confirmed with contamination evidence:** ARC-AGI reasoning performance tracks pretraining knowledge coverage, not architectural capacity. Evidence: Gemini 3 Deep Think uses correct ARC integer-to-color mappings in reasoning chains without being given any ARC-specific context in the prompt — a fingerprint of benchmark task formats in pretraining data. Extends the LRM knowledge-boundedness argument ([[wiki/papers/arc-agi-3-paper.md]]) with a concrete contamination detection method.
+- **Knowledge-dependent reasoning ceiling confirmed with contamination evidence:** ARC-AGI reasoning performance tracks pretraining knowledge coverage, not architectural capacity. Evidence: Gemini 3 Deep Think uses correct ARC integer-to-color mappings in reasoning chains without being given any ARC-specific context in the prompt — a fingerprint of benchmark task formats in pretraining data. Extends the LRM (Large Reasoning Model) knowledge-boundedness argument ([[wiki/papers/arc-agi-3-paper.md]]) with a concrete contamination detection method.
 
 ---
 
@@ -42,4 +42,4 @@ related: [wiki/entities/arc-agi.md, wiki/concepts/refinement-loops.md, wiki/conc
 - **[[wiki/concepts/refinement-loops.md]]** — new concept page derived from this report's central theme; ML taxonomy of the four refinement loop types
 - **[[wiki/concepts/meta-learning.md]]** — refinement loops are a new fast-inner-loop instantiation; zero-pretraining result is the strongest evidence yet that fast-loop test-time optimization can substitute for large slow-loop pretraining on verifiable tasks
 - **[[wiki/concepts/information-theory.md]]** — CompressARC's MDL principle (minimize description length of each puzzle) connects to the Solomonoff predictor ceiling; VAE loss as a differentiable proxy for Kolmogorov complexity
-- **[[wiki/papers/arc-agi-3-paper.md]]** — companion: formalizes LRM knowledge-boundedness theorem and documents ARC-AGI-3 design; this report provides the 2025 empirical support for that theorem
+- **[[wiki/papers/arc-agi-3-paper.md]]** — companion: formalizes LRM (Large Reasoning Model) knowledge-boundedness theorem and documents ARC-AGI-3 design; this report provides the 2025 empirical support for that theorem

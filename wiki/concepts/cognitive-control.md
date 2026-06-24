@@ -10,68 +10,68 @@ related: [wiki/concepts/meta-learning.md, wiki/concepts/working-memory.md, wiki/
 
 # Cognitive Control
 
-**Cognitive control (CC) is the capacity to flexibly guide behavior toward goals by maintaining active goal representations in PFC that bias downstream processing toward contextually correct but non-prepotent responses.**
+**Cognitive control (CC) is the capacity to flexibly guide behavior toward goals by maintaining active goal representations in PFC (Prefrontal Cortex) that bias downstream processing toward contextually correct but non-prepotent responses.**
 
-Miller & Cohen (2001) formulation: goal representations in PFC send top-down bias signals to sensorimotor regions, enabling weak task-correct mappings to out-compete stronger habitual ones via lateral inhibition.
+Miller & Cohen (2001) formulation: goal representations in PFC (Prefrontal Cortex) send top-down bias signals to sensorimotor regions, enabling weak task-correct mappings to out-compete stronger habitual ones via lateral inhibition.
 
 ---
 
 ## Three Dissociable Components (Miyake et al. 2000)
 
-| Component | Definition | PFC subregion | Neuromodulator |
+| Component | Definition | PFC (Prefrontal Cortex) subregion | Neuromodulator |
 |---|---|---|---|
-| **Inhibition / response inhibition** | Suppressing a dominant prepotent response | RIFG (BA-44/45); hyperdirect STN pathway | NA (atomoxetine enhances stop-signal) |
-| **WM Updating** | Continuously monitoring and replacing WM content with task-relevant items | Mid-dorsal PFC (BA-9/46); parietal for manipulation | DA D1 (inverted-U for dlPFC WM stability) |
-| **Mental Set-Shifting** | Switching between established task-set mappings | vlPFC (BA-12/47) for extra-dim shift; OFC (BA-11) for reversal | 5-HT (OFC reversal learning specifically) |
+| **Inhibition / response inhibition** | Suppressing a dominant prepotent response | RIFG (BA-44/45); hyperdirect STN (Subthalamic Nucleus) pathway | NA (Noradrenaline / Norepinephrine) (atomoxetine enhances stop-signal) |
+| **WM Updating** | Continuously monitoring and replacing WM content with task-relevant items | Mid-dorsal PFC (Prefrontal Cortex) (BA-9/46); parietal for manipulation | Dopamine D1 (inverted-U for dlPFC WM stability) |
+| **Mental Set-Shifting** | Switching between established task-set mappings | vlPFC (BA-12/47) for extra-dim shift; OFC (Orbitofrontal Cortex) (BA-11) for reversal | 5-HT (OFC reversal learning specifically) |
 
-Latent factor correlations: r = 0.42–0.63 (unity); separable (diversity). Inhibition = Common CC factor — the variance that is shared across all three is isomorphic with response inhibition.
+Latent factor correlations: r = 0.42–0.63 (unity); separable (diversity). Inhibition = Common CC (Cognitive Control) factor — the variance that is shared across all three is isomorphic with response inhibition.
 
-**Key result (bifactor model):** Inhibition-specific variance = 0; there is no response-inhibition-specific factor beyond what is common to all CC. Set-shifting and WM updating have residual specific variance. This implies: individual differences in CC *are* individual differences in goal maintenance.
+**Key result (bifactor model):** Inhibition-specific variance = 0; there is no response-inhibition-specific factor beyond what is common to all CC. Set-shifting and WM updating have residual specific variance. This implies: individual differences in CC (Cognitive Control) *are* individual differences in goal maintenance.
 
 ---
 
-## Hierarchical Lateral PFC — Template for Block 3C
+## Hierarchical Lateral PFC (Prefrontal Cortex) — Template for Block 3C
 
 A well-confirmed rostro-caudal gradient (TMS-causal, fMRI, lesion):
 
-| PFC region | Level | Content |
+| PFC (Prefrontal Cortex) region | Level | Content |
 |---|---|---|
-| Caudal PFC (BA-8) | Stimulus-response | Conditional mapping: this cue → this action |
-| Mid-lateral PFC (BA-9/46) | Contextual rule | Maintain task context; monitor (n-back, tagging); resist interference |
-| Frontopolar PFC (BA-10) | **Simultaneous multi-relational integration** | Constraint-satisfaction over ≥2 relational structures held simultaneously in WM; selectively activated by *relational count*, not nesting depth alone (Christoff 2001; Cho 2010); also handles branching rule-of-rules and sequential subgoals |
+| Caudal PFC (Prefrontal Cortex) (BA-8) | Stimulus-response | Conditional mapping: this cue → this action |
+| Mid-lateral PFC (Prefrontal Cortex) (BA-9/46) | Contextual rule | Maintain task context; monitor (n-back, tagging); resist interference |
+| Frontopolar PFC (Prefrontal Cortex) (BA-10) | **Simultaneous multi-relational integration** | Constraint-satisfaction over ≥2 relational structures held simultaneously in WM; selectively activated by *relational count*, not nesting depth alone (Christoff 2001; Cho 2010); also handles branching rule-of-rules and sequential subgoals |
 
-Hub / apex is mid-lateral, not rostral PFC (TMS: mid-lateral integrates the caudal sensory and rostral memorial signals).
+Hub / apex is mid-lateral, not rostral PFC (Prefrontal Cortex) (TMS: mid-lateral integrates the caudal sensory and rostral memorial signals).
 
 ---
 
-## PFC as Representational System — SEC Framework
+## PFC (Prefrontal Cortex) as Representational System — SEC (Structured Event Complex) Framework
 
-Wood & Grafman (2003) resolve the representation/process debate: PFC stores long-term memory representations; WM = those representations currently activated; processes = representations that remain active. Implication for design: Block 3C should store **structured representations** (grammars, rule sequences), not just weight matrices over transformations.
+Wood & Grafman (2003) resolve the representation/process debate: PFC (Prefrontal Cortex) stores long-term memory representations; WM = those representations currently activated; processes = representations that remain active. Implication for design: Block 3C should store **structured representations** (grammars, rule sequences), not just weight matrices over transformations.
 
 The **Structured Event Complex (SEC)** is the proposed representational unit:
 
-> An SEC is a goal-oriented, temporally ordered event sequence encoding abstractions, rules, grammars, social schemas, and event boundaries. Activating an SEC generates predictions about subsequent events.
+> An SEC (Structured Event Complex) is a goal-oriented, temporally ordered event sequence encoding abstractions, rules, grammars, social schemas, and event boundaries. Activating an SEC (Structured Event Complex) generates predictions about subsequent events.
 
-| SEC property | Block 3C implication |
+| SEC (Structured Event Complex) property | Block 3C implication |
 |---|---|
 | Sequential temporal structure | W_rule-of-rules encodes a grammar over event sequences, not just a single transformation label |
 | Grammar encoding | Abstract compositional structure stored at the highest level; lower levels sample episodes from it |
 | Goal-orientation | Terminal event = goal state → natural grounding for Block 3D goal generator |
-| Predictive function | SEC = generative model of event futures; consistent with PC/FEP framing |
+| Predictive function | SEC (Structured Event Complex) = generative model of event futures; consistent with PC/FEP framing |
 
 **vmPFC/dlPFC categorical specificity (via connectivity):** vmPFC (amygdala + HC connectivity) = social/emotional SECs; dlPFC (BG + premotor connectivity) = mechanistic/action SECs. This categorical split maps onto the content of W levels: W_instance (dlPFC) stores action-sequence mappings; vmPFC contributes goal value (Block 3D).
 
-**Convergence with Friedman & Robbins 2021:** The SEC anterior-posterior gradient (frontopolar = long multi-event SECs; posterior = short/single-event) and the rule-nesting gradient (BA-10 = rules-of-rules; BA-8 = S-R) are two descriptions of the same rostro-caudal axis — event-sequence *duration* and rule *depth* increase together. Both justify the three-level W stack.
+**Convergence with Friedman & Robbins 2021:** The SEC (Structured Event Complex) anterior-posterior gradient (frontopolar = long multi-event SECs; posterior = short/single-event) and the rule-nesting gradient (BA-10 = rules-of-rules; BA (Brodmann Area)-8 = S-R) are two descriptions of the same rostro-caudal axis — event-sequence *duration* and rule *depth* increase together. Both justify the three-level W stack.
 
 ---
 
-## Goal Maintenance as the Unified CC Mechanism
+## Goal Maintenance as the Unified CC (Cognitive Control) Mechanism
 
-The PFC maintains goal representations `g*` that modulate downstream processing:
+The PFC (Prefrontal Cortex) maintains goal representations `g*` that modulate downstream processing:
 ```
 P(response | state, goal) ∝ P(response | state) × exp(β · b(g*, response))
 ```
-Where `b(g*, response)` is the goal-congruence bias. Higher goal activation → stronger suppression of competing (habitual) responses via lateral inhibition in posterior cortex. CC fails = goal deactivates early → prepotent response wins.
+Where `b(g*, response)` is the goal-congruence bias. Higher goal activation → stronger suppression of competing (habitual) responses via lateral inhibition in posterior cortex. CC (Cognitive Control) fails = goal deactivates early → prepotent response wins.
 
 This "active bias" account subsumes response inhibition (goal causes inhibition of prepotent act), WM updating (goal signals that current content is no longer task-relevant → triggers replacement), and set-shifting (goal signals to switch — activates new task-set W).
 
@@ -79,20 +79,20 @@ This "active bias" account subsumes response inhibition (goal causes inhibition 
 
 ## Application to Reasoning Model
 
-| CC Component | Building Block | Mechanism |
+| CC (Cognitive Control) Component | Building Block | Mechanism |
 |---|---|---|
-| Response inhibition / Common CC | Block 3D (goal generator) | Active maintenance of g_goal biases downstream processing |
-| WM updating | Block 3B (DLPFC WM) | TRNN or LSTM receives signal to update held context |
+| Response inhibition / Common CC (Cognitive Control) | Block 3D (goal generator) | Active maintenance of g_goal biases downstream processing |
+| WM updating | Block 3B (DLPFC WM) | TRNN (Transition RNN) or LSTM receives signal to update held context |
 | Mental set-shifting | Block 3A (Transformation Inferrer) | New transformation W selected; old task-set suppressed |
-| Hierarchical PFC (BA-8→9/46→10) | Block 3C (hierarchical stack) | Three-level W: stimulus-response → contextual rule → rule-of-rules |
-| BG selection objective (proficient phase) | Block 3D (action selection module) | MSPRT (Bogacz & Gurney 2007): log-posterior selection via STN exp + GP log-softmax; not argmax — requires global normalization S(T) = ln(Σ exp(salience_j)) |
+| Hierarchical PFC (Prefrontal Cortex) (BA-8→9/46→10) | Block 3C (hierarchical stack) | Three-level W: stimulus-response → contextual rule → rule-of-rules |
+| BG (Basal Ganglia) selection objective (proficient phase) | Block 3D (action selection module) | MSPRT (Bogacz & Gurney 2007): log-posterior selection via STN (Subthalamic Nucleus) exp + GP log-softmax; not argmax — requires global normalization S(T) = ln(Σ exp(salience_j)) |
 | **Configurator (LeCun 2022)** | All modules (world model, perception, cost, actor) | Task-specific modulation of parameters + attention circuits; single configurable world model engine; subgoal decomposition is the hardest unspecified component |
 
 ---
 
-## ACC: Conflict Monitoring and Proactive CC
+## ACC (Anterior Cingulate Cortex): Conflict Monitoring and Proactive CC
 
-The Predicted Response Outcome model (Botvinick / Rushworth): ACC computes *unsigned* prediction errors at multiple timescales — both unexpected omission and unexpected occurrence. Output modulates:
+The Predicted Response Outcome model (Botvinick / Rushworth): ACC (Anterior Cingulate Cortex) computes *unsigned* prediction errors at multiple timescales — both unexpected omission and unexpected occurrence. Output modulates:
 - **Reactive CC:** error-correction signal after conflict
 - **Proactive CC:** anticipatory bias adjustment before expected conflict (risk-avoidance, foraging)
 
@@ -100,41 +100,41 @@ Distinct from DA/TD error: unsigned (not signed reward prediction error), multi-
 
 ---
 
-## GNW as the CC Hub Circuit
+## GNW (Global Neuronal Workspace) as the CC (Cognitive Control) Hub Circuit
 
-The PFC's CC role (goal maintenance, bias signaling) is mechanistically grounded in its role as the highest-density node in the Global Neuronal Workspace hub. The GNW provides the structural implementation of Miller & Cohen's biased competition model:
+The PFC's CC (Cognitive Control) role (goal maintenance, bias signaling) is mechanistically grounded in its role as the highest-density node in the Global Neuronal Workspace hub. The GNW (Global Neuronal Workspace) provides the structural implementation of Miller & Cohen's biased competition model:
 
-- **Goal representations = GNW broadcasting:** long-range GNW neurons in PFC broadcast goal-congruent bias top-down to all specialized processors simultaneously, making goal maintenance equivalent to sustained GNW ignition of the goal representation
-- **Raven's Progressive Matrices** — identified in GNW theory as the canonical multi-processor integration task: solving requires integrating feature, count, spatial, and rule-relation representations across distributed cortical areas via the hub core — identical to the Block 3C hierarchical CC requirement
-- **Dynamic repertoire as the CC signature:** the GNW hub's richer-than-anatomical functional connectivity diversity in the waking brain reflects CC-enabled flexible routing; loss of CC (anesthesia, frontal lesion) collapses this diversity to the fixed anatomical connectivity matrix
+- **Goal representations = GNW (Global Neuronal Workspace) broadcasting:** long-range GNW (Global Neuronal Workspace) neurons in PFC (Prefrontal Cortex) broadcast goal-congruent bias top-down to all specialized processors simultaneously, making goal maintenance equivalent to sustained GNW (Global Neuronal Workspace) ignition of the goal representation
+- **Raven's Progressive Matrices** — identified in GNW (Global Neuronal Workspace) theory as the canonical multi-processor integration task: solving requires integrating feature, count, spatial, and rule-relation representations across distributed cortical areas via the hub core — identical to the Block 3C hierarchical CC (Cognitive Control) requirement
+- **Dynamic repertoire as the CC (Cognitive Control) signature:** the GNW (Global Neuronal Workspace) hub's richer-than-anatomical functional connectivity diversity in the waking brain reflects CC-enabled flexible routing; loss of CC (Cognitive Control) (anesthesia, frontal lesion) collapses this diversity to the fixed anatomical connectivity matrix
 
 ---
 
 ## Open Problems
 
 - Exact circuit mechanism for goal bias: how does dlPFC goal representation selectively amplify task-relevant processing in posterior cortex without a labeled connection map?
-- How do hot CC (OFC/vmPFC: value/emotion) and cool CC (lateral PFC: rule-governed) integrate — shared MD network nodes with different content, or qualitatively different circuits?
-- Does the hierarchical PFC gradient imply three separate modules or a single continuous system graded by temporal context (longer context = more rostral)?
+- How do hot CC (Cognitive Control) (OFC/vmPFC: value/emotion) and cool CC (Cognitive Control) (lateral PFC: rule-governed) integrate — shared MD network nodes with different content, or qualitatively different circuits?
+- Does the hierarchical PFC (Prefrontal Cortex) gradient imply three separate modules or a single continuous system graded by temporal context (longer context = more rostral)?
 
 ---
 
 ## Connections
 
-- **[[wiki/concepts/meta-learning.md]]** — goal maintenance is the behavioral description of what the PFC meta-RL LSTM (Block 3B) implements: the held goal representation in the hidden state biases the within-episode fast RL algorithm.
-- **[[wiki/concepts/working-memory.md]]** — WM updating is the second CC component; WM maintenance (what's in the workspace) is the substrate for goal maintenance itself; dlPFC role shifts from "maintenance" to "interference resistance" upon closer scrutiny.
-- **[[wiki/concepts/neuromodulation.md]]** — DA D1 stabilizes goal maintenance (inverted-U); 5-HT modulates OFC reversal (set-shifting over values); NA via Right Inferior Frontal Gyrus (RIFG)→STN hyperdirect pathway implements response inhibition; ACC outputs to LC (NA) for proactive CC.
-- **[[wiki/concepts/predictive-coding.md]]** — ACC's conflict signal is the CC-domain prediction error; proactive CC (anticipatory adjustment) is active inference (minimizing expected future free energy) applied to the control domain.
+- **[[wiki/concepts/meta-learning.md]]** — goal maintenance is the behavioral description of what the PFC (Prefrontal Cortex) meta-RL LSTM (Block 3B) implements: the held goal representation in the hidden state biases the within-episode fast RL algorithm.
+- **[[wiki/concepts/working-memory.md]]** — WM updating is the second CC (Cognitive Control) component; WM maintenance (what's in the workspace) is the substrate for goal maintenance itself; dlPFC role shifts from "maintenance" to "interference resistance" upon closer scrutiny.
+- **[[wiki/concepts/neuromodulation.md]]** — Dopamine D1 stabilizes goal maintenance (inverted-U); 5-HT modulates OFC (Orbitofrontal Cortex) reversal (set-shifting over values); NA (Noradrenaline / Norepinephrine) via Right Inferior Frontal Gyrus (RIFG)→STN hyperdirect pathway implements response inhibition; ACC (Anterior Cingulate Cortex) outputs to LC (NA) for proactive CC.
+- **[[wiki/concepts/predictive-coding.md]]** — ACC (Anterior Cingulate Cortex)'s conflict signal is the CC-domain prediction error; proactive CC (Cognitive Control) (anticipatory adjustment) is active inference (minimizing expected future free energy) applied to the control domain.
 - **[[wiki/concepts/attention.md]]** — top-down goal-based biasing is attentional: dlPFC goal representations modulate posterior cortex attention weights; this is the Desimone & Duncan biased competition model.
-- **[[wiki/queries/building-blocks-mec-hc-pfc.md]]** — three CC components → Blocks 3D (inhibition), 3B (updating), 3A (shifting); hierarchical PFC gradient → Block 3C three-level template (BA-8/9/46/10).
-- **[[wiki/papers/pfc-cognitive-control-friedman-2021.md]]** — primary source for three CC components, hierarchical PFC gradient, ACC PRO model, and neurochemical specificity content.
-- **[[wiki/papers/pfc-wood-grafman-2003.md]]** — source for SEC framework; resolves representation/process debate; establishes vmPFC/dlPFC categorical specificity via connectivity.
-- **[[wiki/entities/prefrontal-cortex.md]]** — biological substrate of all CC mechanisms; anatomy, connectivity, and mapping to Blocks 3A–3D; vmPFC/dlPFC categorical specificity informs Block 3C content types.
-- **[[wiki/concepts/analogical-reasoning.md]]** — the mapping stage of analogy is the canonical task that drives frontopolar BA-10: simultaneous satisfaction of structural + semantic + pragmatic constraints is a concrete operationalization of "multi-relational integration"; the ≤2-3 proposition WM limit constrains how the Block 3C three-level hierarchy must decompose long compositional chains into sequential integration steps.
-- **[[wiki/papers/analogy-holyoak-2012.md]]** — source for the BA-10 multi-relational integration specificity and its dissociation from BA-44/45 interference control; refines what "frontopolar" means in the Block 3C template.
-- **[[wiki/entities/basal-ganglia.md]]** — BG provides two distinct CC contributions: (1) hyperdirect Hold signal implements response inhibition (the common CC factor); (2) MSPRT in the proficient phase specifies the Bayesian selection objective for Block 3D; the three CC components map onto Go/NoGo/Hold + MSPRT as the complete CC-BG interface.
-- **[[wiki/papers/bogacz-gurney-bg-msprt-2007.md]]** — algorithmic source for Block 3D's BG selection objective: MSPRT = log-posterior Bayesian selection; the same hyperdirect STN pathway that implements Hold/response inhibition also provides the global competition term S(T) in MSPRT; Hick's Law derivation shows decision time ∝ log(N) in any log-softmax selection system.
-- **[[wiki/entities/gwt-model.md]]** — GNW hub is the structural substrate for CC goal maintenance; PFC's high density of long-range GNW neurons is the mechanistic basis for why goal representations in dlPFC bias downstream processing; Raven's Matrices as the canonical GNW/CC task requiring multi-processor integration.
-- **[[wiki/papers/gnw-mashour-2020.md]]** — source for GNW as CC hub; dynamic state repertoire diversity as the CC operational indicator; anesthesia/frontal lesion as natural experiments confirming hub necessity.
-- **[[wiki/papers/raccah-pfc-consciousness-2021.md]]** — iES evidence that lateral PFC is not constitutive of consciousness (near-zero phenomenal elicitation rate) does not challenge CC: PFC's role in goal maintenance, WM, and hierarchical rule use is enabling, not constitutive of phenomenal experience; the ACC consciousness finding (emotional/motivational iES effects) is consistent with ACC's conflict and proactive CC functions.
-- **[[wiki/entities/jepa-model.md]]** — the configurator in LeCun's cognitive architecture is the computational CC module: it takes inputs from all other modules and primes the world model, perception, cost, and actor for the task at hand — directly instantiating goal-maintenance as dynamic parameter modulation rather than a static goal representation.
-- **[[wiki/concepts/world-models.md]]** — the configurator operates on a single configurable world model; goal maintenance in CC = the configurator holding the current task configuration active while the world model runs; subgoal decomposition (the hardest open piece) maps to how the hierarchical PFC gradient sequences subgoals over time.
+- **[[wiki/queries/building-blocks-mec-hc-pfc.md]]** — three CC (Cognitive Control) components → Blocks 3D (inhibition), 3B (updating), 3A (shifting); hierarchical PFC (Prefrontal Cortex) gradient → Block 3C three-level template (BA-8/9/46/10).
+- **[[wiki/papers/pfc-cognitive-control-friedman-2021.md]]** — primary source for three CC (Cognitive Control) components, hierarchical PFC (Prefrontal Cortex) gradient, ACC (Anterior Cingulate Cortex) PRO model, and neurochemical specificity content.
+- **[[wiki/papers/pfc-wood-grafman-2003.md]]** — source for SEC (Structured Event Complex) framework; resolves representation/process debate; establishes vmPFC/dlPFC categorical specificity via connectivity.
+- **[[wiki/entities/prefrontal-cortex.md]]** — biological substrate of all CC (Cognitive Control) mechanisms; anatomy, connectivity, and mapping to Blocks 3A–3D; vmPFC/dlPFC categorical specificity informs Block 3C content types.
+- **[[wiki/concepts/analogical-reasoning.md]]** — the mapping stage of analogy is the canonical task that drives frontopolar BA (Brodmann Area)-10: simultaneous satisfaction of structural + semantic + pragmatic constraints is a concrete operationalization of "multi-relational integration"; the ≤2-3 proposition WM limit constrains how the Block 3C three-level hierarchy must decompose long compositional chains into sequential integration steps.
+- **[[wiki/papers/analogy-holyoak-2012.md]]** — source for the BA (Brodmann Area)-10 multi-relational integration specificity and its dissociation from BA (Brodmann Area)-44/45 interference control; refines what "frontopolar" means in the Block 3C template.
+- **[[wiki/entities/basal-ganglia.md]]** — BG (Basal Ganglia) provides two distinct CC (Cognitive Control) contributions: (1) hyperdirect Hold signal implements response inhibition (the common CC (Cognitive Control) factor); (2) MSPRT in the proficient phase specifies the Bayesian selection objective for Block 3D; the three CC (Cognitive Control) components map onto Go/NoGo/Hold + MSPRT as the complete CC-BG interface.
+- **[[wiki/papers/bogacz-gurney-bg-msprt-2007.md]]** — algorithmic source for Block 3D's BG (Basal Ganglia) selection objective: MSPRT = log-posterior Bayesian selection; the same hyperdirect STN (Subthalamic Nucleus) pathway that implements Hold/response inhibition also provides the global competition term S(T) in MSPRT; Hick's Law derivation shows decision time ∝ log(N) in any log-softmax selection system.
+- **[[wiki/entities/gwt-model.md]]** — GNW (Global Neuronal Workspace) hub is the structural substrate for CC (Cognitive Control) goal maintenance; PFC's high density of long-range GNW (Global Neuronal Workspace) neurons is the mechanistic basis for why goal representations in dlPFC bias downstream processing; Raven's Matrices as the canonical GNW/CC task requiring multi-processor integration.
+- **[[wiki/papers/gnw-mashour-2020.md]]** — source for GNW (Global Neuronal Workspace) as CC (Cognitive Control) hub; dynamic state repertoire diversity as the CC (Cognitive Control) operational indicator; anesthesia/frontal lesion as natural experiments confirming hub necessity.
+- **[[wiki/papers/raccah-pfc-consciousness-2021.md]]** — iES evidence that lateral PFC (Prefrontal Cortex) is not constitutive of consciousness (near-zero phenomenal elicitation rate) does not challenge CC: PFC's role in goal maintenance, WM, and hierarchical rule use is enabling, not constitutive of phenomenal experience; the ACC (Anterior Cingulate Cortex) consciousness finding (emotional/motivational iES effects) is consistent with ACC (Anterior Cingulate Cortex)'s conflict and proactive CC (Cognitive Control) functions.
+- **[[wiki/entities/jepa-model.md]]** — the configurator in LeCun's cognitive architecture is the computational CC (Cognitive Control) module: it takes inputs from all other modules and primes the world model, perception, cost, and actor for the task at hand — directly instantiating goal-maintenance as dynamic parameter modulation rather than a static goal representation.
+- **[[wiki/concepts/world-models.md]]** — the configurator operates on a single configurable world model; goal maintenance in CC (Cognitive Control) = the configurator holding the current task configuration active while the world model runs; subgoal decomposition (the hardest open piece) maps to how the hierarchical PFC (Prefrontal Cortex) gradient sequences subgoals over time.

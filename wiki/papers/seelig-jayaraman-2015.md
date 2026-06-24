@@ -30,6 +30,6 @@ Seelig JD, Jayaraman V. *Nature*. 2015 May 14;521(7551):186–191. Janelia Resea
 ## Relevant Pages
 
 - [[wiki/concepts/ring-attractor.md]] — full ring attractor formalism; this paper is the primary empirical confirmation
-- [[wiki/concepts/path-integration.md]] — CX P-EN path integration adds direct in vivo evidence alongside CANN/VCO/SR accounts
-- [[wiki/entities/insect-central-complex.md]] — CX anatomy; E-PG and P-EN neuron architecture; all quantitative results cited here
+- [[wiki/concepts/path-integration.md]] — CX (Central Complex) P-EN path integration adds direct in vivo evidence alongside CANN/VCO/SR accounts
+- [[wiki/entities/insect-central-complex.md]] — CX (Central Complex) anatomy; E-PG and P-EN neuron architecture; all quantitative results cited here
 - [[wiki/papers/turner-evans-neuron-2020.md]] — anatomical follow-up characterizing the synaptic circuit

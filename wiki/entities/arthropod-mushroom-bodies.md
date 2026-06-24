@@ -61,7 +61,7 @@ Arthropod brains contain both mushroom bodies **and** the central complex (CX) a
 | **Path integration** | Not established | Yes — P-EN velocity drive |
 | **HC analog** | Closer to HC (contextual binding) | Closer to MEC (structural coordinates) |
 
-The mushroom bodies are the arthropod analog of the HC's episodic/contextual binding role; the CX handles the MEC-like structural coordinate function. Together they cover the full MEC-HC functional scope.
+The mushroom bodies are the arthropod analog of the HC's episodic/contextual binding role; the CX (Central Complex) handles the MEC-like structural coordinate function. Together they cover the full MEC-HC functional scope.
 
 ---
 
@@ -77,9 +77,9 @@ The mushroom bodies are the arthropod analog of the HC's episodic/contextual bin
 
 - **[[wiki/concepts/convergent-allocentric-coding.md]]** — mushroom bodies are the arthropod instantiation of the expansion→compression motif; they provide the binding/contextual-memory component analogous to HC in the vertebrate system.
 - **[[wiki/concepts/binding-problem.md]]** — KC multimodal convergence zone is the arthropod implementation of multi-modal binding; the spider MB result (if confirmed) would provide the deepest invertebrate evidence for binding as a universal computational primitive.
-- **[[wiki/entities/insect-central-complex.md]]** — distinct structure in the same arthropod brain; CX handles heading/path integration (MEC-like); mushroom bodies handle associative/contextual memory (HC-like); together they cover the functional scope of the vertebrate HC formation.
+- **[[wiki/entities/insect-central-complex.md]]** — distinct structure in the same arthropod brain; CX (Central Complex) handles heading/path integration (MEC-like); mushroom bodies handle associative/contextual memory (HC-like); together they cover the functional scope of the vertebrate HC formation.
 - **[[wiki/entities/hippocampal-entorhinal-system.md]]** — functional parallel; mushroom bodies ≈ HC (contextual binding) + sparse encoding, but lack the slow-W structural generalization mechanism of MEC.
 - **[[wiki/entities/place-cells.md]]** — (tentative) spider MB neurons with location-specific allocentric firing are the arthropod analog of hippocampal place cells; convergent derivation of `p = f(g, x)` computation.
-- **[[wiki/entities/grid-cells.md]]** — (tentative) spider MB grid-like coding is a third independent evolutionary line for periodic structural coordinates, alongside TBT L6 neurons and human vmPFC (Constantinescu 2016).
+- **[[wiki/entities/grid-cells.md]]** — (tentative) spider MB grid-like coding is a third independent evolutionary line for periodic structural coordinates, alongside TBT (Thousand Brains Theory) L6 neurons and human vmPFC (Constantinescu 2016).
 - **[[wiki/concepts/factorized-representations.md]]** — KC (expansion) → MBON (compressed readout) is a degenerate factorization: random high-dimensional KC code + learned MBON weights; analogous to reservoir + readout, not the full g/x/p factorization of TEM.
 - **[[wiki/papers/jumping-spiders-cognition.md]]** — primary source for spider MB spatial memory claims; all tentative claims above derive from this.

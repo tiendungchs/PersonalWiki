@@ -34,4 +34,4 @@ Video transcript covering the engram literature. Includes coverage of a 2022 *Na
 
 - [[wiki/concepts/engrams.md]] — full concept page for this content
 - [[wiki/concepts/two-learning-timescales.md]] — engrams are the biological substrate of fast M (Hebbian weights)
-- [[wiki/entities/place-cells.md]] — hippocampal engram cells = place cells; DG 2–6% sparsity constrains place cell coding
+- [[wiki/entities/place-cells.md]] — hippocampal engram cells = place cells; DG (Dentate Gyrus) 2–6% sparsity constrains place cell coding

@@ -1,0 +1,27 @@
+---
+title: "Architectural Gaps"
+type: overview
+tags: [architectural-gaps]
+created: 2026-06-22
+updated: 2026-06-24
+sources: []
+related: [wiki/overview.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/entities/gwt-model.md]
+---
+
+## Architectural Gaps
+
+Read at the start of every session. Update when new gaps.
+
+Capabilities the target reasoning model needs but that no current page fully addresses.
+
+| # | Gap | Block | Status |
+|---|-----|-------|--------|
+| 1 | **Transformation inference (Block 3A)** — no current architecture infers latent edge labels from (observation_before, observation_after) pairs; required for ARC-AGI Type 2 tasks | 3A | TIWM proposed but unimplemented |
+| 2 | **Multi-level meta-graph** — flat W cannot represent compositional rule chains; Block 3C three-level PFC (Prefrontal Cortex) hierarchy needs formalization as a nested latent graph | 3C | Partially specified anatomically; not formalized computationally |
+| 3 | **Vocabulary co-discovery** — the action alphabet must be inferred alongside graph structure; no current model handles both simultaneously without a pre-given symbol set. **Partial solution:** LAPA (VLA survey 2025) learns a discrete action codebook jointly with a visual world model via VQ-VAE on frame differences — demonstrates vocabulary co-discovery is tractable; limitation is domain-specificity (manipulation video only, no cross-environment meta-graph generalization) | 3A | Partial (LAPA) |
+| 4 | **Biologically plausible slow W** — PC (Predictive Coding) local updates (`Δw ∝ ε·x`) support within-network learning; cross-environment structural W-generalization via local rules remains open. Two main candidates: **(a) EqProp (Scellier & Bengio 2017)** — theoretically exact (Theorem 1) via two-phase energy minimization; ΔW ∝ (1/β)[ρ(u^β)ρ(u^β) − ρ(u⁰)ρ(u⁰)] computes ∂J/∂W exactly as β→0; but requires symmetric weights W_{ij}=W_{ji} and has not been scaled beyond MNIST. **(b) Targetprop (Bengio et al. 2015)** — high-bias approximation via DAE theorem: gradient ≈ [f(g(h))−h]/σ²; no weight symmetry required (f and g trained independently); frames learning as variational EM (Expectation Maximization) (E-step = inference dynamics, M-step = local weight update); demonstrated on MNIST, collapses at ImageNet. **Bartunov et al. 2018 quantify the gap**: FA/DTP/SDTP all >93% top-1 error on ImageNet vs. BP's 71%; EqProp excluded (computationally prohibitive). Target diversity (low-entropy output alphabet) is a concrete TP bottleneck. The exactness-vs-symmetry tradeoff between EqProp and targetprop is the unresolved design choice. See [[wiki/entities/equilibrium-propagation.md]]. | 2A–2D | Open |
+| 5 | **Reservoir → structured basis** — **LSM Theorem 1 (Maass et al. 2002) establishes the starting point**: a generic random liquid with SP already achieves universal fading-memory computation. TEM W is the endpoint: a structured basis transferable across environments. The gap is two-fold: (a) how in-liquid plasticity (explicitly proposed by Maass et al. as necessary for developmental SP tuning) adapts SP toward natural stimulus distributions, and (b) how structural W gradually emerges from a random reservoir through learning while preserving the universality guarantee. | 1A | Open |
+| 6 | **Active inference** — expected free energy / epistemic foraging (FEP extended) connects to goal-directed reasoning. **Formalism resolved (Taniguchi et al. 2023):** G(π) = epistemic value (information gain, exploration) + pragmatic value (preference-matching, exploitation). Active inference vs. CaI (entropy-regularized RL) distinction now explicit. **Remaining gap:** which module in the 11-block architecture computes G(π) and gates configurator/action selection; CaI vs. active inference design choice unresolved. LeCun's Mode-2 (CEM, non-probabilistic) vs. active inference (probabilistic posterior over z) comparison now concretized by V-JEPA 2-AC | 3D | Formalism resolved; integration open |
+| 7 | **Workspace release/update mechanism** — Ferrante 2025 shows PFC (Prefrontal Cortex) offset ignition is absent at content transitions; no current architecture specifies how the global broadcasting hub releases one representation and admits the next; GNW-style hub design assumes symmetric onset/offset, but the evidence only supports onset; must design an explicit workspace-update trigger | Hub module | Open |
+| 8 | **Abstract hub / perceptual satellite split** — Ferrante 2025 shows PFC (Prefrontal Cortex) encodes category but not identity or orientation; a reasoning model therefore needs two distinct tiers: (a) a hub module operating on discrete/abstract representations + (b) a posterior module maintaining fine-grained perceptual content; the binding interface between these tiers (how the hub selects and queries the satellite) is unspecified | Hub module | Open |
+| 9 | **Objectness prior** — Beger et al. 2025 show that frontier AI models on ConceptARC systematically lack Spelke's Core Knowledge objectness prior (objects persist, move coherently, have boundaries), defaulting to pixel/color/connectivity shortcuts instead. Token-prediction training does not produce objectness representations; the architectural mechanism for encoding discrete-entity priors without hand-coding is unspecified. Maps to Blocks 1A+1B (structural scaffold). See [[wiki/concepts/shortcut-reasoning.md]] | 1A | Open |

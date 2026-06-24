@@ -22,7 +22,7 @@ Holyoak, K. J. (2012). Analogy and relational reasoning. In K. J. Holyoak & R. G
 
 - **LISA model (Hummel & Holyoak 1997, 2003):** Symbolic-connectionist: semantic units → predicate/object units → proposition units. Role-filler bindings are encoded by **gamma-band (~40 Hz) temporal synchrony** — units within one proposition co-activate in phase; different propositions activate in anti-phase, enabling simultaneous but separated representations. WM is limited to 2–3 simultaneous propositions. Mapping connections grow whenever source and target units are co-active during retrieval. Accounts for frontal-damage analogical impairment and developmental relational shift.
 
-- **Frontopolar cortex (BA-10) as multi-relational integration bottleneck:** BA-10 activates selectively when multiple relations must be **simultaneously integrated** (Christoff et al. 2001; Kroger et al. 2002; Cho et al. 2010) — not just for rule nesting depth. Bilateral middle/inferior frontal gyri handle WM maintenance of individual relations; inferior frontal gyrus handles interference suppression (semantically close distractors). Frontal lesions selectively impair only problems requiring multi-relation integration, not single-relation problems — a clean dissociation.
+- **Frontopolar cortex (BA-10) as multi-relational integration bottleneck:** BA (Brodmann Area)-10 activates selectively when multiple relations must be **simultaneously integrated** (Christoff et al. 2001; Kroger et al. 2002; Cho et al. 2010) — not just for rule nesting depth. Bilateral middle/inferior frontal gyri handle WM maintenance of individual relations; inferior frontal gyrus handles interference suppression (semantically close distractors). Frontal lesions selectively impair only problems requiring multi-relation integration, not single-relation problems — a clean dissociation.
 
 - **Schema induction as relational meta-learning:** Two compared analogs are sufficient to induce a reusable abstract schema. Progressive alignment (easy→hard: salient surface + relational match first, then relational match only) bootstraps schema formation from concrete episodes. Induced schemas retroactively increase retrieval of prior stored analogs and improve transfer to problems encountered before schema acquisition. This is the analogue-level mechanism for slow-W structure extraction from episodic comparison.
 
@@ -41,6 +41,6 @@ Holyoak, K. J. (2012). Analogy and relational reasoning. In K. J. Holyoak & R. G
 - [[wiki/concepts/analogical-reasoning.md]] — full mechanistic treatment of CWSG, multiconstraint theory, LISA, and neural substrate
 - [[wiki/concepts/abstract-reasoning.md]] — analogy is the canonical prototype of the target capability
 - [[wiki/concepts/binding-problem.md]] — LISA's gamma-band synchrony adds role-filler binding as a fifth binding mechanism
-- [[wiki/entities/prefrontal-cortex.md]] — source for BA-10 multi-relational integration specificity
+- [[wiki/entities/prefrontal-cortex.md]] — source for BA (Brodmann Area)-10 multi-relational integration specificity
 - [[wiki/concepts/cognitive-control.md]] — frontopolar integration role refines Block 3C hierarchical gradient
 - [[wiki/concepts/meta-learning.md]] — schema induction from comparison is the relational-level meta-learning mechanism

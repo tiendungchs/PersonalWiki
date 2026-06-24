@@ -3,9 +3,9 @@ title: "Abstract Reasoning"
 type: concept
 tags: [abstract-reasoning, model-building, causal-models, compositionality, one-shot-learning]
 created: 2026-06-20
-updated: 2026-06-23
-sources: [building_machine_that_thinks_like_people, ARC-AGI-3-paper.md, analogy_reasoning.md, How does the brain solve visual object recognition, geometry-of-abstraction-bernardi-2020, raven, The ConceptARC Benchmark, A Path Towards Autonomous Machine Intelligence]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/meta-learning.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/continual-learning.md, wiki/entities/arc-agi.md, wiki/entities/pgm-benchmark.md, wiki/papers/arc-agi-overview.md, wiki/papers/arc-agi-3-paper.md, wiki/papers/building-machine-thinks-like-people-lake-2016.md, wiki/concepts/analogical-reasoning.md, wiki/papers/analogy-holyoak-2012.md, wiki/papers/dicarlo-visual-object-recognition-2012.md, wiki/concepts/representational-geometry.md, wiki/papers/geometry-abstraction-bernardi-2020.md, wiki/papers/hutter-aixi-2000.md, wiki/papers/hassabis-neuroscience-ai-2017.md, wiki/papers/pgm-barrett-2018.md, wiki/papers/conceptarc-moskvichev-2023.md, wiki/concepts/world-models.md, wiki/entities/jepa-model.md, wiki/concepts/energy-based-models.md]
+updated: 2026-06-24
+sources: [building_machine_that_thinks_like_people, ARC-AGI-3-paper.md, analogy_reasoning.md, How does the brain solve visual object recognition, geometry-of-abstraction-bernardi-2020, raven, The ConceptARC Benchmark, A Path Towards Autonomous Machine Intelligence, shortcut learning.md, choi-intelligence-density-2026, beger-conceptarc-multimodal-2025, Evaluating Understanding on Conceptual Abstraction Benchmarks.md, math-dataset-hendrycks-2021, math-perturb-2025, verifiers-math-cobbe-2021]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/meta-learning.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/continual-learning.md, wiki/entities/arc-agi.md, wiki/entities/pgm-benchmark.md, wiki/entities/frontiermath-benchmark.md, wiki/papers/arc-agi-overview.md, wiki/papers/arc-agi-3-paper.md, wiki/papers/building-machine-thinks-like-people-lake-2016.md, wiki/concepts/analogical-reasoning.md, wiki/papers/analogy-holyoak-2012.md, wiki/papers/dicarlo-visual-object-recognition-2012.md, wiki/concepts/representational-geometry.md, wiki/papers/geometry-abstraction-bernardi-2020.md, wiki/papers/hutter-aixi-2000.md, wiki/papers/hassabis-neuroscience-ai-2017.md, wiki/papers/pgm-barrett-2018.md, wiki/papers/conceptarc-moskvichev-2023.md, wiki/concepts/world-models.md, wiki/entities/jepa-model.md, wiki/concepts/energy-based-models.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/concepts/intelligence-density.md, wiki/concepts/shortcut-reasoning.md, wiki/papers/beger-conceptarc-multimodal-2025.md, wiki/papers/glazer-frontiermath-2024.md, wiki/papers/odouard-2022-concept-evaluation.md, wiki/papers/math-perturb-2025.md, wiki/papers/verifiers-math-cobbe-2021.md]
 ---
 
 # Abstract Reasoning
@@ -55,6 +55,32 @@ From the Characters and Frostbite Challenges (Lake et al. 2016):
 
 ---
 
+## Shortcut Learning and the I.I.D. / O.O.D. Gap (Geirhos et al. 2020)
+
+Geirhos et al. ([[wiki/papers/shortcut-learning-geirhos-2020.md]]) formalise the decision-rule taxonomy that underlies the model-building / pattern-recognition distinction:
+
+| Rule class | Performance | Generalises o.o.d.? |
+|---|---|---|
+| **Uninformative features** | Poor even on training data | — |
+| **Overfitting solutions** | Good on training; fails i.i.d. test | No |
+| **Shortcut solutions** | Good on i.i.d. test | No — exploits correlated spurious features |
+| **Intended solution** | Good on i.i.d. test | Yes — uses causal / structural features |
+
+**Pattern recognition = shortcut regime.** A system that achieves good benchmark accuracy via shortcuts has learned a decision rule that succeeds on identically-distributed test data but fails when spurious correlations are broken. This is precisely what ARC-AGI-2/3 are designed to expose: the jump from ARC-AGI-1 (~i.i.d. coverage attackable) to ARC-AGI-2/3 (structural novelty that breaks shortcuts) explains why o3 at 87% on ARC-1 achieves <25% on ARC-2 and <1% on ARC-3.
+
+**Inductive bias as the design lever.** Four factors determine which decision rule is easiest to learn: (a) **architecture** (hard constraints on representable functions), (b) **training data** (shortcut opportunities persist even at scale), (c) **loss function** (cross-entropy stops once any discriminative predictor is found), (d) **optimisation** (SGD biases toward simplest functions). Generative/world-model approaches (JEPA, PC, EBM) resist shortcuts because they must model the full data distribution — shortcut features alone do not span all training variation.
+
+**Mathematical reasoning evidence (GSM-Symbolic/GSM-Plus 2024, MATH 2021, MATH-Perturb 2025).** The shortcut regime is confirmed across the full difficulty spectrum of formal mathematics:
+
+- **Grade-school level (GSM-Symbolic/GSM-Plus):** GSM-Symbolic's GSM-NoOp variant causes avg 65% performance collapse across 25+ LLMs; GSM-Plus reversal perturbations cause up to 20% drops. Arithmetic accuracy remains 97–99%; the failure is structural.
+- **Competition level (MATH 2021):** GPT-3 175B achieves 6.9%; extrapolating log-linear trends requires ~10^35 params to reach 40%. Training on ground-truth step-by-step solutions improves accuracy +10%; but model-generated CoT (Chain of Thought) at test time *decreases* accuracy — self-generated intermediate nodes are unreliable and propagate errors (self-poisoning failure mode).
+- **Competition robustness (MATH-Perturb 2025):** state-of-the-art models suffer 12–28% drops on hard perturbations (structural edits requiring different solution strategies) vs. <5% on simple edits (surface changes). Dominant failure: subtle memorization — models apply techniques learned in training without assessing structural applicability, not verbatim copying. ([[wiki/papers/math-perturb-2025.md]])
+- **Verifier asymmetry (Cobbe et al. 2021):** separating path generation from path evaluation yields a 30× effective size multiplier — a 6B verifier matches a finetuned 175B generator. Path evaluation is more learnable than path generation, consistent with the hypothesis that correctness structure is more regular than solution structure. ([[wiki/papers/verifiers-math-cobbe-2021.md]])
+
+All four results share the same bottleneck: models cannot navigate the latent proof/computation graph structurally — they exploit surface correlations from training data instead of causal-structural reasoning.
+
+---
+
 ## PGM: Controlled Generalisation Taxonomy (Barrett et al. 2018)
 
 Barrett et al.'s Procedurally Generated Matrices ([[wiki/papers/pgm-barrett-2018.md]]) operationalise visual abstract reasoning with explicit (relation × object × attribute) triple semantics, providing a finer failure taxonomy than a single held-out test split:
@@ -70,6 +96,59 @@ Barrett et al.'s Procedurally Generated Matrices ([[wiki/papers/pgm-barrett-2018
 **The composition-decomposition boundary:** WReN recombines familiar primitives into novel combinations (held-out pair regimes, well above 12.5% chance) but collapses on genuinely novel primitives (held-out triples and extrapolation, near chance). Recombination competence does not imply decomposition competence — a model can combine known (r, o, a) packages without understanding how their meaning arises from constituents. This is the Lake et al. compositionality gap expressed at the visual-relational level.
 
 **Symbolic meta-target implication:** auxiliary training to predict relation/object/attribute type labels boosts recombination regimes (+14.4%/+24.5%) but barely helps novel primitive understanding (+1.1%). Discrete symbolic pressure on *known* relations improves how they compose; it cannot supply meanings for genuinely unseen component primitives. The slow-W system must encode atomic relational meanings — not co-occurrence statistics over triple tuples.
+
+---
+
+## FrontierMath: Gap Generalizes Across Domains (Glazer et al. 2024)
+
+FrontierMath ([[wiki/entities/frontiermath-benchmark.md]]) extends the ARC-AGI failure pattern to formal mathematical reasoning, providing the key cross-domain validation of the model-building gap.
+
+| Feature | ARC-AGI-2 | FrontierMath |
+|---|---|---|
+| Domain | Visual grid tasks | Research-level mathematics |
+| Prior knowledge required | Minimal (Core Knowledge priors only) | Maximal (deep domain expertise) |
+| Failure mode | Structural rule inference from few examples | Domain-technique graph navigation with sparse vocabulary |
+| SOTA performance | ~4% | <2% |
+
+**The convergence is the key insight:** these two benchmarks represent opposite design extremes — ARC-AGI minimizes prior knowledge requirements, FrontierMath maximizes them — yet both yield the same <5% frontier performance. This isolates the shared bottleneck: the inability to infer and navigate latent relational structure. The gap is not about how much domain knowledge a system has, but whether it can discover and use the structural graph that organizes that knowledge.
+
+**Different failure modes, same ceiling.** ARC-AGI fails because systems cannot infer novel transformation rules from a handful of grid examples. FrontierMath fails because systems cannot identify which theorems from a vast but sparsely-covered domain are relevant to a specific problem and how to chain them. The surface causes differ; the underlying latent graph discovery deficit is the same.
+
+---
+
+## Rule-Level Evaluation: Accuracy ≠ Abstraction (Beger et al. 2025)
+
+Beger et al. ([[wiki/papers/beger-conceptarc-multimodal-2025.md]]) extend ConceptARC evaluation beyond output-grid accuracy by requiring models to also generate natural-language rules explaining each solution. Rule-grid alignment exceeds 90% across all models and settings, validating NL rules as faithful proxies for underlying reasoning.
+
+**Accuracy is directionally misleading by modality:**
+
+| Setting | Accuracy bias | Mechanism |
+|---|---|---|
+| Textual modality | Overestimates abstraction | Shortcuts (integer color encodings, bounding boxes, connectivity) achieve correct outputs without correct concepts |
+| Visual modality | Underestimates abstraction | Perceptual failures (wrong grid size, misplaced objects) cause incorrect outputs even when the correct-intended rule was formed |
+
+**Shortcut rate on textual ConceptARC:**
+
+| System | Correct-intended (of correct outputs) | Correct-unintended (shortcuts) |
+|---|---|---|
+| Humans | ~90.3% | ~4.6% |
+| o3 (medium + tools) | ~57% | ~29% |
+| Claude Sonnet 4 | ~44% + | ~5% |
+| Gemini 2.5 Pro | ~44% | ~12% |
+
+**Visual modality gap is perceptual, not conceptual.** In wrong-grid visual cases, o3 produces correct-intended rules ~28% of the time — the model understood the concept but could not perceive the grid accurately enough to apply it. Visual errors (wrong dimensions, misplaced objects) occur in 49–77% of visual cases. Python tools (computer vision libraries) partially compensate.
+
+**Missing objectness prior.** The dominant shortcut pattern across all models and concept groups is treating grids as pixel matrices rather than scenes of discrete objects. AI models lack Spelke's Core Knowledge objectness prior (objects persist, move coherently, have boundaries). Token-prediction training does not acquire this prior; it must be architecturally encoded.
+
+See [[wiki/concepts/shortcut-reasoning.md]] for the ARC-domain shortcut catalogue and broader taxonomy.
+
+---
+
+## Concept-Based Evaluation (Odouard & Mitchell 2022)
+
+**Understanding a concept = competence for generating infinite conceptualizations (Barsalou).** IID test splits test a single concept instantiation — necessary but insufficient. Concept-based evaluation probes OOD variations of the *same* concept across different attributes and contexts, deliberately violating the IID assumption to expose shortcut solutions ([[wiki/papers/odouard-2022-concept-evaluation.md]]).
+
+RAVEN experiments: MRNet 73% → 49%/44%, SCL 89% → 62%/68% on Sameness/Progression concept probes — benchmark accuracy overestimates conceptual understanding by ~20–25 pp. ARC-Kaggle2nd per-concept breakdown (top/bottom 29%, boundary 8% vs. 19% overall) shows concept understanding is uneven even when overall benchmark performance is positive. This methodology was formalized as ConceptARC (below).
 
 ---
 
@@ -136,39 +215,56 @@ Core object recognition — identifying objects across position, scale, pose, il
 
 Lake et al. 2016 defines abstraction at the computational/behavioral level. Bernardi et al. 2020 provide the complementary neural-population-level operationalization: **a variable is abstract when the cross-condition generalization performance (CCGP) of a linear decoder is significantly above chance**.
 
-CCGP measures whether a linear decoder trained to classify a variable under one subset of conditions still works under a disjoint subset. High CCGP requires the population's coding direction for the variable to be *parallel* across all condition groupings. This is distinct from traditional decoding: a variable can be decoded within conditions yet have CCGP at chance (the coding direction rotates between condition sets).
+CCGP measures whether a linear decoder trained to classify a variable under one subset of conditions still works under a disjoint subset. High CCGP (Cross-Condition Generalization Performance) requires the population's coding direction for the variable to be *parallel* across all condition groupings. This is distinct from traditional decoding: a variable can be decoded within conditions yet have CCGP (Cross-Condition Generalization Performance) at chance (the coding direction rotates between condition sets).
 
-**The CCGP/SD duality:** HPC, DLPFC, and ACC simultaneously achieve high CCGP for context, value, and action and near-maximal shattering dimensionality (SD = number of decodable dichotomies). A purely disentangled representation achieves high CCGP but severely low SD (XOR unseparable). The brain uses a *distorted* factorized geometry that preserves both — a direct constraint for reasoning model design.
+**The CCGP (Cross-Condition Generalization Performance)/SD duality:** HPC, DLPFC, and ACC (Anterior Cingulate Cortex) simultaneously achieve high CCGP (Cross-Condition Generalization Performance) for context, value, and action and near-maximal shattering dimensionality (SD = number of decodable dichotomies). A purely disentangled representation achieves high CCGP (Cross-Condition Generalization Performance) but severely low SD (Shattering Dimensionality) (XOR unseparable). The brain uses a *distorted* factorized geometry that preserves both — a direct constraint for reasoning model design.
 
-**CCGP correlates with behavior:** on error trials, CCGP for context drops significantly in all three areas; traditional decoding accuracy does not. Abstraction of the latent variable — not mere decodability — tracks flexible behavioral performance.
+**CCGP correlates with behavior:** on error trials, CCGP (Cross-Condition Generalization Performance) for context drops significantly in all three areas; traditional decoding accuracy does not. Abstraction of the latent variable — not mere decodability — tracks flexible behavioral performance.
 
-See [[wiki/concepts/representational-geometry.md]] for the full CCGP/SD/PS framework.
+See [[wiki/concepts/representational-geometry.md]] for the full CCGP (Cross-Condition Generalization Performance)/SD/PS framework.
 
 ---
 
-## Formal Definition via AIXI
+## Formal Definition via AIXI (AI with (X) induction (I))
 
-AIXI (Hutter 2000 [[wiki/papers/hutter-aixi-2000.md]]) provides the first formal definition of **general intelligence** as an order relation: system p is at least as intelligent as p' if p yields equal or higher ξ^AI-expected credit in every possible situation, for all environments. AIXI is the maximal element of this order — no unbiased system is more intelligent.
+AIXI (Hutter 2000 [[wiki/papers/hutter-aixi-2000.md]]) provides the first formal definition of **general intelligence** as an order relation: system p is at least as intelligent as p' if p yields equal or higher ξ^AI-expected credit in every possible situation, for all environments. AIXI (AI with (X) induction (I)) is the maximal element of this order — no unbiased system is more intelligent.
 
 This grounds the abstract-reasoning ingredients computationally:
 
-| Lake et al. ingredient | AIXI grounding | Why it emerges from 2^{-l(q)} prior |
+| Lake et al. ingredient | AIXI (AI with (X) induction (I)) grounding | Why it emerges from 2^{-l(q)} prior |
 |---|---|---|
 | **Compositionality** | Compositional rules have compact programs; higher prior weight than lookup tables of equal capability | Shorter description = higher probability; combinatorial programs beat tabular enumeration exponentially |
-| **Causality** | Causal world models have lower K(µ) than associative lookup tables; prior weight tracks generativity | The generative program is the shortest description of the distribution; AIXI discovers it |
+| **Causality** | Causal world models have lower K(µ) than associative lookup tables; prior weight tracks generativity | The generative program is the shortest description of the distribution; AIXI (AI with (X) induction (I)) discovers it |
 | **Learning-to-learn** | A meta-program shared across tasks has a shorter description than N task-specific programs; prior weight ∝ sharing | K(task₁, task₂, ..., taskₙ \| shared structure) ≪ K(task₁) + ... + K(taskₙ) |
-| **Autonomous goal inference** | The credit function c(·) is part of the environment model; AIXI must infer it alongside the transition model | In AIXI, µ encodes both transitions and rewards; environment with latent reward is a harder µ but within the computable class |
+| **Autonomous goal inference** | The credit function c(·) is part of the environment model; AIXI (AI with (X) induction (I)) must infer it alongside the transition model | In AIXI (AI with (X) induction (I)), µ encodes both transitions and rewards; environment with latent reward is a harder µ but within the computable class |
 
-**ARC-AGI-3 maps exactly to the autonomous goal inference row.** Frontier AI fails at <1% not because it lacks world-modeling capability but because c(·) is not given externally — the reward structure must be inferred from exploratory interactions. This is the active-environment regime where K(µ)-bounded bounds don't apply, formally proven by AIXI theory.
+**ARC-AGI-3 maps exactly to the autonomous goal inference row.** Frontier AI fails at <1% not because it lacks world-modeling capability but because c(·) is not given externally — the reward structure must be inferred from exploratory interactions. This is the active-environment regime where K(µ)-bounded bounds don't apply, formally proven by AIXI (AI with (X) induction (I)) theory.
+
+---
+
+## Intelligence Density: Formal Criterion for Knowing (Choi 2026)
+
+$\mathcal{I}(n) \to \infty$ as domain scales is a **formal sufficient criterion for abstract reasoning** [[wiki/concepts/intelligence-density.md]]: a system with fixed description length that handles an unbounded input domain must generalise via algorithms, not lookup tables (Proposition 1). This makes the memorisation/knowing distinction operationally testable.
+
+| Decision rule | $\mathcal{I}$ scaling | Abstract reasoning? |
+|---|---|---|
+| Lookup table / memorisation | $\to 0$ | No |
+| Hardware family (different circuit per input size) | $\Theta(1)$ | No — computes but does not know |
+| Algorithm / generalising system | $\to \infty$ | Yes |
+
+**Architectural implication:** feedforward networks have bounded computation depth for any fixed architecture, so their domain is bounded → $\mathcal{I} = \Theta(1)$ at best. Recurrent or iterative networks can scale depth with problem size → $\mathcal{I}$ can diverge. Recurrence is the minimal architectural condition for *knowing* a domain — not Turing completeness, but the weaker property of handling an unbounded input space with finite code.
+
+**Complement to AIXI (AI with (X) induction (I)):** AIXI (AI with (X) induction (I)) gives the theoretical ceiling for general intelligence; $\mathcal{I}$ gives a measurable criterion (via computable $K$ approximations) for whether a system has crossed the knowing threshold. Under evolutionary selection with a fixed reward, Legg-Hutter $\Upsilon(\pi)$ is monotonically increasing in $\mathcal{I}(\pi)$ (Proposition 2), formally unifying both measures with Chollet's skill-acquisition efficiency.
 
 ---
 
 ## Open Problems
 
 1. **Acquiring start-up software:** intuitive physics and psychology are structured domain priors — but how to acquire them computationally without hand-coding is unsolved. In the building-blocks model this maps to Blocks 1A+1B (structural scaffold that must exist before content binding begins).
-2. **Efficient inference in structured models:** rich causal models are slow; amortized inference (a network trained to approximate the output of probabilistic inference) is the candidate solution — the fast model-free system trained on model-based rollouts.
-3. **Multi-step causal chains:** ARC-AGI-2 (~4% AI vs. ~84% human) remains unsolved because it requires multiple interacting rules simultaneously; single-rule causal models are not sufficient.
-4. **Autonomous goal inference:** even with correct causal world models, systems cannot determine what to optimize for without explicit instruction. ARC-AGI-3 operationalizes this gap: the model of the world and the model of desirable outcomes must be jointly inferred from environmental cues alone. No current architecture addresses this; it requires a goal-prior or intrinsic-motivation module (Block 3D) that is currently absent from all mainstream reasoning architectures.
+2. **Objectness prior acquisition:** discriminative token-prediction training does not produce objectness representations; models default to pixel/connectivity shortcuts. A structured world model explicitly representing discrete entities (as in TEM's p = f(g, x)) is required, but how to acquire this representation from naturalistic data is open.
+3. **Efficient inference in structured models:** rich causal models are slow; amortized inference (a network trained to approximate the output of probabilistic inference) is the candidate solution — the fast model-free system trained on model-based rollouts.
+4. **Multi-step causal chains:** ARC-AGI-2 (~4% AI vs. ~84% human) remains unsolved because it requires multiple interacting rules simultaneously; single-rule causal models are not sufficient.
+5. **Autonomous goal inference:** even with correct causal world models, systems cannot determine what to optimize for without explicit instruction. ARC-AGI-3 operationalizes this gap: the model of the world and the model of desirable outcomes must be jointly inferred from environmental cues alone. No current architecture addresses this; it requires a goal-prior or intrinsic-motivation module (Block 3D) that is currently absent from all mainstream reasoning architectures.
 
 ---
 
@@ -180,20 +276,29 @@ This grounds the abstract-reasoning ingredients computationally:
 - **[[wiki/concepts/two-learning-timescales.md]]** — the W/M split is the computational implementation of model-building: slow W extracts the causal-structural model; fast M binds new instances to it within an episode; start-up software corresponds to the extreme-prior end of the slow-W spectrum.
 - **[[wiki/entities/arc-agi.md]]** — primary operational benchmark; ARC-AGI-2 identifies three capability gaps (symbolic interpretation, compositional reasoning, contextual rule application); ARC-AGI-3 adds a fourth: autonomous goal inference without instruction, operationalizing the gap between model-building and pattern recognition at the level of objective formation, not just rule inference.
 - **[[wiki/papers/arc-agi-overview.md]]** — Chollet's formal intelligence definition (skill-acquisition efficiency) is the quantitative operationalization of the model-building vs. pattern-recognition distinction.
-- **[[wiki/papers/arc-agi-3-paper.md]]** — source for the autonomous goal inference gap; establishes that <1% frontier AI vs. 100% human on ARC-AGI-3 reflects the absence of autonomous objective inference and the LRM knowledge-boundedness constraint, not raw capability limitations.
+- **[[wiki/papers/arc-agi-3-paper.md]]** — source for the autonomous goal inference gap; establishes that <1% frontier AI vs. 100% human on ARC-AGI-3 reflects the absence of autonomous objective inference and the LRM (Large Reasoning Model) knowledge-boundedness constraint, not raw capability limitations.
 - **[[wiki/papers/building-machine-thinks-like-people-lake-2016.md]]** — primary source; defines the pattern recognition / model-building distinction, the three required ingredients and their dependency, and the Characters + Frostbite diagnostic challenges.
 - **[[wiki/concepts/analogical-reasoning.md]]** — analogy is the prototype case of abstract reasoning; the four-component process (retrieval→mapping→inference→schema induction) provides the algorithmic-level description of model-building; the retrieval gap is the key diagnostic of abstract-reasoning failure in current AI systems.
 - **[[wiki/papers/analogy-holyoak-2012.md]]** — source for CWSG formalism, multiconstraint theory, LISA model, and frontopolar integration bottleneck; grounds the abstract-reasoning capability in a specific tested algorithm with neural correlates.
 - **[[wiki/concepts/hierarchical-representations.md]]** — hierarchical feedforward representations are the substrate for pattern recognition; the feedforward/feedback distinction added here marks the boundary between what hierarchy alone can provide and what abstract reasoning additionally requires.
 - **[[wiki/papers/dicarlo-visual-object-recognition-2012.md]]** — source for the feedforward/feedback operationalization; core recognition (~150 ms, no top-down) is the clearest biological instantiation of the pattern recognition pole of the Lake et al. distinction.
 - **[[wiki/concepts/latent-graph-discovery.md]]** — the lower-level problem formulation that grounds abstract reasoning computationally: causal model-building = discovering the latent graph (nodes, edges, topology) that generates observations, then using it to answer counterfactual and goal-flexible queries.
-- **[[wiki/concepts/representational-geometry.md]]** — provides the neural-population-level operational definition of abstraction via CCGP; complements the Lake et al. computational/behavioral framing with a measurable geometric criterion for when a neural representation will generalize to novel conditions.
+- **[[wiki/concepts/representational-geometry.md]]** — provides the neural-population-level operational definition of abstraction via CCGP (Cross-Condition Generalization Performance); complements the Lake et al. computational/behavioral framing with a measurable geometric criterion for when a neural representation will generalize to novel conditions.
 - **[[wiki/papers/hutter-aixi-2000.md]]** — provides the formal definition of general intelligence (order relation ⪰); the three Lake et al. ingredients emerge from the Kolmogorov simplicity prior; autonomous goal inference is the formal active-environment extension where K(µ)-bounded bounds break down.
-- **[[wiki/entities/pgm-benchmark.md]]** — the Raven-style PGM benchmark operationalizes visual abstract reasoning with explicit (r,o,a) triple semantics and eight generalisation regimes; its composition-decomposition asymmetry is the clearest empirical instantiation of the Lake et al. compositionality gap.
-- **[[wiki/papers/pgm-barrett-2018.md]]** — PGM provides an operational taxonomy of visual abstract reasoning failure: the composition-decomposition asymmetry (recombination of familiar primitives succeeds; genuinely novel primitive understanding fails near-chance) precisely instantiates the Lake et al. compositionality gap at the visual-relational level; the meta-target auxiliary training result supports the factorized-representation design requirement.
+- **[[wiki/entities/pgm-benchmark.md]]** — the Raven-style PGM (Progressive Generalization Matrix) benchmark operationalizes visual abstract reasoning with explicit (r,o,a) triple semantics and eight generalisation regimes; its composition-decomposition asymmetry is the clearest empirical instantiation of the Lake et al. compositionality gap.
+- **[[wiki/papers/pgm-barrett-2018.md]]** — PGM (Progressive Generalization Matrix) provides an operational taxonomy of visual abstract reasoning failure: the composition-decomposition asymmetry (recombination of familiar primitives succeeds; genuinely novel primitive understanding fails near-chance) precisely instantiates the Lake et al. compositionality gap at the visual-relational level; the meta-target auxiliary training result supports the factorized-representation design requirement.
 - **[[wiki/concepts/continual-learning.md]]** — abstract reasoning across episodes requires retaining prior causal models without catastrophic interference; the stability-plasticity trade-off is the temporal complement to compositionality/causality/learning-to-learn — a system that forgets its causal models after each episode cannot scaffold progressive abstraction or accumulate structured world knowledge.
 - **[[wiki/papers/hassabis-neuroscience-ai-2017.md]]** — survey source identifying simulation-based planning (HC preplay → model-based rollouts) and efficient one-shot learning (episodic control) as the key architectural mechanisms for model-building; frames these as the two most concrete near-term neuro-inspired AI contributions beyond the attention/RL foundations already incorporated.
 - **[[wiki/papers/conceptarc-moskvichev-2023.md]]** — provides the behavioral operationalization of model-building: human near-miss errors (concept grasped, execution wrong) vs. machine concept-failure errors (no concept model) are qualitatively distinct failure modes; the concept-group methodology establishes within-concept generalization as the evidence standard for genuine concept abstraction.
 - **[[wiki/concepts/world-models.md]]** — world models are the mechanistic substrate for model-based reasoning; the LLM "shallow common sense" failure (§8.2.2 LeCun 2022) is traceable to the absence of a grounded world model; autonomous goal inference (open problem 4) additionally requires inferring the objective from the world model without external instruction.
 - **[[wiki/entities/jepa-model.md]]** — Mode-2 planning in LeCun's architecture implements model-based reasoning as energy minimization over world-model trajectories; the Mode-1/Mode-2 dual process is a concrete implementation of the pattern-recognition/model-building distinction at the architecture level.
-- **[[wiki/concepts/energy-based-models.md]]** — reasoning as energy minimization (constraint satisfaction) is the formal bridge between AIXI's optimal world model and differentiable neural architectures; any reasoning task expressible as constraints over world states can be formulated as EBM inference.
+- **[[wiki/concepts/energy-based-models.md]]** — reasoning as energy minimization (constraint satisfaction) is the formal bridge between AIXI (AI with (X) induction (I))'s optimal world model and differentiable neural architectures; any reasoning task expressible as constraints over world states can be formulated as EBM (Energy-Based Model) inference.
+- **[[wiki/papers/shortcut-learning-geirhos-2020.md]]** — formalises the i.i.d./o.o.d. decision-rule taxonomy: shortcut solutions pass i.i.d. tests but fail o.o.d.; the intended solution is what ARC-AGI and abstract reasoning demand; the four-factor inductive-bias decomposition (architecture, data, loss, optimisation) is the design space for shortcut avoidance.
+- **[[wiki/concepts/intelligence-density.md]]** — $\mathcal{I}(n) \to \infty$ is the formal information-theoretic criterion for abstract reasoning: finite mechanism, infinite domain; the four-way taxonomy (rock → lookup table → hardware family → algorithm) directly operationalises the pattern-recognition/model-building distinction at the Kolmogorov level.
+- **[[wiki/concepts/shortcut-reasoning.md]]** — synthesizes three papers (Geirhos 2020, Yuan 2024, Beger 2025) into a unified account of how shortcut solutions arise; the ARC-domain shortcut catalogue (integer encodings, bounding boxes, connectivity, density) identifies the specific features that substitute for objectness-based reasoning.
+- **[[wiki/papers/beger-conceptarc-multimodal-2025.md]]** — dual-channel evaluation methodology (accuracy + rule quality) reveals that accuracy is directionally misleading by modality; rule-level analysis is the operationalization of the model-building/pattern-recognition distinction at the individual-task level.
+- **[[wiki/entities/frontiermath-benchmark.md]]** — cross-domain validation: research-level mathematics shows the same <5% frontier AI performance gap as ARC-AGI-2 despite opposite prior knowledge requirements — confirming the bottleneck is latent structure inference, not knowledge quantity.
+- **[[wiki/papers/glazer-frontiermath-2024.md]]** — source for FrontierMath benchmark construction, 3-axis difficulty decomposition, and model results; the <2% SOTA ceiling is the formal mathematics counterpart to ARC-AGI-2's ~4%.
+- **[[wiki/papers/odouard-2022-concept-evaluation.md]]** — introduces concept-based evaluation (OOD concept variations as understanding probe) and provides the earliest empirical demonstration of the concept-shortcut gap on RAVEN/ARC; directly precedes ConceptARC, which formalized this methodology into a systematic 16-concept benchmark.
+- **[[wiki/papers/math-perturb-2025.md]]** — MATH-Perturb's hard perturbations (12–28% drops vs. <5% on surface edits) empirically show that high benchmark accuracy does not imply structural robustness; the subtle memorization failure mode (technique-without-structural-check) is a mathematical instantiation of shortcut learning.
+- **[[wiki/papers/verifiers-math-cobbe-2021.md]]** — verifier training shows path evaluation is more learnable than path generation (30× size multiplier), revealing that correctness structure is more regular than solution structure — relevant to the model-building / pattern-recognition distinction.

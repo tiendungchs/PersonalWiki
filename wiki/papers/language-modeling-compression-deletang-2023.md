@@ -31,6 +31,6 @@ related: [wiki/concepts/information-theory.md, wiki/concepts/predictive-coding.m
 ## Related Pages
 
 - [[wiki/concepts/information-theory.md]] — compression-prediction equivalence; Solomonoff predictor; scaling law twist; tokenization as pre-compression
-- [[wiki/concepts/predictive-coding.md]] — FEP accuracy term = cross-entropy = compression rate; FEP minimization is compression minimization
+- [[wiki/concepts/predictive-coding.md]] — FEP (Free Energy Principle) accuracy term = cross-entropy = compression rate; FEP (Free Energy Principle) minimization is compression minimization
 - [[wiki/concepts/meta-learning.md]] — in-context learning = in-context compression; frozen slow-W is a compression prior; fast inner loop adapts without gradient updates
 - [[wiki/concepts/attention.md]] — context length is the compression window; tokenization shapes effective WM capacity

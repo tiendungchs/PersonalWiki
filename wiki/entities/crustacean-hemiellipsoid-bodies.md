@@ -37,7 +37,7 @@ related: [wiki/concepts/convergent-allocentric-coding.md, wiki/entities/arthropo
 
 - Whether the place-cell-like activity represents true allocentric coding (remapping with context, environment-independent coordinate system) or simpler egocentric/sensory responses.
 - Whether a path integration mechanism is present (no evidence reported in transcript).
-- Relationship between hemiellipsoid body function and the crustacean central complex (if present); insect CX and mushroom bodies are distinct; crustacean equivalent is less characterized.
+- Relationship between hemiellipsoid body function and the crustacean central complex (if present); insect CX (Central Complex) and mushroom bodies are distinct; crustacean equivalent is less characterized.
 
 ---
 
@@ -56,12 +56,12 @@ related: [wiki/concepts/convergent-allocentric-coding.md, wiki/entities/arthropo
 ## Limitations
 
 - Weakest evidence tier in the convergent coding table: structural motif + one tentative place-cell report, no mechanistic confirmation.
-- The "place-cell-like" claim requires replication and demonstration of allocentric (not retinotopic or egocentric) coding before it can be placed on equal footing with the HC or CX evidence.
+- The "place-cell-like" claim requires replication and demonstration of allocentric (not retinotopic or egocentric) coding before it can be placed on equal footing with the HC or CX (Central Complex) evidence.
 
 ---
 
 ## Connections
 
 - **[[wiki/concepts/convergent-allocentric-coding.md]]** — hemiellipsoid bodies contribute weak but directionally consistent evidence for the expansion-compression motif in a third arthropod sub-lineage (separate from insects and jumping spiders).
-- **[[wiki/entities/arthropod-mushroom-bodies.md]]** — structural sister structure; share Kenyon-cell architecture and likely a common evolutionary origin; together constitute the arthropod "HC-like" memory system distinct from the CX "MEC-like" system.
+- **[[wiki/entities/arthropod-mushroom-bodies.md]]** — structural sister structure; share Kenyon-cell architecture and likely a common evolutionary origin; together constitute the arthropod "HC-like" memory system distinct from the CX (Central Complex) "MEC-like" system.
 - **[[wiki/entities/hippocampal-entorhinal-system.md]]** — functional reference; the place-cell-like activity (if confirmed) would constitute another independent evolutionary derivation of the p = f(g, x) conjunctive code.

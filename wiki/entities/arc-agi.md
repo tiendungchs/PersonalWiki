@@ -3,9 +3,9 @@ title: "ARC-AGI"
 type: entity
 tags: [ARC-AGI, benchmark, abstract-reasoning, fluid-intelligence, compositional-generalization, few-shot, test-time-reasoning]
 created: 2026-06-19
-updated: 2026-06-23
-sources: [ARC-AGI-1.md, ARC-AGI-2.md, ARC-AGI-3.md, What is ARC-AGI.md, ARC-AGI-3-paper.md, The ConceptARC Benchmark, ARC Prize 2025 Technical Report.md]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/meta-learning.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/refinement-loops.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/entities/tiwm-model.md, wiki/entities/mlc-model.md, wiki/papers/arc-agi-overview.md, wiki/papers/arc-agi-3-paper.md, wiki/papers/arc-prize-2025-technical-report.md, wiki/papers/building-machine-thinks-like-people-lake-2016.md, wiki/papers/conceptarc-moskvichev-2023.md]
+updated: 2026-06-24
+sources: [ARC-AGI-1.md, ARC-AGI-2.md, ARC-AGI-3.md, What is ARC-AGI.md, ARC-AGI-3-paper.md, The ConceptARC Benchmark, ARC Prize 2025 Technical Report.md, choi-intelligence-density-2026, beger-conceptarc-multimodal-2025, ARC Prize 2024 Technical Report.md, ARC-AGI-2 A New Challenge for Frontier AI Reasoning Systems.md, Understanding and Benchmarking Artificial Intelligence o3 of OpenAI Is Not AGI.md]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/meta-learning.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/refinement-loops.md, wiki/concepts/shortcut-reasoning.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/entities/tiwm-model.md, wiki/entities/mlc-model.md, wiki/entities/frontiermath-benchmark.md, wiki/papers/arc-agi-overview.md, wiki/papers/arc-agi-3-paper.md, wiki/papers/arc-prize-2025-technical-report.md, wiki/papers/building-machine-thinks-like-people-lake-2016.md, wiki/papers/conceptarc-moskvichev-2023.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/papers/choi-intelligence-density-2026.md, wiki/papers/beger-conceptarc-multimodal-2025.md, wiki/papers/arc-prize-2024-technical-report.md, wiki/papers/arc-agi-2-paper.md, wiki/papers/o3-not-agi.md]
 ---
 
 # ARC-AGI
@@ -67,6 +67,23 @@ ConceptARC (Moskvichev et al. 2023 [[wiki/papers/conceptarc-moskvichev-2023.md]]
 
 **Concept-level difficulty profile:** highest program scores on spatial-relational concepts (Extend to Boundary 77%, Filled/Not Filled 73%, Count 60%); lowest on compositional transformation concepts (Copy 23%, Order 27%, Move to Boundary 37%) — confirming that spatial heuristics are easier to program than abstract operation generalization.
 
+**Rule-level evaluation (Beger et al. 2025)** extends the near-miss/concept-failure dissociation to frontier models by requiring both an output grid *and* a natural-language rule per task. Rule-grid alignment exceeds 90%, validating NL rules as faithful reasoning proxies.
+
+*Modality × accuracy results (ConceptARC, best setting = medium effort + Python tools):*
+
+| Model | Textual accuracy | Visual accuracy | Human (textual ref.) |
+|---|---|---|---|
+| o3 | 75.6% | **29.2%** | ~73% (pass@1) |
+| o4-mini | 77.7% | 25.0% | — |
+| Gemini 2.5 Pro | 60.4% | 5.8% | — |
+| Claude Sonnet 4 | 55.0% | 6.9% | — |
+
+*Shortcut rate (correct-unintended rules as % of correct outputs, textual):* o3 ~29%, Gemini ~22%, Claude ~5%; humans ~4.6%.
+
+*Visual gap mechanism:* models form correct-intended rules in ~28% of wrong-grid visual cases (o3) — the bottleneck is perceptual (grid dimension recognition, object placement) not conceptual. Python tools compensate by enabling computer-vision libraries; more reasoning tokens alone have no significant visual effect.
+
+*Missing objectness prior:* models systematically lack Spelke's objectness prior, defaulting to pixel/color/connectivity shortcuts — see [[wiki/concepts/shortcut-reasoning.md]].
+
 ---
 
 ## ARC-AGI-2 Competition Results (2025)
@@ -77,7 +94,7 @@ Top Kaggle score: **24.03%** (NVARC), human: ~84%. All top entries exploit refin
 |---|---|---|---|
 | 1st | NVARC | 24.03% | Test-time training (extends 2024 winner) + heavy synthetic data generation |
 | 2nd | ARChitects | 16.53% | Masked-diffusion LM with 2D spatial awareness + recursive self-refinement |
-| 3rd | MindsAI | 12.64% | TTT pipeline: augmentation ensembles + tokenizer dropout + novel pretraining |
+| 3rd | MindsAI | 12.64% | TTT (Test-Time Training)pipeline: augmentation ensembles + tokenizer dropout + novel pretraining |
 
 **Paper award highlights:**
 - **TRM (Jolicoeur-Martineau):** 7M-parameter network, no pretraining, trains from scratch at test time → 45% ARC-AGI-1, 8% ARC-AGI-2. Recursive latent-answer architecture updates a hidden state z and answer y iteratively.
@@ -105,7 +122,7 @@ ARC-AGI-2 was designed to diagnose three specific failure modes of current reaso
 
 ---
 
-## LRM Knowledge-Boundedness
+## LRM (Large Reasoning Model) Knowledge-Boundedness
 
 ARC-AGI-3 formalizes a structural constraint on current AI reasoning capability:
 
@@ -113,7 +130,7 @@ ARC-AGI-3 formalizes a structural constraint on current AI reasoning capability:
 
 This explains why test-time reasoning (the o3 breakthrough that solved ARC-AGI-1) does not transfer to genuinely novel domains: the fast inner loop adapts only within the pretraining distribution envelope. ARC-AGI-3 violates both conditions simultaneously — novel mechanics absent from any training corpus, no in-loop verifier — which is the mechanism behind <1% frontier AI vs. 100% human.
 
-This is not "jagged intelligence" (inconsistency) but a principled structural limit: LRM capability is consistently and predictably bounded by training knowledge coverage, explaining why frontier models automate verifiable domains (coding, math) while failing on truly novel environments.
+This is not "jagged intelligence" (inconsistency) but a principled structural limit: LRM (Large Reasoning Model) capability is consistently and predictably bounded by training knowledge coverage, explaining why frontier models automate verifiable domains (coding, math) while failing on truly novel environments.
 
 ---
 
@@ -163,6 +180,7 @@ Maps to the complete building-blocks architecture: Block 3D (goal generator from
 - **Scale vs. adaptation:** ARC-AGI-1 resisted 50,000× LLM scale-up (2019–2024); o3 solved it via test-time reasoning — empirically separating pre-training scale from in-context adaptation as the lever for fluid intelligence.
 - **Efficiency criterion:** brute-force search could solve ARC-AGI given unlimited compute; this would not constitute intelligence. Intelligence = solving at human-comparable efficiency.
 - **Human baseline:** All ARC-AGI-2 eval tasks solved by ≥2 humans in ≤2 attempts; calibrated IDD across public/semi-private/private splits.
+- **ARC-AGI-2 human calibration:** 407 participants, 13,405 attempts, 62% overall solve rate, 2.3 min median time; no correlation with demographic factors (age, education, domain background) — tasks measure reasoning, not domain skill.
 - **ARC-AGI-3 launch gap:** All 135 environments human-solvable (100%, verified ≥2 independent humans); frontier AI <1% without task-specific harnesses (best: Opus 4.6 0.50%); best agent competition result (StochasticGoose, CNN+RL, preview set): 12.58% via informed action-space search rather than world-model planning. Harness-based systems: near-human on environments the harness was built for, 0% on unseen — confirming harness scores measure task-specific optimization, not general intelligence.
 
 ---
@@ -173,6 +191,8 @@ Maps to the complete building-blocks architecture: Block 3D (goal generator from
 - ARC-AGI-1 is now solved; relevant mainly as historical comparator and for methods that pre-date o3.
 - ARC-AGI-1 and ARC-AGI-2 appear to have been compromised by synthetic-task coverage attacks (see Benchmark Contamination section); the OOD private-set design of ARC-AGI-3 is the proposed countermeasure, but its long-term resistance remains to be validated as model capabilities advance.
 - <1% frontier AI performance on ARC-AGI-3 makes it hard to diagnose which of the four pillars is the primary bottleneck; the benchmark currently lacks intermediate difficulty scaffolding for capability decomposition.
+- The <5% frontier AI ceiling is not unique to visual grid tasks: FrontierMath ([[wiki/entities/frontiermath-benchmark.md]]) shows the same gap in research-level mathematics from the opposite design direction (maximal domain knowledge vs. ARC-AGI's minimal-knowledge constraint), isolating latent structure inference as the shared bottleneck.
+- ARC-AGI tasks permit only **exploitation** (solution search within a fixed, known representation space — integer colors, grid format, predefined action vocabulary); real-world problems additionally require **exploration** (constructing the representation itself). Unrestricted candidate trialling before submission is structurally inapplicable to most real-world domains where ≤1 attempt is permitted.
 
 ---
 
@@ -181,13 +201,21 @@ Maps to the complete building-blocks architecture: Block 3D (goal generator from
 - **[[wiki/concepts/refinement-loops.md]]** — refinement loops are the dominant technical driver of ARC-AGI-2 progress; the benchmark's exact-match verifier is what makes iterative generate-verify-refine cycles tractable; ARC-AGI-3's removal of the in-loop verifier is precisely what is expected to break current refinement-loop approaches.
 - **[[wiki/concepts/structural-generalization.md]]** — ARC-AGI is the primary empirical target: tasks require inferring a transformation rule and applying it to new content, demanding factorized g/x/p representations; ARC-AGI-2's three capability gaps operationalise what structural generalization gaps remain after o3.
 - **[[wiki/concepts/compositional-generalization.md]]** — ARC-AGI-2 compositional reasoning gap = systematicity and localism failure from Hupkes 2020; contextual rule application gap = structural generalization under WM-gated context; together they identify the specific facet binding constraint that prevents current systems from reaching 85% on ARC-AGI-2.
-- **[[wiki/concepts/meta-learning.md]]** — ARC-AGI-1's o3 solution empirically validates test-time adaptation (fast inner loop) over pre-training scale (slow outer loop) as the lever for fluid intelligence; MLC achieves human-level on compositional grammar but does not transfer to ARC-AGI grid tasks.
+- **[[wiki/concepts/meta-learning.md]]** — ARC-AGI-1's o3 solution empirically validates test-time adaptation (fast inner loop) over pre-training scale (slow outer loop) as the lever for fluid intelligence; MLC (Meta-Learning as Compositional) achieves human-level on compositional grammar but does not transfer to ARC-AGI grid tasks.
 - **[[wiki/queries/building-blocks-mec-hc-pfc.md]]** — ARC-AGI-2 three gaps map directly to Blocks 3A/3B/3C; ARC-AGI-3 adds Block 3D; the benchmark is the external validation target for the full 11-block decomposition.
 - **[[wiki/entities/tiwm-model.md]]** — TIWM was designed for ARC-AGI Type 2 tasks; Block 3A (Transformation Inferrer) directly targets the symbolic interpretation and contextual rule application gaps in ARC-AGI-2.
 - **[[wiki/concepts/latent-graph-discovery.md]]** — ARC-AGI is the primary empirical instantiation of latent edge discovery: nodes = grid states, edges = unknown transformation rules, tasks test inference from sparse (before, after) pairs; ARC-AGI-3 additionally makes the target node latent (autonomous goal inference).
-- **[[wiki/entities/mlc-model.md]]** — MLC achieves 92.9–96.8% on compositional grammar few-shot tasks in language but has not been shown to transfer to ARC-AGI's visuo-spatial grid domain; MLC demonstrates the training-objective solution (episodic meta-learning) but ARC-AGI-2 requires additional architectural capabilities.
+- **[[wiki/entities/mlc-model.md]]** — MLC (Meta-Learning as Compositional) achieves 92.9–96.8% on compositional grammar few-shot tasks in language but has not been shown to transfer to ARC-AGI's visuo-spatial grid domain; MLC (Meta-Learning as Compositional) demonstrates the training-objective solution (episodic meta-learning) but ARC-AGI-2 requires additional architectural capabilities.
 - **[[wiki/concepts/abstract-reasoning.md]]** — ARC-AGI is the primary operational benchmark for abstract reasoning; the efficiency criterion (skill-acquisition per unit experience) operationalizes the pattern recognition / model-building distinction — pattern matchers hit scale ceilings, model-builders adapt within the episode.
-- **[[wiki/papers/pgm-barrett-2018.md]]** — PGM (ICML 2018) is the controlled visual-relational precursor benchmark: the same interpolation/extrapolation/held-out distinction was established there, and the composition-decomposition asymmetry in WReN generalisation foreshadows the three capability gaps that ARC-AGI-2 (2025) identified at larger scale.
+- **[[wiki/papers/pgm-barrett-2018.md]]** — PGM (Progressive Generalization Matrix) (ICML 2018) is the controlled visual-relational precursor benchmark: the same interpolation/extrapolation/held-out distinction was established there, and the composition-decomposition asymmetry in WReN generalisation foreshadows the three capability gaps that ARC-AGI-2 (2025) identified at larger scale.
 - **[[wiki/papers/building-machine-thinks-like-people-lake-2016.md]]** — Lake et al. 2016 provides the motivational framing that ARC-AGI operationalizes: the Frostbite challenge (924h vs. 15 minutes) is the precursor diagnostic that Chollet formalized into ARC-AGI's efficiency-based intelligence definition.
-- **[[wiki/papers/arc-agi-3-paper.md]]** — primary technical paper for ARC-AGI-3; documents four-pillar agentic decomposition, RHAE scoring, human calibration (486 participants, 414 environments), LRM knowledge-boundedness theorem, benchmark contamination analysis, and launch results.
+- **[[wiki/papers/arc-agi-3-paper.md]]** — primary technical paper for ARC-AGI-3; documents four-pillar agentic decomposition, RHAE scoring, human calibration (486 participants, 414 environments), LRM (Large Reasoning Model) knowledge-boundedness theorem, benchmark contamination analysis, and launch results.
 - **[[wiki/papers/conceptarc-moskvichev-2023.md]]** — decomposes the ARC Core Knowledge vocabulary into 16 independently testable concept groups; within-concept generalization scores and near-miss vs. concept-failure error dissociation provide the most granular behavioral diagnostic of what AI systems fail to grasp in the ARC domain.
+- **[[wiki/papers/beger-conceptarc-multimodal-2025.md]]** — extends ConceptARC evaluation with rule-level analysis on frontier reasoning models; reveals accuracy overestimates textual abstraction (~29% shortcut rate vs. ~5% human) and underestimates visual abstraction (~28% correct-intended rules in wrong-grid visual cases); identifies missing objectness prior as the primary shortcut driver.
+- **[[wiki/concepts/shortcut-reasoning.md]]** — the ARC shortcut catalogue (integer color encodings, bounding boxes, connectivity, density) operationalizes why AI models score above chance without genuine concept abstraction; shortcut-resistance requires the intended-solution regime that ARC-AGI is designed to demand.
+- **[[wiki/papers/shortcut-learning-geirhos-2020.md]]** — provides the theoretical framing for why ARC-AGI-2/3 are hard: each version is designed as an o.o.d. benchmark where shortcut solutions (which pass i.i.d. tests) fail; the benchmark contamination problem (ARC-AGI-1/2 coverage attacks) is precisely the synthetic-data route by which shortcut solutions are manufactured at scale.
+- **[[wiki/papers/choi-intelligence-density-2026.md]]** — Choi's Intelligence Density $\mathcal{I}$ and Chollet's skill-acquisition efficiency share the core generalisation-not-memorisation criterion; Proposition 2 establishes $\Upsilon$ (Legg-Hutter) is monotonically increasing in $\mathcal{I}$, formally unifying Chollet's, Legg-Hutter's, and Choi's intelligence measures.
+- **[[wiki/entities/frontiermath-benchmark.md]]** — parallel benchmark at the opposite prior-knowledge extreme: FrontierMath requires maximal domain expertise (research mathematics) where ARC-AGI requires minimal (Core Knowledge priors); both converge on <5% frontier AI performance, confirming that the shared bottleneck is latent structure inference, not knowledge quantity.
+- **[[wiki/papers/arc-prize-2024-technical-report.md]]** — 2024 competition report establishing TTT (Test-Time Training)as the breakthrough paradigm; documents the three disjoint solution families and ensemble necessity that motivated the refinement-loop taxonomy.
+- **[[wiki/papers/arc-agi-2-paper.md]]** — primary source for ARC-AGI-2 design rationale: compositional generalization focus, brute-force resistance, human calibration methodology, and SOTA collapse from ARC-AGI-1.
+- **[[wiki/papers/o3-not-agi.md]]** — formalizes the exploitation/exploration gap: ARC-AGI permits only exploitation of a fixed representation space; real-world problems require exploration; unrestricted trialling is structurally inapplicable beyond closed verifiable domains.

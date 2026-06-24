@@ -3,9 +3,9 @@ title: "Attention (Transformer Self-Attention)"
 type: concept
 tags: [attention, transformer, hopfield, positional-encodings, associative-memory]
 created: 2026-06-12
-updated: 2026-06-22
-sources: [t-TEM, convergence-wiring-transcript, bolzman-machine-transcript, Compositionality_decomposed]
-related: [wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/small-world-networks.md, wiki/concepts/compositional-generalization.md, wiki/concepts/associative-memory.md, wiki/concepts/canonical-microcircuit.md, wiki/entities/tem-model.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/boltzmann-machine.md, wiki/entities/ltc-model.md, wiki/entities/gwt-model.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/boltzmann-machine-transcript.md, wiki/papers/compositionality-decomposed-hupkes-2020.md, wiki/papers/hopfield-networks-crouse-2022.md, wiki/papers/ltc-emergentmind-overview.md, wiki/papers/language-modeling-compression-deletang-2023.md, wiki/papers/gnw-mashour-2020.md]
+updated: 2026-06-23
+sources: [t-TEM, convergence-wiring-transcript, bolzman-machine-transcript, Compositionality_decomposed, Attention Is All You Need]
+related: [wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/small-world-networks.md, wiki/concepts/compositional-generalization.md, wiki/concepts/associative-memory.md, wiki/concepts/canonical-microcircuit.md, wiki/concepts/binding-problem.md, wiki/entities/tem-model.md, wiki/entities/transformer-model.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/boltzmann-machine.md, wiki/entities/ltc-model.md, wiki/entities/gwt-model.md, wiki/papers/vaswani-attention-2017.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/boltzmann-machine-transcript.md, wiki/papers/compositionality-decomposed-hupkes-2020.md, wiki/papers/hopfield-networks-crouse-2022.md, wiki/papers/ltc-emergentmind-overview.md, wiki/papers/language-modeling-compression-deletang-2023.md, wiki/papers/gnw-mashour-2020.md]
 ---
 
 # Attention (Transformer Self-Attention)
@@ -41,6 +41,31 @@ The softmax `exp(sim/T) / Σ exp(sim/T)` is the Boltzmann distribution `P ∝ ex
 | T → 0 | Hard winner-take-all attention | Deterministic Hopfield energy minimization |
 
 The sigmoid in the Boltzmann machine stochastic update rule and the softmax in attention are both Boltzmann distributions — differing only in the number of competing states (2 vs. sequence length). The Hopfield → transformer derivation is thus grounded in statistical mechanics, not merely linear algebra.
+
+---
+
+## Multi-Head Attention and Complexity
+
+**Multi-Head Attention** (Vaswani et al. 2017 [[wiki/papers/vaswani-attention-2017.md]]) projects Q, K, V into h independent subspaces, each attending over different structural patterns simultaneously:
+
+```
+MultiHead(Q,K,V) = Concat(head₁,...,headₕ) W^O
+headᵢ = Attention(Q W^Q_i, K W^K_i, V W^V_i)
+```
+
+With h=8 heads and d_k=d_v=64 each, total cost equals single-head attention at d_model=512. Heads specialize without explicit supervision: anaphora resolution, long-range syntactic dependency, and phrase-boundary tracking emerge as distinct head functions (Figures 3–5, Vaswani 2017). This specialization is the engineering analog of canonical microcircuit column differentiation ([[wiki/concepts/canonical-microcircuit.md]]).
+
+**Complexity comparison (Table 1, Vaswani 2017):**
+
+| Layer Type | Complexity/layer | Sequential ops | Max path length |
+|------------|-----------------|----------------|-----------------|
+| Self-Attention | O(n²·d) | O(1) | **O(1)** |
+| Recurrent | O(n·d²) | O(n) | O(n) |
+| Convolutional | O(k·n·d²) | O(1) | O(log_k n) |
+
+The O(1) maximum path length is the key binding-problem advantage: any two distant positions can interact in a single computation step. Recurrent layers require O(n) steps for the same interaction, with vanishing/exploding gradients along the path. This maps to the binding problem ([[wiki/concepts/binding-problem.md]]): attention achieves global binding in constant depth, making it the natural substrate for assembling distributed feature representations into coherent objects.
+
+The quadratic O(n²·d) complexity per layer is the architectural cost: extending the context window to handle longer reasoning chains is expensive, mapping directly to biological WM capacity constraints ([[wiki/concepts/working-memory.md]]).
 
 ---
 
@@ -111,8 +136,8 @@ The O(n²) attention complexity makes extending context length expensive — a h
 The Global Neuronal Workspace (Mashour et al. 2020) provides the biological mechanism linking attention, WM, and conscious access in sequence:
 
 1. **Attention selects** one representation from competing candidates in specialized processors — amplifies signal strength via pre-conscious AMPA-mediated feedforward pathways
-2. **Ignition fires** when the selected representation's feedforward input to PFC crosses threshold — NMDA-mediated recurrent loops self-sustain, creating a globally reverberant state (~300ms post-stimulus)
-3. **Broadcasting** makes the ignited content simultaneously available to all specialized processors via long-range GNW neurons (layer II/III + V in the PFC-parietal hub core)
+2. **Ignition fires** when the selected representation's feedforward input to PFC (Prefrontal Cortex) crosses threshold — NMDA-mediated recurrent loops self-sustain, creating a globally reverberant state (~300ms post-stimulus)
+3. **Broadcasting** makes the ignited content simultaneously available to all specialized processors via long-range GNW (Global Neuronal Workspace) neurons (layer II/III + V in the PFC-parietal hub core)
 
 **Attention ≠ consciousness:** Multiple dissociation paradigms confirm that spatial attention is directed pre-consciously; ignition is the additional threshold event that converts attended information into globally accessible conscious content. Attended but sub-threshold stimuli can persist for >1 second in decaying activity without igniting.
 
@@ -120,7 +145,7 @@ The Global Neuronal Workspace (Mashour et al. 2020) provides the biological mech
 
 | Stage | Receptor analog | Timing | Function |
 |---|---|---|---|
-| Fast selection (pre-conscious) | AMPA: fast attention head amplifies candidate from input streams | Early | Candidate representation reaches PFC above noise |
+| Fast selection (pre-conscious) | AMPA: fast attention head amplifies candidate from input streams | Early | Candidate representation reaches PFC (Prefrontal Cortex) above noise |
 | Workspace entry (conscious) | NMDA: slow recurrent hub sustains representation globally | Late | Representation broadcast to all processors for transformation |
 
 Only representations reaching Stage 2 (GNW-active ignition) can be transformed by downstream reasoning processors — the same constraint as the active vs. activity-silent WM distinction ([[wiki/concepts/working-memory.md]]).
@@ -144,6 +169,9 @@ Only representations reaching Stage 2 (GNW-active ignition) can be transformed b
 - **[[wiki/concepts/associative-memory.md]]** — the modern Hopfield update rule (Ramsauer 2020) is mathematically identical to transformer self-attention; associative-memory provides the classical Hopfield foundation (binary, one-shot Hebbian, energy proof) that the Hopfield↔attention derivation on this page builds upon.
 - **[[wiki/entities/ltc-model.md]]** — Liquid-S4 fuses LTC's input-dependent liquid kernel with the SSM DPLR framework, producing causal convolutions that capture multi-way input correlations; this is a convergence point between continuous-time adaptive-memory (LTC) and the discrete sequence modeling thread (attention/SSM), achieving 87.32% LRA SOTA — suggesting liquid τ dynamics are a productive inductive bias for long-range sequence tasks where standard SSMs and transformers saturate.
 - **[[wiki/papers/language-modeling-compression-deletang-2023.md]]** — establishes that the context window is a compression window; tokenization is a pre-compression stage that trades sequence length for vocabulary size; larger slow-W is a better compression prior; the O(n²) cost of extending context maps to the WM capacity limit for in-context reasoning.
-- **[[wiki/entities/gwt-model.md]]** — GNW is the biological mechanism that converts attentional selection into global broadcasting; the two-stage AMPA (fast selection) / NMDA (sustained ignition) design separates attentional amplification from workspace entry; only GNW-active items can be transformed downstream.
+- **[[wiki/entities/gwt-model.md]]** — GNW (Global Neuronal Workspace) is the biological mechanism that converts attentional selection into global broadcasting; the two-stage AMPA (fast selection) / NMDA (sustained ignition) design separates attentional amplification from workspace entry; only GNW-active items can be transformed downstream.
 - **[[wiki/papers/gnw-mashour-2020.md]]** — source for the attention-consciousness-WM tripartite relationship in GNW; ignition as the threshold phase transition; hub core as the anatomical routing mechanism.
-- **[[wiki/concepts/canonical-microcircuit.md]]** — horizontal smooth cells (basket/chandelier) in L2/3 implement the biological soft WTA that is the neural analog of softmax attention: the temperature → 0 limit corresponds to strong lateral inhibition; the patch structure determines which candidates compete (local patches, not all-to-all).
+- **[[wiki/concepts/canonical-microcircuit.md]]** — horizontal smooth cells (basket/chandelier) in L2/3 implement the biological soft WTA (Winner-Take-All) that is the neural analog of softmax attention: the temperature → 0 limit corresponds to strong lateral inhibition; the patch structure determines which candidates compete (local patches, not all-to-all).
+- **[[wiki/entities/transformer-model.md]]** — the Transformer is the engineering instantiation of multi-head attention; its architecture table, complexity analysis, and localism failure profile make the concept page's theoretical claims concrete and testable.
+- **[[wiki/papers/vaswani-attention-2017.md]]** — primary source for scaled dot-product attention, multi-head formalism, sinusoidal positional encodings, and the O(1) max path length complexity argument.
+- **[[wiki/concepts/binding-problem.md]]** — O(1) maximum path length is attention's key contribution to feature binding: any two positions interact in a single step, enabling constant-depth long-range binding that recurrent architectures cannot achieve at equivalent cost.

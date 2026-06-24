@@ -92,7 +92,7 @@ Maass et al. (2002) demonstrate that short-term synaptic plasticity is a **compu
 | **Dynamic synapses** (Tsodyks-Markram) | ~800ms (hundreds of ms before current input) | Each new spike processed differently depending on prior context |
 | **Static synapses** | ~30ms (one membrane time constant τ_m) | Responses to each input spike stereotypic; no context-sensitivity |
 
-**Mechanism:** the depression/facilitation level is a continuous-valued time-filtered trace of the presynaptic spike train with time constant τ_D or τ_F. This trace lives in the *synapse*, not the neuron — it is structurally identical to the activity-silent STSP mechanism in biological WM ([[wiki/concepts/working-memory.md]]). A spiking reservoir targeting behavioral timescales (hundreds of ms to seconds) requires dynamic synapses; membrane-only reservoirs are limited to τ_m-scale memory regardless of circuit size.
+**Mechanism:** the depression/facilitation level is a continuous-valued time-filtered trace of the presynaptic spike train with time constant τ_D or τ_F. This trace lives in the *synapse*, not the neuron — it is structurally identical to the activity-silent STSP (Short-Term Synaptic Plasticity) mechanism in biological WM ([[wiki/concepts/working-memory.md]]). A spiking reservoir targeting behavioral timescales (hundreds of ms to seconds) requires dynamic synapses; membrane-only reservoirs are limited to τ_m-scale memory regardless of circuit size.
 
 ---
 
@@ -142,35 +142,35 @@ The transcript explicitly frames the neocortex as a reservoir of ~150,000 cortic
 
 Liu et al. 2025 ([[wiki/papers/trnn-liu-2025.md]]) provides a direct comparison point: Barak et al. 2013 showed that reservoir networks (and partially trained RNNs) already exhibit transient activity better matching biological WM recordings than fully trained vanilla RNNs — the random frozen W_res implicitly produces a high Transient Index because spectral radius < 1 creates echo-decay dynamics rather than fixed-point attractors.
 
-The TRNN can be read as a **learned reservoir**: it starts from the reservoir's transient dynamics premise but adds three structured modifications (self-inhibition, sparse connections, hierarchical topology) that are trained via backprop. The result is higher TI than vanilla RNN (approaches reservoir-level transience) while achieving better task performance than both reservoir and vanilla RNN — because the hierarchical topology and learned sparse connections are optimized for the specific task structure rather than being random.
+The TRNN (Transition RNN) can be read as a **learned reservoir**: it starts from the reservoir's transient dynamics premise but adds three structured modifications (self-inhibition, sparse connections, hierarchical topology) that are trained via backprop. The result is higher TI than vanilla RNN (approaches reservoir-level transience) while achieving better task performance than both reservoir and vanilla RNN — because the hierarchical topology and learned sparse connections are optimized for the specific task structure rather than being random.
 
-| | Reservoir | TRNN | LTC | Vanilla RNN |
+| | Reservoir | TRNN (Transition RNN) | LTC (Liquid Time-Constant) | Vanilla RNN |
 |---|---|---|---|---|
 | W / dynamics | Frozen random | Learned sparse + hierarchical (discrete-step) | Learned ODE + liquid τ (continuous-time) | Learned full (discrete-step) |
 | Transient Index | High (echo-state dynamics) | High (self-inhibition + sparsity) | High (liquid τ sweeps large manifold) | Low (attractor collapses) |
 | WM task performance | Better than vanilla; limited by linear readout | Best (multi-item, spatial WM) | Good (4/7 time-series tasks; long-delay limited) | Worst |
 | Stability guarantee | Only within echo-state regime (ρ < 1) | Not analytically proven | Yes — Theorems 1 & 2 | No |
 | Cross-task transfer | None (frozen) | Limited (task-trained) | Limited (task-trained) | Better than reservoir for trained task |
-| Biological grounding | Minimal | C. elegans + mammalian PFC | Derived from C. elegans cable equation | Minimal |
+| Biological grounding | Minimal | C. elegans + mammalian PFC (Prefrontal Cortex) | Derived from C. elegans cable equation | Minimal |
 
-LTCs ([[wiki/entities/ltc-model.md]]) are the continuous-time analog of the TRNN: where TRNN achieves transient dynamics through discrete self-inhibition and sparse hierarchical topology, LTC achieves high trajectory expressivity through the liquid time constant — each neuron continuously adapts its integration window based on inputs. The fused ODE solver makes LTCs tractable for stiff systems where standard Runge-Kutta fails.
+LTCs ([[wiki/entities/ltc-model.md]]) are the continuous-time analog of the TRNN: where TRNN (Transition RNN) achieves transient dynamics through discrete self-inhibition and sparse hierarchical topology, LTC (Liquid Time-Constant) achieves high trajectory expressivity through the liquid time constant — each neuron continuously adapts its integration window based on inputs. The fused ODE solver makes LTCs tractable for stiff systems where standard Runge-Kutta fails.
 
 ---
 
 ## LSNN: Spiking Reservoir with Adaptive Memory
 
-Bellec et al. (2018). The **Long Short-Term Memory SNN (LSNN)** replaces standard LIF reservoir neurons with ALIF neurons ([[wiki/concepts/spike-frequency-adaptation.md]]):
+Bellec et al. (2018). The **Long Short-Term Memory SNN (LSNN)** replaces standard LIF (Leaky Integrate-and-Fire) reservoir neurons with ALIF (Adaptive Leaky Integrate-and-Fire) neurons ([[wiki/concepts/spike-frequency-adaptation.md]]):
 
 | Module | Role | Implementation |
 |---|---|---|
 | X | Input spike streams | External, multi-modal |
-| R | Spiking reservoir | LIF excitatory + inhibitory (random W_res) |
-| A | Adaptive module | ALIF neurons: slow threshold adaptation a(t), τ_a ≫ τ_m |
+| R | Spiking reservoir | LIF (Leaky Integrate-and-Fire) excitatory + inhibitory (random W_res) |
+| A | Adaptive module | ALIF (Adaptive Leaky Integrate-and-Fire) neurons: slow threshold adaptation a(t), τ_a ≫ τ_m |
 | Y | Linear readout | Trained by BPTT + pseudo-derivatives (membrane potential surrogate) |
 
 The slow adaptation current a(t) plays the functional role of LSTM cell state: it maintains per-neuron memory across time intervals ∝ τ_a without gating machinery. **Result:** LSNN achieves LSTM-comparable accuracy on sequential MNIST and TIMIT — demonstrating that LSTM-style sequential learning ability can emerge from reservoir dynamics + neuronal adaptation rather than from explicit architectural gating.
 
-**W/M split implication:** LSNN blurs the reservoir/readout boundary by embedding fast-M-like neuronal memory (ALIF slow state) inside the reservoir itself. Unlike standard LSM (fully stateless reservoir between inputs), each ALIF neuron in LSNN carries its own timescale-separated history trace.
+**W/M split implication:** LSNN blurs the reservoir/readout boundary by embedding fast-M-like neuronal memory (ALIF slow state) inside the reservoir itself. Unlike standard LSM (fully stateless reservoir between inputs), each ALIF (Adaptive Leaky Integrate-and-Fire) neuron in LSNN carries its own timescale-separated history trace.
 
 ## NeuCube: Anatomy-Constrained Spiking Reservoir
 
@@ -200,9 +200,9 @@ Kasabov et al. NeuCube organizes a 3D spiking reservoir by human brain structura
 - **[[wiki/entities/htm-thousand-brains.md]]** — the transcript explicitly frames neocortex as a reservoir of cortical columns: fixed anatomical wiring = reservoir, theta/gamma pacemakers = driving signal, learned plasticity = readout.
 - **[[wiki/papers/reservoir-computing-transcript.md]]** — primary source for the echo-state and Fourier analogy framing.
 - **[[wiki/papers/maass-lsm-2002.md]]** — founding LSM paper; source for SP/AP formal conditions (Theorem 1), dynamic synapses as fading memory requirement, readout equivalence classes, and parallel multitasking demonstration.
-- **[[wiki/concepts/working-memory.md]]** — reservoir's inherently transient dynamics (ρ < 1 echo-state) make it a natural high-TI WM system; TRNN is a learned analog that achieves similar transience with task-optimized structure.
-- **[[wiki/papers/trnn-liu-2025.md]]** — establishes that reservoir transient dynamics already outperform attractor dynamics (Barak 2013 reference); TRNN refines the reservoir idea by learning sparse hierarchical structure rather than using frozen random weights.
-- **[[wiki/entities/ltc-model.md]]** — LTC is the continuous-time counterpart to TRNN in the reservoir-to-learned-CT-model spectrum; liquid τ replaces frozen random W with a trained ODE system; LTCs add a stability guarantee (bounded τ_sys and hidden state) that reservoirs and TRNNs lack.
-- **[[wiki/papers/ltc-hasani-2021.md]]** — source for LTC architecture, fused solver, trajectory length expressivity comparisons, and stability theorems.
-- **[[wiki/concepts/spike-frequency-adaptation.md]]** — SFA is the enabling mechanism for LSNN: the slow adaptation current a(t) in ALIF neurons (τ_a ≫ τ_m) provides per-neuron temporal memory that functionally replaces LSTM cell state, allowing reservoir-based networks to achieve sequential learning without explicit gating.
+- **[[wiki/concepts/working-memory.md]]** — reservoir's inherently transient dynamics (ρ < 1 echo-state) make it a natural high-TI WM system; TRNN (Transition RNN) is a learned analog that achieves similar transience with task-optimized structure.
+- **[[wiki/papers/trnn-liu-2025.md]]** — establishes that reservoir transient dynamics already outperform attractor dynamics (Barak 2013 reference); TRNN (Transition RNN) refines the reservoir idea by learning sparse hierarchical structure rather than using frozen random weights.
+- **[[wiki/entities/ltc-model.md]]** — LTC (Liquid Time-Constant) is the continuous-time counterpart to TRNN (Transition RNN) in the reservoir-to-learned-CT-model spectrum; liquid τ replaces frozen random W with a trained ODE system; LTCs add a stability guarantee (bounded τ_sys and hidden state) that reservoirs and TRNNs lack.
+- **[[wiki/papers/ltc-hasani-2021.md]]** — source for LTC (Liquid Time-Constant) architecture, fused solver, trajectory length expressivity comparisons, and stability theorems.
+- **[[wiki/concepts/spike-frequency-adaptation.md]]** — SFA (Spike Frequency Adaptation) is the enabling mechanism for LSNN: the slow adaptation current a(t) in ALIF (Adaptive Leaky Integrate-and-Fire) neurons (τ_a ≫ τ_m) provides per-neuron temporal memory that functionally replaces LSTM cell state, allowing reservoir-based networks to achieve sequential learning without explicit gating.
 - **[[wiki/papers/tavanaei-deep-snn-2018.md]]** — source for LSNN (ALIF reservoir + BPTT+pseudo-derivative training achieving LSTM-comparable sequential learning) and NeuCube (anatomy-constrained 3D spiking reservoir organized by DTI/fMRI); establishes that adaptive neuronal dynamics can replace explicit LSTM gating within a spiking reservoir.

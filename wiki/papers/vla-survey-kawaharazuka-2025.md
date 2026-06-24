@@ -22,7 +22,7 @@ related: [wiki/concepts/world-models.md, wiki/concepts/hierarchical-representati
 
 - **World models for embodied planning** — UniPi generates video sequences via diffusion then uses an Inverse Dynamics Model to recover actions; GR-1 jointly predicts future frames and actions; LUMOS performs imitation learning in world-model latent space via RL with an expert-deviation intrinsic reward. All instantiate predictive coding applied to motor planning: the forward model predicts sensory consequences, the inverse model or policy recovers the action.
 
-- **Chain-of-thought in embodied settings (ECoT)** — ECoT autoregressively generates task descriptions → subtasks → object positions before the action token sequence. This intermediate reasoning chain markedly improves planning — direct support for the multi-step latent-space reasoning open problem (VL-JEPA open problem on latent-space chain, open-problems.md).
+- **Chain-of-thought in embodied settings (ECoT)** — ECoT autoregressively generates task descriptions → subtasks → object positions before the action token sequence. This intermediate reasoning chain markedly improves planning — direct support for the multi-step latent-space reasoning open problem (VL-JEPA open problem on latent-space chain, wiki/priority-tasks.md).
 
 - **Embodiment-agnostic latent representations** — LangToMo, ATM, AVDC predict optical flow or feature-point trajectories rather than explicit robot actions. Because flow is embodiment-agnostic, these models leverage human demonstration videos without action-space alignment — same insight as the latent-state approach in [[wiki/concepts/latent-states.md]].
 

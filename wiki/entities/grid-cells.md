@@ -25,7 +25,7 @@ related: [wiki/concepts/path-integration.md, wiki/concepts/structural-generaliza
 
 Graph matching (registering structural positions between environments) is NP-hard for arbitrary codes. Periodic codes solve this: all positions are treated equivalently, so the code can be shifted/rotated to align any new environment without NP-hard search. This is the computational reason grid cells must be periodic.
 
-## SR Eigenvectors
+## SR (Successor Representation) Eigenvectors
 
 Eigenvectors of S = (I−γT)^{−1} spatially resemble grid cells. Since T^n = VΛⁿV^T — all powers share the same eigenvectors — grid codes support multi-step planning with the same representations as 1-step navigation. No extra computation for long-range inference.
 
@@ -92,16 +92,16 @@ Thousand Brains Theory [[wiki/entities/htm-thousand-brains.md]] proposes that gr
 - **[[wiki/concepts/path-integration.md]]** — grid cells are the biological substrate; their continuous self-motion-driven updates are what path integration means in the brain; TEM's `g_{t+1} = f(W g_t + B a_t)` is the abstract version of this process.
 - **[[wiki/concepts/structural-generalization.md]]** — grid cell environment-invariance is the neural signature of structural generalization; periodicity is the computational solution to NP-hard graph matching.
 - **[[wiki/concepts/factorized-representations.md]]** — grid cells implement the structural code `g`; their environment-invariance is why transition weights W can generalize across environments.
-- **[[wiki/concepts/successor-representation.md]]** — grid cells = SR eigenvectors; since all T^n share the same eigenvectors, a single grid code supports local and non-local inference simultaneously.
+- **[[wiki/concepts/successor-representation.md]]** — grid cells = SR (Successor Representation) eigenvectors; since all T^n share the same eigenvectors, a single grid code supports local and non-local inference simultaneously.
 - **[[wiki/entities/place-cells.md]]** — complementary pair: grid cells define the coordinate frame that place cells instantiate with sensory content; the split is the biological realization of the `g`/`p` factorization.
 - **[[wiki/entities/hippocampal-entorhinal-system.md]]** — grid cells reside in MEC, the structural-code subsystem; they make the MEC component of the hippocampal-entorhinal system concrete.
 - **[[wiki/papers/gridlikecode-constantinescu-2016.md]]** — primary empirical source establishing that grid cells encode abstract conceptual dimensions, not just space; provides the performance-correlation and cross-session stability evidence.
 - **[[wiki/entities/htm-thousand-brains.md]]** — proposes grid-cell-like L6 neurons across all cortical columns (driven by efference copy rather than velocity input); if confirmed, extends grid-like structural coding from MEC specialization to universal neocortical primitive.
 - **[[wiki/papers/150000-mini-brain-transcript.md]]** — source for TBT's claim about L6 grid-like neurons and the efference copy mechanism.
-- **[[wiki/papers/jumping-spiders-cognition.md]]** — (tentative) source for mushroom body grid-like structural coding; constitutes a third independent evolutionary line (arthropod) alongside TBT L6 neurons (neocortex) and human vmPFC grid codes (abstract domains), strengthening the universality argument.
+- **[[wiki/papers/jumping-spiders-cognition.md]]** — (tentative) source for mushroom body grid-like structural coding; constitutes a third independent evolutionary line (arthropod) alongside TBT (Thousand Brains Theory) L6 neurons (neocortex) and human vmPFC grid codes (abstract domains), strengthening the universality argument.
 - **[[wiki/entities/arthropod-mushroom-bodies.md]]** — dedicated page for the arthropod mushroom body system; the (tentative) grid-like coding in jumping spiders is one component of the convergent allocentric coding evidence.
 - **[[wiki/concepts/convergent-allocentric-coding.md]]** — places grid-like periodic coding in the broader context of convergent allocentric systems; the periodic structure code appears to be one of the most conserved elements across independent evolutionary derivations.
-- **[[wiki/papers/pattern-completion-rolls-2013.md]]** — source for the DG competitive learning transformation of grid inputs into place fields; grid cells are the upstream input that DG processes to produce the orthogonal CA3 representations required for high-capacity episodic memory.
+- **[[wiki/papers/pattern-completion-rolls-2013.md]]** — source for the DG (Dentate Gyrus) competitive learning transformation of grid inputs into place fields; grid cells are the upstream input that DG (Dentate Gyrus) processes to produce the orthogonal CA3 representations required for high-capacity episodic memory.
 - **[[wiki/concepts/phase-precession.md]]** — grid cells in MECII phase-precess (encode current + look-ahead state) while MECIII grid cells phase-lock (encode predicted next state); neuromodulatory gain G governs which mode a layer adopts.
 - **[[wiki/papers/spiking-tem-kawahara-2025.md]]** — source for emergent phase precession, predictive MECIII grid cells, and sensory-ambiguity-driven grid emergence; ablation results establish four jointly necessary mechanisms.
 - **[[wiki/entities/vector-hash-model.md]]** — Vector-HaSH formalizes grid modules as a content-free scaffold: the torus topology, coprime-scale state count, and invariance properties are the three features that give the scaffold exponential capacity at logarithmic neuron cost.

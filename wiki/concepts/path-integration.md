@@ -3,9 +3,9 @@ title: "Path Integration"
 type: concept
 tags: [path-integration, navigation, recurrent-networks, compression, graph-traversal]
 created: 2026-06-09
-updated: 2026-06-22
-sources: [t-TEM, reservoir-computing-transcript, landmark-orientation]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/attention.md, wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/htm-thousand-brains.md, wiki/entities/reservoir-computing.md, wiki/entities/insect-central-complex.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/seelig-jayaraman-2015.md, wiki/concepts/ring-attractor.md, wiki/papers/acann-li-chu-wu-2024.md]
+updated: 2026-06-24
+sources: [t-TEM, reservoir-computing-transcript, landmark-orientation, Vector Symbolic Algebras for the Abstraction and Reasoning Corpus.md]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/attention.md, wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/htm-thousand-brains.md, wiki/entities/reservoir-computing.md, wiki/entities/insect-central-complex.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/seelig-jayaraman-2015.md, wiki/concepts/ring-attractor.md, wiki/papers/acann-li-chu-wu-2024.md, wiki/entities/vsa-model.md, wiki/papers/joffe-vsa-arc-2025.md]
 ---
 
 # Path Integration
@@ -42,18 +42,18 @@ With path integration, only the *rules of traversal* are needed — O(relation t
 
 **Learned RNNs:** when trained to predict spatial coordinates or place cells, RNNs and LSTMs spontaneously develop grid-like representations — the geometry emerges from the path integration objective, not supervision.
 
-**Unification:** CANN, VCO, and SR eigenvector addition are the same mathematical structure — same eigenvectors (grid codes), differing only in how eigenvalues update per action ([[wiki/concepts/successor-representation.md]]).
+**Unification:** CANN, VCO, and SR (Successor Representation) eigenvector addition are the same mathematical structure — same eigenvectors (grid codes), differing only in how eigenvalues update per action ([[wiki/concepts/successor-representation.md]]).
 
 ---
 
-## CX Path Integration: Direct In-Vivo Confirmation
+## CX (Central Complex) Path Integration: Direct In-Vivo Confirmation
 
 Seelig & Jayaraman 2015 [[wiki/papers/seelig-jayaraman-2015.md]] provide the best-characterized biological path integrator in any animal — the *Drosophila* central complex [[wiki/entities/insect-central-complex.md]]:
 
 - **P-EN neurons** receive angular velocity signals from the noduli (optic flow + speed) and asymmetrically drive the E-PG activity bump to shift proportional to rotation — directly implementing `g_{t+1} = g_t + ω Δt` for heading angle.
 - **Error accumulation:** in complete darkness, bump tracking of walking rotation degrades progressively over time — the expected signature of integrating noisy velocity without corrective feedback.
 - **Landmark correction:** ring neuron visual input anchors the bump to scene structure, resetting accumulated drift — the prediction-correction cycle realized at circuit level.
-- **Self-contained substrate:** unlike the mammalian head direction system (which requires anterodorsal thalamus, presubiculum, retrosplenial cortex, and MEC), the CX path integrator is largely self-contained, providing a minimal circuit for direct study and ML implementation.
+- **Self-contained substrate:** unlike the mammalian head direction system (which requires anterodorsal thalamus, presubiculum, retrosplenial cortex, and MEC), the CX (Central Complex) path integrator is largely self-contained, providing a minimal circuit for direct study and ML implementation.
 
 This is the most direct experimental confirmation of path integration by identified, connected neurons in any behaving animal.
 
@@ -77,20 +77,38 @@ Thousand Brains Theory [[wiki/entities/htm-thousand-brains.md]] proposes that L6
 
 ---
 
+## SSPs as Distributed Path Integration
+
+Spatial Semantic Pointers (SSPs, Eliasmith lab) implement path integration in a fixed-width distributed representation via fractional binding:
+
+$$\phi(\mathbf{x}) = \mathcal{F}^{-1}\left\{e^{i\Theta \mathbf{x}/l}\right\}$$
+
+**The key path-integration property:** binding = addition in feature space.
+
+$$\phi(\mathbf{x}) \circledast \phi(\mathbf{d}) = \phi(\mathbf{x} + \mathbf{d})$$
+
+Each integration step (displacement $\mathbf{d}$) = one circular convolution. Inversion = negation: $\phi(\mathbf{x})^{-1} = \phi(-\mathbf{x})$ enables reverse traversal. The accumulated vector is the position estimate — no separate integrator module.
+
+Specific choices of phase matrix $\Theta$ produce hexagonal grid-cell-like periodicity — an emergent property of the fractional binding structure, not a separately imposed constraint. SSPs are directly composable with HRR (Holographic Reduced Representations) slot-filler binding ([[wiki/entities/vsa-model.md]]), and unlike CANN/VCO implementations, $\Theta$ can be learned end-to-end.
+
+---
+
 ## Connections
 
 - **[[wiki/concepts/structural-generalization.md]]** — path integration provides path-consistency (ingredient 3 of structural generalization) and compression: shared action-transition rules W are learned, not per-edge transitions.
 - **[[wiki/concepts/factorized-representations.md]]** — path integration operates exclusively on the structural code `g`; it is the update rule for the MEC/W subsystem and does not affect sensory code x.
-- **[[wiki/concepts/successor-representation.md]]** — mathematically unified: SR eigenvectors are grid codes (the same plane-wave basis used by CANNs/VCOs); SR propagation and path integration are the same computation viewed from RL theory vs. navigation theory.
+- **[[wiki/concepts/successor-representation.md]]** — mathematically unified: SR (Successor Representation) eigenvectors are grid codes (the same plane-wave basis used by CANNs/VCOs); SR (Successor Representation) propagation and path integration are the same computation viewed from RL theory vs. navigation theory.
 - **[[wiki/entities/grid-cells.md]]** — grid cells are the biological substrate for path integration; their periodic structure is the solution to the path-consistency constraint and emerges in TEM purely from this objective.
 - **[[wiki/concepts/attention.md]]** — path integration is the recurrent positional encoding generator in the transformer view; `g_{t+1} = σ(g_t W_a)` is exactly `e_{t+1} = σ(e_t W_a)` in TEM-t's position encoder.
 - **[[wiki/papers/t-tem-whittington-2022.md]]** — establishes path integration = learned recurrent positional encoding; provides the implication for non-spatial domains.
 - **[[wiki/entities/htm-thousand-brains.md]]** — proposes L6 grid-like path integration via efference copy (L5→L6) as universal across all cortical columns; hierarchical columns then path-integrate over abstract reference frames using identical machinery, making abstract reasoning a direct extension of the spatial mechanism.
-- **[[wiki/papers/150000-mini-brain-transcript.md]]** — source for the TBT account of columnar path integration and hierarchical abstraction via abstract reference frames.
+- **[[wiki/papers/150000-mini-brain-transcript.md]]** — source for the TBT (Thousand Brains Theory) account of columnar path integration and hierarchical abstraction via abstract reference frames.
 - **[[wiki/entities/reservoir-computing.md]]** — reservoir dynamics maintain a fading echo trace of past inputs, analogous to path integration's temporal trace of past traversals; the key contrast: reservoir traces are random projections with no structured transition rules, while TEM's path integration integrates structured W transitions, enabling cross-environment compression that reservoirs cannot provide.
 - **[[wiki/papers/reservoir-computing-transcript.md]]** — source for echo-state dynamics as fading temporal memory.
 - **[[wiki/entities/insect-central-complex.md]]** — P-EN neurons implement path integration in the Drosophila CX; bump-shift mechanism via asymmetric velocity drive is the best-characterized biological path integrator in any identified circuit.
-- **[[wiki/papers/seelig-jayaraman-2015.md]]** — primary source for direct in vivo confirmation of drift accumulation and landmark-correction cycle in CX path integration.
+- **[[wiki/papers/seelig-jayaraman-2015.md]]** — primary source for direct in vivo confirmation of drift accumulation and landmark-correction cycle in CX (Central Complex) path integration.
 - **[[wiki/concepts/latent-graph-discovery.md]]** — path integration solves the path-consistency requirement of latent graph discovery: the structural code g must commute (reach the same meta-graph position via any traversal path), which path integration enforces by accumulating edge transitions rather than memorizing node addresses.
-- **[[wiki/concepts/ring-attractor.md]]** — ring attractor is the biological implementation substrate for CANN-based path integration; the bump-shift mechanism (P-EN asymmetric velocity drive) implements g_{t+1} = f(g_t, a_t) on a circular manifold; A-CANN extends the static-bump path integrator to traveling-wave and anticipative modes via SFA adaptation.
+- **[[wiki/concepts/ring-attractor.md]]** — ring attractor is the biological implementation substrate for CANN-based path integration; the bump-shift mechanism (P-EN asymmetric velocity drive) implements g_{t+1} = f(g_t, a_t) on a circular manifold; A-CANN extends the static-bump path integrator to traveling-wave and anticipative modes via SFA (Spike Frequency Adaptation) adaptation.
 - **[[wiki/papers/acann-li-chu-wu-2024.md]]** — provides the first full analytical phase diagram for CANN path integration: traveling-wave mode (bump precedes true position by constant t_ant), anticipative tracking, and oscillatory theta modes emerge from a single network; adaptation strength m and input strength α are the two control parameters that determine which path-integration regime operates.
+- **[[wiki/entities/vsa-model.md]]** — SSPs implement distributed path integration via fractional binding: φ(x) ⊛ φ(d) = φ(x+d) makes each step a circular convolution; specific phase matrices produce hexagonal grid-cell-like periodicity linking SSP encoding to the MEC substrate; unlike CANN/VCO, Θ is differentiable and can be learned end-to-end.
+- **[[wiki/papers/joffe-vsa-arc-2025.md]]** — applies SSPs to ARC-AGI spatial reasoning: object centre representations encoded as SSPs so spatial similarity queries reduce to dot-product similarity, demonstrating the differentiable path integration property in a practical neuro-symbolic solver.

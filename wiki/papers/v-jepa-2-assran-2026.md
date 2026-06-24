@@ -42,5 +42,5 @@ related: [wiki/entities/jepa-model.md, wiki/entities/vl-jepa-model.md, wiki/conc
 - **[[wiki/entities/jepa-model.md]]** — V-JEPA 2 is the direct scaling of I-JEPA to video (1M hours, 1B params); V-JEPA 2-AC is the first operational version of H-JEPA's Mode-2 planning loop.
 - **[[wiki/entities/vl-jepa-model.md]]** — VL-JEPA (Chen et al. 2025) uses V-JEPA 2 ViT-L as its frozen visual encoder; the two papers form a stack (V-JEPA 2 world model → VL-JEPA language alignment).
 - **[[wiki/concepts/world-models.md]]** — V-JEPA 2-AC is the most complete existing instantiation of Mode-2 planning: learned latent world model + CEM action search + receding-horizon control.
-- **[[wiki/concepts/energy-based-models.md]]** — planning is energy minimization `E(a_{1:T}) = ||P(a_{1:T}; z_k) − z_goal||₁` over the learned EBM landscape.
+- **[[wiki/concepts/energy-based-models.md]]** — planning is energy minimization `E(a_{1:T}) = ||P(a_{1:T}; z_k) − z_goal||₁` over the learned EBM (Energy-Based Model) landscape.
 - **[[wiki/concepts/hierarchical-representations.md]]** — future work explicitly proposes hierarchical multi-scale predictors operating at different levels of abstraction, connecting to H-JEPA and the multi-level meta-graph Gap 2.

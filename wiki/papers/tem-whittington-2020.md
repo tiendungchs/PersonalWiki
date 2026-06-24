@@ -24,4 +24,4 @@ Whittington JCR et al. *Cell* 183:1249–1263. https://doi.org/10.1016/j.cell.20
 
 ## Implementation Notes
 
-See [[wiki/queries/tem-implementation-vs-theory.md]]: key divergences between paper description and reference code (`djcrw/generalising-structural-knowledge`) include learned MLP transitions (not ring attractors), scalar-product Hebbian trick, three reconstruction losses, no KL divergence despite variational framing.
+See [[wiki/queries/tem-implementation-vs-theory.md]]: key divergences between paper description and reference code (`djcrw/generalising-structural-knowledge`) include learned MLP transitions (not ring attractors), scalar-product Hebbian trick, three reconstruction losses, no KL (Kullback-Leibler) divergence despite variational framing.

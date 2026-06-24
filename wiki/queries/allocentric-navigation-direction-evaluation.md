@@ -17,7 +17,7 @@ related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/convergent-allo
 ## Verdict
 
 **Yes — with two critical qualifications:**
-1. The HC/MEC formation (not the insect CX alone) is the key, because structural generalization across environments is the defining requirement and only HC/MEC has demonstrated it.
+1. The HC/MEC formation (not the insect CX (Central Complex) alone) is the key, because structural generalization across environments is the defining requirement and only HC/MEC has demonstrated it.
 2. The vmPFC/Default Mode Network must be included for abstract (non-spatial) reasoning, as it hosts the strongest abstract grid codes in humans.
 
 ---
@@ -38,20 +38,20 @@ The **convergent evolution argument** ([[wiki/concepts/convergent-allocentric-co
 
 ---
 
-## The Critical Distinction: CX vs. HC/MEC
+## The Critical Distinction: CX (Central Complex) vs. HC/MEC
 
-Both the insect CX and the HC/MEC formation are allocentric navigation systems, but they differ on the single property that matters most:
+Both the insect CX (Central Complex) and the HC/MEC formation are allocentric navigation systems, but they differ on the single property that matters most:
 
-| Property | Insect CX | HC/MEC formation |
+| Property | Insect CX (Central Complex) | HC/MEC formation |
 |---|---|---|
 | Within-environment navigation | ✅ Confirmed | ✅ Yes |
 | Ring attractor / path integration | ✅ All 5 signatures in vivo | ✅ Head direction + MEC |
 | **Cross-environment structural generalization (W transfer)** | ❌ Not demonstrated | ✅ Core TEM result |
 
-The latent graph problem requires extracting transition rules from one task and applying them to new instances — this is the W-level structural generalization property. The CX reuses the same ring attractor across environments with different landmark anchoring; it does not abstract the transition structure itself.
+The latent graph problem requires extracting transition rules from one task and applying them to new instances — this is the W-level structural generalization property. The CX (Central Complex) reuses the same ring attractor across environments with different landmark anchoring; it does not abstract the transition structure itself.
 
 **Recommended split:**
-- Use the CX as the model for building and validating path integration + ring attractor components.
+- Use the CX (Central Complex) as the model for building and validating path integration + ring attractor components.
 - Use the HC/MEC formation as the model for the structural generalization (W) + episodic binding (M) architecture.
 - These are complementary modules, not alternatives.
 
@@ -61,7 +61,7 @@ The latent graph problem requires extracting transition rules from one task and 
 
 The allocentric navigation framing does not directly solve Type 2 tasks (latent edges / ARC-AGI / rule generalization), which require *inferring the transformation rule from before/after observation pairs*, not navigating a known graph. No allocentric system on record solves this.
 
-The proposed solution ([[wiki/entities/tiwm-model.md]]): an Inverse Path Integrator module that runs path integration backwards — solving `(g_in, g_out) → a` rather than `(g_in, a) → g_out`. Biological grounding: TBT efference copy ([[wiki/entities/htm-thousand-brains.md]]) — a cortical column infers the action by comparing its L6 prediction to actual L4 sensory input.
+The proposed solution ([[wiki/entities/tiwm-model.md]]): an Inverse Path Integrator module that runs path integration backwards — solving `(g_in, g_out) → a` rather than `(g_in, a) → g_out`. Biological grounding: TBT (Thousand Brains Theory) efference copy ([[wiki/entities/htm-thousand-brains.md]]) — a cortical column infers the action by comparing its L6 prediction to actual L4 sensory input.
 
 This is an **augmentation** of the HC/MEC architecture, not a replacement. The rest of TEM's structure (W, M, g/x/p, two timescales) remains intact.
 
@@ -79,7 +79,7 @@ This is an **augmentation** of the HC/MEC architecture, not a replacement. The r
 
 ---
 
-## The TBT Universality Angle
+## The TBT (Thousand Brains Theory) Universality Angle
 
 If Thousand Brains Theory ([[wiki/entities/htm-thousand-brains.md]]) is correct — that every cortical column recapitulates the HC formation as L6/L4/L2-3 — then "allocentric navigation systems" is not a specialized description of the hippocampus. It is the organizing principle of the entire neocortex. The research direction then becomes not "the hippocampus is special" but "the universal cortical circuit is a factorized world model, and HC is the prototype." This makes the direction more ambitious but also more defensible: you are not betting on one structure, you are betting on the universal computational primitive.
 
@@ -90,7 +90,7 @@ If Thousand Brains Theory ([[wiki/entities/htm-thousand-brains.md]]) is correct 
 | Claim | Verdict |
 |---|---|
 | Allocentric navigation = right direction | **Yes** |
-| Insect CX = sufficient | **No** — missing cross-environment W generalization |
+| Insect CX (Central Complex) = sufficient | **No** — missing cross-environment W generalization |
 | HC/MEC formation = the key | **Yes** — only system with demonstrated structural transfer |
 | vmPFC/DMN should be in scope | **Yes** — hosts strongest abstract grid codes |
 | Another brain region is better | **No evidence** |
@@ -110,6 +110,6 @@ If Thousand Brains Theory ([[wiki/entities/htm-thousand-brains.md]]) is correct 
 ## Follow-Up Questions
 
 - How does the vmPFC/DMN interface with the HC/MEC structural code — is vmPFC downstream (applies structural codes) or upstream (shapes them)?
-- Can the TBT efference copy mechanism be formalized as a Bayesian inverse inference module that interfaces cleanly with TEM's W vocabulary?
+- Can the TBT (Thousand Brains Theory) efference copy mechanism be formalized as a Bayesian inverse inference module that interfaces cleanly with TEM's W vocabulary?
 - Does the hierarchy extension (nested rules, compositional transformation chains) require a new brain system, or does it emerge from hierarchical stacking of the same HC/MEC circuit?
 - What is the minimum substrate for cross-environment structural generalization — is it specifically the MEC→HC→MEC loop, or any system with slow-W fast-M factorization?

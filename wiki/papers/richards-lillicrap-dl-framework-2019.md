@@ -10,7 +10,7 @@ related: [wiki/concepts/credit-assignment.md, wiki/concepts/hierarchical-represe
 
 # A Deep Learning Framework for Neuroscience
 
-Richards BA, Lillicrap TP, et al. *Nat Neurosci* 22(11):1761–1770 (2019). PMC7115933.
+Richards BA (Brodmann Area), Lillicrap TP, et al. *Nat Neurosci* 22(11):1761–1770 (2019). PMC7115933.
 
 ---
 
@@ -40,7 +40,7 @@ Richards BA, Lillicrap TP, et al. *Nat Neurosci* 22(11):1761–1770 (2019). PMC7
 
 - [[wiki/concepts/credit-assignment.md]] — the paper establishes credit assignment as the central organizing concept for learning in brains and ANNs
 - [[wiki/concepts/hierarchical-representations.md]] — inductive bias framing; Brain Set / AI Set; emergent phenomena validation
-- [[wiki/concepts/predictive-coding.md]] — PC as a medium-bias/medium-variance credit assignment approximation
+- [[wiki/concepts/predictive-coding.md]] — PC (Predictive Coding) as a medium-bias/medium-variance credit assignment approximation
 - [[wiki/concepts/dendritic-computation.md]] — apical dendrites as the neural substrate for credit signal delivery
 - [[wiki/concepts/abstract-reasoning.md]] — Brain Set = abstract reasoning + planning; ARC-AGI as the canonical benchmark
 - [[wiki/concepts/hebbian-learning.md]] — local Hebbian rules as the low-level implementation of approximate credit signals

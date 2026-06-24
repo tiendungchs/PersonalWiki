@@ -8,9 +8,9 @@ sources: [raven]
 related: [wiki/concepts/abstract-reasoning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/structural-generalization.md, wiki/entities/arc-agi.md, wiki/papers/pgm-barrett-2018.md]
 ---
 
-# PGM — Procedurally Generated Matrices
+# PGM (Progressive Generalization Matrix) — Procedurally Generated Matrices
 
-Barrett et al. (DeepMind), ICML 2018. The "RAVEN-style" visual abstract reasoning benchmark in this wiki's domain taxonomy. Inspired by Raven's Progressive Matrices (human IQ test, Raven 1938), PGM operationalizes abstract reasoning with explicit symbolic semantics, enabling controlled generalisation experiments unavailable in hand-authored test sets.
+Barrett et al. (DeepMind), ICML 2018. The "RAVEN-style" visual abstract reasoning benchmark in this wiki's domain taxonomy. Inspired by Raven's Progressive Matrices (human IQ test, Raven 1938), PGM (Progressive Generalization Matrix) operationalizes abstract reasoning with explicit symbolic semantics, enabling controlled generalisation experiments unavailable in hand-authored test sets.
 
 ---
 
@@ -56,7 +56,7 @@ Chance = 12.5%. Human performance (with practice) >80%.
 
 ## Comparison with ARC-AGI
 
-| Property | PGM | ARC-AGI-2 |
+| Property | PGM (Progressive Generalization Matrix) | ARC-AGI-2 |
 |---|---|---|
 | Rule vocabulary | Finite, explicit (r,o,a) triples | Open-ended; any Core Knowledge rule |
 | Max rule depth | Single 3×3 matrix | Multi-step, compositional |
@@ -69,7 +69,7 @@ PGM provides a controlled taxonomy of generalisation failure; ARC-AGI tests open
 
 ## Connections
 
-- **[[wiki/concepts/abstract-reasoning.md]]** — the PGM composition-decomposition asymmetry is the clearest empirical instantiation of the Lake et al. compositionality gap at the visual-relational level; the meta-target result supports the factorized-representation design requirement.
+- **[[wiki/concepts/abstract-reasoning.md]]** — the PGM (Progressive Generalization Matrix) composition-decomposition asymmetry is the clearest empirical instantiation of the Lake et al. compositionality gap at the visual-relational level; the meta-target result supports the factorized-representation design requirement.
 - **[[wiki/concepts/compositional-generalization.md]]** — held-out triple and extrapolation results quantify exactly where the WReN model's compositional competence ends: it recombines known packages but cannot decompose primitives into constituents.
-- **[[wiki/entities/arc-agi.md]]** — PGM is the controlled predecessor; ARC-AGI extends to open-ended Core Knowledge domains; the two benchmarks together map the decomposition-to-generalization spectrum.
+- **[[wiki/entities/arc-agi.md]]** — PGM (Progressive Generalization Matrix) is the controlled predecessor; ARC-AGI extends to open-ended Core Knowledge domains; the two benchmarks together map the decomposition-to-generalization spectrum.
 - **[[wiki/papers/pgm-barrett-2018.md]]** — source paper with full dataset statistics, architecture details, and generalisation regime results.

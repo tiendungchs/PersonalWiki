@@ -22,9 +22,9 @@ Liu C., Jia S., Liu H., Zhao X., Li C.T., Xu B., Zhang T. *Communications Biolog
 
 - **Information richness (entropy) scales linearly with TI; energy cost drops stepwise.** For matched network size, higher TI → higher Shannon entropy of delay-period activity (more representational capacity) and lower average squared firing rate (less metabolic cost). Transient coding is a free lunch: more capacity, less energy.
 
-- **Variable delay handled by neuron recruitment, not slower trajectory velocity.** TRNN maintains accuracy across 3–6 s delays by recruiting additional neurons for longer delays; late-memory neurons are recruited from baseline and test-response groups. WM duration is neuron-count limited, not attractor-slot limited — directly paralleling the biological 7±2 capacity limit.
+- **Variable delay handled by neuron recruitment, not slower trajectory velocity.** TRNN (Transition RNN) maintains accuracy across 3–6 s delays by recruiting additional neurons for longer delays; late-memory neurons are recruited from baseline and test-response groups. WM duration is neuron-count limited, not attractor-slot limited — directly paralleling the biological 7±2 capacity limit.
 
-- **dPCA confirms low-dimensional trajectory manifold.** Demixed PCA of TRNN hidden states during delay reveals that stimulus-dependent trajectory components remain separated throughout the entire delay period; trajectory velocity does not slow toward the end (memory is dynamically maintained in trajectory path, not a fixed point attractor).
+- **dPCA confirms low-dimensional trajectory manifold.** Demixed PCA of TRNN (Transition RNN) hidden states during delay reveals that stimulus-dependent trajectory components remain separated throughout the entire delay period; trajectory velocity does not slow toward the end (memory is dynamically maintained in trajectory path, not a fixed point attractor).
 
 ---
 
@@ -39,7 +39,7 @@ Liu C., Jia S., Liu H., Zhao X., Li C.T., Xu B., Zhang T. *Communications Biolog
 ## Links
 
 - [[wiki/concepts/working-memory.md]] — creates this concept page; five alternative WM theories contextualized
-- [[wiki/concepts/two-learning-timescales.md]] — TRNN is a third fast WM mechanism: transient trajectory (activity-based, no write step) distinct from Hebbian M and PFC LSTM
+- [[wiki/concepts/two-learning-timescales.md]] — TRNN (Transition RNN) is a third fast WM mechanism: transient trajectory (activity-based, no write step) distinct from Hebbian M and PFC (Prefrontal Cortex) LSTM
 - [[wiki/concepts/neural-manifolds.md]] — dPCA result adds trajectory manifold evidence to the manifold concept page
-- [[wiki/entities/reservoir-computing.md]] — Barak 2013 comparison: reservoir (transient dynamics, frozen W) already outperforms pure attractor RNN; TRNN adds learned hierarchical structure
-- [[wiki/queries/building-blocks-mec-hc-pfc.md]] — Block 3B (Working Memory) bridge should prefer TRNN over vanilla LSTM for capacity and spatial navigation
+- [[wiki/entities/reservoir-computing.md]] — Barak 2013 comparison: reservoir (transient dynamics, frozen W) already outperforms pure attractor RNN; TRNN (Transition RNN) adds learned hierarchical structure
+- [[wiki/queries/building-blocks-mec-hc-pfc.md]] — Block 3B (Working Memory) bridge should prefer TRNN (Transition RNN) over vanilla LSTM for capacity and spatial navigation

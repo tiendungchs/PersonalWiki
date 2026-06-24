@@ -22,13 +22,13 @@ related: [wiki/concepts/information-theory.md]
 
 3. **Cross-entropy separates sources of surprise:** H(P,Q) decomposes into irreducible uncertainty H(P) and reducible model mismatch KL(P‖Q). This decomposition identifies what a model can improve versus what is irreducibly hard about the data.
 
-4. **Cross-entropy minimization ≡ KL minimization:** H(P) is constant w.r.t. model parameters, so both objectives select the same optimal model Q. Code uses cross-entropy; theory frames it as KL — they are equivalent for optimization.
+4. **Cross-entropy minimization ≡ KL (Kullback-Leibler) minimization:** H(P) is constant w.r.t. model parameters, so both objectives select the same optimal model Q. Code uses cross-entropy; theory frames it as KL (Kullback-Leibler) — they are equivalent for optimization.
 
 5. **Cross-entropy is asymmetric:** swapping P and Q can dramatically change the value (tutorial example: H=0.7 vs H=2.3 for reversed coin assumptions). The direction of divergence determines which model failures are penalized most heavily.
 
 ## Limitations
 
-Tutorial aimed at a general ML audience. Does not address variational inference, the free energy principle formulation, or mode-seeking vs. mean-seeking behavior of different KL directions. The FEP is mentioned in passing only (line 47–48).
+Tutorial aimed at a general ML audience. Does not address variational inference, the free energy principle formulation, or mode-seeking vs. mean-seeking behavior of different KL (Kullback-Leibler) directions. The FEP (Free Energy Principle) is mentioned in passing only (line 47–48).
 
 ## Links
 

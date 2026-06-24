@@ -24,7 +24,7 @@ related: [wiki/concepts/predictive-coding.md, wiki/concepts/neuromodulation.md, 
 
 - **Attention = precision optimization, not channel selection:** Under hierarchical generative models, inference requires weighting prediction errors by their reliability (precision = inverse variance). Optimizing precision scales the gain of error-units; high-precision errors exert greater influence on representations above. This is the mathematical definition of attention: "attention is simply the process of optimising precision during hierarchical inference" (Friston 2009). Cholinergic (ACh) gain modulation in posterior sensory systems is the neurobiological implementation — precision in exteroceptive hierarchies.
 
-- **DA as precision / incentive salience (contradicts Doya 2002's DA = TD error):** If action is called upon to suppress prediction errors *when predictions are precise*, then dopamine encoding precision of prior expectations (not prediction error on reward) produces all the same behavioral signatures — plus explains bradykinesia in Parkinson's disease as impoverished action from imprecise priors (low DA → small prediction errors → poverty of movement). Friston reframes DA as encoding "the value of prediction error" (incentive salience, per Berridge 2007) rather than "the prediction error on value" (TD error, per Schultz 1998). See **Contradiction** in [[wiki/concepts/neuromodulation.md]].
+- **DA as precision / incentive salience (contradicts Doya 2002's Dopamine = TD (Temporal Difference) error):** If action is called upon to suppress prediction errors *when predictions are precise*, then dopamine encoding precision of prior expectations (not prediction error on reward) produces all the same behavioral signatures — plus explains bradykinesia in Parkinson's disease as impoverished action from imprecise priors (low Dopamine → small prediction errors → poverty of movement). Friston reframes Dopamine as encoding "the value of prediction error" (incentive salience, per Berridge 2007) rather than "the prediction error on value" (TD error, per Schultz 1998). See **Contradiction** in [[wiki/concepts/neuromodulation.md]].
 
 ---
 
@@ -32,13 +32,13 @@ related: [wiki/concepts/predictive-coding.md, wiki/concepts/neuromodulation.md, 
 
 - Opinion/review paper (2009): no computational experiments; implementation details are sketched via the DCM framework rather than derived from scratch.
 - Laplace (Gaussian) approximation is convenient but may be too restrictive for multimodal recognition densities (bistable percepts are cited as evidence against multimodal q, but this is debated).
-- DA = precision vs. DA = TD error remains empirically unresolved; both accounts make similar predictions for standard reward-conditioning paradigms.
+- Dopamine = precision vs. Dopamine = TD (Temporal Difference) error remains empirically unresolved; both accounts make similar predictions for standard reward-conditioning paradigms.
 
 ---
 
 ## Links
 
-- [[wiki/concepts/predictive-coding.md]] — core FEP formalism; this paper adds active inference (action) and precision (three-tier representation)
+- [[wiki/concepts/predictive-coding.md]] — core FEP (Free Energy Principle) formalism; this paper adds active inference (action) and precision (three-tier representation)
 - [[wiki/concepts/neuromodulation.md]] — Contradiction: DA=precision here vs. DA=TD error (Doya 2002)
 - [[wiki/concepts/attention.md]] — biological attention redefined as precision optimization, complementary to transformer self-attention account
-- [[wiki/entities/basal-ganglia.md]] — action selection in BG interpreted as DA-gated precision that enables motor action
+- [[wiki/entities/basal-ganglia.md]] — action selection in BG (Basal Ganglia) interpreted as DA-gated precision that enables motor action

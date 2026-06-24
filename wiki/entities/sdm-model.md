@@ -8,7 +8,7 @@ sources: [kanerva-sdm-1993]
 related: [wiki/entities/cerebellum.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/associative-memory.md, wiki/concepts/pattern-separation.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/factorized-representations.md, wiki/entities/vector-hash-model.md, wiki/papers/kanerva-sdm-1993.md]
 ---
 
-# SDM (Sparse Distributed Memory)
+# SDM (Sparse Distributed Memory) (Sparse Distributed Memory)
 
 **Kanerva's 1988 model of human long-term memory as a two-layer feedforward network with a fixed random-projection address layer (A) and a modifiable counter-based content layer (C); generalizes both Hopfield networks and correlation-matrix memories, with capacity independent of input dimension.**
 
@@ -41,7 +41,7 @@ related: [wiki/entities/cerebellum.md, wiki/concepts/sparse-distributed-represen
 | Signal | μ = pM | ~370 aligned votes for target |
 | Noise variance | σ² ≈ pM(1 + p²MT) | ~370 + small cross-talk |
 
-Keeler (1988): SDM capacity per storage element equals Hopfield (~0.14N); but SDM's τ is **N-independent** — doubling M doubles T_max without requiring larger patterns.
+Keeler (1988): SDM (Sparse Distributed Memory) capacity per storage element equals Hopfield (~0.14N); but SDM's τ is **N-independent** — doubling M doubles T_max without requiring larger patterns.
 
 ---
 
@@ -53,7 +53,7 @@ Keeler (1988): SDM capacity per storage element equals Hopfield (~0.14N); but SD
 | Hopfield (1982) | ~0.14N | Bounded by N | No | CA3 recurrent collaterals |
 | Correlation-matrix (Anderson/Kohonen) | ~N | Bounded by N | No | Heteroassociative cortex |
 | **SDM (basic)** | **~0.1M** | **None (M free)** | Via pointer chains | DG→CA3; cerebellar cortex |
-| DNC (Graves 2016) | N expandable locations | None | Via temporal link matrix | HC/PFC external memory |
+| DNC (Differentiable Neural Computer) (Graves 2016) | N expandable locations | None | Via temporal link matrix | HC/PFC external memory |
 | Vector-HaSH | ⟨K⟩^M | None | Via shift operator | Grid/HC circuit |
 
 ---
@@ -78,11 +78,11 @@ Keeler (1988): SDM capacity per storage element equals Hopfield (~0.14N); but SD
 
 ## Connections
 
-- **[[wiki/concepts/sparse-distributed-representations.md]]** — SDM is the formal architecture for SDR computation: **A** implements random expansion, **y** implements sparse threshold activation at p_opt, **C** implements Hebbian write; the false-positive hypergeometric bound and SDM capacity formula τ≈0.1 are complementary descriptions of the same interference-avoidance geometry.
-- **[[wiki/concepts/associative-memory.md]]** — SDM generalizes both Hopfield (H=0, M=2^N) and correlation-matrix memories as special cases; Keeler (1988) establishes capacity equivalence per storage element, but SDM's M-based capacity is N-independent, enabling hardware-scalable episodic memory without increasing pattern dimensionality.
-- **[[wiki/concepts/pattern-separation.md]]** — DG→CA3 is a biological SDM using the hyperplane design: granule cells = hard locations, mossy fiber random k-connectivity = sparse **A** rows, k-WTA inhibition = p_opt regulation, mossy fiber→CA3 Hebbian synapses = **C** writes.
+- **[[wiki/concepts/sparse-distributed-representations.md]]** — SDM (Sparse Distributed Memory) is the formal architecture for SDR (Sparse Distributed Representations) computation: **A** implements random expansion, **y** implements sparse threshold activation at p_opt, **C** implements Hebbian write; the false-positive hypergeometric bound and SDM (Sparse Distributed Memory) capacity formula τ≈0.1 are complementary descriptions of the same interference-avoidance geometry.
+- **[[wiki/concepts/associative-memory.md]]** — SDM (Sparse Distributed Memory) generalizes both Hopfield (H=0, M=2^N) and correlation-matrix memories as special cases; Keeler (1988) establishes capacity equivalence per storage element, but SDM's M-based capacity is N-independent, enabling hardware-scalable episodic memory without increasing pattern dimensionality.
+- **[[wiki/concepts/pattern-separation.md]]** — DG→CA3 is a biological SDM (Sparse Distributed Memory) using the hyperplane design: granule cells = hard locations, mossy fiber random k-connectivity = sparse **A** rows, k-WTA inhibition = p_opt regulation, mossy fiber→CA3 Hebbian synapses = **C** writes.
 - **[[wiki/concepts/two-learning-timescales.md]]** — fixed **A** (structural scaffold, initialized once) = slow-W analog; modifiable **C** (episodic content) = fast-M; this is the most explicit circuit-level implementation of the two-timescale split — not just "slow weights vs. fast activations" but two distinct synapse populations with different update rules.
-- **[[wiki/concepts/factorized-representations.md]]** — SDM's A/C split is a third factorization axis (address scaffold vs. content) nested within Vector-HaSH's scaffold/content split and TEM's structural/sensory split; SDM proves the random scaffold does not need to be trained — random A already provides near-orthogonal addressing.
-- **[[wiki/entities/cerebellum.md]]** — cerebellar cortex is a biological SDM (hyperplane/Marr variant): granule cells = hard locations, parallel fiber→Purkinje synapses = **C**, climbing fibers = word-in signal; Golgi cells maintain p near p_opt dynamically; confirms the SDM primitive is domain-general (episodic HC vs. motor cerebellum).
-- **[[wiki/entities/vector-hash-model.md]]** — Vector-HaSH's fixed random grid→HC projection is functionally **A**; its plastic HC↔cortex heteroassociative layer is functionally **C**; SDM provides the mathematical basis for why the scaffold projection does not require learned geometry.
+- **[[wiki/concepts/factorized-representations.md]]** — SDM's A/C split is a third factorization axis (address scaffold vs. content) nested within Vector-HaSH's scaffold/content split and TEM's structural/sensory split; SDM (Sparse Distributed Memory) proves the random scaffold does not need to be trained — random A already provides near-orthogonal addressing.
+- **[[wiki/entities/cerebellum.md]]** — cerebellar cortex is a biological SDM (Sparse Distributed Memory) (hyperplane/Marr variant): granule cells = hard locations, parallel fiber→Purkinje synapses = **C**, climbing fibers = word-in signal; Golgi cells maintain p near p_opt dynamically; confirms the SDM (Sparse Distributed Memory) primitive is domain-general (episodic HC vs. motor cerebellum).
+- **[[wiki/entities/vector-hash-model.md]]** — Vector-HaSH's fixed random grid→HC projection is functionally **A**; its plastic HC↔cortex heteroassociative layer is functionally **C**; SDM (Sparse Distributed Memory) provides the mathematical basis for why the scaffold projection does not require learned geometry.
 - **[[wiki/papers/kanerva-sdm-1993.md]]** — primary source: full capacity analysis, optimal p_opt derivation, neural network equivalence, cerebellar mapping, and Jaeckel/CMAC hyperplane variants.

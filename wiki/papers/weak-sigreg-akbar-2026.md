@@ -38,7 +38,7 @@ related: [wiki/concepts/energy-based-models.md, wiki/papers/vicreg-bardes-2022.m
 
 ## Connections
 
-- **[[wiki/concepts/energy-based-models.md]]** — Weak-SIGReg is an instance of non-contrastive regularized EBM training; the Dean-Kawasaki particle dynamics framing provides an alternative to the information-theoretic view of why covariance regularization prevents collapse.
+- **[[wiki/concepts/energy-based-models.md]]** — Weak-SIGReg is an instance of non-contrastive regularized EBM (Energy-Based Model) training; the Dean-Kawasaki particle dynamics framing provides an alternative to the information-theoretic view of why covariance regularization prevents collapse.
 - **[[wiki/papers/vicreg-bardes-2022.md]]** — VICReg is the SSL precursor; Weak-SIGReg differs by targeting the full Frobenius distance to identity (not just off-diagonal), collapsing VICReg's separate v and c terms into one, and applying without a twin-branch architecture.
 - **[[wiki/papers/barlow-twins-zbontar-2021.md]]** — Barlow Twins drives the cross-correlation matrix toward identity (off-diagonal only, with normalization); Weak-SIGReg targets the un-normalized covariance toward identity in sketched space without cross-branch comparison.
 - **[[wiki/entities/jepa-model.md]]** — LeJEPA (Balestriero & LeCun 2025, arXiv:2511.08544) is the theoretical source of Strong SIGReg and a provably grounded extension of the JEPA framework; this paper is a supervised adaptation of LeJEPA's training signal.

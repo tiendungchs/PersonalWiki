@@ -18,7 +18,7 @@ related: [wiki/concepts/sparse-distributed-representations.md, wiki/concepts/heb
 
 - **Rate vs. temporal two-category taxonomy.** All SNN encoding schemes split on whether exact spike timing is information-bearing. Rate codes (count rate `v = N_spike/T`, density, population) are computationally equivalent to ANN activation values, enabling near-lossless ANN→SNN conversion with ReLU (99.42% MNIST). Temporal codes (TTFS, phase, ISI/burst, synchrony, TC) achieve higher information density (`log₂(N!)` vs. `log₂(N+1)` bits per spike for ROC vs. count) and faster reaction times but require architecturally matched networks.
 
-- **SDRs are synchrony/correlation codes.** The paper formally places sparse distributed representations under the correlation/synchrony subcategory: "a subset of neurons inside a population is active at any given point of time" encodes a pattern via the *identity* of co-active units, not their rates. This grounds SDR capacity formulas in spike-timing theory — SDR recognition requires only that the co-active subset fires within a narrow coincidence window (matching NMDA spike detection windows of 1–5 ms).
+- **SDRs are synchrony/correlation codes.** The paper formally places sparse distributed representations under the correlation/synchrony subcategory: "a subset of neurons inside a population is active at any given point of time" encodes a pattern via the *identity* of co-active units, not their rates. This grounds SDR (Sparse Distributed Representations) capacity formulas in spike-timing theory — SDR (Sparse Distributed Representations) recognition requires only that the co-active subset fires within a narrow coincidence window (matching NMDA spike detection windows of 1–5 ms).
 
 - **Phase coding and reference oscillations.** Phase coding encodes information as a time offset `Δt` relative to a periodic reference oscillation; observed in cat visual cortex (Gray et al. 1989). This provides the SNN-level mechanism by which theta/gamma oscillations in HC and neocortex serve as information *channels* (carrying amplitude in the spike phase), not merely pacemakers or synchrony signals.
 
@@ -40,5 +40,5 @@ related: [wiki/concepts/sparse-distributed-representations.md, wiki/concepts/heb
 
 - [[wiki/concepts/sparse-distributed-representations.md]] — SDRs classified as synchrony coding; coincidence window ties to NMDA spike timing
 - [[wiki/concepts/hebbian-learning.md]] — STDP is the canonical temporal learning rule enabled by precise spike timing; rate codes favour instead contrastive Hebbian learning
-- [[wiki/entities/htm-thousand-brains.md]] — HTM explicitly uses SDR synchrony coding in its spatial pooler
+- [[wiki/entities/htm-thousand-brains.md]] — HTM (Hierarchical Temporal Memory) explicitly uses SDR (Sparse Distributed Representations) synchrony coding in its spatial pooler
 - [[wiki/entities/ltc-model.md]] — LTC's input-dependent `τ_sys` implements a single-neuron adaptive encoding window, a continuous-time analog of multi-scale hybrid coding

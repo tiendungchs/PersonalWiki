@@ -38,8 +38,8 @@ related: [wiki/entities/jepa-model.md, wiki/concepts/energy-based-models.md, wik
 
 ## Links
 
-- [[wiki/entities/jepa-model.md]] — I-JEPA empirically instantiates LeCun's JEPA; resolves the "no empirical validation" limitation; adds concrete EMA + multi-block masking architecture
-- [[wiki/concepts/energy-based-models.md]] — I-JEPA confirms non-contrastive EBM training scales to ImageNet; ablations validate collapse prevention via asymmetric encoder
+- [[wiki/entities/jepa-model.md]] — I-JEPA empirically instantiates LeCun's JEPA; resolves the "no empirical validation" limitation; adds concrete EMA (Exponential Moving Average) + multi-block masking architecture
+- [[wiki/concepts/energy-based-models.md]] — I-JEPA confirms non-contrastive EBM (Energy-Based Model) training scales to ImageNet; ablations validate collapse prevention via asymmetric encoder
 - [[wiki/concepts/world-models.md]] — I-JEPA demonstrates representation-space world models learn semantic content from images without hand-crafted augmentations
 - [[wiki/concepts/hierarchical-representations.md]] — masking scale controls abstraction level; this principle generalizes to H-JEPA multi-level design
 - [[wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md]] — I-JEPA is the empirical realization of the JEPA proposal from LeCun 2022 (cited as [48])

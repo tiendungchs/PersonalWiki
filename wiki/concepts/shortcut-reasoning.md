@@ -1,0 +1,115 @@
+---
+title: "Shortcut Reasoning"
+type: concept
+tags: [shortcut-learning, generalization, abstract-reasoning, ARC, inductive-bias, objectness]
+created: 2026-06-24
+updated: 2026-06-24
+sources: [adversarial-nli-nie-2020]
+related: [wiki/concepts/abstract-reasoning.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/energy-based-models.md, wiki/concepts/meta-learning.md, wiki/entities/arc-agi.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/papers/shortcut-suite-yuan-2024.md, wiki/papers/beger-conceptarc-multimodal-2025.md, wiki/papers/odouard-2022-concept-evaluation.md, wiki/papers/math-perturb-2025.md, wiki/papers/adversarial-nli-nie-2020.md]
+---
+
+# Shortcut Reasoning
+
+**Shortcut reasoning = exploiting spurious statistical regularities in training data that correlate with correct answers on i.i.d. test distributions but fail on out-of-distribution (o.o.d.) inputs — producing benchmark accuracy without causal/structural understanding.**
+
+---
+
+## Decision-Rule Taxonomy (Geirhos et al. 2020)
+
+| Rule class | i.i.d. test performance | o.o.d. performance | Abstract reasoning? |
+|---|---|---|---|
+| Uninformative features | Poor | Poor | No |
+| Overfitting solution | Good (train only) | Poor | No |
+| **Shortcut solution** | **Good** | **Poor — spurious feature breaks** | **No** |
+| Intended solution | Good | Good | Yes |
+
+A shortcut is any rule that achieves good i.i.d. accuracy by exploiting correlated but non-causal features. The benchmark literature systematically conflates "good accuracy" with "correct reasoning."
+
+---
+
+## Why Shortcuts Emerge
+
+Four jointly sufficient factors (Geirhos 2020):
+
+| Factor | Mechanism | Implication |
+|---|---|---|
+| **Architecture** | Hard constraint on representable functions; simpler functions easier | World-model architectures resist shortcuts by construction |
+| **Training data** | Spurious correlations persist even at scale; big data does not eliminate bias | Scale alone cannot solve shortcut reliance |
+| **Loss function** | Cross-entropy stops once any discriminative predictor is found | Generative/reconstruction losses are shortcut-resistant |
+| **Optimisation** | SGD biases toward simplest functions achieving training objective | Implicit simplicity bias selects shortcuts over causal features |
+
+**Discriminative vs. generative asymmetry:** discriminative learners take any feature sufficient to separate training examples — shortcuts are preferred when simpler. Generative/world-model learners (JEPA, PC, EBM) must model all variation in training data, forcing representations onto features spanning the full data manifold, making shortcuts structurally harder to exploit.
+
+---
+
+## ARC-Domain Shortcut Catalogue (Beger et al. 2025)
+
+On ConceptARC textual tasks, AI models use a domain-general "shortcut toolbox" not specific to any concept:
+
+| Shortcut type | Description | Example concept group |
+|---|---|---|
+| **Integer color encoding** | Exploit numerical values (0–9) assigned to colors as if they carry ordinal meaning | Center, SameDifferent |
+| **Bounding-box geometry** | Use bounding-box overlap/interception rather than object identity | TopBottom3D |
+| **4/8-connectivity** | Identify connected components as a pixel graph rather than as objects | CleanUp, HorizontalVertical |
+| **Density heuristic** | Approximate object position via pixel density rather than discrete object reasoning | TopBottom3D |
+| **Case-by-case local patterns** | Overfit to specific demonstration patterns; enumerate local rules rather than abstract concepts | CleanUp |
+
+**Shortcut rate:** AI models produce correct-unintended rules in ~27–29% of correct textual solutions; humans only ~4.6%. Worst concept groups: TopBottom3D (70.6% shortcut of correct rules), CleanUp (52.3%).
+
+---
+
+## Missing Objectness Prior
+
+The most pervasive shortcut on ARC-style tasks is the **absence of objectness**: models treat grids as pixel matrices rather than scenes of discrete bounded entities. This causes:
+- Integer color values used as ordinal/continuous features rather than nominal labels
+- Pixel-level and local connectivity patterns preferred over object-level abstractions
+- Failure on tasks requiring object persistence, coherent movement, or 3D stacking inference
+
+Humans apply Spelke's Core Knowledge "objectness" prior (objects persist, move coherently, have boundaries) even without explicit instruction — this prior is never acquired from token-prediction training.
+
+**Architectural implication:** standard discriminative training on token sequences does not produce objectness representations; a structured world model that explicitly represents discrete entities (as in TEM's factorized p = f(g, x)) is required.
+
+---
+
+## Evidence Across Papers
+
+| Paper | Domain | Key shortcut finding |
+|---|---|---|
+| Geirhos et al. 2020 | Computer Vision (CV) / Natural Language Processing (NLP) (survey) | Taxonomy; texture bias in ImageNet CNNs; co-occurrence shortcuts in NLP |
+| Nie et al. 2020 (Adversarial NLI (Natural Language Inference) (ANLI)) | Natural Language Inference (NLI) | Hypothesis-only baseline 72% IID on SNLI/MNLI → 42–51% when adversarially blocked; ANLI inference taxonomy reveals which edge types persist as hard: numerical reasoning, coreference, lexical, tricky pragmatics, commonsense |
+| Odouard & Mitchell 2022 | RAVEN + ARC | Concept-based probing exposes shortcut: SCL 89% → 62%/68%, MRNet 73% → 49%/44%; ARC-Kaggle2nd drops to 8% on boundary vs. 19% overall |
+| Yuan et al. 2024 | NLI (Natural Language Inference) (LLMs) | Inverse scaling paradox (larger LLMs more shortcut-prone under in-context learning (ICL)); Internally Contradictory Sequences (ICS) collapse |
+| Beger et al. 2025 | ARC / ConceptARC | 27–29% shortcut rate vs. 5% human; objectness prior absent; visual gap is perceptual not conceptual |
+| Huang et al. 2025 (MATH-Perturb) | Competition math | **Subtle memorization**: models apply memorized techniques without checking structural applicability; mode collapse <10% of errors; 12–28% drops on hard perturbations vs. <5% on simple |
+| Mirzadeh et al. 2024 (GSM-Symbolic) | Grade-school math | **Inactive node failure**: GSM-NoOp distractor clauses cause avg 65% collapse across 25+ LLMs; models cannot prune irrelevant graph nodes; arithmetic accuracy 97–99% confirms structural (not computational) failure |
+| Li et al. 2024 (GSM-Plus) | Grade-school math | **Structural graph blindness**: 8 perturbation types cause up to 20% drops; reversal (edge direction) and critical thinking (underspecified graph) are hardest; models cannot detect missing or inverted structure |
+| Hendrycks et al. 2021 (MATH) | Competition math | **Self-poisoning Chain of Thought (CoT)**: model-generated intermediate nodes decrease test accuracy; ground-truth CoT (Chain of Thought) improves ~10% but self-generated nodes propagate errors through subsequent steps; the latent path cannot be reliably self-constructed |
+
+**Subtle memorization** (MATH-Perturb 2025): a new shortcut class extending prior taxonomy. Models learn technique-applicability associations from training (e.g., "degree-4 polynomials → specific substitution method") and apply them without checking whether the current problem's structural graph actually requires that technique. Unlike surface-pattern shortcuts (which exploit perceptual regularities) or verbatim copying, this failure passes i.i.d. tests (simple perturbations that don't change the solution structure) but fails o.o.d. (hard perturbations that change the required solution path). It scales with capability: larger models accumulate more technique-context associations, amplifying this failure mode.
+
+**Inverse scaling paradox (Yuan 2024):** larger LLMs are *more* susceptible to shortcut learning under in-context learning (ICL) — scale amplifies exploitation of spurious context patterns, not resistance to them. This is a direct empirical counter-evidence against the "scale solves generalization" hypothesis.
+
+---
+
+## Open Problems
+
+1. **Objectness prior acquisition**: how to learn objectness without hand-coding; JEPA predicts in representation space but representations are not explicitly object-structured.
+2. **Shortcut detection without ground truth**: current detection requires comparing model rules to designer-intended rules (human judgment); automated shortcut detection for arbitrary tasks is unsolved.
+3. **Textual encoding choice effects**: integer grid encoding on ARC is an unintended shortcut opportunity; better encodings (e.g., color names, symbolic tokens) might reduce shortcut surface while preserving information.
+
+---
+
+## Connections
+
+- **[[wiki/concepts/abstract-reasoning.md]]** — shortcut reasoning is the failure mode of abstract reasoning: shortcut solutions achieve benchmark accuracy without causal-structural model-building, passing i.i.d. tests while failing o.o.d. transfer.
+- **[[wiki/entities/arc-agi.md]]** — ARC-AGI is explicitly designed as an o.o.d. benchmark to break shortcut solutions; rule-level evaluation (Beger 2025) reveals that even tasks AI "solves" are frequently solved by ARC-specific shortcuts rather than the intended Core Knowledge abstractions.
+- **[[wiki/concepts/structural-generalization.md]]** — the intended solution in Geirhos's taxonomy requires structural generalization (factorized g/x/p representations transferable to new content); shortcut solutions are structurally entangled and cannot generalize.
+- **[[wiki/concepts/latent-graph-discovery.md]]** — shortcuts correspond to spurious edge covariate shift (hardness source 5 in LGD): a model that discovers the correct latent causal graph is shortcut-resistant by construction; all shortcut mitigation paths (Invariant Risk Minimization (IRM), meta-learning, disentanglement) implement causal edge invariance.
+- **[[wiki/concepts/energy-based-models.md]]** — generative/EBM training resists shortcuts by requiring the model to account for all training variation; discriminative loss functions stop as soon as any sufficient predictor is found, selecting shortcuts by default.
+- **[[wiki/concepts/meta-learning.md]]** — meta-learning extracts invariant mechanisms across environments (IRM, causal invariant prediction), which is the slow-W structural solution to shortcut reliance.
+- **[[wiki/papers/shortcut-learning-geirhos-2020.md]]** — foundational taxonomy and four-factor inductive-bias decomposition; conceptual source for the discriminative/generative asymmetry and solution path (IRM + meta-learning + causal disentanglement).
+- **[[wiki/papers/shortcut-suite-yuan-2024.md]]** — LLM-scale empirical instantiation; adds inverse scaling paradox and ICS/EQS explanation-level metrics beyond accuracy; confirms Geirhos taxonomy holds at frontier model scale.
+- **[[wiki/papers/beger-conceptarc-multimodal-2025.md]]** — ARC-domain empirical source; provides shortcut catalogue, objectness prior analysis, and dual-channel evaluation methodology revealing accuracy/abstraction dissociation.
+- **[[wiki/papers/odouard-2022-concept-evaluation.md]]** — earliest empirical quantification of concept-level shortcut gaps: RAVEN concept variations (Sameness/Progression) expose that MRNet and SCL learn distribution-specific features rather than abstract rules, predating ConceptARC's systematic benchmark by one year.
+- **[[wiki/papers/math-perturb-2025.md]]** — source: perturbation construction methodology, hard vs. simple taxonomy, per-model drop results, and the subtle memorization failure mode analysis.
+- **[[wiki/papers/adversarial-nli-nie-2020.md]]** — source for the NLI (Natural Language Inference) hypothesis-only shortcut numbers (72%→42–51%) and the inference-type failure taxonomy; extends the shortcut catalogue to the NLI (Natural Language Inference) domain and provides the cleanest empirical quantification of a spurious-edge gap.

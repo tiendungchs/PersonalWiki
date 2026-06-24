@@ -32,7 +32,7 @@ Chen, Shukor, Moutakanni, Chung et al. (Meta FAIR / HKUST / Sorbonne / NYU), 202
 
 - Evaluated on perception-focused VQA (GQA, TallyQA, POPE); not benchmarked on knowledge/reasoning-heavy tasks where generative VLMs excel (tool use, multi-step reasoning, agentic tasks).
 - V-JEPA 2 vision encoder is frozen throughout; joint learning of visual and language representations is not explored.
-- SFT stage partially degrades BASE model's hard-negative text sensitivity (SugarCrepe++ drops from 63.9% to 58.4%) — standard instruction-tuning/alignment tension.
+- SFT stage partially degrades BA (Brodmann Area)SE model's hard-negative text sensitivity (SugarCrepe++ drops from 63.9% to 58.4%) — standard instruction-tuning/alignment tension.
 
 ---
 
@@ -41,5 +41,5 @@ Chen, Shukor, Moutakanni, Chung et al. (Meta FAIR / HKUST / Sorbonne / NYU), 202
 - Entity page: [[wiki/entities/vl-jepa-model.md]]
 - JEPA predecessor architecture: [[wiki/entities/jepa-model.md]]
 - World models context: [[wiki/concepts/world-models.md]]
-- EBM framing: [[wiki/concepts/energy-based-models.md]]
+- EBM (Energy-Based Model) framing: [[wiki/concepts/energy-based-models.md]]
 - I-JEPA empirical precursor: [[wiki/papers/assran-ijepa-2023.md]]

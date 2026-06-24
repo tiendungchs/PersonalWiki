@@ -24,7 +24,7 @@ related: [wiki/entities/jepa-model.md, wiki/concepts/energy-based-models.md, wik
 
 - **In-domain pretraining beats massive-scale transfer:** LeJEPA pretrained on Galaxy10 (11k images) with default hyperparameters outperforms DINOv2/DINOv3 pretrained on hundreds of millions of natural images, in both linear probe and full fine-tuning regimes. Challenges the assumption that large-scale generic pretraining is universally dominant.
 
-- **Architecture-agnostic and heuristic-free:** Single hyperparameter λ. No teacher-student, no stop-gradient, no EMA schedule, no register tokens. Stable training up to ViT-g (1.8B parameters). Works across ResNets, ViTs, ConvNets, MaxViTs, Swin Transformers from the same recipe. 79% top-1 ImageNet-1k with ViT-H/14.
+- **Architecture-agnostic and heuristic-free:** Single hyperparameter λ. No teacher-student, no stop-gradient, no EMA (Exponential Moving Average) schedule, no register tokens. Stable training up to ViT-g (1.8B parameters). Works across ResNets, ViTs, ConvNets, MaxViTs, Swin Transformers from the same recipe. 79% top-1 ImageNet-1k with ViT-H/14.
 
 ---
 
@@ -39,8 +39,8 @@ related: [wiki/entities/jepa-model.md, wiki/concepts/energy-based-models.md, wik
 ## Connections
 
 - **[[wiki/entities/jepa-model.md]]** — LeJEPA is the theoretically grounded instantiation of JEPA: proves what distribution JEPA's embeddings should follow and provides SIGReg as the practical tool to enforce it; closes the "not yet in the wiki" forward reference in jepa-model.md.
-- **[[wiki/concepts/energy-based-models.md]]** — SIGReg is the provably optimal non-contrastive regularization strategy for EBM training; Theorem 1 explains *why* existing methods (VICReg, BT) work and where they fall short.
-- **[[wiki/concepts/representational-geometry.md]]** — Theorem 1 is a representational geometry result: the isotropic (spherical) geometry uniquely minimizes worst-case downstream bias; connects to CCGP/SD framework where equal-variance coding directions are a prerequisite for robust linear readout.
+- **[[wiki/concepts/energy-based-models.md]]** — SIGReg is the provably optimal non-contrastive regularization strategy for EBM (Energy-Based Model) training; Theorem 1 explains *why* existing methods (VICReg, BT) work and where they fall short.
+- **[[wiki/concepts/representational-geometry.md]]** — Theorem 1 is a representational geometry result: the isotropic (spherical) geometry uniquely minimizes worst-case downstream bias; connects to CCGP (Cross-Condition Generalization Performance)/SD framework where equal-variance coding directions are a prerequisite for robust linear readout.
 - **[[wiki/papers/vicreg-bardes-2022.md]]** — VICReg is a degenerate case of SIGReg (mean+std test, not Epps-Pulley); LeJEPA strictly generalizes VICReg by enforcing all moments of the embedding distribution, not just variance and covariance.
 - **[[wiki/papers/assran-ijepa-2023.md]]** — I-JEPA is the predecessor SSL instantiation; LeJEPA supersedes I-JEPA's EMA+stop-gradient collapse prevention with provable SIGReg, matching or exceeding I-JEPA performance at 3× lower training compute.
 - **[[wiki/papers/weak-sigreg-akbar-2026.md]]** — Weak-SIGReg adapts the 2nd-moment version of SIGReg for supervised learning; this paper is the source of Strong SIGReg (all-moment CF matching); the two together form a continuum of Gaussian-alignment regularizers.

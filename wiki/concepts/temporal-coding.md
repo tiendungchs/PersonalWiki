@@ -63,7 +63,7 @@ Encoding real value x as firing time T − xc is called **linear temporal coding
 
 $$t_v = T_{\text{out}} - \sum_{u} \text{sign}(\varepsilon_{u,v})\, w_{u,v}\, x_u$$
 
-Weights play the identical algebraic role as in rate-coded nets — the difference is that the computation occurs in the temporal domain via continuous PSP shifts. This is not a heuristic analogy: it is a formal identity (Maass 1997, Equation 1), with the sign of the synapse (excitatory/inhibitory) replacing the sign of the weight in the usual linear sum.
+Weights play the identical algebraic role as in rate-coded nets — the difference is that the computation occurs in the temporal domain via continuous PSP (Post-Synaptic Potential) shifts. This is not a heuristic analogy: it is a formal identity (Maass 1997, Equation 1), with the sign of the synapse (excitatory/inhibitory) replacing the sign of the weight in the usual linear sum.
 
 **Expressiveness consequence:** temporal coding gives type B SNNs strictly greater power than sigmoidal nets. Coincidence detection (CD_n) — computable by 1 spiking neuron — requires Ω(n²) sigmoidal gates. The gap is not a constant factor but a polynomial-to-linear reduction in neuron count for this class of functions.
 
@@ -102,7 +102,7 @@ Temporal codes are not only decodable — they are *learnable* with biologically
 
 ## Cortical Gamma/Beta Spectral Split
 
-The gamma (superficial) / beta (deep) frequency asymmetry in cortical layers has a derivation from PC dynamics (Bastos et al. 2012):
+The gamma (superficial) / beta (deep) frequency asymmetry in cortical layers has a derivation from PC (Predictive Coding) dynamics (Bastos et al. 2012):
 
 Deep prediction cells integrate error signals (ẋ ∝ ε), which attenuates high frequencies: x̃(ω) ∝ ε̃(ω)/ω. Superficial error cells do not integrate — they directly encode the instantaneous prediction mismatch. Result:
 
@@ -133,8 +133,8 @@ This gives feedforward inter-areal connections a gamma signature and feedback co
 - **[[wiki/papers/snn-encoding-auge-2021.md]]** — provides the taxonomy (rate/temporal/synchrony/phase) that places Gerstner's findings within a broader spike-coding classification.
 - **[[wiki/papers/gardner-gruning-supervised-snn.md]]** — FILT rule establishes that temporal codes are learnable at sub-millisecond precision (α_m ≈ 0.07 at 0.2ms) with online-compatible rules; the filtered-error stability principle is the key design insight for temporal credit assignment in any spiking reasoning layer.
 - **[[wiki/concepts/sequence-memory.md]]** — STDP is the asymmetric write mechanism for sequence memory edges: the same W(s) window that selects delay-matched axons for ITD detection writes forward-transition weights ξ^{µ+1} ← ξ^µ in SeqNet; temporal coding is the spike-level mechanism that sequence memory depends on for its Hebbian write step.
-- **[[wiki/entities/snn.md]]** — SNN is the architectural context for all temporal coding results: rate/temporal/synchrony/phase taxonomy (Auge 2021) classifies the full spike-coding design space; ALIF neurons are the neuromorphic implementation substrate; FILT and surrogate gradient training close the gap between temporal coding theory and deployable SNN models.
-- **[[wiki/concepts/predictive-coding.md]]** — the gamma (superficial) / beta (deep) spectral asymmetry is a derived consequence of PC dynamics: expectation cells integrate prediction errors, suppressing high frequencies; this gives the cortical frequency split a computational explanation rather than an arbitrary architectural assumption.
+- **[[wiki/entities/snn.md]]** — SNN is the architectural context for all temporal coding results: rate/temporal/synchrony/phase taxonomy (Auge 2021) classifies the full spike-coding design space; ALIF (Adaptive Leaky Integrate-and-Fire) neurons are the neuromorphic implementation substrate; FILT and surrogate gradient training close the gap between temporal coding theory and deployable SNN models.
+- **[[wiki/concepts/predictive-coding.md]]** — the gamma (superficial) / beta (deep) spectral asymmetry is a derived consequence of PC (Predictive Coding) dynamics: expectation cells integrate prediction errors, suppressing high frequencies; this gives the cortical frequency split a computational explanation rather than an arbitrary architectural assumption.
 - **[[wiki/papers/bastos-canonical-microcircuit-2012.md]]** — primary source for the cortical spectral split section: derives gamma/beta asymmetry from the Bayesian filtering math and confirms it against multi-laminar LFP data in visual cortex.
 - **[[wiki/papers/maass-snn-third-gen-1997.md]]** — establishes linear temporal coding (T − xc) as a formal primitive and proves via CD_n/ED_n lower bounds that temporal coding confers exponential size advantages over sigmoidal nets for coincidence-sensitive computations; provides the formal basis for preferring temporal coding over rate coding for binding-stage computations.
 - **[[wiki/papers/maass-lsm-2002.md]]** — dynamic synapses (Tsodyks-Markram depression+facilitation, τ_D/τ_F ~ 0.05–1.1s) are a synapse-level temporal trace that extends the effective fading memory of a spiking circuit from one membrane time constant (~30ms) to ~800ms; replacing dynamic with static synapses eliminates context-sensitivity, establishing that short-term synaptic plasticity is a temporal coding substrate at the behavioral timescale.

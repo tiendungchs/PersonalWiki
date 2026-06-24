@@ -43,7 +43,7 @@ Two anatomically and functionally distinct inhibitory modes gate the circuit:
 
 | Class | Cell types | Axon targets | Computation |
 |-------|------------|-------------|-------------|
-| **Horizontal** | Large basket, chandelier (axo-axonic) | Soma, AIS, proximal dendrites | Soft WTA / soft MAX among competing L2/3 patches |
+| **Horizontal** | Large basket, chandelier (axo-axonic) | Soma, AIS, proximal dendrites | Soft WTA (Winner-Take-All) / soft MAX among competing L2/3 patches |
 | **Vertical** | Double bouquet | Distal basal + apical dendrites | Dynamic gating of individual dendrite input-output transform |
 
 Horizontal cells (parvalbumin+) implement lateral competition: when one L2/3 patch wins, it suppresses neighbors via horizontal collaterals. Vertical cells (calbindin+, double bouquet) form a regular array spaced ~25 µm apart in tangential view, with narrow columnar axon bundles — each can modulate the dendritic transfer function of a column of pyramidal cells independently of somatic output.
@@ -83,7 +83,7 @@ Confirmed across macaque visual cortex hierarchy (V1→V4: 100% SLN%; V4→V1: <
 ## Application to Reasoning Models
 
 1. **Recurrent seed architectures:** A sparse symbol or goal can be amplified to a rich distributed representation if injected into a recurrent loop; no need for giant embedding tables. Mirror the L4→loop injection.
-2. **Soft WTA as hypothesis selector:** Horizontal inhibition among L2/3 patches maps directly to lateral inhibition among competing candidate rules/transformations — the neural implementation of "select the most consistent hypothesis."
+2. **Soft WTA (Winner-Take-All) as hypothesis selector:** Horizontal inhibition among L2/3 patches maps directly to lateral inhibition among competing candidate rules/transformations — the neural implementation of "select the most consistent hypothesis."
 3. **Two-layer output:** L5 → action/output; L6 → input gating. A reasoning model needs both a decision output and a mechanism to update what it pays attention to next.
 4. **Hierarchical routing:** SLN% rule suggests that feedforward and feedback signals must arrive in anatomically different layers — mixing them (as flat residual connections do) loses the hierarchy signal.
 
@@ -91,8 +91,8 @@ Confirmed across macaque visual cortex hierarchy (V1→V4: 100% SLN%; V4→V1: <
 
 ## Open Problems
 
-- The soft WTA dynamics are qualitative; convergence, capacity (how many competing interpretations can be maintained), and selection bias are not formally characterized.
-- How do patchy lateral L2/3 connections and the horizontal WTA interact when interpretations are partially overlapping rather than disjoint?
+- The soft WTA (Winner-Take-All) dynamics are qualitative; convergence, capacity (how many competing interpretations can be maintained), and selection bias are not formally characterized.
+- How do patchy lateral L2/3 connections and the horizontal WTA (Winner-Take-All) interact when interpretations are partially overlapping rather than disjoint?
 - What determines the number and spacing of patches across areas — functional (feature map), developmental, or wiring-cost constraints?
 
 ---
@@ -102,7 +102,7 @@ Confirmed across macaque visual cortex hierarchy (V1→V4: 100% SLN%; V4→V1: <
 - **[[wiki/concepts/predictive-coding.md]]** — Bastos et al. 2012 maps PC's error/prediction variable split onto this circuit: L2/3 superficial = prediction-error neurons (broadcast feedforward at gamma); L5/6 deep = prediction neurons (broadcast feedback at beta); the L6→thalamus loop is the active-inference action channel.
 - **[[wiki/concepts/dendritic-computation.md]]** — double bouquet vertical inhibitors target distal basal and apical dendrites, gating the input-output transfer function of individual dendritic compartments; basket/chandelier horizontal inhibitors target soma/AIS, gating somatic output; together they implement dual-compartment credit-assignment anatomy.
 - **[[wiki/concepts/hierarchical-representations.md]]** — the SLN% rule quantifies the feedforward/feedback asymmetry; feedforward (L3→L4) drives the bottom-up pattern-recognition mode; feedback (L5/6→L1/5/6) implements the top-down model-building mode that distinguishes hierarchical representations from reasoning.
-- **[[wiki/concepts/attention.md]]** — horizontal smooth cells implementing soft WTA among L2/3 patches are the biological analog of softmax attention: both select from competing candidates, both implement a soft MAX rather than a hard threshold; the temperature → 0 limit of softmax corresponds to the strong horizontal inhibition regime.
-- **[[wiki/entities/htm-thousand-brains.md]]** — HTM's cortical column L1–L6 layer assignment (L4=sensory, L2/3=binding/consensus, L6=path integration, L5=motor output) directly instantiates the canonical circuit; TBT proposes ~150,000 columns each running this same loop independently and reaching consensus via L2/3 lateral connections.
-- **[[wiki/papers/douglas-martin-neocortex-2004.md]]** — primary anatomy source; establishes universality, recurrent amplification, soft WTA model, horizontal/vertical inhibitor dissociation, and SLN% rule.
-- **[[wiki/papers/bastos-canonical-microcircuit-2012.md]]** — derives the laminar PC variable mapping from this circuit anatomy; establishes spectral asymmetry (gamma=superficial/error, beta=deep/prediction) as a mathematical consequence.
+- **[[wiki/concepts/attention.md]]** — horizontal smooth cells implementing soft WTA (Winner-Take-All) among L2/3 patches are the biological analog of softmax attention: both select from competing candidates, both implement a soft MAX rather than a hard threshold; the temperature → 0 limit of softmax corresponds to the strong horizontal inhibition regime.
+- **[[wiki/entities/htm-thousand-brains.md]]** — HTM's cortical column L1–L6 layer assignment (L4=sensory, L2/3=binding/consensus, L6=path integration, L5=motor output) directly instantiates the canonical circuit; TBT (Thousand Brains Theory) proposes ~150,000 columns each running this same loop independently and reaching consensus via L2/3 lateral connections.
+- **[[wiki/papers/douglas-martin-neocortex-2004.md]]** — primary anatomy source; establishes universality, recurrent amplification, soft WTA (Winner-Take-All) model, horizontal/vertical inhibitor dissociation, and SLN% rule.
+- **[[wiki/papers/bastos-canonical-microcircuit-2012.md]]** — derives the laminar PC (Predictive Coding) variable mapping from this circuit anatomy; establishes spectral asymmetry (gamma=superficial/error, beta=deep/prediction) as a mathematical consequence.

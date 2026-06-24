@@ -44,9 +44,9 @@ Three deployment options for single-input settings:
 | **Hand-craft z** | Give z an externally interpretable meaning | I-JEPA: z = spatial position of masked patch relative to context |
 | **Marginalize over z** | Sample multiple z values; weight or select best | Uncertainty estimation; possible for generation |
 
-**Contrast with Predictive Coding:** PC operates on a *single* moment-to-moment observation and performs iterative recurrent inference — no second input required. JEPA requires (x, y) pairs to define z and perform its error computation; it cannot do the same online single-observation inference. JEPA is aligned with PC's goal (minimize prediction error in abstract space) but is architecturally a contrastive learner, not a recurrent inferencer.
+**Contrast with Predictive Coding:** PC (Predictive Coding) operates on a *single* moment-to-moment observation and performs iterative recurrent inference — no second input required. JEPA requires (x, y) pairs to define z and perform its error computation; it cannot do the same online single-observation inference. JEPA is aligned with PC's goal (minimize prediction error in abstract space) but is architecturally a contrastive learner, not a recurrent inferencer.
 
-**H-JEPA stacking does not map cleanly to PC hierarchy:** In PC, each higher level provides top-down predictions (and receives bottom-up errors) from the level below. In H-JEPA, it is unclear how a higher-level JEPA provides z for the level below — the inter-level communication mechanism is not specified in the original design (see HiT-JEPA for one concrete implementation: top-down attention spotlight).
+**H-JEPA stacking does not map cleanly to PC (Predictive Coding) hierarchy:** In PC, each higher level provides top-down predictions (and receives bottom-up errors) from the level below. In H-JEPA, it is unclear how a higher-level JEPA provides z for the level below — the inter-level communication mechanism is not specified in the original design (see HiT-JEPA for one concrete implementation: top-down attention spotlight).
 
 ---
 
@@ -57,7 +57,7 @@ The first concrete empirical instantiation, for images. Key engineering choices:
 | Component | I-JEPA Choice | Why |
 |---|---|---|
 | Context encoder | ViT; processes only visible context patches | Efficiency — no wasted compute on masked patches |
-| Target encoder | EMA of context encoder (m=0.996→1.0) | Prevents collapse without contrastive samples or stop-gradient |
+| Target encoder | EMA (Exponential Moving Average) of context encoder (m=0.996→1.0) | Prevents collapse without contrastive samples or stop-gradient |
 | Predictor | Narrow ViT (width 384, depth 6–16) | Bottleneck forces efficient context→target mapping; wider predictors hurt |
 | Target masking | Mask OUTPUT of target-encoder, not input | Output masking produces richer semantic targets (67.3% vs. 56.1%) |
 | Masking strategy | 4 target blocks (scale 0.15–0.2) + 1 large context (0.85–1.0) | Larger semantic targets → semantic features; small patches → texture only |
@@ -202,7 +202,7 @@ The theoretically grounded instantiation of JEPA. Proves that **isotropic Gaussi
 
 | Property | I-JEPA / VICReg | LeJEPA |
 |---|---|---|
-| Collapse prevention | EMA teacher-student + VICReg | SIGReg (provably eliminates collapse) |
+| Collapse prevention | EMA (Exponential Moving Average) teacher-student + VICReg | SIGReg (provably eliminates collapse) |
 | Hyperparameters | Multiple (EMA rate, λ/µ/ν, schedulers) | Single λ |
 | Architecture scope | ViT-only (practical) | ResNets, ViTs, ConvNets, MaxViTs |
 | Training signal | Low correlation with downstream perf | 85–99% Spearman correlation |
@@ -254,8 +254,8 @@ The first JEPA trained stably end-to-end from raw pixels for continuous control,
 | DreamerV2/3 | Categorical latent | RSSM + ELBO | Recurrent belief state | Via learned dynamics |
 | TEM | Structural code g transitions | Cross-entropy (factorized) | Hebbian M per-environment | Slow-W cross-environment |
 | PC/FEP | Hidden causes z | F = −ELBO | Posterior q(z|o) | Hierarchical priors |
-| [[wiki/entities/dinov2-model.md\|DINOv2]] | iBOT: masked patch embedding; DINO: CLS softmax prototype | EMA teacher-student + cross-entropy (no contrastive negatives) | None (no latent z) | Frozen patch features transfer to segmentation, depth, retrieval; direct architectural ancestor of I-JEPA |
-| [[wiki/entities/dinov3-model.md\|DINOv3]] | Same as DINOv2 + Gram anchoring on patch similarity structure | EMA teacher-student + Gram loss (no contrastive negatives) | None (no latent z) | 7B params; SoTA dense features with frozen backbone; Gram decouples local/global learning; LeJEPA beats it in-domain |
+| [[wiki/entities/dinov2-model.md\|DINOv2]] | iBOT: masked patch embedding; DINO: CLS (Complementary Learning Systems) softmax prototype | EMA (Exponential Moving Average) teacher-student + cross-entropy (no contrastive negatives) | None (no latent z) | Frozen patch features transfer to segmentation, depth, retrieval; direct architectural ancestor of I-JEPA |
+| [[wiki/entities/dinov3-model.md\|DINOv3]] | Same as DINOv2 + Gram anchoring on patch similarity structure | EMA (Exponential Moving Average) teacher-student + Gram loss (no contrastive negatives) | None (no latent z) | 7B params; SoTA dense features with frozen backbone; Gram decouples local/global learning; LeJEPA beats it in-domain |
 
 ---
 
@@ -263,7 +263,7 @@ The first JEPA trained stably end-to-end from raw pixels for continuous control,
 
 - **[[wiki/entities/vl-jepa-model.md]]** — VL-JEPA extends JEPA to multimodal vision-language by adding a text Y-Encoder as the prediction target; uses V-JEPA 2 ViT-L as its frozen visual backbone; controlled experiments confirm 2× better sample efficiency over token-generative VLMs and SoTA on WorldPrediction-WM.
 - **[[wiki/papers/v-jepa-2-assran-2026.md]]** — scaling V-JEPA to 1B parameters and 1M hours of video; introduces V-JEPA 2-AC as the first operational Mode-2 planning loop: frozen encoder + action-conditioned predictor + CEM planning; zero-shot pick-and-place on real robots.
-- **[[wiki/concepts/energy-based-models.md]]** — JEPA is an EBM whose energy is the prediction error in representation space; training via non-contrastive regularization rather than contrastive samples; collapse prevention via information maximization on encoders.
+- **[[wiki/concepts/energy-based-models.md]]** — JEPA is an EBM (Energy-Based Model) whose energy is the prediction error in representation space; training via non-contrastive regularization rather than contrastive samples; collapse prevention via information maximization on encoders.
 - **[[wiki/concepts/world-models.md]]** — H-JEPA is LeCun's proposed architecture for learning predictive world models that avoid the blurriness problem of generative approaches while preserving multi-modal uncertainty via z.
 - **[[wiki/concepts/hierarchical-representations.md]]** — H-JEPA provides a concrete multi-level architecture where each level learns to predict at a longer timescale with a more abstract representation; the timescale/abstraction tradeoff is made explicit.
 - **[[wiki/concepts/predictive-coding.md]]** — JEPA's prediction-in-representation-space objective is aligned with PC's goal of minimizing prediction error at each cortical level; unlike PC, JEPA does not decompose into explicit error neuron populations and uses non-contrastive SSL rather than hierarchical free-energy minimization.
@@ -272,10 +272,10 @@ The first JEPA trained stably end-to-end from raw pixels for continuous control,
 - **[[wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md]]** — primary source; position paper proposing the full cognitive architecture of which JEPA/H-JEPA is the world-model component.
 - **[[wiki/papers/barlow-twins-zbontar-2021.md]]** — BT is the direct precursor to VICReg's covariance loss; the redundancy-reduction cross-correlation objective and its IB interpretation under Gaussian approximation explain why JEPA's non-contrastive training benefits from high-dimensional projector outputs.
 - **[[wiki/papers/vicreg-bardes-2022.md]]** — primary empirical source for VICReg; provides exact loss formulas, std-dev vs. variance analysis, multi-modal experiments (audio+spectrogram, image+text), and ablations showing variance regularization makes the predictor/stop-gradient redundant.
-- **[[wiki/papers/assran-ijepa-2023.md]]** — empirical instantiation of the JEPA architecture for images; provides ablations that validate representation-space prediction, multi-block masking as abstraction lever, and EMA target encoder as collapse prevention.
+- **[[wiki/papers/assran-ijepa-2023.md]]** — empirical instantiation of the JEPA architecture for images; provides ablations that validate representation-space prediction, multi-block masking as abstraction lever, and EMA (Exponential Moving Average) target encoder as collapse prevention.
 - **[[wiki/papers/leworldmodel-maes-2026.md]]** — applies LeJEPA's SIGReg to end-to-end world model training from raw pixels; demonstrates that a 2-term loss (prediction + SIGReg) is sufficient for stable JEPA world model learning; introduces temporal straightening as an emergent property and VoE as an evaluation criterion.
 - **[[wiki/papers/hit-jepa-li-2025.md]]** — first three-level empirical H-JEPA implementation; top-down attention spotlight (ConvTranspose1D upsampling + weighted sum) is the inter-level communication mechanism; ablation shows embedding-space injection causes collapse while attention-space injection preserves hierarchy.
-- **[[wiki/papers/dinov2-oquab-2023.md]]** — DINOv2 is the direct architectural ancestor of I-JEPA: the EMA teacher-student design, momentum schedule (0.994→1.0), and masked patch prediction (iBOT) are all inherited by I-JEPA; DINOv2's KoLeo regularizer (nearest-neighbor entropy spread) is the conceptual predecessor of LeJEPA's SIGReg (formal N(0,I) test).
-- **[[wiki/entities/dinov2-model.md]]** — DINOv2 is the architectural ancestor of the JEPA family: EMA teacher-student, masked patch prediction, and KoLeo regularizer all flow into I-JEPA/V-JEPA 2; the comparison table row traces this heritage.
+- **[[wiki/papers/dinov2-oquab-2023.md]]** — DINOv2 is the direct architectural ancestor of I-JEPA: the EMA (Exponential Moving Average) teacher-student design, momentum schedule (0.994→1.0), and masked patch prediction (iBOT) are all inherited by I-JEPA; DINOv2's KoLeo regularizer (nearest-neighbor entropy spread) is the conceptual predecessor of LeJEPA's SIGReg (formal N(0,I) test).
+- **[[wiki/entities/dinov2-model.md]]** — DINOv2 is the architectural ancestor of the JEPA family: EMA (Exponential Moving Average) teacher-student, masked patch prediction, and KoLeo regularizer all flow into I-JEPA/V-JEPA 2; the comparison table row traces this heritage.
 - **[[wiki/entities/dinov3-model.md]]** — DINOv3 extends DINOv2 with Gram anchoring; LeJEPA's finding that SIGReg beats DINOv3 in-domain (11K vs. hundreds of millions of images) establishes the scale-vs.-principled-SSL boundary relevant to abstract reasoning data regimes.
 - **[[wiki/papers/lecun-jepa-critical-review-lett-2025.md]]** — identifies z as a relational encoding (x–y relationship, not latent state of x alone), reframes JEPA as a siamese/contrastive model requiring pair inputs, critiques Mode-2 as System I (hard-wired search algorithm on learned model ≠ learned planning algorithm), and distinguishes JEPA's operational single-input limitations from PC's online recurrent inference.

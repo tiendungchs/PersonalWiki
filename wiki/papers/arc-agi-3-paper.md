@@ -10,7 +10,7 @@ related: [wiki/entities/arc-agi.md, wiki/concepts/abstract-reasoning.md, wiki/co
 
 # ARC-AGI-3: A New Challenge for Frontier Agentic Intelligence
 
-**ARC Prize Foundation, April 2026.** Introduces the interactive ARC-AGI-3 benchmark and its RHAE scoring framework. Primary source for ARC-AGI-3 design, human calibration, launch results, LRM knowledge-boundedness argument, and benchmark contamination analysis.
+**ARC Prize Foundation, April 2026.** Introduces the interactive ARC-AGI-3 benchmark and its RHAE scoring framework. Primary source for ARC-AGI-3 design, human calibration, launch results, LRM (Large Reasoning Model) knowledge-boundedness argument, and benchmark contamination analysis.
 
 ---
 
@@ -40,5 +40,5 @@ related: [wiki/entities/arc-agi.md, wiki/concepts/abstract-reasoning.md, wiki/co
 
 - **[[wiki/entities/arc-agi.md]]** — entity page with benchmark version table, full ARC-AGI-3 pillar breakdown, RHAE scoring summary, and connections to building-blocks decomposition
 - **[[wiki/concepts/abstract-reasoning.md]]** — Goal-Setting pillar extends the Lake et al. 2016 three-ingredient model with autonomous objective inference as a fourth required capability
-- **[[wiki/concepts/meta-learning.md]]** — LRM knowledge-boundedness argument reframes the efficiency-dependency open problem: fast inner loop cannot generalize beyond training distribution coverage
+- **[[wiki/concepts/meta-learning.md]]** — LRM (Large Reasoning Model) knowledge-boundedness argument reframes the efficiency-dependency open problem: fast inner loop cannot generalize beyond training distribution coverage
 - **[[wiki/papers/arc-agi-overview.md]]** — prior overview paper covering ARC-AGI-1/2 in detail; this paper is the authoritative technical document for ARC-AGI-3 design and scoring

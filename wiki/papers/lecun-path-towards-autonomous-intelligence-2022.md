@@ -41,11 +41,11 @@ related: [wiki/entities/jepa-model.md, wiki/concepts/energy-based-models.md, wik
 ## Links
 
 - [[wiki/entities/jepa-model.md]] — JEPA/H-JEPA architecture
-- [[wiki/concepts/energy-based-models.md]] — EBM framework; training strategies
+- [[wiki/concepts/energy-based-models.md]] — EBM (Energy-Based Model) framework; training strategies
 - [[wiki/concepts/world-models.md]] — world models as the substrate for planning
 - [[wiki/concepts/hierarchical-representations.md]] — H-JEPA as multi-level world model
 - [[wiki/concepts/predictive-coding.md]] — JEPA is aligned with PC's prediction objective but non-generative
 - [[wiki/concepts/working-memory.md]] — short-term memory module ≈ hippocampus
-- [[wiki/concepts/cognitive-control.md]] — configurator ≈ PFC executive control
+- [[wiki/concepts/cognitive-control.md]] — configurator ≈ PFC (Prefrontal Cortex) executive control
 - [[wiki/concepts/abstract-reasoning.md]] — Mode-2 as energy-minimization reasoning; intrinsic motivation for goal inference
-- [[wiki/entities/prefrontal-cortex.md]] — world model + configurator map to PFC subregions
+- [[wiki/entities/prefrontal-cortex.md]] — world model + configurator map to PFC (Prefrontal Cortex) subregions

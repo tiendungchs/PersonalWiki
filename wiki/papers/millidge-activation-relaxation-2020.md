@@ -31,6 +31,6 @@ related: [wiki/concepts/credit-assignment.md, wiki/concepts/predictive-coding.md
 ## Links
 
 - [[wiki/concepts/credit-assignment.md]] — AR occupies a near-zero-bias position in the bias-variance taxonomy, as the only local rule that converges to exact backprop gradients
-- [[wiki/concepts/predictive-coding.md]] — AR challenges PC as the default biologically plausible backprop approximation: simpler circuit (one neuron type), and counterexamples the shared NGRAD assumption
+- [[wiki/concepts/predictive-coding.md]] — AR challenges PC (Predictive Coding) as the default biologically plausible backprop approximation: simpler circuit (one neuron type), and counterexamples the shared NGRAD assumption
 - [[wiki/concepts/dendritic-computation.md]] — apical dendrites proposed as the solution to AR's two-phase problem: segregated compartments maintain the forward-pass activation during the relaxation phase
 - [[wiki/concepts/hebbian-learning.md]] — the backwards weight learning rule in AR (Δψ ∝ x_l · x_{l+1}) is a Hebbian coincidence rule applied to feedback connections

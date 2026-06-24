@@ -38,7 +38,7 @@ Decompose biology into independent functional units. For each: what the biology 
 |---|---|
 | **Biology** | P-EN neurons receive a **continuous velocity vector** and shift the grid bump proportionally. Recurrent connectivity is fixed (ring structure); velocity is the only update signal. Action is continuous, not discrete. |
 | **TEM** | `g_{t+1} = f(W g_t + B a_t)` where `a_t` is a **discrete action index** selecting a column of W. Hard discretization of continuous velocity; closed vocabulary; no generalization to novel action magnitudes. |
-| **Available in ML** | CANN with cosine connectivity; Neural ODE `dg/dt = f(g, v)`; learned RNN with ring constraint; torus RNN; Lie group rotation; KAN-ODE (KAN as gradient-getter — N⁻⁴ parameter scaling vs. N⁻² for MLP-Neural ODE; optional symbolic regression post-processing to recover governing equations) |
+| **Available in ML** | CANN with cosine connectivity; Neural ODE `dg/dt = f(g, v)`; learned RNN with ring constraint; torus RNN; Lie group rotation; KAN-ODE ([[wiki/papers/kan-ode-koenig-2024.md]] — KAN as gradient-getter; N⁻⁴ parameter scaling vs. N⁻² for MLP-Neural ODE; 240-param KAN-ODE achieves 8.3×10⁻⁷ MSE vs. 3×10⁻⁵ for 252-param MLP Neural ODE at matched epoch budget; optional symbolic regression to recover governing equations post-hoc) |
 | **Gap** | (1) Continuity: discrete label → continuous vector. (2) Ring structure: learned rather than imposed by recurrent connectivity. |
 | **Bridge** | Replace `W(a)` lookup with continuous rotation: `g_{t+1} = normalize(g_t + R(v_t) · g_t)` where `R(v_t)` is a learned skew-symmetric (SO(N)) matrix conditioned on action vector `v_t`. Maintains manifold constraint exactly; handles continuous and novel action magnitudes. |
 
@@ -74,7 +74,7 @@ Decompose biology into independent functional units. For each: what the biology 
 | **Biology** | CA3 is a recurrent autoassociative network with ~9–11% pyramidal-to-pyramidal connectivity (Sammons 2023: 8.8% functional, 11.2% structural — ~10× above prior estimates). Random connectivity at this rate is sufficient for pattern completion; no special motif enrichment required. Pattern size M and connectivity c satisfy c × M ≈ const, setting the minimum assembly size at any given connectivity. Capacity scales exponentially with feature dimension for sparse codes. Critical property: **pattern completion** — a partial/noisy cue converges to a stored attractor via recurrent dynamics (2-10 steps). CA3 also chains temporal sequences via asymmetric STDP. |
 | **TEM (linear Hopfield)** | Capacity O(N/log N). Single linear readout — no iterative completion; a degraded cue returns a degraded response, not a completed one. |
 | **TEM-t (modern Hopfield / softmax)** | Capacity O(exp(d)) — biologically realistic. Still single-pass, no iterative convergence within retrieval. |
-| **Available in ML** | Modern Hopfield (Ramsauer 2020); sparse Hopfield (capacity scales with sparsity); Kanerva SDM (biological DG→CA3 analog); temporal/asymmetric Hopfield for sequences |
+| **Available in ML** | Modern Hopfield (Ramsauer 2020); sparse Hopfield (capacity scales with sparsity); Kanerva SDM (Sparse Distributed Memory) (biological DG→CA3 analog); temporal/asymmetric Hopfield for sequences |
 | **Gap** | **(a)** Sparsity not enforced — TEM writes dense p; biology writes 2-6% sparse. **(b)** No iterative completion — TEM reads once; CA3 runs recurrent steps until convergence. **(c)** No temporal chaining — STDP-trained asymmetric connections let CA3 replay next-state transitions. |
 | **Bridge** | (a) Top-k sparse write: keep top 5% of p activations, zero rest (straight-through estimator for gradients). (b) Iterative completion: run 2-3 modern Hopfield update steps before final readout. (c) Temporal STDP: asymmetric write `M ← M + η · (p_t ⊗ p_{t+1})` alongside symmetric binding — encodes "what comes next" as well as "what is here." |
 
@@ -87,7 +87,7 @@ Decompose biology into independent functional units. For each: what the biology 
 | **Biology** | Awake SWRs occur preferentially after rewards and at decision points — selectively replay and prime the most important recent trajectories. Not every experience is consolidated. Importance ≈ prediction error + reward signal. |
 | **TEM** | Writes every (g, x) pair to M at every timestep with equal weight. No selection. |
 | **Available in ML** | Prioritized experience replay (TD error); surprise-based memory allocation; NTM/DNC write gate |
-| **Gap** | No differentiable approximation of selective SWR bookmarking. |
+| **Gap** | No differentiable approximation of selective SWR (Sharp Wave Ripple) bookmarking. |
 | **Bridge** | Gated write: `M ← M + η · σ(prediction_error_t) · p_t`. Prediction error = `||x_predicted - x_observed||`. Surprising observations get stronger binding; redundant ones are down-weighted. For offline consolidation: periodic replay phase where stored high-error trajectories are re-replayed for W update (no new M writes during this phase). **Biological grounding (Doya 2002, [[wiki/concepts/neuromodulation.md]]):** ACh = learning rate α; novelty/surprise elevates ACh (basal forebrain) → storage mode; familiarity lowers ACh → retrieval mode. The prediction error gate approximates this ACh signal. |
 
 ### Block 2D: Engram Allocation — Sparse Competitive Write
@@ -100,7 +100,7 @@ Decompose biology into independent functional units. For each: what the biology 
 
 ---
 
-## Region 3: PFC — Inference, Hierarchy, and Goals
+## Region 3: PFC (Prefrontal Cortex) — Inference, Hierarchy, and Goals
 
 ### Block 3A: Transformation Inferrer (Inverse Path Integration)
 
@@ -108,7 +108,7 @@ Decompose biology into independent functional units. For each: what the biology 
 
 | Aspect | Detail |
 |---|---|
-| **Biology** | TBT's L5→L6 efference copy: column compares predicted next state (L6) to actual sensory input (L4) → infers what transformation occurred. Generalized: PFC observes (state_before, state_after) pairs and infers abstract transformation. vmPFC applies structural codes to abstract decision spaces. |
+| **Biology** | TBT's L5→L6 efference copy: column compares predicted next state (L6) to actual sensory input (L4) → infers what transformation occurred. Generalized: PFC (Prefrontal Cortex) observes (state_before, state_after) pairs and infers abstract transformation. vmPFC applies structural codes to abstract decision spaces. |
 | **TEM** | Cannot infer transformations — `a_t` is always externally given. TEM is forward-only. This blocks all Type 2 tasks (ARC-AGI, analogy, rule induction). |
 | **Available in ML** | Neural Processes (posterior over functions from context pairs); set transformers; few-shot learning; in-context learning in LLMs |
 | **Gap** | No existing module cleanly computes: given K example pairs (g_in, g_out), return a posterior over the W vocabulary. |
@@ -118,30 +118,30 @@ Decompose biology into independent functional units. For each: what the biology 
 
 | Aspect | Detail |
 |---|---|
-| **Biology** | Sustained L3 firing maintains ~3-5 active representations for seconds to minutes. Dopamine D1 stabilizes (maintain), D2 destabilizes (update). PV interneurons gate access. Empirically: majority of PFC delay-period neurons show *transient*, not persistent, activity (Stokes 2013). |
+| **Biology** | Sustained L3 firing maintains ~3-5 active representations for seconds to minutes. Dopamine D1 stabilizes (maintain), D2 destabilizes (update). PV interneurons gate access. Empirically: majority of PFC (Prefrontal Cortex) delay-period neurons show *transient*, not persistent, activity (Stokes 2013). |
 | **TEM** | Context window only (TEM-t's sequential attention). No explicit maintenance or gating. |
 | **Available in ML** | LSTM gates; transformer context; SSMs (Mamba, S4); **TRNN** (self-inhibiting sparse hierarchical RNN) |
 | **Gap** | Dopamine-like stability/flexibility dial has no ML analog — LSTM gate is learned but fixed per context. |
 | **Bridge — Two options (not mutually exclusive):** | |
 | *Option A (meta-RL context):* | **Wang et al. 2018 ([[wiki/concepts/meta-learning.md]]):** Full LSTM whose recurrent hidden state implements a within-episode RL algorithm. Weights fixed at meta-training; WM = hidden state. Best for tasks requiring policy/value estimation across trials. Requires meta-RL outer loop. |
 | *Option B (high-capacity WM):* | **TRNN ([[wiki/papers/trnn-liu-2025.md]]; [[wiki/entities/trnn-model.md]]; [[wiki/concepts/working-memory.md]]):** Self-inhibition + sparse connections + hierarchical topology. No write step; memory in sequential neuron chain dynamics. Outperforms vanilla LSTM on: multi-item capacity, spatial navigation WM, distractor robustness. Best for maintaining multiple independent items or spatial context. γ hyperparameter = D1/D2 neuromodulation dial. |
-| **Recommendation:** | Use TRNN ([[wiki/entities/trnn-model.md]]) for the fast episodic WM layer (Block 3B mechanism); stack meta-RL LSTM above it for policy/context tracking if tasks require within-episode RL. TRNN handles "what is currently in the workspace" (short-term, high-capacity); LSTM handles "what strategy am I running" (slower, lower-capacity). **Biological grounding:** DLPFC transient activity = TRNN; PFC LSTM = meta-level context. |
+| **Recommendation:** | Use TRNN (Transition RNN) ([[wiki/entities/trnn-model.md]]) for the fast episodic WM layer (Block 3B mechanism); stack meta-RL LSTM above it for policy/context tracking if tasks require within-episode RL. TRNN (Transition RNN) handles "what is currently in the workspace" (short-term, high-capacity); LSTM handles "what strategy am I running" (slower, lower-capacity). **Biological grounding:** DLPFC transient activity = TRNN; PFC (Prefrontal Cortex) LSTM = meta-level context. |
 
 ### Block 3C: Hierarchical Abstraction Stack
 
 | Aspect | Detail |
 |---|---|
-| **Biology** | PFC rostro-caudal gradient (Friedman & Robbins 2021 — TMS-causal, lesion, fMRI confirmed): **Caudal PFC (BA-8)** = stimulus-response conditional mapping (which action for this cue); **Mid-lateral PFC (BA-9/46)** = contextual rule maintenance + n-back monitoring (maintain task-set context; resist interference); **Frontopolar PFC (BA-10)** = branching rule contingencies operating on rules held in WM (sequential subgoal management). Mid-lateral is the *hub*: integrates caudal (sensory context) and frontopolar (mnemonic rule-of-rules) signals. L5 output of column N → L4 input of column N+1 (TBT). **SEC framework (Wood & Grafman 2003):** PFC stores Structured Event Complexes — goal-oriented, grammatically-structured temporal event sequences encoding rules and abstractions. Anterior-posterior SEC complexity gradient (frontopolar = long multi-event SECs; caudal = short single-event) corroborates rule-nesting gradient: both map the same rostro-caudal axis. Together they argue W_rule-of-rules should encode a *grammar over event sequences* (not just a rule label), with lower W levels sampling episodes from that grammar. |
+| **Biology** | PFC (Prefrontal Cortex) rostro-caudal gradient (Friedman & Robbins 2021 — TMS-causal, lesion, fMRI confirmed): **Caudal PFC (Prefrontal Cortex) (BA-8)** = stimulus-response conditional mapping (which action for this cue); **Mid-lateral PFC (Prefrontal Cortex) (BA-9/46)** = contextual rule maintenance + n-back monitoring (maintain task-set context; resist interference); **Frontopolar PFC (Prefrontal Cortex) (BA-10)** = branching rule contingencies operating on rules held in WM (sequential subgoal management). Mid-lateral is the *hub*: integrates caudal (sensory context) and frontopolar (mnemonic rule-of-rules) signals. L5 output of column N → L4 input of column N+1 (TBT). **SEC framework (Wood & Grafman 2003):** PFC (Prefrontal Cortex) stores Structured Event Complexes — goal-oriented, grammatically-structured temporal event sequences encoding rules and abstractions. Anterior-posterior SEC (Structured Event Complex) complexity gradient (frontopolar = long multi-event SECs; caudal = short single-event) corroborates rule-nesting gradient: both map the same rostro-caudal axis. Together they argue W_rule-of-rules should encode a *grammar over event sequences* (not just a rule label), with lower W levels sampling episodes from that grammar. |
 | **TEM** | Flat: one level of g/x/p. Cannot represent compositional rule chains (apply rule A, get context for rule B). |
 | **Available in ML** | Multi-layer transformers (implicit, non-gated); hierarchical RL (options); hierarchical VAE; hierarchical SSMs |
 | **Gap** | Standard multi-layer transformers lack the explicit gating where the higher level controls the W context for the lower level. |
-| **Bridge** | **Three-level TEM stack** (justified by three distinct PFC levels, not two): W_rule-of-rules (frontopolar, slowest, one update per task-class: what grammar/rule-family?) → W_context (mid-lateral, per-episode: which rule within that family, maintained vs. switched) → W_instance (caudal, per-timestep: which specific stimulus-response mapping?). Mid-lateral W_context is the hub that integrates the other two. This replaces the previous two-level sketch; the biological evidence supports three levels. |
+| **Bridge** | **Three-level TEM stack** (justified by three distinct PFC (Prefrontal Cortex) levels, not two): W_rule-of-rules (frontopolar, slowest, one update per task-class: what grammar/rule-family?) → W_context (mid-lateral, per-episode: which rule within that family, maintained vs. switched) → W_instance (caudal, per-timestep: which specific stimulus-response mapping?). Mid-lateral W_context is the hub that integrates the other two. This replaces the previous two-level sketch; the biological evidence supports three levels. |
 
 ### Block 3D: Goal / Error Generator
 
 | Aspect | Detail |
 |---|---|
-| **Biology** | vmPFC encodes goal value; ACC monitors goal-current conflict; PFL neurons (CX) implement: heading_error = goal_heading − current_heading → action output. |
+| **Biology** | vmPFC encodes goal value; ACC (Anterior Cingulate Cortex) monitors goal-current conflict; PFL neurons (CX) implement: heading_error = goal_heading − current_heading → action output. |
 | **TEM** | No goal representation or action generation. |
 | **Bridge** | In g-space: goal = `g_goal`; action = the W column that minimizes `||f(W g_current, a) - g_goal||`. For the reasoning case: goal = target observation; action = inferred transformation (Block 3A already provides this when given before/after pairs). Goal-conditioned generation unifies with the Transformation Inferrer. |
 
@@ -156,11 +156,11 @@ Decompose biology into independent functional units. For each: what the biology 
 | **1C: Landmark correction** | Ring neuron Kalman update | No explicit correction | Cross-attention x→(g,x) pairs; learned K gate | Medium |
 | **2A: Bidirectional binding** | g→x and x→g retrieval | g→x only | Add reverse attention: x→g retrieval | Low |
 | **2B: Pattern completion** | CA3 iterative attractor; exp(d) capacity | Single linear readout; O(N/log N) | Iterative modern Hopfield (2-3 steps) | Low |
-| **2C: Importance gate** | SWR post-reward bookmarking | Uniform write | Surprise-gated write: η · σ(prediction_error) | Low-Medium |
+| **2C: Importance gate** | SWR (Sharp Wave Ripple) post-reward bookmarking | Uniform write | Surprise-gated write: η · σ(prediction_error) | Low-Medium |
 | **2D: Sparse allocation** | 2-6% excitability competition | Dense write | Top-k sparse write with straight-through | Low |
-| **3A: Transformation inferrer** | TBT efference copy inversion; PFC | **Absent** | Set-attention over Δg → W posterior | High |
+| **3A: Transformation inferrer** | TBT (Thousand Brains Theory) efference copy inversion; PFC (Prefrontal Cortex) | **Absent** | Set-attention over Δg → W posterior | High |
 | **3B: Working memory gate** | DLPFC dopamine D1/D2 gating; transient delay activity | Context window only | [[wiki/entities/trnn-model.md]] (high-capacity episodic) + meta-RL LSTM (policy context) | Medium |
-| **3C: Hierarchical stack** | Rostro-caudal PFC (BA-8/9-46/10); TBT column hierarchy | Flat single-level | **Three-level** W: W_rule-of-rules (BA-10) → W_context (BA-9/46 hub) → W_instance (BA-8) | High |
+| **3C: Hierarchical stack** | Rostro-caudal PFC (Prefrontal Cortex) (BA-8/9-46/10); TBT (Thousand Brains Theory) column hierarchy | Flat single-level | **Three-level** W: W_rule-of-rules (BA-10) → W_context (BA-9/46 hub) → W_instance (BA-8) | High |
 | **3D: Goal generator** | vmPFC/PFL heading error → action | Absent | Argmin over W vocabulary toward g_goal | Medium |
 
 ---

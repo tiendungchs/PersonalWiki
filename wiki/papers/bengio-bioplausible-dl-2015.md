@@ -18,7 +18,7 @@ Bengio, Lee, Bornschein, Mesnard & Lin. ICML 2015 Deep Learning Workshop. arXiv:
 
 - **STDP = SGD**: The update rule ΔW_{ij} ∝ S_i · V̇_j (presynaptic spike × temporal derivative of postsynaptic voltage) is equivalent to stochastic gradient descent on any objective J — provided neural dynamics push V_j toward better values of J. This is a direct ML interpretation of the primary biological learning rule, without requiring symmetric weights or separate backward circuits.
 
-- **Variational EM as neural computation**: Cast neural inference as the E-step — iterative dynamics driving latent states h toward higher log p(x,h) — and weight updates as the M-step using locally converged h. The training objective is a variational lower bound on log p(x); maximizing it avoids explicit gradient computation or global coordination signal.
+- **Variational EM (Expectation Maximization) as neural computation**: Cast neural inference as the E-step — iterative dynamics driving latent states h toward higher log p(x,h) — and weight updates as the M-step using locally converged h. The training objective is a variational lower bound on log p(x); maximizing it avoids explicit gradient computation or global coordination signal.
 
 - **Targetprop gradient estimator**: The gradient ∂log p(x|h)/∂h is approximated by [f(g(h)) − h]/σ², where f and g are encoder/decoder pairs trained as approximate inverses. Derived from the denoising auto-encoder theorem (Alain & Bengio 2013): a well-trained DAE with corruption variance σ² satisfies r(x) − x ≈ σ² ∇_x log p(x). Only ordinary forward/backward neural computation required.
 
@@ -38,7 +38,7 @@ Bengio, Lee, Bornschein, Mesnard & Lin. ICML 2015 Deep Learning Workshop. arXiv:
 
 ## Links
 
-- [[wiki/concepts/credit-assignment.md]] — DTP entry in taxonomy; variational EM adds the inference-phase framing
+- [[wiki/concepts/credit-assignment.md]] — DTP entry in taxonomy; variational EM (Expectation Maximization) adds the inference-phase framing
 - [[wiki/concepts/hebbian-learning.md]] — STDP-as-SGD interpretation; fourth STDP ↔ credit assignment correspondence
-- [[wiki/concepts/predictive-coding.md]] — variational EM is structurally the PC inference/learning split, re-derived from the ELBO
+- [[wiki/concepts/predictive-coding.md]] — variational EM (Expectation Maximization) is structurally the PC (Predictive Coding) inference/learning split, re-derived from the ELBO
 - [[wiki/entities/equilibrium-propagation.md]] — contrast: EqProp exact but symmetric weights; targetprop approximate but weight-transport-free

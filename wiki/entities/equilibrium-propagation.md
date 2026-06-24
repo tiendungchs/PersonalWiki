@@ -98,7 +98,7 @@ This is the EqProp rule. The postsynaptic signal is d/dt[ρ(u_j)] — the *rate 
 
 EqProp is the canonical theoretical resolution to **Gap 4** (biologically plausible slow-W learning): it proves that local contrastive Hebbian updates at energy equilibrium compute the *exact* gradient of a well-defined objective, with no additional assumptions. The practical gaps (symmetric weights, analog scale) remain.
 
-- **Free phase = inference:** the network settling to u⁰ is structurally identical to predictive coding's free-energy minimization phase — both minimize E via gradient flow before any learning occurs. EqProp and PC are the same family.
+- **Free phase = inference:** the network settling to u⁰ is structurally identical to predictive coding's free-energy minimization phase — both minimize E via gradient flow before any learning occurs. EqProp and PC (Predictive Coding) are the same family.
 - **Nudged phase = active inference:** the target d acts as a weak external signal biasing equilibrium (not a hard clamp); this is the supervised analog of active inference, where preferred outcomes gently pull the generative model's fixed point rather than forcing it.
 - **Design implication:** any energy-based module in a reasoning architecture can be trained with EqProp if it supports symmetric recurrent connections; the same circuit that performs inference also performs credit assignment.
 
@@ -114,7 +114,7 @@ The two main candidates for biologically plausible slow-W learning differ on the
 | **Weight symmetry** | Required: W_{ij} = W_{ji} | Not required: f and g trained independently |
 | **Computation** | Two fixed-point relaxations (free + nudged) | Feedforward pass + iterative inference dynamics |
 | **STDP form** | Tied (symmetric pre/post) | Asymmetric (S_i · V̇_j) |
-| **Biological framing** | Energy minimization / contrastive Hebbian | Variational EM (E-step inference, M-step weights) |
+| **Biological framing** | Energy minimization / contrastive Hebbian | Variational EM (Expectation Maximization) (E-step inference, M-step weights) |
 | **Validated at** | MNIST; ImageNet excluded (too slow) | MNIST; DTP collapses at ImageNet (Bartunov 2018) |
 
 Both fail at ImageNet scale. EqProp's exactness advantage is theoretical — it has never been tested beyond MNIST. Targetprop's freedom from weight symmetry is practically important but does not compensate for high bias at scale.
@@ -133,9 +133,9 @@ Both fail at ImageNet scale. EqProp's exactness advantage is theoretical — it 
 
 - **[[wiki/concepts/credit-assignment.md]]** — EqProp proves that local contrastive Hebbian updates at energy fixed points compute the exact gradient, establishing the theoretical ceiling for what purely local two-phase Hebbian rules can achieve; it is the formal unifier of all temporal-error credit assignment classes.
 - **[[wiki/concepts/hebbian-learning.md]]** — the EqProp update is the time-integral of a tied STDP rule where the postsynaptic signal is d/dt[ρ(u_j)], providing the most principled derivation that a biologically observed STDP form computes exact gradients rather than merely approximating them.
-- **[[wiki/concepts/associative-memory.md]]** — the continuous Hopfield network is the prototype energy-based model for EqProp; EqProp is the gradient-correct training algorithm that replaces CHL for supervised Hopfield learning.
+- **[[wiki/concepts/associative-memory.md]]** — the continuous Hopfield network is the prototype energy-based model for EqProp; EqProp is the gradient-correct training algorithm that replaces CHL (Contrastive Hebbian Learning) for supervised Hopfield learning.
 - **[[wiki/concepts/predictive-coding.md]]** — EqProp's free phase (gradient-flow settling to u⁰) is structurally identical to PC's inference phase (free-energy minimization); both are temporal-error credit assignment models that use network convergence to a fixed point as their effective backward pass.
-- **[[wiki/entities/boltzmann-machine.md]]** — EqProp fixes the Boltzmann machine's CHL mode-mismatch bug by replacing full output clamping with weak clamping (β small); the implicit function theorem guarantees the nudged fixed point stays in the same energy mode as the free fixed point.
+- **[[wiki/entities/boltzmann-machine.md]]** — EqProp fixes the Boltzmann machine's CHL (Contrastive Hebbian Learning) mode-mismatch bug by replacing full output clamping with weak clamping (β small); the implicit function theorem guarantees the nudged fixed point stays in the same energy mode as the free fixed point.
 - **[[wiki/papers/scellier-bengio-eqprop-2017.md]]** — primary source: Theorem 1 proof, STDP derivation, comparison to CHL/CD/Almeida-Pineda, and MNIST experiments.
 - **[[wiki/papers/theories-backprop-brain-whittington-2019.md]]** — situates EqProp as the formal unifier of all four temporal-error credit assignment classes (CHL, GeneRec, continuous update, EqProp); all are energy-based networks whose dynamics converge before weight updates.
 - **[[wiki/papers/bengio-bioplausible-dl-2015.md]]** — targetprop is the direct competitor to EqProp for biologically plausible slow-W: trades EqProp's exactness for freedom from the weight symmetry constraint; both are Bengio-lab proposals attacking Gap 4 from different angles.

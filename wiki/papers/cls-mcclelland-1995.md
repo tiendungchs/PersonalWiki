@@ -12,7 +12,7 @@ related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/replay.md, wik
 
 McClelland, J. L., McNaughton, B. L., & O'Reilly, R. C. (1995). *Psychological Review*, 102(3), 419–457.
 
-**Foundational CLS paper.** The 2011 O'Reilly et al. update ([[wiki/papers/cls-oreilly-2011.md]]) extends the biological mechanism; this paper provides the formal computational necessity argument.
+**Foundational CLS (Complementary Learning Systems) paper.** The 2011 O'Reilly et al. update ([[wiki/papers/cls-oreilly-2011.md]]) extends the biological mechanism; this paper provides the formal computational necessity argument.
 
 ---
 
@@ -26,7 +26,7 @@ McClelland, J. L., McNaughton, B. L., & O'Reilly, R. C. (1995). *Psychological R
 
 ## Limitations
 
-- Networks are simple (no CA3, no DG pattern separation); biological mechanisms are a "black box" trace.
+- Networks are simple (no CA3, no DG (Dentate Gyrus) pattern separation); biological mechanisms are a "black box" trace.
 - Two-compartment retrograde amnesia model is a parameterized fit, not a mechanistic derivation.
 - Predates modern deep learning; catastrophic interference in overparameterized networks behaves differently.
 
@@ -35,4 +35,4 @@ McClelland, J. L., McNaughton, B. L., & O'Reilly, R. C. (1995). *Psychological R
 - [[wiki/concepts/two-learning-timescales.md]] — catastrophic interference is the formal derivation of why two timescales are necessary
 - [[wiki/concepts/replay.md]] — interleaved HC replay is the biological mechanism delivering the diverse stream cortex needs for slow learning
 - [[wiki/concepts/structural-generalization.md]] — interleaved training = mechanism by which slow-W avoids catastrophic interference while extracting shared structure
-- [[wiki/concepts/compositional-generalization.md]] — MLC episodic meta-training is the computational analog of interleaved HC replay
+- [[wiki/concepts/compositional-generalization.md]] — MLC (Meta-Learning as Compositional) episodic meta-training is the computational analog of interleaved HC replay

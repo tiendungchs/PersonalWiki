@@ -83,11 +83,11 @@ By contrast, place cell L1 sparsity regularization anneals over 4,000,000 steps,
 
 ---
 
-### 6. No KL divergence despite variational framing
+### 6. No KL (Kullback-Leibler) divergence despite variational framing
 
-**Theory:** TEM is presented with a generative-model / ELBO-like formulation. Inferred distributions over `g` (inference network) should be regularized toward the prior via a KL divergence term.
+**Theory:** TEM is presented with a generative-model / ELBO-like formulation. Inferred distributions over `g` (inference network) should be regularized toward the prior via a KL (Kullback-Leibler) divergence term.
 
-**Code:** Both inference and prior distributions have learned `mu` and `logsig` parameters. The `combine2` function implements a Gaussian product (precision-weighted combination) during inference. However, no KL divergence term appears in the loss. The variational interpretation is present only in the inference structure; the training objective is purely reconstruction-based with implicit regularization via `lx_gt` (which forces the prior path to be predictive on its own).
+**Code:** Both inference and prior distributions have learned `mu` and `logsig` parameters. The `combine2` function implements a Gaussian product (precision-weighted combination) during inference. However, no KL (Kullback-Leibler) divergence term appears in the loss. The variational interpretation is present only in the inference structure; the training objective is purely reconstruction-based with implicit regularization via `lx_gt` (which forces the prior path to be predictive on its own).
 
 ---
 
@@ -141,7 +141,7 @@ PyTorch stores M as a full `(batch_size, Σn_p, Σn_p)` matrix, explicitly. This
 | Training objective | Prediction error | 3 reconstruction losses (TF2); 8 losses incl. squared error on p and g (PyTorch) |
 | Sensory input | Instantaneous observation | Exponentially smoothed per frequency band (both implementations) |
 | Grid regularization | — | Nominally L2, but annealing = 40M >> 2M steps → effectively off |
-| Variational objective | ELBO with KL divergence | Reconstruction only; no explicit KL term (both implementations) |
+| Variational objective | ELBO with KL (Kullback-Leibler) divergence | Reconstruction only; no explicit KL (Kullback-Leibler) term (both implementations) |
 
 † Author-recommended but not in paper: PyTorch uses difference/residual coding `g_{t+1} = g_t + Δ`.
 

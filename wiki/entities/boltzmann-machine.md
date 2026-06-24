@@ -100,21 +100,21 @@ Despite reduced connectivity, RBMs retain most of the expressive power of full B
 
 ## Spiking RBM
 
-Neftci et al. (2014). Replace stochastic binary units in an RBM with stochastic integrate-and-fire neurons:
+Neftci et al. (2014). Replace stochastic binary units in an RBM (Restricted Boltzmann Machine) with stochastic integrate-and-fire neurons:
 
-| Standard RBM | Spiking RBM |
+| Standard RBM (Restricted Boltzmann Machine) | Spiking RBM (Restricted Boltzmann Machine) |
 |---|---|
 | Binary stochastic units: P(s_i=1) = σ(h_i) | Stochastic LIF: spike probability ∝ σ(V − θ) |
 | Contrastive divergence (CD-k) | STDP approximates CD: pre-before-post ≈ positive phase; post-before-pre ≈ negative phase |
-| External clock for positive/negative phase switching | Phase emerges from WTA inhibitory circuit |
+| External clock for positive/negative phase switching | Phase emerges from WTA (Winner-Take-All) inhibitory circuit |
 
-**STDP ≈ CD result (Neftci et al. 2014):** the spiking RBM learns the same distribution as an equivalent standard RBM, establishing STDP as a biologically plausible implementation of contrastive Hebbian learning — no partition function computation, no global phase coordinator.
+**STDP ≈ CD result (Neftci et al. 2014):** the spiking RBM (Restricted Boltzmann Machine) learns the same distribution as an equivalent standard RBM, establishing STDP as a biologically plausible implementation of contrastive Hebbian learning — no partition function computation, no global phase coordinator.
 
 ---
 
 ## HBM ↔ Hopfield Thermodynamic Equivalence
 
-Barra et al. (2012). A **Hybrid Boltzmann Machine (HBM)** is an RBM with continuous hidden units (visible units remain binary). Marginalizing over hidden units yields a system thermodynamically equivalent to a Hopfield network:
+Barra et al. (2012). A **Hybrid Boltzmann Machine (HBM)** is an RBM (Restricted Boltzmann Machine) with continuous hidden units (visible units remain binary). Marginalizing over hidden units yields a system thermodynamically equivalent to a Hopfield network:
 
 | Dimension | Hopfield | HBM (marginalized) |
 |---|---|---|
@@ -125,7 +125,7 @@ Barra et al. (2012). A **Hybrid Boltzmann Machine (HBM)** is an RBM with continu
 
 When P (stored patterns) ≪ N (neurons), HBM simulation of Hopfield requires far fewer synapses — enabling hardware-efficient neuromorphic Hopfield implementation.
 
-**Chain of equivalences:** spiking RBM (STDP≈CD) → spiking HBM (continuous hidden units) → thermodynamically equivalent to a spiking Hopfield network trained with STDP. This unifies energy-based generative modeling and content-addressable retrieval in a single biologically plausible spiking system. Stacking spiking RBMs yields a spiking DBN, implicitly a spiking Hopfield stack.
+**Chain of equivalences:** spiking RBM (Restricted Boltzmann Machine) (STDP≈CD) → spiking HBM (continuous hidden units) → thermodynamically equivalent to a spiking Hopfield network trained with STDP. This unifies energy-based generative modeling and content-addressable retrieval in a single biologically plausible spiking system. Stacking spiking RBMs yields a spiking DBN, implicitly a spiking Hopfield stack.
 
 ---
 
@@ -153,7 +153,7 @@ When P (stored patterns) ≪ N (neurons), HBM simulation of Hopfield requires fa
 
 ## Connections
 
-- **[[wiki/concepts/predictive-coding.md]]** — the contrastive Hebbian rule's two phases (positive: data-clamped; negative: free-running) are the structural precursor to PC's two-population architecture (error neurons driven by sensory input vs. representational neurons driven by top-down prediction); PC is the tractable hierarchical extension of Boltzmann learning that replaces the equilibrium sampling requirement with local error propagation.
+- **[[wiki/concepts/predictive-coding.md]]** — the contrastive Hebbian rule's two phases (positive: data-clamped; negative: free-running) are the structural precursor to PC's two-population architecture (error neurons driven by sensory input vs. representational neurons driven by top-down prediction); PC (Predictive Coding) is the tractable hierarchical extension of Boltzmann learning that replaces the equilibrium sampling requirement with local error propagation.
 - **[[wiki/concepts/attention.md]]** — the softmax in transformer self-attention is the Boltzmann distribution `P ∝ exp(similarity/T)` applied to key-query similarity scores; the temperature parameter in softmax is literally T; this makes the Hopfield ↔ attention derivation physically grounded, not merely algebraic.
 - **[[wiki/concepts/information-theory.md]]** — partition function intractability (`log Z` over 2^N states) is precisely the problem that the ELBO solves; variational free energy F = −ELBO is a tractable upper bound on −log Z; Boltzmann machines motivate why variational inference is necessary.
 - **[[wiki/concepts/two-learning-timescales.md]]** — the positive phase (data-clamped visible units, freely settling hidden units) implements fast episodic binding (M-analog); the negative phase (freely running weights-only model) implements the prior shaped by slow learning (W-analog); the two-phase contrastive structure anticipates the two-timescale split.
@@ -161,6 +161,6 @@ When P (stored patterns) ≪ N (neurons), HBM simulation of Hopfield requires fa
 - **[[wiki/papers/boltzmann-machine-transcript.md]]** — primary source.
 - **[[wiki/concepts/associative-memory.md]]** — Hopfield network is the deterministic (T→0) limit of the Boltzmann machine; contrastive Hebbian extends one-shot Hebbian by adding a free-running negative phase that pushes energy up for non-data states, reshaping the full energy landscape rather than just drilling wells at stored patterns.
 - **[[wiki/entities/equilibrium-propagation.md]]** — EqProp fixes CHL's mode-mismatch bug by replacing full output clamping with weak clamping (β small); the implicit function theorem guarantees both phases stay in the same energy mode, and the resulting contrastive update computes the exact gradient — making EqProp the theoretically sound supervised extension of CHL.
-- **[[wiki/papers/scellier-bengio-eqprop-2017.md]]** — primary source for EqProp as the gradient-correct successor to CHL, with formal comparison of CHL vs. EqProp objectives and MNIST experiments.
+- **[[wiki/papers/scellier-bengio-eqprop-2017.md]]** — primary source for EqProp as the gradient-correct successor to CHL, with formal comparison of CHL (Contrastive Hebbian Learning) vs. EqProp objectives and MNIST experiments.
 - **[[wiki/entities/snn.md]]** — spiking RBMs replace stochastic binary units with stochastic integrate-and-fire neurons; STDP approximates contrastive divergence (Neftci 2014), providing a biologically plausible two-phase learning rule with no global phase coordinator; the HBM↔Hopfield equivalence enables spiking DBN stacks to function as spiking Hopfield networks.
-- **[[wiki/papers/tavanaei-deep-snn-2018.md]]** — source for spiking RBM (STDP ≈ contrastive divergence, Neftci 2014) and HBM ↔ Hopfield thermodynamic equivalence (Barra et al. 2012); establishes the chain: spiking RBM → spiking HBM → spiking Hopfield, unifying generative modeling and content-addressable retrieval in a single biologically plausible spiking system.
+- **[[wiki/papers/tavanaei-deep-snn-2018.md]]** — source for spiking RBM (Restricted Boltzmann Machine) (STDP ≈ contrastive divergence, Neftci 2014) and HBM ↔ Hopfield thermodynamic equivalence (Barra et al. 2012); establishes the chain: spiking RBM (Restricted Boltzmann Machine) → spiking HBM → spiking Hopfield, unifying generative modeling and content-addressable retrieval in a single biologically plausible spiking system.

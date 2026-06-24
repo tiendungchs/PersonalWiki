@@ -68,13 +68,13 @@ Grid cells warp toward rewarded locations (Boccara 2019, Butler 2019), apparentl
 
 ---
 
-## Disentanglement ≠ Abstraction: The CCGP/SD Constraint
+## Disentanglement ≠ Abstraction: The CCGP (Cross-Condition Generalization Performance)/SD Constraint
 
 Factorized/disentangled representations achieve high cross-condition generalization performance (CCGP) for each encoded variable — but at the cost of severely reduced shattering dimensionality (SD). In a perfectly factorized representation, XOR dichotomies are linearly unseparable, hard-limiting the responses a downstream linear readout can generate.
 
-Bernardi et al. 2020 ([[wiki/papers/geometry-abstraction-bernardi-2020.md]]) show that HPC, DLPFC, and ACC achieve near-maximal SD *simultaneously* with high CCGP for context, value, and action. The observed geometry is not fully disentangled: a small distortion of the factorized arrangement recovers near-maximal SD without sacrificing CCGP for the key variables. Mixed selectivity (linear combinations of multiple variable tunings) is the substrate — it corresponds to a rotation of the factorized code that preserves CCGP under linear readouts.
+Bernardi et al. 2020 ([[wiki/papers/geometry-abstraction-bernardi-2020.md]]) show that HPC, DLPFC, and ACC (Anterior Cingulate Cortex) achieve near-maximal SD (Shattering Dimensionality) *simultaneously* with high CCGP (Cross-Condition Generalization Performance) for context, value, and action. The observed geometry is not fully disentangled: a small distortion of the factorized arrangement recovers near-maximal SD (Shattering Dimensionality) without sacrificing CCGP (Cross-Condition Generalization Performance) for the key variables. Mixed selectivity (linear combinations of multiple variable tunings) is the substrate — it corresponds to a rotation of the factorized code that preserves CCGP (Cross-Condition Generalization Performance) under linear readouts.
 
-**Design implication:** the target for a reasoning model is not maximum disentanglement but the CCGP/SD balance. Full disentanglement limits behavioral flexibility. See [[wiki/concepts/representational-geometry.md]].
+**Design implication:** the target for a reasoning model is not maximum disentanglement but the CCGP (Cross-Condition Generalization Performance)/SD balance. Full disentanglement limits behavioral flexibility. See [[wiki/concepts/representational-geometry.md]].
 
 ---
 
@@ -115,7 +115,7 @@ These two factorizations are multiplicatively useful: a full HC-based reasoning 
 
 ## SDM: A Third Factorization Axis
 
-Kanerva's SDM (Kanerva 1993 [[wiki/papers/kanerva-sdm-1993.md]]) establishes a **third factorization axis** — *address scaffold vs. content* — nested within the two axes already in the wiki:
+Kanerva's SDM (Sparse Distributed Memory) (Kanerva 1993 [[wiki/papers/kanerva-sdm-1993.md]]) establishes a **third factorization axis** — *address scaffold vs. content* — nested within the two axes already in the wiki:
 
 | Factorization | Fixed component | Plastic component | Scope |
 |---|---|---|---|
@@ -145,7 +145,7 @@ TEM's g/x split is the *global* factorization achieved at the top of this staged
 - **[[wiki/concepts/structural-generalization.md]]** — factorization is the mechanism that enables structural generalization; the g/x split is precisely why W (transition rules on g) can transfer to new environments while x is discarded.
 - **[[wiki/concepts/path-integration.md]]** — path integration is the update mechanism *for g specifically*; `g_{t+1} = f(W g_t + B a_t)` keeps the structural code path-consistent across traversals without touching x or p.
 - **[[wiki/concepts/two-learning-timescales.md]]** — W (slow, shared) and M (fast, per-environment) are the respective update rules for the structural and conjunctive codes; the two-timescale split maps directly onto the factorized architecture.
-- **[[wiki/concepts/successor-representation.md]]** — SR independently derives the same factorized split: SR eigenvectors = grid cells (structural code g); SR rows = place cells (conjunctive code p); two mathematical routes to the same architecture.
+- **[[wiki/concepts/successor-representation.md]]** — SR (Successor Representation) independently derives the same factorized split: SR (Successor Representation) eigenvectors = grid cells (structural code g); SR (Successor Representation) rows = place cells (conjunctive code p); two mathematical routes to the same architecture.
 - **[[wiki/entities/grid-cells.md]]** — physically implement the structural code `g`; environment-invariant, multi-scale, path-integrating — the factorized architecture in MEC at the cellular level.
 - **[[wiki/entities/place-cells.md]]** — physically implement the conjunctive code `p = f(g, x)`; environment-specific remapping while preserving grid-phase shows factorization working at the HC level.
 - **[[wiki/concepts/attention.md]]** — transformer self-attention with Q=K=f(g), V=f(x) is the factorized architecture instantiated; the derivation from TEM memory structure proves factorization is necessary, not a design choice.
@@ -162,10 +162,10 @@ TEM's g/x split is the *global* factorization achieved at the top of this staged
 - **[[wiki/papers/dicarlo-visual-object-recognition-2012.md]]** — source for CLSU as staged local factorization; temporal contiguity learning as the unsupervised mechanism that factorizes identity from transformation variables at each level without labels.
 - **[[wiki/concepts/latent-graph-discovery.md]]** — factorized representations are the architectural solution to two-level entanglement in latent graph discovery: the g/x split allows meta-graph position (g) and node content (x) to be learned at different timescales, which is the core requirement of the two-level hierarchy.
 - **[[wiki/papers/whittington-cognitive-map-2022.md]]** — primary source for the factorized vs. entangled representation phase concept; the generalization pressure that drives the g/x/p factorization is operationalized in this paper's CSCG+TEM integration discussion.
-- **[[wiki/concepts/representational-geometry.md]]** — disentanglement is a limiting case of the CCGP/SD trade-off: maximum CCGP at the cost of minimum SD; the brain achieves the balance via a distorted factorized geometry with mixed selectivity; the reasoning model design target is not maximum disentanglement but this balance.
+- **[[wiki/concepts/representational-geometry.md]]** — disentanglement is a limiting case of the CCGP (Cross-Condition Generalization Performance)/SD trade-off: maximum CCGP (Cross-Condition Generalization Performance) at the cost of minimum SD; the brain achieves the balance via a distorted factorized geometry with mixed selectivity; the reasoning model design target is not maximum disentanglement but this balance.
 - **[[wiki/entities/vector-hash-model.md]]** — Vector-HaSH introduces a second factorization axis (dynamics vs. content) orthogonal to TEM's structural/sensory split; scaffold reuse for non-spatial content is the key design implication for domain-general episodic memory.
 - **[[wiki/concepts/associative-memory.md]]** — the scaffold/content factorization is what prevents the Hopfield memory cliff; the two factorizations (TEM g/x and Vector-HaSH scaffold/content) together define a full two-axis architecture for the HC fast-M system.
 - **[[wiki/papers/vector-hash-chandra-2023.md]]** — source for the second factorization axis, scaffold reuse argument, and the claim that spatial codes are a special case of a domain-general representational structure.
-- **[[wiki/entities/sdm-model.md]]** — SDM introduces a third factorization axis (address scaffold **A** vs. content **C**) nested within the TEM and Vector-HaSH axes; the proof that a random **A** suffices establishes that the scaffold does not require learned geometry — fixedness alone is the requirement, enabling random initialization as the simplest biologically plausible design.
-- **[[wiki/papers/kanerva-sdm-1993.md]]** — source for the three-axis factorization hierarchy, the random-scaffold-suffices argument, and biological evidence from cerebellar and DG granule cell random connectivity confirming that fixed-random projections are evolutionarily selected over learned address structures.
+- **[[wiki/entities/sdm-model.md]]** — SDM (Sparse Distributed Memory) introduces a third factorization axis (address scaffold **A** vs. content **C**) nested within the TEM and Vector-HaSH axes; the proof that a random **A** suffices establishes that the scaffold does not require learned geometry — fixedness alone is the requirement, enabling random initialization as the simplest biologically plausible design.
+- **[[wiki/papers/kanerva-sdm-1993.md]]** — source for the three-axis factorization hierarchy, the random-scaffold-suffices argument, and biological evidence from cerebellar and DG (Dentate Gyrus) granule cell random connectivity confirming that fixed-random projections are evolutionarily selected over learned address structures.
 - **[[wiki/papers/barlow-twins-zbontar-2021.md]]** — Barlow's factorial code (1961) is the formal statement that sensory processing should produce statistically independent component codes; BT operationalizes this in ML as a cross-correlation decorrelation objective, providing empirical evidence that factorized/independent representations are learnable from data without labels and benefit from high dimensionality.

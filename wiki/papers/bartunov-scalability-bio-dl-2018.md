@@ -10,7 +10,7 @@ related: [wiki/concepts/credit-assignment.md, wiki/concepts/dendritic-computatio
 
 # Assessing the Scalability of Biologically-Motivated Deep Learning Algorithms and Architectures
 
-Bartunov S, Santoro A, Richards BA, Marris L, Hinton GE, Lillicrap TP. *NIPS 2018*.
+Bartunov S, Santoro A, Richards BA (Brodmann Area), Marris L, Hinton GE, Lillicrap TP. *NIPS 2018*.
 
 ---
 

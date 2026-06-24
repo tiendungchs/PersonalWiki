@@ -8,7 +8,7 @@ sources: [Recurrent neural networks with transient trajectory explain working me
 related: [wiki/concepts/working-memory.md, wiki/concepts/neural-manifolds.md, wiki/entities/reservoir-computing.md, wiki/papers/trnn-liu-2025.md]
 ---
 
-# TRNN (Transient Trajectory RNN)
+# TRNN (Transition RNN) (Transient Trajectory RNN)
 
 A recurrent neural network modified to produce transient sequential dynamics during working memory delay periods, outperforming attractor-based RNNs on every evaluated WM task. Liu et al. 2025 ([[wiki/papers/trnn-liu-2025.md]]).
 
@@ -30,7 +30,7 @@ Three modifications to a vanilla RNN produce high-TI transient dynamics:
 
 ## Key Results
 
-| Property | Attractor RNN (low TI) | TRNN (high TI) |
+| Property | Attractor RNN (low TI) | TRNN (Transition RNN) (high TI) |
 |---|---|---|
 | Shannon entropy of delay activity | Low (persistent state) | High (neurons fire at distinct times → uniform distribution) |
 | Metabolic cost (avg squared firing rate) | High | Low (stepwise drop with TI) |
@@ -55,9 +55,9 @@ Implication: WM duration is **neuron-count limited** — longer memory requires 
 ## Limitations
 
 - Trained on fixed-length delay distributions; the mechanism for handling unlimited variable delays without an end-of-delay signal is unspecified
-- No within-episode RL algorithm (unlike PFC meta-RL LSTM); TRNN is a WM buffer, not a policy accumulator — the two must be combined for full meta-RL function
+- No within-episode RL algorithm (unlike PFC (Prefrontal Cortex) meta-RL LSTM); TRNN (Transition RNN) is a WM buffer, not a policy accumulator — the two must be combined for full meta-RL function
 - Whether the three modifications suffice for abstract (non-sensory) WM content is untested
-- Combining TRNN with STSP is unspecified: STSP offers structural robustness + activity-silent bridging; TRNN offers high multi-item capacity — the interface mechanism is open
+- Combining TRNN (Transition RNN) with STSP (Short-Term Synaptic Plasticity) is unspecified: STSP (Short-Term Synaptic Plasticity) offers structural robustness + activity-silent bridging; TRNN (Transition RNN) offers high multi-item capacity — the interface mechanism is open
 
 ---
 
@@ -75,9 +75,9 @@ Implication: WM duration is **neuron-count limited** — longer memory requires 
 
 ## Connections
 
-- **[[wiki/concepts/working-memory.md]]** — TRNN is one of four fast WM mechanisms; comparative debate (attractor vs. transient trajectory) and the full Four Fast Mechanisms table live there; this entity page holds the architecture and implementation details.
-- **[[wiki/concepts/neural-manifolds.md]]** — dPCA on TRNN delay-period activity reveals a low-dimensional trajectory manifold where stimulus-dependent components remain separated throughout the delay; trajectory velocity is constant (memory is in the path, not a fixed point), adding a new manifold signature.
-- **[[wiki/entities/reservoir-computing.md]]** — reservoirs naturally have high TI (transient dynamics, spectral radius < 1); Barak 2013 showed reservoir already outperforms pure attractor RNN on delay tasks; TRNN adds learned hierarchical topology to the reservoir's inherently transient dynamics.
-- **[[wiki/entities/ltc-model.md]]** — LTC is the continuous-time counterpart to TRNN's discrete-step dynamics; TRNN achieves transience via self-inhibition and sparse hierarchy; LTC achieves it via liquid τ in an ODE; TRNN is preferred for multi-item WM and long delays, LTC for continuous-time signal modeling with provable stability.
-- **[[wiki/papers/ltc-hasani-2021.md]]** — source for LTC architecture and comparison to CT-RNN and Neural ODE families.
+- **[[wiki/concepts/working-memory.md]]** — TRNN (Transition RNN) is one of four fast WM mechanisms; comparative debate (attractor vs. transient trajectory) and the full Four Fast Mechanisms table live there; this entity page holds the architecture and implementation details.
+- **[[wiki/concepts/neural-manifolds.md]]** — dPCA on TRNN (Transition RNN) delay-period activity reveals a low-dimensional trajectory manifold where stimulus-dependent components remain separated throughout the delay; trajectory velocity is constant (memory is in the path, not a fixed point), adding a new manifold signature.
+- **[[wiki/entities/reservoir-computing.md]]** — reservoirs naturally have high TI (transient dynamics, spectral radius < 1); Barak 2013 showed reservoir already outperforms pure attractor RNN on delay tasks; TRNN (Transition RNN) adds learned hierarchical topology to the reservoir's inherently transient dynamics.
+- **[[wiki/entities/ltc-model.md]]** — LTC (Liquid Time-Constant) is the continuous-time counterpart to TRNN's discrete-step dynamics; TRNN (Transition RNN) achieves transience via self-inhibition and sparse hierarchy; LTC (Liquid Time-Constant) achieves it via liquid τ in an ODE; TRNN (Transition RNN) is preferred for multi-item WM and long delays, LTC (Liquid Time-Constant) for continuous-time signal modeling with provable stability.
+- **[[wiki/papers/ltc-hasani-2021.md]]** — source for LTC (Liquid Time-Constant) architecture and comparison to CT-RNN and Neural ODE families.
 - **[[wiki/papers/trnn-liu-2025.md]]** — primary source; Liu et al. 2025; all results and architecture descriptions.

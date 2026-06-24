@@ -35,7 +35,7 @@ related: [wiki/concepts/temporal-coding.md, wiki/concepts/hebbian-learning.md, w
 ## Links to Concept/Entity Pages
 
 - [[wiki/concepts/temporal-coding.md]] — FILT provides the supervised learning theory for temporal codes: they are *learnable*, not merely decodable, with biologically plausible online rules; capacity and precision numbers close the gap to ML implementation.
-- [[wiki/concepts/hebbian-learning.md]] — PSP eligibility trace derived from maximum-likelihood, not heuristic STDP; FILT is the theoretically grounded supervised analog of STDP for precise temporal encoding.
+- [[wiki/concepts/hebbian-learning.md]] — PSP (Post-Synaptic Potential) eligibility trace derived from maximum-likelihood, not heuristic STDP; FILT is the theoretically grounded supervised analog of STDP for precise temporal encoding.
 - [[wiki/entities/cerebellum.md]] — referent template / supervised error signal is structurally analogous to climbing-fiber supervision: external error injected at the cell body, synaptic weights updated at the distal contact point.
 - [[wiki/papers/gerstner-temporal-coding-1996.md]] — both papers address sub-millisecond temporal precision; Gerstner 1996 derives the STDP window from unsupervised ITD learning in the same framework that FILT extends to supervised learning.
-- [[wiki/papers/bi-poo-stdp-1998.md]] — FILT learning window has a similar shape to the empirical STDP W(s) but is derived from gradient ascent; the PSP ε is theoretically justified where STDP conventionally uses postsynaptic current α as an arbitrary kernel.
+- [[wiki/papers/bi-poo-stdp-1998.md]] — FILT learning window has a similar shape to the empirical STDP W(s) but is derived from gradient ascent; the PSP (Post-Synaptic Potential) ε is theoretically justified where STDP conventionally uses postsynaptic current α as an arbitrary kernel.

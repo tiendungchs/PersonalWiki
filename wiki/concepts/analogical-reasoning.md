@@ -39,7 +39,7 @@ MAP* = argmax_M [ α · Structure(M) + β · Similarity(M) + γ · Pragmatic(M) 
 - **Semantic:** similar objects map to similar objects (surface + deep)
 - **Pragmatic:** goal-relevant elements prioritized over incidental ones
 
-Constraints converge on a unique mapping in most cases; when they conflict, bistable mappings arise (e.g., Persian Gulf–WWII yields two equally coherent but incompatible correspondence sets). Cross-mappings (one candidate optimal by structure, another by similarity) are especially difficult and require PFC interference suppression to resolve.
+Constraints converge on a unique mapping in most cases; when they conflict, bistable mappings arise (e.g., Persian Gulf–WWII yields two equally coherent but incompatible correspondence sets). Cross-mappings (one candidate optimal by structure, another by similarity) are especially difficult and require PFC (Prefrontal Cortex) interference suppression to resolve.
 
 ---
 
@@ -72,7 +72,7 @@ The 2–3 proposition WM limit matches the empirical relational complexity ceili
 
 | Subregion | Role | Evidence |
 |---|---|---|
-| **Frontopolar PFC (BA-10)** | Integrating **multiple simultaneous relational constraints** | Selective activation at ≥2 relations in RPM, verbal analogy (Christoff 2001; Kroger 2002; Cho 2010); remains active after controlling for RT |
+| **Frontopolar PFC (Prefrontal Cortex) (BA-10)** | Integrating **multiple simultaneous relational constraints** | Selective activation at ≥2 relations in RPM, verbal analogy (Christoff 2001; Kroger 2002; Cho 2010); remains active after controlling for RT |
 | Mid/inferior frontal gyri | Maintaining individual relation representations in WM during integration | Bilateral activation proportional to relational complexity |
 | **Inferior frontal gyrus (BA-44/45)** | Interference suppression (semantically close distractors) | Selective impairment in negative-SFI analogy problems (Morrison et al. 2004; Krawczyk et al. 2008) |
 | Hippocampus | Episodic analog storage and retrieval; schema induction from comparison | Required for analog access; schema retroactively enhances past-episode retrieval (Gentner et al. 2009) |
@@ -89,7 +89,7 @@ Two compared analogs → one abstract relational schema, which then:
 - Transfers to novel problems with 80%+ success rate after 3-analog training with abstraction prompting (Catrambone & Holyoak 1989)
 - Enables progressive alignment: easy pairs (surface + relational match) bootstrap relational categories, and later relational-only pairs extend them
 
-This is the analogical-level implementation of slow-W structure extraction from episodic comparison — the same computation that MLC episodic meta-training performs at the grammar level.
+This is the analogical-level implementation of slow-W structure extraction from episodic comparison — the same computation that MLC (Meta-Learning as Compositional) episodic meta-training performs at the grammar level.
 
 ---
 
@@ -119,7 +119,7 @@ This is the analogical-level implementation of slow-W structure extraction from 
 - **[[wiki/concepts/abstract-reasoning.md]]** — analogy is the canonical operationalization of abstract reasoning: it requires all three Lake et al. ingredients (compositionality + causality + learning-to-learn) in a single task, and the retrieval gap is a precise diagnostic of abstract-reasoning failure.
 - **[[wiki/concepts/binding-problem.md]]** — LISA's gamma-band temporal synchrony is the fifth binding mechanism: role-filler binding by synchronous co-activation within a proposition, with different propositions separated by anti-phase timing.
 - **[[wiki/concepts/working-memory.md]]** — the ≤2-3 proposition WM limit in LISA mirrors the empirical relational integration ceiling; this is a relational capacity limit distinct from the attention entropy bottleneck in transformers (which is positional/temporal, not structural).
-- **[[wiki/concepts/cognitive-control.md]]** — frontopolar PFC (BA-10) is activated for simultaneous multi-relational integration — the constraint-satisfaction stage of mapping — not just for rule nesting depth; this refines how the three-level Block 3C hierarchy should be decomposed.
+- **[[wiki/concepts/cognitive-control.md]]** — frontopolar PFC (Prefrontal Cortex) (BA-10) is activated for simultaneous multi-relational integration — the constraint-satisfaction stage of mapping — not just for rule nesting depth; this refines how the three-level Block 3C hierarchy should be decomposed.
 - **[[wiki/concepts/meta-learning.md]]** — schema induction from episodic analog comparison is the relational-level meta-learning mechanism: two episodes → one abstract schema, instantiating slow-W structure extraction at the relational/rule level.
 - **[[wiki/concepts/structural-generalization.md]]** — structural generalization is what successful analogical transfer achieves: same relational structure, new content fillers; TEM's W/M factorization is the architectural solution to what multiconstraint mapping does episodically.
 - **[[wiki/concepts/compositional-generalization.md]]** — the relational shift (object similarity → structural role dominance in development) parallels the chunking/systematicity failure in neural networks; both reflect failure to represent role-filler bindings independently of specific content.

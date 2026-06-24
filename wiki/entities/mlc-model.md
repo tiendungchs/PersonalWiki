@@ -8,7 +8,7 @@ sources: [Human-like systematic generalization through a meta-learning neural ne
 related: [wiki/concepts/meta-learning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/structural-generalization.md, wiki/papers/mlc-lake-baroni-2023.md, wiki/papers/compositionality-decomposed-hupkes-2020.md, wiki/papers/arc-agi-3-paper.md]
 ---
 
-# MLC — Meta-Learning for Compositional generalization
+# MLC (Meta-Learning as Compositional) — Meta-Learning for Compositional generalization
 
 Lake & Baroni, Nature 2023. A transformer meta-trained on episodic compositional tasks to achieve human-like systematic generalization.
 
@@ -55,11 +55,11 @@ Lake & Baroni, Nature 2023. A transformer meta-trained on episodic compositional
 | **GPT-4 (sorted)** | 58% | — | — |
 | **GPT-4 (random order)** | 14% | — | — |
 
-Human error types: one-to-one translations = 24.4% of errors; iconic concatenation = 23.3% of function-3 errors. MLC matches these within 2×.
+Human error types: one-to-one translations = 24.4% of errors; iconic concatenation = 23.3% of function-3 errors. MLC (Meta-Learning as Compositional) matches these within 2×.
 
 ### Machine Learning Benchmarks (SCAN / COGS)
 
-| Benchmark | Split type | MLC error | Basic seq2seq |
+| Benchmark | Split type | MLC (Meta-Learning as Compositional) error | Basic seq2seq |
 |---|---|---|---|
 | SCAN | add jump (lexical) | 0.22% | ~7× higher |
 | SCAN | around right (lexical) | ≤0.22% | ~7× higher |
@@ -76,9 +76,9 @@ Human error types: one-to-one translations = 24.4% of errors; iconic concatenati
 
 - Fails completely on structural/productivity generalization (100% error on length/novel-structure splits).
 - Task-specialist: requires meta-training on target compositional domain; not plug-and-play for new domains.
-- MLC (joint) applies mutual exclusivity too rigidly (99%) vs. humans (93.1%) — overfits to modal prior distribution.
+- MLC (Meta-Learning as Compositional) (joint) applies mutual exclusivity too rigidly (99%) vs. humans (93.1%) — overfits to modal prior distribution.
 - Vocabulary is fixed (nonsense words, colours); open-vocabulary extension requires architectural modification.
-- LRM knowledge-boundedness applies: fast inner loop cannot generalize beyond the slow outer loop's 100K-grammar training distribution.
+- LRM (Large Reasoning Model) knowledge-boundedness applies: fast inner loop cannot generalize beyond the slow outer loop's 100K-grammar training distribution.
 
 ---
 
@@ -95,9 +95,9 @@ Human error types: one-to-one translations = 24.4% of errors; iconic concatenati
 
 ## Connections
 
-- **[[wiki/concepts/meta-learning.md]]** — MLC is the compositional-generalization instantiation of slow/fast meta-learning: slow backprop across episodes trains weights; fast transformer attention infers grammar rules within each episode without weight updates.
-- **[[wiki/concepts/compositional-generalization.md]]** — MLC addresses chunking by ensuring no grammar-specific co-occurrence statistics exist across episodes; 0% basic seq2seq vs. 100% MLC accuracy confirms training objective primacy; lexical/structural split defines the remaining open problem.
-- **[[wiki/concepts/structural-generalization.md]]** — MLC demonstrates that training objective is as important as architecture for structural transfer; the lexical vs. structural split maps to within-distribution vs. out-of-distribution grammar variation at the slow-loop level.
+- **[[wiki/concepts/meta-learning.md]]** — MLC (Meta-Learning as Compositional) is the compositional-generalization instantiation of slow/fast meta-learning: slow backprop across episodes trains weights; fast transformer attention infers grammar rules within each episode without weight updates.
+- **[[wiki/concepts/compositional-generalization.md]]** — MLC (Meta-Learning as Compositional) addresses chunking by ensuring no grammar-specific co-occurrence statistics exist across episodes; 0% basic seq2seq vs. 100% MLC (Meta-Learning as Compositional) accuracy confirms training objective primacy; lexical/structural split defines the remaining open problem.
+- **[[wiki/concepts/structural-generalization.md]]** — MLC (Meta-Learning as Compositional) demonstrates that training objective is as important as architecture for structural transfer; the lexical vs. structural split maps to within-distribution vs. out-of-distribution grammar variation at the slow-loop level.
 - **[[wiki/papers/mlc-lake-baroni-2023.md]]** — primary source; full architecture, behavioral data, SCAN/COGS results.
-- **[[wiki/papers/compositionality-decomposed-hupkes-2020.md]]** — Hupkes et al. five-facet benchmark; MLC targets systematicity/localism where all 2020 architectures failed.
-- **[[wiki/papers/arc-agi-3-paper.md]]** — LRM knowledge-boundedness theorem applies to MLC: the fast inner loop cannot generalize beyond the slow outer loop's training distribution, so structural/productivity failure is not a fixable fine-tuning problem — it requires either a broader slow-loop distribution or a different architecture class.
+- **[[wiki/papers/compositionality-decomposed-hupkes-2020.md]]** — Hupkes et al. five-facet benchmark; MLC (Meta-Learning as Compositional) targets systematicity/localism where all 2020 architectures failed.
+- **[[wiki/papers/arc-agi-3-paper.md]]** — LRM (Large Reasoning Model) knowledge-boundedness theorem applies to MLC: the fast inner loop cannot generalize beyond the slow outer loop's training distribution, so structural/productivity failure is not a fixable fine-tuning problem — it requires either a broader slow-loop distribution or a different architecture class.

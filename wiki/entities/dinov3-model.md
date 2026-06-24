@@ -48,7 +48,7 @@ Departing from DINOv2's cosine schedule, constant learning rate enables indefini
 **Gram anchoring objective:**
 `ℒ_Gram = ||X_S · X_S^T − X_G · X_G^T||_F^2`
 
-where `X_S` and `X_G` are L2-normalized patch feature matrices (P×d) of student and Gram teacher respectively. The Gram teacher is a frozen early checkpoint (100k–200k iterations); it is updated every 10k iterations to track the EMA teacher.
+where `X_S` and `X_G` are L2-normalized patch feature matrices (P×d) of student and Gram teacher respectively. The Gram teacher is a frozen early checkpoint (100k–200k iterations); it is updated every 10k iterations to track the EMA (Exponential Moving Average) teacher.
 
 **Why Gram matrices, not features:** Gram loss constrains pairwise similarity structure of patches without pinning absolute feature directions — local features are free to move as long as their mutual similarity structure is preserved. This decouples global semantic learning (DINO) from local spatial consistency.
 
@@ -57,7 +57,7 @@ where `X_S` and `X_G` are L2-normalized patch feature matrices (P×d) of student
 ### Phase 3 — Post-Training
 - **Resolution scaling:** 10K iterations at mixed resolutions (512/768 global, 112–336 local); RoPE enables resolution generalization beyond training range (stable features observed at 4096px).
 - **Multi-student distillation:** Teacher inference shared across all GPU groups; reduces per-GPU cost and enables parallel distillation of multiple student sizes.
-- **Text alignment (LiT paradigm):** Frozen DINOv3 backbone + 2 trainable transformer layers + text encoder trained from scratch; mean-pooled patches concatenated with CLS before text matching.
+- **Text alignment (LiT paradigm):** Frozen DINOv3 backbone + 2 trainable transformer layers + text encoder trained from scratch; mean-pooled patches concatenated with CLS (Complementary Learning Systems) before text matching.
 
 ---
 
@@ -92,8 +92,8 @@ where `X_S` and `X_G` are L2-normalized patch feature matrices (P×d) of student
 ## Connections
 
 - **[[wiki/entities/dinov2-model.md]]** — DINOv3 is the direct successor: same DINO+iBOT+KoLeo recipe scaled to 7B; Gram anchoring directly addresses DINOv2's dense feature degradation at scale; RoPE replaces DINOv2's learnable positional embeddings for resolution generalization.
-- **[[wiki/entities/jepa-model.md]]** — The DINOv2/DINOv3 EMA teacher-student pattern is the architectural ancestor of I-JEPA's target encoder; LeJEPA's SIGReg provably outperforms both DINOv2 and DINOv3 in-domain, identifying KoLeo as a weaker version of N(0,I) regularization.
-- **[[wiki/concepts/hierarchical-representations.md]]** — DINOv3 maintains the CLS (global semantic) + patch (local spatial) dual-level representation; Gram anchoring preserves the patch-level hierarchy independently of the global DINO objective.
-- **[[wiki/concepts/energy-based-models.md]]** — DINOv3 is a non-contrastive discriminative EBM: cross-entropy between student and EMA teacher prototype scores minimizes without explicit negative pairs; Gram loss is an additional structural energy term.
+- **[[wiki/entities/jepa-model.md]]** — The DINOv2/DINOv3 EMA (Exponential Moving Average) teacher-student pattern is the architectural ancestor of I-JEPA's target encoder; LeJEPA's SIGReg provably outperforms both DINOv2 and DINOv3 in-domain, identifying KoLeo as a weaker version of N(0,I) regularization.
+- **[[wiki/concepts/hierarchical-representations.md]]** — DINOv3 maintains the CLS (Complementary Learning Systems) (global semantic) + patch (local spatial) dual-level representation; Gram anchoring preserves the patch-level hierarchy independently of the global DINO objective.
+- **[[wiki/concepts/energy-based-models.md]]** — DINOv3 is a non-contrastive discriminative EBM: cross-entropy between student and EMA (Exponential Moving Average) teacher prototype scores minimizes without explicit negative pairs; Gram loss is an additional structural energy term.
 - **[[wiki/papers/lejepa-balestriero-lecun-2025.md]]** — LeJEPA's in-domain Galaxy10 result (11K images beats DINOv3 transfer from hundreds of millions) establishes the boundary between scale-based and principled-SSL regimes; relevant for abstract reasoning where training data is always small.
 - **[[wiki/papers/dinov3-simeoni-2025.md]]** — primary source; Gram anchoring derivation, LVD-1689M curation, multi-student distillation, and comprehensive benchmark results.

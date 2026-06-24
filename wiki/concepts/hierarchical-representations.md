@@ -46,12 +46,12 @@ The same motif is applied at every cortical locus, tiled laterally (visual field
 |---|---|---|---|
 | Primate ventral stream | V1→V2→V4→IT (~4 stages) | Position, scale, pose, illumination, clutter | NLN cascade + temporal contiguity (saccades) |
 | Deep CNNs | 5–150+ layers | ImageNet recognition; near-IT representational geometry | Supervised gradient descent; functionally approximates CLSU |
-| HTM cortical column | L6→L4→L2-3 (within column) + cross-column hierarchy | Sensorimotor prediction across reference frames | Predictive coding within each column; same motif replicated in ~150K columns |
+| HTM (Hierarchical Temporal Memory) cortical column | L6→L4→L2-3 (within column) + cross-column hierarchy | Sensorimotor prediction across reference frames | Predictive coding within each column; same motif replicated in ~150K columns |
 | TEM (g/x factorization) | Single global factorization level | Environment-invariant structural code | Explicit factorization at g/x split rather than staged local processing |
 | **H-JEPA (LeCun 2022)** | 2–K stacked prediction levels (K = number of timescales) | Long-term predictability at each level's timescale; shorter-term predictions use richer detail | Non-contrastive SSL (VICReg); each level's encoder discards details unpredictable at its timescale; higher levels take lower-level representations as input |
 | **Hierarchical VLA (RT-H, π₀.₅, GR00T N1)** | 2 levels: symbolic (language-motion tokens / FAST tokens) + continuous (flow matching / diffusion) | High-level: discrete task-decomposition invariant to execution variation; low-level: precise motor commands | Single network switched by input prompt; trained end-to-end; empirically superior on long-horizon tasks |
 | **HiT-JEPA (Li et al. 2025)** | 3 levels: point → segment (n/2, 2d) → route (n/4, 4d) via Conv1D + MaxPool1D | Cross-domain transfer: dense GPS → sparse check-in sequences → maritime trajectories zero-shot | Top-down attention spotlight: high-level A^(l) upsampled via ConvTranspose1D and injected into A^(l-1); embedding concatenation causes collapse — attention space is the correct cross-level channel |
-| **DINOv2 (Oquab et al. 2023)** | 2 levels: CLS token (global image semantics) + patch tokens (local spatial semantics) | Emergent foreground/background separation (first PCA component) and semantic object-part correspondence across pose, style, and species — without any spatial supervision | EMA teacher-student + DINO (image-level cross-entropy) + iBOT (patch-level masked image modeling); patch-level objective forces context-predictive spatial representations |
+| **DINOv2 (Oquab et al. 2023)** | 2 levels: CLS (Complementary Learning Systems) token (global image semantics) + patch tokens (local spatial semantics) | Emergent foreground/background separation (first PCA component) and semantic object-part correspondence across pose, style, and species — without any spatial supervision | EMA (Exponential Moving Average) teacher-student + DINO (image-level cross-entropy) + iBOT (patch-level masked image modeling); patch-level objective forces context-predictive spatial representations |
 
 ---
 
@@ -75,7 +75,7 @@ The No Free Lunch theorem (Wolpert & Macready 1997) proves that no learning algo
 | **Hierarchy** | Complex patterns compose simpler ones | Stacked processing stages | Neocortical laminar organization; V1→V4→IT ventral stream |
 | **Translation invariance** | Features have the same meaning regardless of position | Convolution (shared weights) | Receptive field tiling in V1 |
 | **Object permanence** | Objects persist spatiotemporally | Temporal contiguity learning | Slow feature analysis; HC place cell persistence |
-| **Focused attention** | Some inputs are more relevant than others | Attention mechanisms | Cortical gain modulation; FEP precision weighting |
+| **Focused attention** | Some inputs are more relevant than others | Attention mechanisms | Cortical gain modulation; FEP (Free Energy Principle) precision weighting |
 | **Compositional structure** | Novel wholes are built from known parts | Recursive binding operators | Prefrontal systematic combinatorics; ARC Core Knowledge priors |
 
 **Evolution as the inductive-bias installer.** The brain's inductive biases were installed over evolutionary timescales by selection pressure from the "Brain Set" — the task distribution that mattered for survival. This is why hierarchy for vision is so deep-wired: 3D object recognition has been in the mammalian Brain Set for hundreds of millions of years. Abstract reasoning / relational structure is much more recent — shallower evolutionary pressure, weaker pre-wired inductive bias, hence harder to replicate in ANNs without explicit architectural choices.

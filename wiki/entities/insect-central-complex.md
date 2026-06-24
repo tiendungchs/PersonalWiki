@@ -68,7 +68,7 @@ This is a biological Kalman filter: prediction step via path integration, update
 
 ## Comparison with Hippocampal Formation
 
-| Dimension | Hippocampal formation | Insect CX |
+| Dimension | Hippocampal formation | Insect CX (Central Complex) |
 |---|---|---|
 | Connectivity known | Partial | Full (Drosophila hemibrain EM) |
 | Core computation | Debated | Ring attractor — directly confirmed |
@@ -105,9 +105,9 @@ The CX's advantage for ML: separation of concerns is explicit in the circuit. Th
 ## Connections
 
 - **[[wiki/concepts/ring-attractor.md]]** — the EB E-PG population is the primary characterized biological ring attractor; all five attractor signatures confirmed in vivo by Seelig & Jayaraman 2015.
-- **[[wiki/concepts/path-integration.md]]** — P-EN neurons implement path integration in the CX via asymmetric bump shifting; adds the best-characterized biological path integrator to the CANN/VCO/SR accounts.
-- **[[wiki/concepts/convergent-allocentric-coding.md]]** — CX is the mechanistically cleanest of 5–6 independent evolutionary derivations of allocentric coding; best initial ML target.
-- **[[wiki/entities/hippocampal-entorhinal-system.md]]** — functional parallel system in vertebrates; CX heading ring ↔ head direction system; CX lacks the structural W-level generalization that MEC/HC provides.
+- **[[wiki/concepts/path-integration.md]]** — P-EN neurons implement path integration in the CX (Central Complex) via asymmetric bump shifting; adds the best-characterized biological path integrator to the CANN/VCO/SR accounts.
+- **[[wiki/concepts/convergent-allocentric-coding.md]]** — CX (Central Complex) is the mechanistically cleanest of 5–6 independent evolutionary derivations of allocentric coding; best initial ML target.
+- **[[wiki/entities/hippocampal-entorhinal-system.md]]** — functional parallel system in vertebrates; CX (Central Complex) heading ring ↔ head direction system; CX (Central Complex) lacks the structural W-level generalization that MEC/HC provides.
 - **[[wiki/concepts/binding-problem.md]]** — ring neuron landmark anchoring is a specific binding operation: landmark identity bound to abstract heading state → allocentric (not egocentric) representation.
 - **[[wiki/papers/seelig-jayaraman-2015.md]]** — primary source for all quantitative results in this page; all five ring attractor signatures confirmed.
 - **[[wiki/papers/turner-evans-neuron-2020.md]]** — (tentative) hemibrain connectome characterization of E-PG/P-EN/P-EG synaptic circuit underlying those dynamics.

@@ -24,7 +24,7 @@ related: [wiki/entities/jepa-model.md, wiki/concepts/hierarchical-representation
 
 ## Limitations
 
-- Three levels are pre-specified (point/segment/route); the vocabulary of abstraction levels is not discovered from data — directly illustrates the vocabulary co-discovery gap (Gap 3, open-problems.md).
+- Three levels are pre-specified (point/segment/route); the vocabulary of abstraction levels is not discovered from data — directly illustrates the vocabulary co-discovery gap (Gap 3, architectural-gaps.md).
 - Evaluation domain (trajectory similarity computation) is urban computing, not abstract reasoning; generalization claim is cross-modality, not cross-task-structure.
 - Hexagonal H3 spatial tokenization + node2vec pretraining introduces a domain-specific spatial representation stage not present in more general JEPA formulations.
 

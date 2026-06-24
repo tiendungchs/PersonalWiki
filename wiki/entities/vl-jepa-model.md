@@ -35,8 +35,8 @@ related: [wiki/entities/jepa-model.md, wiki/concepts/world-models.md, wiki/conce
 
 | Task | VL-JEPA | Best Baseline | Notes |
 |---|---|---|---|
-| Zero-shot video classification (avg 8 datasets) | 52.5% | 44.7% (PE-Core-G, 2.3B) | BASE model; 26× fewer training samples |
-| Zero-shot text-to-video retrieval R@1 (avg 8) | 63.7% | 58.1% (PE-Core-G) | BASE model |
+| Zero-shot video classification (avg 8 datasets) | 52.5% | 44.7% (PE-Core-G, 2.3B) | BA (Brodmann Area)SE model; 26× fewer training samples |
+| Zero-shot text-to-video retrieval R@1 (avg 8) | 63.7% | 58.1% (PE-Core-G) | BA (Brodmann Area)SE model |
 | WorldPrediction-WM (world modeling) | **65.7%** | 55.6% (Gemini-2.0) | SFT model; surpasses GPT-4o (52%), Claude-3.5 (53.3%) |
 | GQA (compositional visual reasoning) | 61.5% | 66.6% (InternVL-Chat-13B) | SFT model, 1.6B params vs. 13B+ baselines |
 | Controlled vs. VLM baseline (15M samples, CIDEr) | **14.8** | 7.1 (same-data VLM) | Embedding prediction > token prediction, controlled experiment |
@@ -48,7 +48,7 @@ related: [wiki/entities/jepa-model.md, wiki/concepts/world-models.md, wiki/conce
 
 - Not benchmarked on knowledge-intensive or multi-step reasoning tasks; the claim of matching VLMs holds only for perception-focused benchmarks.
 - V-JEPA 2 encoder is frozen — no joint vision-language representation learning.
-- SFT erodes BASE model's text hard-negative sensitivity (SugarCrepe++ 63.9% → 58.4%), a standard alignment tension.
+- SFT erodes BA (Brodmann Area)SE model's text hard-negative sensitivity (SugarCrepe++ 63.9% → 58.4%), a standard alignment tension.
 - The selective decoding threshold is a hyperparameter requiring domain-specific tuning.
 
 ---
@@ -64,10 +64,10 @@ In token space, two semantically equivalent answers ("the lamp is off" / "room g
 | Model | Predicts | Anti-collapse | Tasks | Params |
 |---|---|---|---|---|
 | **VL-JEPA** | Text embedding SY | InfoNCE (bidirectional) | Gen + Retrieval + Class | 1.6B |
-| **I-JEPA** | Visual patch embedding | EMA target encoder | Image SSL only | ViT-H |
+| **I-JEPA** | Visual patch embedding | EMA (Exponential Moving Average) target encoder | Image SSL only | ViT-H |
 | **CLIP** | None (contrastive alignment) | InfoNCE | Retrieval + Classification | 400M–2B |
 | **VLM (LLaVA-style)** | Tokens Y | — | Generation + VQA | 7B–70B+ |
-| **DINO-WM** | Visual state embedding | EMA | Visual planning (narrow domain) | — |
+| **DINO-WM** | Visual state embedding | EMA (Exponential Moving Average) | Visual planning (narrow domain) | — |
 
 ---
 
@@ -75,9 +75,9 @@ In token space, two semantically equivalent answers ("the lamp is off" / "room g
 
 - **[[wiki/entities/jepa-model.md]]** — VL-JEPA extends JEPA/I-JEPA from unimodal (image/video) to multimodal (vision-language) by adding a text Y-Encoder as the target representation source; the core prediction-in-representation-space principle is identical.
 - **[[wiki/concepts/world-models.md]]** — VL-JEPA-SFT achieves SoTA on WorldPrediction-WM by matching state-change embeddings to action embeddings without language generation; empirically confirms that representation-space world modeling outperforms token-generative approaches.
-- **[[wiki/concepts/energy-based-models.md]]** — VL-JEPA's training loss is InfoNCE, a contrastive EBM loss; the model is an LVEBM where the energy is the cosine distance between predicted and target embeddings in the shared space; InfoNCE's uniformity term is the collapse-prevention regularizer.
+- **[[wiki/concepts/energy-based-models.md]]** — VL-JEPA's training loss is InfoNCE, a contrastive EBM (Energy-Based Model) loss; the model is an LVEBM where the energy is the cosine distance between predicted and target embeddings in the shared space; InfoNCE's uniformity term is the collapse-prevention regularizer.
 - **[[wiki/concepts/predictive-coding.md]]** — the embedding-prediction objective abstracts away surface linguistic variability (word choice, paraphrasing) analogously to how PC's prediction errors are computed at each hierarchical level rather than at the pixel/token level; both avoid committing to a specific surface realization of predicted content.
 - **[[wiki/concepts/hierarchical-representations.md]]** — the X-encoder (visual) → Predictor → Y-encoder (semantic) pipeline implements a cross-modal hierarchical abstraction: raw pixels → visual tokens → semantic embedding; the Y-encoder specifically discards task-irrelevant surface features.
 - **[[wiki/papers/vl-jepa-chen-2025.md]]** — primary source for this page.
-- **[[wiki/papers/assran-ijepa-2023.md]]** — I-JEPA provides the empirical foundation; VL-JEPA inherits the EMA / anti-collapse design and multi-block masking intuition, now generalized to cross-modal prediction.
+- **[[wiki/papers/assran-ijepa-2023.md]]** — I-JEPA provides the empirical foundation; VL-JEPA inherits the EMA (Exponential Moving Average) / anti-collapse design and multi-block masking intuition, now generalized to cross-modal prediction.
 - **[[wiki/papers/v-jepa-2-assran-2026.md]]** — V-JEPA 2 is the visual encoder VL-JEPA builds upon; the two papers form a stack: V-JEPA 2 provides the video world-model backbone that VL-JEPA aligns with language.

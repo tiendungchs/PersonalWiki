@@ -1,11 +1,11 @@
 ---
 title: "Spiking Neural Networks"
 type: entity
-tags: [snn, temporal-coding, neuromorphic, spike-coding, rate-coding, surrogate-gradient, e-prop, ALIF, FILT]
+tags: [snn, temporal-coding, neuromorphic, spike-coding, rate-coding, surrogate-gradient, e-prop, ALIF (Adaptive Leaky Integrate-and-Fire), FILT]
 created: 2026-06-22
 updated: 2026-06-23
 sources: [snn-encoding-auge-2021, supervised_spiking_nn, A neuronal learning rule for sub-millisecond temporal coding, sfa-ganguly-2024, tavanaei-deep-snn-2018, Networks of Spiking Neurons]
-related: [wiki/concepts/temporal-coding.md, wiki/concepts/spike-frequency-adaptation.md, wiki/concepts/hebbian-learning.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/binding-problem.md, wiki/papers/snn-encoding-auge-2021.md, wiki/papers/gardner-gruning-supervised-snn.md, wiki/papers/gerstner-temporal-coding-1996.md, wiki/papers/tavanaei-deep-snn-2018.md, wiki/papers/maass-snn-third-gen-1997.md]
+related: [wiki/concepts/temporal-coding.md, wiki/concepts/spike-frequency-adaptation.md, wiki/concepts/hebbian-learning.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/binding-problem.md, wiki/concepts/associative-memory.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/snn-encoding-auge-2021.md, wiki/papers/gardner-gruning-supervised-snn.md, wiki/papers/gerstner-temporal-coding-1996.md, wiki/papers/tavanaei-deep-snn-2018.md, wiki/papers/maass-snn-third-gen-1997.md, wiki/papers/spiking-cam-hippocampus-casanueva-2024.md]
 ---
 
 # Spiking Neural Networks (SNN)
@@ -28,7 +28,7 @@ SNNs are *strictly more powerful* per neuron count. A **single type B spiking ne
 
 **Type A vs. Type B:**
 
-| Type | PSP shape | Analog input power |
+| Type | PSP (Post-Synaptic Potential) shape | Analog input power |
 |---|---|---|
 | **A** (piecewise constant) | Step function | Cannot simulate threshold circuits for real-valued input |
 | **B** (piecewise linear) | Triangular/ramped EPSPs | Universal approximator; simulates any sigmoidal net |
@@ -71,14 +71,14 @@ Temporal and synchrony codes carry information not available to rate-coded ANNs.
 
 Nessler et al. (2009/2013): STDP with Poisson inputs and a stochastic winner-take-all (WTA) lateral inhibitory circuit approximates online Expectation-Maximization for a multinomial mixture distribution:
 
-| Phase | Spiking Mechanism | EM Step |
+| Phase | Spiking Mechanism | EM (Expectation Maximization) Step |
 |---|---|---|
-| **E-step** | WTA output neuron fires → sample from posterior P(hidden \| input) | Infer the mixture component (hidden cause) most consistent with current input |
+| **E-step** | WTA (Winner-Take-All) output neuron fires → sample from posterior P(hidden \| input) | Infer the mixture component (hidden cause) most consistent with current input |
 | **M-step** | STDP update on synapses of the winning neuron | Update that component's parameters toward the sampled posterior |
 
-- WTA competition prevents all output neurons collapsing to the same component (each neuron develops distinct selectivity).
-- Extension to recurrent reservoirs (Klampfl & Maass 2013): STDP on lateral excitatory synapses represents spatio-temporal patterns as samples from a Hidden Markov Model — each WTA spike train is a draw from an HMM state space.
-- **Implication for reasoning:** an SNN with STDP and WTA is a Bayes-optimal generative model for its input statistics under the mixture model assumption. Unsupervised latent structure discovery requires no teacher — only spike timing and local competition, directly connecting to [[wiki/concepts/latent-graph-discovery.md]].
+- WTA (Winner-Take-All) competition prevents all output neurons collapsing to the same component (each neuron develops distinct selectivity).
+- Extension to recurrent reservoirs (Klampfl & Maass 2013): STDP on lateral excitatory synapses represents spatio-temporal patterns as samples from a Hidden Markov Model — each WTA (Winner-Take-All) spike train is a draw from an HMM state space.
+- **Implication for reasoning:** an SNN with STDP and WTA (Winner-Take-All) is a Bayes-optimal generative model for its input statistics under the mixture model assumption. Unsupervised latent structure discovery requires no teacher — only spike timing and local competition, directly connecting to [[wiki/concepts/latent-graph-discovery.md]].
 
 ---
 
@@ -90,7 +90,7 @@ $$\tau_m \dot{V} = -(V - V_\text{rest}) + I - a(t), \qquad \tau_a \dot{a} = -a +
 
 where z(t) is the spike output, τ_a ≫ τ_m, and β is adaptation strength.
 
-After a burst, a(t) grows and raises the effective threshold → Spike Frequency Adaptation (SFA). ALIF tiles the rate→temporal coding transition and maps directly to neuromorphic hardware (Intel Loihi, BrainScaleS). The slow state a(t) acts as an intrinsic per-neuron working memory without a separate WM module.
+After a burst, a(t) grows and raises the effective threshold → Spike Frequency Adaptation (SFA). ALIF (Adaptive Leaky Integrate-and-Fire) tiles the rate→temporal coding transition and maps directly to neuromorphic hardware (Intel Loihi, BrainScaleS). The slow state a(t) acts as an intrinsic per-neuron working memory without a separate WM module.
 
 ---
 
@@ -105,13 +105,15 @@ After a burst, a(t) grows and raises the effective threshold → Spike Frequency
 
 Neuromorphic hardware exploits all four simultaneously, achieving 10–1000× energy efficiency over GPU inference for sparse tasks.
 
+**SpiNNaker CA3-CAM (Casanueva-Morato et al. 2024 [[wiki/papers/spiking-cam-hippocampus-casanueva-2024.md]]):** First hardware implementation of a fully-functional bidirectional spiking hippocampal CAM (Content-Addressable Memory) on SpiNNaker (1 ms time step). Two parallel STDP sub-networks implement cue→content and content→cue retrieval in 6 ms; memory writes complete in 7 ms. STDP's LTD (Long-Term Depression) branch handles forgetting implicitly; interneuron gating via 1 ms spike-timing delays routes activity between sub-networks. This validates that the CA3 associative memory computation is achievable with real neuromorphic silicon at biologically-motivated timescales.
+
 ---
 
 ## For Building a Reasoning Model
 
 1. **Temporal binding:** gamma-band synchrony codes (~40 Hz) implement role-filler binding (LISA model) — unavailable in rate-coded ANNs without explicit oscillatory dynamics. If temporal binding is required for abstract reasoning, a spiking substrate is structurally necessary.
 2. **Energy efficiency:** neuromorphic SNNs enable persistent reasoning agents on battery-constrained hardware; inference cost scales with task complexity (more decisions = more spikes), not with parameter count.
-3. **ALIF as intrinsic WM:** the slow adaptation current a(t) carries recent history per neuron; for simple sequential tasks, ALIF may reduce reliance on a separate HC-style storage module.
+3. **ALIF as intrinsic WM:** the slow adaptation current a(t) carries recent history per neuron; for simple sequential tasks, ALIF (Adaptive Leaky Integrate-and-Fire) may reduce reliance on a separate HC-style storage module.
 4. **FILT for online learning:** filtered-error learning achieves sub-millisecond temporal precision with only local computations — critical for a reasoning model that must adapt without batch backpropagation.
 
 ---
@@ -127,12 +129,14 @@ Neuromorphic hardware exploits all four simultaneously, achieving 10–1000× en
 ## Connections
 
 - **[[wiki/concepts/temporal-coding.md]]** — temporal coding is the defining computational mode distinguishing SNNs from rate-coded ANNs; the precision paradox (Gerstner 1996) and FILT learning rule establish that temporal codes are both achievable and learnable at sub-millisecond resolution; the rate/temporal/synchrony/phase taxonomy is the unifying classification.
-- **[[wiki/concepts/spike-frequency-adaptation.md]]** — SFA is the primary biological mechanism implementing the slow adaptation current in ALIF; the SFA→ALIF mapping is the direct bridge from biological ion-channel dynamics to neuromorphic circuit element.
+- **[[wiki/concepts/spike-frequency-adaptation.md]]** — SFA (Spike Frequency Adaptation) is the primary biological mechanism implementing the slow adaptation current in ALIF (Adaptive Leaky Integrate-and-Fire); the SFA→ALIF mapping is the direct bridge from biological ion-channel dynamics to neuromorphic circuit element.
 - **[[wiki/concepts/hebbian-learning.md]]** — STDP is the SNN-native unsupervised learning rule; it writes sequence edges and selects delay-matched axons using only local spike timing, making it the biologically default training signal when no supervised target is available.
-- **[[wiki/concepts/sparse-distributed-representations.md]]** — synchrony codes (the SNN native format for SDRs) require sparse active populations (≈2% activity) to make coincidence detection (NMDA spikes, ALIF thresholding) reliable; the SDR scaling laws explain why temporal binding requires neocortical sparse coding as its substrate.
+- **[[wiki/concepts/sparse-distributed-representations.md]]** — synchrony codes (the SNN native format for SDRs) require sparse active populations (≈2% activity) to make coincidence detection (NMDA spikes, ALIF (Adaptive Leaky Integrate-and-Fire) thresholding) reliable; the SDR (Sparse Distributed Representations) scaling laws explain why temporal binding requires neocortical sparse coding as its substrate.
 - **[[wiki/papers/snn-encoding-auge-2021.md]]** — primary source for the rate/temporal/synchrony/phase taxonomy and ANN→SNN conversion survey.
 - **[[wiki/papers/gardner-gruning-supervised-snn.md]]** — primary source for FILT learning rule, stability principle, and sub-millisecond precision capacity (α_m ≈ 0.07 at 0.2 ms).
 - **[[wiki/papers/gerstner-temporal-coding-1996.md]]** — foundational source for coherent convergence and W(s) delay selection as the mechanism enabling sub-millisecond ITD precision in a biological SNN; establishes the population precision amplification scaling σ_pop ∝ 1/√(tN).
 - **[[wiki/papers/tavanaei-deep-snn-2018.md]]** — source for STDP-as-Bayesian-EM (Nessler 2009/2013 interpretation), ReSuMe (supervised STDP+anti-STDP decomposition of Widrow-Hoff), and two-track deep SNN performance survey (online learning vs. offline ANN-to-SNN conversion benchmarks on MNIST/CIFAR).
 - **[[wiki/papers/maass-snn-third-gen-1997.md]]** — foundational complexity-theoretic proof that type B SNNs are strictly more powerful than 1st and 2nd gen networks; establishes CD_n and ED_n as the benchmark functions demonstrating the gap; introduces the type A/B distinction critical for reasoning model design.
 - **[[wiki/concepts/binding-problem.md]]** — CD_n (coincidence detection) is the formal SNN primitive for synchrony-based binding: the exponential size advantage over sigmoidal nets justifies using SNN layers specifically at the binding stage of a reasoning model.
+- **[[wiki/papers/spiking-cam-hippocampus-casanueva-2024.md]]** — SpiNNaker CA3-CAM operationalizes content-addressable memory as a spiking circuit; STDP drives both learning and implicit forgetting using only local spike timing; the 1 ms SpiNNaker time-step and 6 ms recall latency establish the hardware timescale for HC-inspired fast-M retrieval.
+- **[[wiki/concepts/associative-memory.md]]** — the SNN spiking CA3-CAM is the neuromorphic instantiation of content-addressable memory; it extends the Hopfield/MHN/SDM framework to the spiking domain with bidirectional retrieval (cue→content and content→cue) not achievable by rate-coded associative networks alone.

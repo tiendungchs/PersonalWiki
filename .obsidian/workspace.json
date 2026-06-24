@@ -16,6 +16,16 @@
               "icon": "lucide-git-fork",
               "title": "Graph view"
             }
+          },
+          {
+            "id": "bcef54a17155e966",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
           }
         ]
       }
@@ -74,7 +84,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "46ef7902e93c64a4",
@@ -165,7 +176,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -180,42 +192,42 @@
   },
   "active": "52aa9c48a50600df",
   "lastOpenFiles": [
-    "wiki/index-entities.md",
-    "wiki/queries/allocentric-navigation-direction-evaluation.md",
-    "raw/Challenging the Boundaries of Reasoning An Olympiad-Level Math Benchmark for Large Language Models.md",
-    "wiki/papers/lecun-jepa-critical-review-lett-2025.md",
-    "raw/Challenging the Boundaries of Reasoning An Olympiad-Level Math Benchmark for Large Language Models 1.md",
-    "wiki/index-papers.md.tmp.35698.b87c57f8115f",
-    "wiki/papers/byol-grill-2020.md",
-    "wiki/entities/equilibrium-propagation.md",
-    "wiki/entities/snn.md",
-    "wiki/index-papers.md.tmp.35698.7e0101bc662d",
-    "wiki/papers/dinov3-simeoni-2025.md",
-    "wiki/entities/dinov3-model.md",
-    "wiki/entities/dinov2-model.md",
-    "wiki/papers/dinov2-oquab-2023.md",
-    "log.md.tmp.35698.056fdae6ab65",
-    "wiki/concepts/hierarchical-representations.md.tmp.35698.2af608d148f3",
-    "wiki/papers/hit-jepa-li-2025.md",
-    "log.md.tmp.35698.4babaa47ebdc",
-    "wiki/entities/jepa-model.md.tmp.35698.bd146e4b8f8d",
-    "wiki/papers/leworldmodel-maes-2026.md",
-    "wiki/papers/lejepa-balestriero-lecun-2025.md",
-    "raw/World models and predictive coding for cognitive and developmental robotics frontiers and challenges.md",
-    "wiki/papers/weak-sigreg-akbar-2026.md",
-    "raw/BYOL.md",
-    "raw/HLE.md",
-    "raw/shortcut learning.md",
-    "raw/math benchmark.md",
-    "raw/Adversarial NLI.md",
-    "raw/WebEvolver.md",
-    "raw/CONTINUAL REINFORCEMENT LEARNING.md",
-    "raw/Shortcut Learning of Large Language Models in Natural Language Understanding.md",
-    "raw/GPQA.md",
-    "wiki/index-papers.md.tmp.35698.179ec4aa0b07",
-    "wiki/concepts/world-models.md.tmp.35698.6a229d573496",
-    "wiki/concepts/world-models.md.tmp.35698.3db02ad4ae19",
-    "wiki/concepts/factorized-representations.md.tmp.35698.55cd843ba0a9",
+    "wiki/papers/kan-ode-koenig-2024.md",
+    "wiki/architectural-gaps.md",
+    "wiki/priority-tasks.md",
+    "wiki/empirical-tensions.md",
+    "wiki/architecture-gaps.md",
+    "wiki/open-problems copy 2.md",
+    "wiki/open-problems copy.md",
+    "log.md.tmp.61081.fcb0bf663e07",
+    "wiki/concepts/neuromodulation.md.tmp.61081.f4f266019b9c",
+    "wiki/concepts/neuromodulation.md.tmp.61081.3bbf32dc1020",
+    "wiki/papers/mei-multimodulatory-continual-2025.md",
+    "wiki/index-papers.md.tmp.41175.37292008897a",
+    "wiki/queries/lint-2026-06-24.md",
+    "wiki/entities/olymmath.md.tmp.23016.e080750f2c41",
+    "wiki/concepts/refinement-loops.md.tmp.23016.052161515dbd",
+    "wiki/overview.md",
+    "wiki/papers/adversarial-nli-nie-2020.md",
+    "wiki/entities/gpqa-benchmark.md",
+    "wiki/papers/gpqa-rein-2024.md",
+    "wiki/papers/o3-not-agi.md",
+    "wiki/papers/arc-agi-2-paper.md",
+    "wiki/papers/arc-prize-2024-technical-report.md",
+    "wiki/entities/gsm8k.md",
+    "wiki/entities/math-perturb.md",
+    "wiki/entities/math-benchmark.md",
+    "wiki/papers/verifiers-math-cobbe-2021.md",
+    "wiki/papers/math-perturb-2025.md",
+    "wiki/papers/math-dataset-hendrycks-2021.md",
+    "wiki/entities/vsa-model.md",
+    "wiki/papers/joffe-vsa-arc-2025.md",
+    "wiki/papers/odouard-2022-concept-evaluation.md",
+    "wiki/entities/olymmath.md",
+    "wiki/index-papers.md.tmp.13677.4df388cd6189",
+    "wiki/open-problems.md.tmp.13677.60d5be44acda",
+    "wiki/concepts/latent-graph-discovery.md.tmp.13677.1b61e265bf8a",
+    "wiki/concepts/replay.md.tmp.60147.d5cb4dc4ef46",
     "Untitled.canvas",
     "raw/assets/gaps1.png",
     "raw/assets/gaps.png",

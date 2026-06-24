@@ -22,21 +22,21 @@ related: [wiki/concepts/replay.md, wiki/concepts/engrams.md, wiki/concepts/two-l
 
 3. **Two-stage architecture: awake SWRs bookmark, sleep SWRs consolidate** — Awake SWRs (during brief pauses after rewards) trigger local HC synaptic changes that tag specific sequences for sleep re-expression. Sleep SWRs repeatedly replay bookmarked patterns and transfer them to cortex (consolidation-receptive only during sleep; insufficient repetitions during waking; HC must maintain ongoing map during behavior).
 
-4. **UMAP decodes HC manifold: space and learning jointly encoded** — 400 HC neurons during maze running → 3D UMAP manifold that recovers figure-8 topology without position labels. Trial-number coloring reveals a second structure: systematic drift encoding learning progress. SWR replay content decoded by projecting onto this manifold; off-manifold SWRs encode other cognitive content (unreachable via maze reference frame, but not noise).
+4. **UMAP decodes HC manifold: space and learning jointly encoded** — 400 HC neurons during maze running → 3D UMAP manifold that recovers figure-8 topology without position labels. Trial-number coloring reveals a second structure: systematic drift encoding learning progress. SWR (Sharp Wave Ripple) replay content decoded by projecting onto this manifold; off-manifold SWRs encode other cognitive content (unreachable via maze reference frame, but not noise).
 
-5. **Direct evidence of bookmark→consolidate pipeline** — Awake SWR content decodes as the most recent successful trial and spatial trajectory. Sleep SWRs after learning decode as same patterns. Sleep SWRs before learning decode as completely different content. Confirms the two-stage selection + transfer chain.
+5. **Direct evidence of bookmark→consolidate pipeline** — Awake SWR (Sharp Wave Ripple) content decodes as the most recent successful trial and spatial trajectory. Sleep SWRs after learning decode as same patterns. Sleep SWRs before learning decode as completely different content. Confirms the two-stage selection + transfer chain.
 
 ---
 
 ## Limitations
 
-Mouse hippocampus, figure-8 spatial task only. The exact molecular mechanism of awake SWR bookmarking (which synapses change, how the tag persists until sleep) is unresolved. Generalization to non-spatial or abstract cognitive tasks not demonstrated.
+Mouse hippocampus, figure-8 spatial task only. The exact molecular mechanism of awake SWR (Sharp Wave Ripple) bookmarking (which synapses change, how the tag persists until sleep) is unresolved. Generalization to non-spatial or abstract cognitive tasks not demonstrated.
 
 ---
 
 ## Links
 
-- [[wiki/concepts/replay.md]] — primary target: SWR mechanism, two-stage process, UMAP decoding
-- [[wiki/concepts/engrams.md]] — SWR E/I competition = replay-time analog of engram allocation competition
-- [[wiki/concepts/two-learning-timescales.md]] — awake SWR = fast-M bookmarking; sleep SWR = slow-W cortical transfer with temporal compression
+- [[wiki/concepts/replay.md]] — primary target: SWR (Sharp Wave Ripple) mechanism, two-stage process, UMAP decoding
+- [[wiki/concepts/engrams.md]] — SWR (Sharp Wave Ripple) E/I competition = replay-time analog of engram allocation competition
+- [[wiki/concepts/two-learning-timescales.md]] — awake SWR (Sharp Wave Ripple) = fast-M bookmarking; sleep SWR (Sharp Wave Ripple) = slow-W cortical transfer with temporal compression
 - [[wiki/concepts/neural-manifolds.md]] — UMAP HC manifold evidence; off-manifold SWRs = other cognitive content

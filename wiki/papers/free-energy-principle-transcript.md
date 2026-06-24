@@ -37,6 +37,6 @@ Conceptual only — no equations given. Active inference extension (action as fr
 ## Links
 
 - [[wiki/concepts/predictive-coding.md]] — core framework; equations derived from domain knowledge
-- [[wiki/concepts/two-learning-timescales.md]] — FEP provides principled basis for the fast/slow split
-- [[wiki/concepts/latent-states.md]] — latent causes z in FEP = latent states
+- [[wiki/concepts/two-learning-timescales.md]] — FEP (Free Energy Principle) provides principled basis for the fast/slow split
+- [[wiki/concepts/latent-states.md]] — latent causes z in FEP (Free Energy Principle) = latent states
 - [[wiki/concepts/information-theory.md]] — free energy = −ELBO; accuracy term = cross-entropy; complexity term = KL

@@ -3,9 +3,9 @@ title: "World Models"
 type: concept
 tags: [world-models, predictive-models, model-based-rl, planning, simulation, abstract-reasoning, self-supervised-learning]
 created: 2026-06-23
-updated: 2026-06-23
-sources: [A Path Towards Autonomous Machine Intelligence, Vision-Language-Action Models for Robotics A Review Towards Real-World Applications, V-JEPA 2 Self-Supervised Video Models Enable Understanding, Prediction and Planning, LeWorldModel Stable End-to-End Joint-Embedding Predictive Architecture from Pixels, "Critical review of LeCun's Introductory JEPA paper"]
-related: [wiki/entities/jepa-model.md, wiki/concepts/energy-based-models.md, wiki/concepts/predictive-coding.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/abstract-reasoning.md, wiki/entities/tem-model.md, wiki/entities/ltc-model.md, wiki/entities/dnc-model.md, wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md, wiki/papers/vla-survey-kawaharazuka-2025.md, wiki/papers/v-jepa-2-assran-2026.md, wiki/papers/leworldmodel-maes-2026.md, wiki/papers/lecun-jepa-critical-review-lett-2025.md]
+updated: 2026-06-24
+sources: [A Path Towards Autonomous Machine Intelligence, Vision-Language-Action Models for Robotics A Review Towards Real-World Applications, V-JEPA 2 Self-Supervised Video Models Enable Understanding, Prediction and Planning, LeWorldModel Stable End-to-End Joint-Embedding Predictive Architecture from Pixels, "Critical review of LeCun's Introductory JEPA paper", Integrated world modeling theory expanded Implications for the future of consciousness, A Survey Learning Embodied Intelligence from Physical Simulators and World Models]
+related: [wiki/entities/jepa-model.md, wiki/concepts/energy-based-models.md, wiki/concepts/predictive-coding.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/abstract-reasoning.md, wiki/entities/tem-model.md, wiki/entities/ltc-model.md, wiki/entities/dnc-model.md, wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md, wiki/papers/vla-survey-kawaharazuka-2025.md, wiki/papers/v-jepa-2-assran-2026.md, wiki/papers/leworldmodel-maes-2026.md, wiki/papers/lecun-jepa-critical-review-lett-2025.md, wiki/entities/iwmt.md, wiki/papers/safron-iwmt-expanded-2022.md, wiki/concepts/continual-learning.md, wiki/papers/kessler-continual-dreamer-2023.md, wiki/papers/embodied-intelligence-survey-2025.md]
 ---
 
 # World Models
@@ -55,15 +55,29 @@ LeCun's claim: generative world models are fundamentally limited for continuous 
 
 ---
 
+## World Model Type Taxonomy (Function-Based)
+
+Complements the generative vs. representation-space architectural distinction. Useful for diagnosing what a WM is trained to do (Long et al. 2025).
+
+| Type | Role | Examples |
+|---|---|---|
+| **Neural Simulator** | Generates perceptually realistic synthetic trajectories; replaces or augments physical simulators for policy training | WhALE, RoboDreamer, EnerVerse, DreamGen, Cosmos |
+| **Dynamics Model** | Learns state transition p(s_{t+1}\|s_t, a_t) for imagination-based planning and policy optimization | Dreamer series, PlaNet, V-JEPA 2-AC, HWM, LAPA |
+| **Reward Model** | Estimates reward from observation sequences; used when environment reward is sparse or absent | VIPER, Vista, PlaNet reward head |
+
+Many systems combine types (Dreamer = Dynamics + Reward). The Neural Simulator / Dynamics / Reward trichotomy is orthogonal to the generative / representation-space distinction: a Neural Simulator can be generative (EnerVerse, pixel-space video) or representation-space (DreamGen latent rollout); a Dynamics Model is almost always representation-space.
+
+---
+
 ## Instantiations
 
 | System | World model | Prediction space | Uncertainty | Generalization |
 |---|---|---|---|---|
 | **H-JEPA (LeCun 2022)** | Hierarchical non-generative | Representation s_y | Latent z + regularizer | Abstract encoder |
-| **I-JEPA (Assran et al. 2023)** | Non-hierarchical, image SSL | Representation s_y | EMA target encoder | ImageNet (no augmentations) |
+| **I-JEPA (Assran et al. 2023)** | Non-hierarchical, image SSL | Representation s_y | EMA (Exponential Moving Average) target encoder | ImageNet (no augmentations) |
 | **VL-JEPA (Chen et al. 2025)** | Non-generative, vision-language | Text embedding SY | InfoNCE + bidirectional | Multi-task (gen/retrieval/class) |
 | **TEM (Whittington 2020)** | Factorized W-transitions | Structural code g | Hebbian M per-environment | Slow-W cross-environment |
-| **DreamerV2/V3** | RSSM | Categorical latent | Recurrent belief state | None |
+| **DreamerV2/V3** | RSSM | Categorical latent | Recurrent belief state | CRL via reservoir replay (Kessler 2023) |
 | **MPC (classical control)** | Physics simulator | State space | MC rollouts | Domain-specific |
 | **Active inference (FEP)** | Generative model p(o,z) | Observation space | Posterior q(z|o) | Hierarchical priors |
 | **LLMs** | Next-token prediction | Discrete token space | Softmax over vocabulary | Language statistics only |
@@ -71,6 +85,12 @@ LeCun's claim: generative world models are fundamentally limited for continuous 
 | **LAPA** | World model on (frame_t, frame_{t+H}) pairs | Representation-space difference | VQ-VAE discrete codebook | Embodiment-agnostic via latent action tokens |
 | **V-JEPA 2-AC (Assran et al. 2026)** | Action-conditioned next-frame repr. prediction | Representation s_y | Block-causal transformer | Zero-shot new environments from 62h data |
 | **LeWM (Maes et al. 2026)** | End-to-end JEPA world model from pixels | Representation z_t | SIGReg N(0,I) prior | 2D/3D manipulation tasks; 15M params single GPU |
+| **IWMT (Safron 2022)** | IIT+GNWT+FEP-AI synthesis: consciousness = integrated spatiotemporal-causal world model achieved via turbo-coding (iterative inter-level loopy BP) | Integrated representation space; SOHMs broadcast globally via rich-club hub | Hierarchical FEP (Free Energy Principle) posterior q(z\|o) with precision weighting | Multi-modal cross-domain via "unlimited associative learning" |
+| **NewtonianVAE (Okumura et al. 2022)** | VAE with explicit Newtonian dynamics constraint in latent space enabling PD-controllable state representation | Representation z with physical dynamics | PD-control structural constraint | Applied to real robot socket insertion; single task/environment |
+| **DayDreamer (Wu et al. 2022)** | DreamerV2 deployed on real robot with online learning pipeline: interact → collect → train WM → train policy → repeat | Categorical RSSM (discrete latent + recurrent state) | Recurrent belief state | Online real-robot learning with high sample efficiency; single task per run |
+| **EnerVerse (Liu et al. 2024)** | Action-conditioned multi-view video generation (Neural Simulator type); consistent visual rollouts over long horizons for locomotion policy training | Pixel space (video generation) | Diffusion-based | Locomotion tasks; strong visual consistency; single embodiment per run |
+| **HWM (Hierarchical WM)** | Multi-level Dynamics Model; top level predicts abstract sub-goals; lower levels predict transitions conditioned on sub-goals; solution to planning horizon dilemma via decomposition | Representation space at each level | RSSM-like per level | Long-horizon manipulation via hierarchical sub-goal decomposition |
+| **MoDem-V2 (Hansen et al.)** | Model-based demo-efficient RL; small demonstration dataset bootstraps WM + policy; demo-guided imagination reduces sample requirements ~10× vs. from-scratch MBRL | Latent state space (Dreamer-style RSSM) | Stochastic RSSM | Demo-seeded manipulation; physical robotic tasks; does not generalize beyond demo distribution |
 
 **LLMs as shallow world models:** LLMs extract statistical patterns from text but have no grounded world model — the "world" they model is human language about the world, not the world itself. This is why common sense based on physical interaction is absent (LeCun 2022 §8.2.2). VL-JEPA-SFT (1.6B) outperforms GPT-4o (52%), Claude-3.5 (53.3%), and Gemini-2.0 (55.6%) on WorldPrediction-WM (65.7%) by matching state-change embeddings to action embeddings without generating a single token — direct empirical support for the representation-space claim.
 
@@ -96,15 +116,31 @@ This is classical Model-Predictive Control (MPC) with a learned world model and 
 
 ---
 
+## Planning Horizon Dilemma
+
+**The planning horizon dilemma** (named explicitly in Taniguchi et al. 2023): transition errors accumulate over T world-model rollout steps, so long-horizon plans become unreliable even with a well-trained world model. Exponential growth in action-sequence search space (k^T) compounds this.
+
+Three partial solutions surveyed:
+
+| Approach | Mechanism | Limitation |
+|---|---|---|
+| **Latent RSSM transitions** (PlaNet, DreamerV2) | Avoid pixel generation; simulate entirely in latent z-space via recurrent state transitions | Error still accumulates in z-space over long horizons |
+| **Value gradient through rollouts** (DreamerV2) | Learn value function V(z); backprop gradient through multi-step world model to train actor | Requires differentiable world model; gradient vanishing over long sequences |
+| **Goal-conditioned inverse dynamics** | Learn latent inverse model: given (z_t, z_goal), predict action sequence | Requires explicit goal representation; brittle to goal distribution shift |
+
+None fully resolves the dilemma for abstract reasoning tasks where the relevant planning horizon may be thousands of symbolic steps. The hierarchical world model approach (V-JEPA 2-AC sub-goal decomposition; H-JEPA) is the current best partial solution.
+
+---
+
 ## Connection to Neuroscience
 
 LeCun maps the architecture modules to brain regions:
 - World model module → prefrontal cortex (prediction, reward estimation)
 - Short-term memory → hippocampus (state storage and retrieval)
 - Cost / intrinsic energy → amygdala / basal ganglia (reward, pain)
-- Configurator → PFC executive control (task-specific modulation)
+- Configurator → PFC (Prefrontal Cortex) executive control (task-specific modulation)
 
-The hypothesis of a **single configurable world model engine** in PFC explains:
+The hypothesis of a **single configurable world model engine** in PFC (Prefrontal Cortex) explains:
 1. Humans can only focus on one complex reasoning task at a time
 2. Knowledge transfers across tasks via the shared world model
 3. Reasoning by analogy = applying the same model in a new context
@@ -133,8 +169,10 @@ This asymmetry confirms that representation-space world models naturally encode 
 - **Hierarchical world models:** operating at different abstraction/timescale levels would address both long-horizon planning and the vocabulary co-discovery problem; explicitly proposed as future work by Assran et al. 2026. Directly maps to H-JEPA and Gap 2 (multi-level meta-graph).
 - **Temporal straightening in abstract spaces:** LeWM shows latent trajectories become straight in physical pixel domains. Does this property emerge for abstract reasoning tasks (ARC-AGI grid transformations)? Straight trajectories would dramatically simplify planning in abstract rule spaces.
 - **VoE as abstract reasoning evaluator:** if a world model trained on abstract transformations assigns higher surprise to logically impossible rule applications, VoE becomes a zero-shot test of whether the world model has internalized the rules.
+- **Cross-hardware generalization via unified WMs** — DWL, Surfer, and SSWM (Long et al. 2025) train a single dynamics model across heterogeneous robot embodiments. If structural transition dynamics are hardware-agnostic and only low-level motor parameterization varies, a single abstract WM transfers across bodies. Parallel to Gap 5 (reservoir → structured basis): structural W should be hardware-invariant while the motor mapping is embodiment-specific.
 - Whether a single configurable world model can generalize across all task types or requires task-specific modules
 - Task decomposition into subgoals by the configurator — explicitly left open by LeCun 2022
+- **Policy coupling vs. decoupling:** PC (Predictive Coding) neurorobotics entangles policy π with the world model (robot minimizes sensorimotor prediction error directly); standard RL world models decouple π from WM for task-agnostic representations. The entangled approach embeds motor grounding but risks task-specificity; the decoupled approach risks losing sensorimotor coupling needed for embodied abstract reasoning.
 
 ---
 
@@ -142,8 +180,8 @@ This asymmetry confirms that representation-space world models naturally encode 
 
 - **[[wiki/entities/jepa-model.md]]** — JEPA/H-JEPA is the proposed architecture for representation-space world models; avoids generative blurriness by predicting in abstract encoding space.
 - **[[wiki/entities/vl-jepa-model.md]]** — VL-JEPA is the first multimodal JEPA that achieves SoTA world modeling (WorldPrediction-WM 65.7%) by treating world-state transitions as embedding-matching problems rather than token-generation problems; provides the strongest empirical evidence to date that representation-space prediction is superior to token generation for world modeling.
-- **[[wiki/concepts/energy-based-models.md]]** — world model planning is EBM inference: the differentiable cost + differentiable world model form a joint EBM over action sequences; planning = energy minimization.
-- **[[wiki/concepts/predictive-coding.md]]** — FEP's generative model p(o,z) is a probabilistic world model; active inference (action as F-minimization) is the FEP analog of Mode-2 planning; the JEPA approach is aligned in spirit but non-generative.
+- **[[wiki/concepts/energy-based-models.md]]** — world model planning is EBM (Energy-Based Model) inference: the differentiable cost + differentiable world model form a joint EBM (Energy-Based Model) over action sequences; planning = energy minimization.
+- **[[wiki/concepts/predictive-coding.md]]** — FEP's generative model p(o,z) is a probabilistic world model; active inference (action as F-minimization) is the FEP (Free Energy Principle) analog of Mode-2 planning; the JEPA approach is aligned in spirit but non-generative.
 - **[[wiki/concepts/hierarchical-representations.md]]** — H-JEPA instantiates hierarchical world models at multiple timescales; each level operates at a different resolution/abstraction in service of multi-horizon planning.
 - **[[wiki/concepts/abstract-reasoning.md]]** — world models are the substrate for model-based reasoning (counterfactual, causal, goal-flexible); LLMs' lack of grounded world models is the mechanistic explanation for their shallow common sense; autonomous goal inference (ARC-AGI-3) additionally requires inferring the objective itself from the world model.
 - **[[wiki/entities/tem-model.md]]** — TEM's W-parameterized g-transitions are a factorized world model for structured environments; structural generalization = cross-environment transfer of the world model's structural component W.
@@ -155,3 +193,8 @@ This asymmetry confirms that representation-space world models naturally encode 
 - **[[wiki/papers/v-jepa-2-assran-2026.md]]** — V-JEPA 2-AC is the most complete existing instantiation of Mode-2 planning: frozen representation-space encoder pre-trained on 1M+ hours of internet video + 62h action-conditioned fine-tuning + CEM planning + receding-horizon control; achieves zero-shot pick-and-place on real robots.
 - **[[wiki/papers/leworldmodel-maes-2026.md]]** — demonstrates that a 2-term loss (MSE + SIGReg) is sufficient for stable end-to-end JEPA world model training from raw pixels; introduces temporal straightening as an emergent evaluation axis and VoE (violation-of-expectation) as a criterion for physical understanding in latent space.
 - **[[wiki/papers/lecun-jepa-critical-review-lett-2025.md]]** — argues that Mode-2 (MPC with learned world model + hard-wired search) is System I, not System II; identifies learning the search/planning algorithm itself as the genuine System II gap; notes that simultaneous plasticity of world model + cost + control algorithm requires a stabilizing meta-management architecture.
+- **[[wiki/entities/iwmt.md]]** — IWMT proposes that phenomenal consciousness is integrated world modeling, implying that a world model achieving human-level generalization requires explicit spatiotemporal-causal coherence across modalities — a stronger architectural requirement than feedforward multi-modal fusion; the turbo-coding architecture is IWMT's proposal for how iterative inter-level inference achieves this coherence.
+- **[[wiki/papers/taniguchi-world-models-pc-robotics-2023.md]]** — names the planning horizon dilemma explicitly, formally unifies SSM world model learning with FEP (Free Energy Principle) (both maximize ELBO), and surveys neuro-symbolic bottom-up symbol discovery via binary bottleneck affordance autoencoders as a complement to LAPA's top-down approach.
+- **[[wiki/concepts/continual-learning.md]]** — DreamerV2's imagination-based policy training decouples task gradients, enabling the world model to be shared across sequential tasks while the actor is regenerated per task; this factorization is the key architectural property that makes world models a natural fit for CRL.
+- **[[wiki/papers/kessler-continual-dreamer-2023.md]]** — first task-agnostic model-based CRL system; demonstrates that DreamerV2 + reservoir sampling resolves the stability-plasticity tradeoff for multi-task sequential RL; identifies interference when reward functions change within the same environment as the remaining open failure mode.
+- **[[wiki/papers/embodied-intelligence-survey-2025.md]]** — documents three-way WM taxonomy (Neural Simulator / Dynamics Model / Reward Model) and independent convergence on hierarchical WMs (HWM, PIVOT-R, OSVI-WM) across three robotics papers as the primary empirical solution to long-horizon planning in embodied settings.

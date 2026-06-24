@@ -16,7 +16,7 @@ related: [wiki/entities/tem-model.md, wiki/entities/grid-cells.md, wiki/entities
 
 ## 5 Key Computational Insights
 
-- **Phase precession emerges from learned spiking dynamics** — LIF neurons + surrogate-gradient backpropagation (slow W) + STDP (fast M) + theta inhibitory input + neuromodulatory gain G are sufficient to produce MECII cells whose spike phase advances systematically earlier across the theta cycle as the agent traverses a firing field. No oscillatory interference, hand-crafted connectivity, or explicit temporal target is required; the phenomenon emerges from the interaction of learning and dynamics.
+- **Phase precession emerges from learned spiking dynamics** — LIF (Leaky Integrate-and-Fire) neurons + surrogate-gradient backpropagation (slow W) + STDP (fast M) + theta inhibitory input + neuromodulatory gain G are sufficient to produce MECII cells whose spike phase advances systematically earlier across the theta cycle as the agent traverses a firing field. No oscillatory interference, hand-crafted connectivity, or explicit temporal target is required; the phenomenon emerges from the interaction of learning and dynamics.
 
 - **Grid codes compensate for sensory ambiguity** — grid cell formation is maximally strong (~60% neurons) when the environment has ~20 sensory neurons but 64 positions (information gap). When sensory neurons match or exceed positions (no aliasing), grid cell proportion drops sharply. This establishes grid codes as an *internal prior that fills the gap when external signals are insufficient to determine location* — the computational role that makes grid coding relevant to abstract latent-graph discovery under aliased observations.
 

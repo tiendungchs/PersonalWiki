@@ -50,7 +50,7 @@ Cephalopods and vertebrates share a common ancestor approximately 500–550 mill
 
 - **Mechanistic detail:** synaptic connectivity within the vertical lobe is not mapped to the precision of the Drosophila hemibrain; the DG→CA3 analogy is structural/topological, not confirmed at the cell-type and synapse level.
 - **Path integration:** no evidence yet of a CX-like path integration mechanism; unclear whether the vertical lobe supports continuous position tracking or only discrete context binding.
-- **Molecular markers:** whether amacrine or large field cells express equivalent molecular programs to DG granule cells or CA3 pyramids is not established.
+- **Molecular markers:** whether amacrine or large field cells express equivalent molecular programs to DG (Dentate Gyrus) granule cells or CA3 pyramids is not established.
 
 ---
 

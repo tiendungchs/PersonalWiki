@@ -16,9 +16,9 @@ related: [wiki/concepts/associative-memory.md, wiki/concepts/sequence-memory.md,
 
 ## Key Computational Insights
 
-- **DenseNet extends Modern Hopfield Networks to sequence storage** by replacing symmetric Hebbian weights with asymmetric ones ($J_{ij} = \frac{1}{N}\sum_\mu \xi_i^{\mu+1}\xi_j^\mu$) and applying a nonlinear interaction function $f$ to inter-pattern overlaps. The same nonlinearity that boosts static MHN capacity from linear to polynomial/exponential also boosts sequence capacity via identical crosstalk reduction mathematics.
+- **DenseNet extends Modern Hopfield Networks to sequence storage** by replacing symmetric Hebbian weights with asymmetric ones ($J_{ij} = \frac{1}{N}\sum_\mu \xi_i^{\mu+1}\xi_j^\mu$) and applying a nonlinear interaction function $f$ to inter-pattern overlaps. The same nonlinearity that boosts static MHN (Modern Hopfield Network) capacity from linear to polynomial/exponential also boosts sequence capacity via identical crosstalk reduction mathematics.
 
-- **Capacity scaling:** Polynomial DenseNet ($f(x)=x^d$) achieves single-transition capacity $P_T \sim N^d$ — identical to static MHN — and sequence capacity $P_S \sim N^d / d$. Exponential DenseNet ($f(x)=\exp((N{-}1)(x{-}1))$) achieves super-polynomial capacity, but the Gaussian crosstalk approximation breaks down at finite $N$ (lognormal regime); empirical simulations confirm dramatic improvement over polynomial variants.
+- **Capacity scaling:** Polynomial DenseNet ($f(x)=x^d$) achieves single-transition capacity $P_T \sim N^d$ — identical to static MHN (Modern Hopfield Network) — and sequence capacity $P_S \sim N^d / d$. Exponential DenseNet ($f(x)=\exp((N{-}1)(x{-}1))$) achieves super-polynomial capacity, but the Gaussian crosstalk approximation breaks down at finite $N$ (lognormal regime); empirical simulations confirm dramatic improvement over polynomial variants.
 
 - **MixedNet — variable-timing sequences:** $\mathbf{S}(t+1) = \text{sign}(f_S(m^\mu(t)) + \lambda\, f_A(\bar{m}^\mu(t)))$. $f_S$ (fast, symmetric synapse) stabilizes the network in the current state for $\tau$ timesteps; $f_A$ (slow, asymmetric synapse) drives the transition to the next state. Capacity scales as $\min(d_S, d_A)$. Demonstrated: $d=10$ recovers both correct sequence order and variable timing at $P=40, N=100$ where the linear TAN model fails entirely.
 
@@ -41,6 +41,6 @@ related: [wiki/concepts/associative-memory.md, wiki/concepts/sequence-memory.md,
 - [[wiki/concepts/sequence-memory.md]] — full concept page: DenseNet capacity table, MixedNet formalism, GPI rule, CBGT biological substrate
 - [[wiki/concepts/associative-memory.md]] — DenseNet extends Hopfield/MHN; same nonlinear crosstalk reduction applies to asymmetric sequence transitions
 - [[wiki/concepts/hebbian-learning.md]] — temporally asymmetric Hebbian rule ($J_{ij} = \xi_i^{\mu+1}\xi_j^\mu$) is the SeqNet write mechanism; STDP is the biological substrate
-- [[wiki/entities/basal-ganglia.md]] — bipartite implementation maps to the CBGT loop; BG gates thalamic motor-motif neurons to control sequence context
+- [[wiki/entities/basal-ganglia.md]] — bipartite implementation maps to the CBGT loop; BG (Basal Ganglia) gates thalamic motor-motif neurons to control sequence context
 - [[wiki/concepts/phase-precession.md]] — phase precession + STDP is the biological write mechanism for directed sequence edges (asymmetric Hopfield weights)
 - [[wiki/concepts/working-memory.md]] — MixedNet fast/slow synapse split parallels the WM maintenance/readout dual-mode architecture

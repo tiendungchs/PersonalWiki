@@ -69,7 +69,7 @@ All five ring attractor signatures observed in a single preparation in behaving 
 EM connectome provides synaptic substrate: E-PG→P-EG inhibitory ring + P-EN asymmetric shift connections.
 
 **Mammalian head direction system:**
-Functionally equivalent dynamics in anterodorsal thalamus, presubiculum, and retrosplenial cortex (Taube 2007); circuit more distributed and less cleanly isolated than CX — predated the fly evidence by decades but is harder to verify at circuit level.
+Functionally equivalent dynamics in anterodorsal thalamus, presubiculum, and retrosplenial cortex (Taube 2007); circuit more distributed and less cleanly isolated than CX (Central Complex) — predated the fly evidence by decades but is harder to verify at circuit level.
 
 ---
 
@@ -95,7 +95,7 @@ Equivalent to a 2D recurrent unit on the unit circle. For richer dynamics: use a
 
 ## A-CANN: Adaptive Extension for Flexible State Dynamics
 
-Adding SFA as a slow negative feedback (Li, Chu & Wu 2024) extends the CANN to an **adaptive CANN (A-CANN)** with four dynamical modes controlled by adaptation strength **m** and input strength **α**:
+Adding SFA (Spike Frequency Adaptation) as a slow negative feedback (Li, Chu & Wu 2024) extends the CANN to an **adaptive CANN (A-CANN)** with four dynamical modes controlled by adaptation strength **m** and input strength **α**:
 
 $$\tau_v \frac{dV(x,t)}{dt} = -V(x,t) + mU(x,t), \quad \tau_v \gg \tau$$
 
@@ -132,12 +132,12 @@ $$\tau_v \frac{dV(x,t)}{dt} = -V(x,t) + mU(x,t), \quad \tau_v \gg \tau$$
 
 - **[[wiki/concepts/path-integration.md]]** — ring attractor is the neural substrate of path integration in the CX; the bump-shift mechanism (P-EN asymmetric drive) implements g_{t+1} = f(g_t, a_t) on a circular manifold.
 - **[[wiki/entities/insect-central-complex.md]]** — the EB E-PG population is the primary characterized biological ring attractor; ~16 wedge-selective groups implement the bump over a heading ring.
-- **[[wiki/concepts/convergent-allocentric-coding.md]]** — ring attractor dynamics are the core circuit mechanism of the CX heading system; convergent independent evolution supports this as a near-optimal solution for continuous circular state tracking.
+- **[[wiki/concepts/convergent-allocentric-coding.md]]** — ring attractor dynamics are the core circuit mechanism of the CX (Central Complex) heading system; convergent independent evolution supports this as a near-optimal solution for continuous circular state tracking.
 - **[[wiki/concepts/neural-manifolds.md]]** — the ring of fixed points is a 1D manifold embedded in high-dimensional neural state space; ring attractor connectivity constrains the reachable manifold to a circle.
 - **[[wiki/entities/hippocampal-entorhinal-system.md]]** — mammalian head direction system in anterodorsal thalamus and presubiculum implements ring-attractor-equivalent dynamics; feeds directional input into MEC grid cells.
 - **[[wiki/concepts/binding-problem.md]]** — landmark anchoring (ring neurons → E-PG bump) is a specific binding operation: landmark identity is bound to an abstract heading state, enabling allocentric rather than egocentric coding.
 - **[[wiki/papers/seelig-jayaraman-2015.md]]** — primary empirical source; all five ring attractor signatures confirmed in a single in vivo preparation.
 - **[[wiki/papers/turner-evans-neuron-2020.md]]** — (tentative) synaptic-level circuit substrate for the E-PG/P-EN dynamics.
-- **[[wiki/concepts/spike-frequency-adaptation.md]]** — SFA is the adaptation mechanism in A-CANN; the traveling-wave threshold m = τ/τ_v shows how SFA timescale τ_v determines whether the network is in WM mode or spontaneous search mode; neuromodulation of SFA timescale is the biological mode-switching interface.
+- **[[wiki/concepts/spike-frequency-adaptation.md]]** — SFA (Spike Frequency Adaptation) is the adaptation mechanism in A-CANN; the traveling-wave threshold m = τ/τ_v shows how SFA (Spike Frequency Adaptation) timescale τ_v determines whether the network is in WM mode or spontaneous search mode; neuromodulation of SFA (Spike Frequency Adaptation) timescale is the biological mode-switching interface.
 - **[[wiki/concepts/replay.md]]** — the traveling-wave state of A-CANN provides an intrinsic, trigger-free mechanism for sequential memory search, complementing the SWR-triggered replay mechanism; Lévy flight statistics from noisy adaptation match stochastic reactivation patterns observed in vivo.
 - **[[wiki/papers/acann-li-chu-wu-2024.md]]** — primary source for the A-CANN phase diagram, four-mode analytical framework, and all derived quantities including v_int, t_ant, ω, and the Lévy flight exponent α = 1 + 2μ/γ².

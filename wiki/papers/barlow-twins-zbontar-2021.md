@@ -22,7 +22,7 @@ Zbontar, Jing, Misra, LeCun & Deny. ICML 2021. Facebook AI Research.
 
 - **No asymmetric tricks required.** BT achieves competitive SSL performance (73.2% top-1 on ImageNet) without stop-gradient, predictor networks, or momentum encoders. Adding these asymmetries *hurts* performance (−1–10 pp). Works with batch size as small as 256 (unlike SimCLR which loses 4 pp at 256).
 
-- **Biological origin — Barlow 1961.** Horace Barlow's redundancy-reduction principle posits that the goal of sensory processing is to recode highly correlated sensory inputs into a factorial code (statistically independent components). BT is the direct ML operationalization. The same principle accounts for DG orthogonalization (pattern separation), V1 ICA-like simple-cell filters, and the functional rationale for SDR sparsity in neocortex.
+- **Biological origin — Barlow 1961.** Horace Barlow's redundancy-reduction principle posits that the goal of sensory processing is to recode highly correlated sensory inputs into a factorial code (statistically independent components). BT is the direct ML operationalization. The same principle accounts for DG (Dentate Gyrus) orthogonalization (pattern separation), V1 ICA-like simple-cell filters, and the functional rationale for SDR (Sparse Distributed Representations) sparsity in neocortex.
 
 ---
 
@@ -30,8 +30,8 @@ Zbontar, Jing, Misra, LeCun & Deny. ICML 2021. Facebook AI Research.
 
 ---
 
-- **[[wiki/concepts/energy-based-models.md]]** — BT is a regularized non-contrastive EBM training method; the cross-correlation objective is the mechanistic instantiation of the "minimize low-energy volume" strategy via soft whitening.
+- **[[wiki/concepts/energy-based-models.md]]** — BT is a regularized non-contrastive EBM (Energy-Based Model) training method; the cross-correlation objective is the mechanistic instantiation of the "minimize low-energy volume" strategy via soft whitening.
 - **[[wiki/entities/jepa-model.md]]** — VICReg (JEPA's training signal) is BT extended with a variance term; the covariance loss in VICReg is exactly BT's off-diagonal redundancy reduction term.
-- **[[wiki/concepts/sparse-distributed-representations.md]]** — Barlow 1961's factorial code principle is the formal biological statement of why SDR sparsity exists; BT operationalizes it in ML.
-- **[[wiki/concepts/pattern-separation.md]]** — DG orthogonalization is the biological implementation of Barlow's redundancy reduction: highly correlated input patterns are decorrelated into sparse independent codes.
+- **[[wiki/concepts/sparse-distributed-representations.md]]** — Barlow 1961's factorial code principle is the formal biological statement of why SDR (Sparse Distributed Representations) sparsity exists; BT operationalizes it in ML.
+- **[[wiki/concepts/pattern-separation.md]]** — DG (Dentate Gyrus) orthogonalization is the biological implementation of Barlow's redundancy reduction: highly correlated input patterns are decorrelated into sparse independent codes.
 - **[[wiki/concepts/information-theory.md]]** — BT's loss is an IB instantiation; the Gaussian parametrization converts intractable entropy computation into a tractable cross-correlation norm.

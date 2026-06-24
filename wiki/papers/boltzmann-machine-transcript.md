@@ -10,7 +10,7 @@ related: [wiki/entities/boltzmann-machine.md, wiki/concepts/predictive-coding.md
 
 # Boltzmann Machine — From Hopfield to Generative Models (transcript)
 
-**Citation:** Tutorial video transcript (YouTube), ~30 min. No author/date given. Builds directly on a prior Hopfield network video; derives Boltzmann distribution from statistical physics, stochastic update rule, contrastive Hebbian learning, and RBM variant from first principles.
+**Citation:** Tutorial video transcript (YouTube), ~30 min. No author/date given. Builds directly on a prior Hopfield network video; derives Boltzmann distribution from statistical physics, stochastic update rule, contrastive Hebbian learning, and RBM (Restricted Boltzmann Machine) variant from first principles.
 
 ---
 

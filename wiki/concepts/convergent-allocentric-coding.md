@@ -32,7 +32,7 @@ This is TEM's `p = f(g, x)` made concrete: diverse inputs are combined into a sp
 
 | System | Organism | Expansion layer | Compression layer | Path integration | Landmark correction | Evidence quality |
 |---|---|---|---|---|---|---|
-| **Hippocampal formation** | Vertebrates | DG (mossy fibers, 2–6% sparsity) | CA3 + CA1 | MEC grid cells (continuous) | MEC input corrects HC place fields | Strong (mechanistic, cross-species) |
+| **Hippocampal formation** | Vertebrates | DG (Dentate Gyrus) (mossy fibers, 2–6% sparsity) | CA3 + CA1 | MEC grid cells (continuous) | MEC input corrects HC place fields | Strong (mechanistic, cross-species) |
 | **Insect central complex** | Arthropods (insects) | EB ring neurons (~16 wedge inputs) | E-PG population vector | P-EN velocity drive | Visual landmarks → E-PG bump anchoring | **Strong** — in vivo confirmed, Seelig & Jayaraman 2015 |
 | **Arthropod mushroom bodies** | Arthropods (jumping spiders, bees) | Kenyon cells (thousands, sparse) | Output lobes (α/β/γ); MBONs | (tentative) co-localized grid-like code | (tentative) Contextual/visual grounding | Moderate — spatial memory in spiders tentative; bee associative well-established |
 | **Cephalopod vertical lobe** | Mollusks | Amacrine cells (massive fan-out) | Large field cells (fan-in) | Unknown | Unknown | Moderate — structural + lesion evidence; mechanistic details sparse |
@@ -57,7 +57,7 @@ Independent evolution of the same circuit architecture is the strongest evidence
 
 The systems differ along axes that critically affect what can be built from each:
 
-| Axis | Hippocampal formation | Insect CX | Arthropod MBs | Cephalopod VL |
+| Axis | Hippocampal formation | Insect CX (Central Complex) | Arthropod MBs | Cephalopod VL |
 |---|---|---|---|---|
 | **Connectivity known?** | Partial | Yes (Drosophila hemibrain) | Yes (Drosophila MBs) | No |
 | **Core computation confirmed** | Contested | Ring attractor — direct in vivo | Associative learning — direct | Lesion / structure only |
@@ -89,9 +89,9 @@ The systems differ along axes that critically affect what can be built from each
 - **[[wiki/entities/cephalopod-vertical-lobe.md]]** — topological convergence with vertebrate DG→CA3 across ~500 Mya; strongest structural convergence outside of arthropods.
 - **[[wiki/entities/crustacean-hemiellipsoid-bodies.md]]** — (tentative) functional evidence of spatial coding; structural sister to insect mushroom bodies.
 - **[[wiki/entities/polychaete-mushroom-bodies.md]]** — deepest evolutionary comparison at ~600 Mya; whether this is homology or convergence is an open research question.
-- **[[wiki/concepts/ring-attractor.md]]** — the core circuit mechanism of CX allocentric coding; likely also the mammalian head direction substrate; convergent evolution of ring dynamics is a sub-case of this broader pattern.
-- **[[wiki/concepts/path-integration.md]]** — present in all better-characterized systems (MEC grid cells, CX P-EN); likely a necessary component of full allocentric coding, not just optional.
+- **[[wiki/concepts/ring-attractor.md]]** — the core circuit mechanism of CX (Central Complex) allocentric coding; likely also the mammalian head direction substrate; convergent evolution of ring dynamics is a sub-case of this broader pattern.
+- **[[wiki/concepts/path-integration.md]]** — present in all better-characterized systems (MEC grid cells, CX (Central Complex) P-EN); likely a necessary component of full allocentric coding, not just optional.
 - **[[wiki/concepts/binding-problem.md]]** — the expansion-compression motif is a binding architecture: multi-modal inputs are bound into a unified representation; convergent evolution confirms this binding is the core computational target.
-- **[[wiki/concepts/structural-generalization.md]]** — the HC formation adds structural generalization on top of the basic allocentric motif; CX systems have not demonstrated this; understanding the gap is key for designing fully generalizing world models.
+- **[[wiki/concepts/structural-generalization.md]]** — the HC formation adds structural generalization on top of the basic allocentric motif; CX (Central Complex) systems have not demonstrated this; understanding the gap is key for designing fully generalizing world models.
 - **[[wiki/concepts/factorized-representations.md]]** — TEM's g/x/p split is the formal model of the expansion-compression motif: g = structural coordinates, x = sensory content, p = conjunctive binding output; the biological systems here instantiate this factorization at varying levels of completeness.
-- **[[wiki/queries/allocentric-navigation-direction-evaluation.md]]** — filed the evaluation verdict that this concept directly informed: HC/MEC formation (not CX alone) is the right core for a reasoning model because only HC demonstrates W-level cross-environment structural generalization; vmPFC/DMN are needed for abstraction; transformation inference is the critical missing module.
+- **[[wiki/queries/allocentric-navigation-direction-evaluation.md]]** — filed the evaluation verdict that this concept directly informed: HC/MEC formation (not CX (Central Complex) alone) is the right core for a reasoning model because only HC demonstrates W-level cross-environment structural generalization; vmPFC/DMN are needed for abstraction; transformation inference is the critical missing module.

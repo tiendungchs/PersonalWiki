@@ -78,17 +78,17 @@ TEM handles structural generalization; CSCG handles fast local map learning in n
 
 ## Spiking TEM (Kawahara & Fujisawa 2025)
 
-[[wiki/papers/spiking-tem-kawahara-2025.md]] extends TEM with LIF spiking neurons, STDP for fast-M (M), surrogate-gradient backprop for slow-W, theta-modulated inhibitory input, and a learnable neuromodulatory gain factor G.
+[[wiki/papers/spiking-tem-kawahara-2025.md]] extends TEM with LIF (Leaky Integrate-and-Fire) spiking neurons, STDP for fast-M (M), surrogate-gradient backprop for slow-W, theta-modulated inhibitory input, and a learnable neuromodulatory gain factor G.
 
 **Key results beyond TEM 2020:**
 
 | Result | Detail |
 |---|---|
-| Phase precession emerges | MECII grid cells advance spike phase across field; no oscillatory interference needed — G + LIF dynamics sufficient |
+| Phase precession emerges | MECII grid cells advance spike phase across field; no oscillatory interference needed — G + LIF (Leaky Integrate-and-Fire) dynamics sufficient |
 | Predictive grid cells | MECIII represents position t+1 (higher gridness at next position, p = 2.98×10⁻⁶); MECII represents current state |
 | Neuromodulation controls coding mode | G → phase precession; theta_MECIII inhibition → phase locking; biological MECII/MECIII split requires both |
 | Sensory ambiguity drives grid emergence | Peak grid proportion at ~20/64 sensory neurons; absent at full resolution |
-| Biological sparsity reproduced | CA1 50.3% silent cells; DG 90% silent — matching in vivo proportions without explicit silence rule |
+| Biological sparsity reproduced | CA1 50.3% silent cells; DG (Dentate Gyrus) 90% silent — matching in vivo proportions without explicit silence rule |
 
 **Additional limitations (Spiking TEM):**
 - Square/diamond grids, not hexagonal; non-negative weight constraints likely needed for hexagonal geometry
@@ -106,7 +106,7 @@ TEM handles structural generalization; CSCG handles fast local map learning in n
 - **[[wiki/entities/hippocampal-entorhinal-system.md]]** — TEM is a computational model of this biological system; understanding TEM requires knowing which component maps to which brain region.
 - **[[wiki/concepts/attention.md]]** — TEM-t is TEM rewritten as a transformer; the Hopfield ↔ attention equivalence is the mathematical bridge, and TEM-t's performance gains confirm the transformer framing as an architectural improvement.
 - **[[wiki/papers/t-tem-whittington-2022.md]]** — source for TEM-t; provides the full derivation of TEM as a transformer and the performance comparisons.
-- **[[wiki/concepts/information-theory.md]]** — TEM's training objective is cross-entropy minimization over sensory predictions; the KL-to-cross-entropy equivalence explains why code uses cross-entropy loss despite the theory framing learning as KL divergence minimization.
+- **[[wiki/concepts/information-theory.md]]** — TEM's training objective is cross-entropy minimization over sensory predictions; the KL-to-cross-entropy equivalence explains why code uses cross-entropy loss despite the theory framing learning as KL (Kullback-Leibler) divergence minimization.
 - **[[wiki/papers/tem-whittington-2020.md]]** — primary source paper; foundational Cell 2020 results for structural generalization, emergent cell types, and zero-shot inference on transitive/social hierarchy tasks.
 - **[[wiki/concepts/latent-graph-discovery.md]]** — TEM is the reference implementation of two-level latent graph discovery: W encodes the meta-graph, M encodes the instance-graph, and the g/x/p factorization solves two-level entanglement; TEM's limitations (pre-given action vocabulary, flat hierarchy) mark the open frontiers of the latent graph discovery problem.
 - **[[wiki/concepts/phase-precession.md]]** — Spiking TEM demonstrates that TEM's generative/inference split naturally produces a MECII (phase-precessing, current state) vs. MECIII (phase-locked, t+1 prediction) functional dissociation — temporal coding is an emergent property of the factorized architecture.

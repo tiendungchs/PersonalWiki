@@ -5,7 +5,7 @@ tags: [ARC, abstract-reasoning, concept-formation, benchmark, compositional-gene
 created: 2026-06-22
 updated: 2026-06-22
 sources: [The ConceptARC Benchmark]
-related: [wiki/entities/arc-agi.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/structural-generalization.md, wiki/papers/pgm-barrett-2018.md, wiki/papers/arc-agi-overview.md]
+related: [wiki/entities/arc-agi.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/structural-generalization.md, wiki/papers/pgm-barrett-2018.md, wiki/papers/arc-agi-overview.md, wiki/papers/beger-conceptarc-multimodal-2025.md]
 ---
 
 # ConceptARC: Evaluating Understanding and Generalization in the ARC Domain
@@ -24,6 +24,8 @@ related: [wiki/entities/arc-agi.md, wiki/concepts/abstract-reasoning.md, wiki/co
 
 - **LARC: language mediates concept transfer** — Natural-language descriptions (Acquaviva et al. 2022) allow humans to solve ARC tasks 88% of the time without demonstrations; best machine solver with same descriptions: 12%. Linguistic representation carries information absent from grid-transformation programs.
 
+- **Rule-level evaluation (Beger et al. 2025 extension)** — Beger et al. [[wiki/papers/beger-conceptarc-multimodal-2025.md]] reuse the human rule data collected in this study and extend it to frontier models (o3, o4-mini, Claude Sonnet 4, Gemini 2.5 Pro), requiring natural-language rules alongside output grids. Findings: AI shortcut rate ~27–29% of correct textual outputs vs. ~5% humans; visual gap is perceptual not conceptual; objectness prior absent in AI models.
+
 **Limitations:** 480 test inputs total; manually constructed; small number of ambiguous tasks; 8–14 participants per test input.
 
-**Links:** [[wiki/entities/arc-agi.md]] · [[wiki/concepts/abstract-reasoning.md]] · [[wiki/concepts/compositional-generalization.md]] · [[wiki/papers/pgm-barrett-2018.md]]
+**Links:** [[wiki/entities/arc-agi.md]] · [[wiki/concepts/abstract-reasoning.md]] · [[wiki/concepts/compositional-generalization.md]] · [[wiki/papers/pgm-barrett-2018.md]] · [[wiki/papers/beger-conceptarc-multimodal-2025.md]]
