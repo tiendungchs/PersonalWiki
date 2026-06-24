@@ -3,9 +3,9 @@ title: "Latent Graph Discovery"
 type: concept
 tags: [latent-graph-discovery, abstract-reasoning, structural-generalization, problem-framing, graph-inference]
 created: 2026-06-20
-updated: 2026-06-22
+updated: 2026-06-24
 sources: []
-related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/path-integration.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/analogical-reasoning.md, wiki/concepts/latent-states.md, wiki/entities/tem-model.md, wiki/entities/arc-agi.md, wiki/entities/cscg-model.md, wiki/entities/tiwm-model.md, wiki/entities/dnc-model.md, wiki/papers/hutter-aixi-2000.md, wiki/papers/dnc-graves-2016.md]
+related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/path-integration.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/analogical-reasoning.md, wiki/concepts/latent-states.md, wiki/entities/tem-model.md, wiki/entities/arc-agi.md, wiki/entities/cscg-model.md, wiki/entities/tiwm-model.md, wiki/entities/dnc-model.md, wiki/entities/frontiermath-benchmark.md, wiki/entities/gsm-symbolic.md, wiki/entities/gsm-plus.md, wiki/entities/hle.md, wiki/papers/hutter-aixi-2000.md, wiki/papers/dnc-graves-2016.md, wiki/papers/shortcut-suite-yuan-2024.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/papers/glazer-frontiermath-2024.md, wiki/papers/gsm-symbolic-2024.md, wiki/papers/gsm-plus-2024.md, wiki/papers/hle-hendrycks-2025.md, wiki/papers/hle-verified-zhai-2025.md]
 ---
 
 # Latent Graph Discovery
@@ -37,8 +37,8 @@ Tasks differ by which graph components are hidden. This is more principled than 
 
 | Latent component | Observed | Canonical examples |
 |---|---|---|
-| **Edges** (transformation rules) | Start + end node pairs | ARC-AGI, IQ tests, analogy tasks |
-| **Path** (sequence of edges) | Start + end nodes | Navigation, planning, route-finding |
+| **Edges** (transformation rules) | Start + end node pairs | ARC-AGI, IQ tests, analogy tasks; FrontierMath (applicable theorems per problem) |
+| **Path** (sequence of edges) | Start + end nodes | Navigation, planning, route-finding; FrontierMath (proof step sequence) |
 | **Node content** (partial state) | Path + partial content | Algebra, physics problems, constraint satisfaction |
 | **Graph topology + edges** | Observations only | Scientific discovery, causal learning, exploration |
 
@@ -66,7 +66,7 @@ And to the factorized code ([[wiki/concepts/factorized-representations.md]]):
 
 ---
 
-## Four Sources of Hardness
+## Five Sources of Hardness
 
 | Source | Description | Architectural implication |
 |---|---|---|
@@ -74,6 +74,7 @@ And to the factorized code ([[wiki/concepts/factorized-representations.md]]):
 | **Unknown vocabulary** | The action set, node types, or both are not given; they must be inferred alongside graph structure | Learnable observation and transformation embeddings |
 | **Observation aliasing** | The same observation appears at structurally distinct positions; path context must disambiguate | Clone cells or path-integrated identity ([[wiki/entities/cscg-model.md]]) |
 | **Simultaneity** | In hardest tasks, structure must be inferred *while* navigating — no clean discovery-then-use separation | Joint inference loop: update graph estimate and navigate concurrently |
+| **Spurious edge covariate shift** | Training observations contain correlations that produce false edges (shortcuts): e.g., lexical overlap spuriously predicts entailment. False edges work IID but fail OOD when the spurious correlation is broken — the model has discovered the wrong graph. Larger LLMs are *more* susceptible under direct prompting (inverse scaling), because accumulated pretraining memorization provides more shortcut paths. | Training must force invariant causal edge discovery across diverse environments; IRM / meta-learning across distribution shifts; or explicit intermediate-node traversal (CoT) to prevent single-edge shortcut paths |
 
 ---
 
@@ -94,7 +95,7 @@ AIXI fails only on computability grounds: it is uncomputable. Every entry in the
 | CSCG | De-aliasing (source 3) | No cross-environment meta-graph; two-level entanglement unaddressed |
 | TEM | Two-level separation; path-consistency; factorization; de-aliasing | Pre-given action vocabulary; flat (non-hierarchical) meta-graph |
 | **DNC** | Instance-graph binding (fast M externalized); sequential path retrieval (temporal links); path traversal (empirically verified: 98.8% graph traversal, 81.8% inference) | Meta-graph cross-environment learning (controller W fixed); vocabulary co-discovery; no aliasing disambiguation |
-| LLMs / LRMs | In-context adaptation within training distribution | Knowledge-bounded: fast inner loop cannot generalize beyond pretraining envelope to genuinely novel graph structures |
+| LLMs / LRMs | In-context adaptation within training distribution | Knowledge-bounded (Choi 2026 / ARC-AGI-3): fast inner loop cannot generalize beyond pretraining envelope. **Spurious edge susceptibility**: LLMs learn false edges from pretraining statistics; larger models are *more* prone under zero-shot/few-shot ICL (LLaMA2-70B drops to 0.8% on Constituent OOD, Yuan et al. 2024). CoT prompting partially bypasses this by forcing multi-hop traversal rather than single shortcut edges. **Mathematical graph fragility** (GSM-Symbolic/GSM-Plus 2024): cannot maintain computation graph topology under modification — irrelevant node insertion causes avg 65% collapse (GSM-NoOp); reversed edge direction causes up to 20% drop (GSM-Plus reversal); failures are structural, not arithmetic (97–99% arithmetic accuracy preserved) |
 | **AIXI** | All four hardness sources; universal over all computable environments | Uncomputable; O(t̃ · 2^{l̃}) even in bounded form |
 | **LAPA (VLA latent action)** | Vocabulary co-discovery (source 2, partial): learns discrete action codebook jointly with world model from unlabeled video; VQ-VAE on frame differences discovers a finite action alphabet | Alphabet is domain-specific (manipulation video); does not generalize across environments; no meta-graph structure |
 
@@ -111,6 +112,18 @@ ARC-AGI is the primary empirical instantiation of latent edge discovery:
 
 ---
 
+## Connection to FrontierMath
+
+FrontierMath ([[wiki/entities/frontiermath-benchmark.md]]) is the formal-mathematics instantiation of latent edge + path discovery — the hardest configuration of the taxonomy:
+- **Meta-graph** = the domain theorem network (Chebotarev density theorem, Coxeter groups, p-adic analysis, algebraic geometry…)
+- **Instance-graph** = the proof/computation path for one specific problem
+- **Latent** = both the applicable edge labels (which theorems apply) AND the path sequence — plus the vocabulary itself (unknown vocabulary hardness is maximally active: Tao estimates "a dozen relevant papers" per problem area, meaning the action alphabet is nearly empty at test time)
+- **Observation aliasing** = the problem statement (a numerical computation request) gives no structural cue to the required proof path; surface form and latent graph topology are nearly uncorrelated
+
+**Key contrast with ARC-AGI:** ARC-AGI holds the meta-graph vocabulary approximately fixed (Core Knowledge priors) and makes only instance-graph edges latent. FrontierMath additionally makes the meta-graph vocabulary latent — relevant theorems exist in training data but at near-zero density. This is a strictly harder configuration: both levels of the two-level hierarchy are simultaneously underspecified. Yet both benchmarks converge on <5% frontier AI performance, confirming that the bottleneck is latent structure inference at the instance level, not domain knowledge accumulation.
+
+---
+
 ## Architectural Requirements
 
 | Requirement | Mechanism |
@@ -121,7 +134,10 @@ ARC-AGI is the primary empirical instantiation of latent edge discovery:
 | De-aliasing | Path-context-sensitive identity (clone cells or path-integrated g) |
 | Path-consistency | g must commute: same meta-graph position via any path |
 | Vocabulary learning | Observation + action embeddings learnable, not fixed |
+| **Causal edge invariance** | Edge labels must be learned from invariant causal structure, not i.i.d. correlations; requires training signal from diverse distribution shifts or explicit intermediate-node traversal to prevent single-hop shortcut edges from dominating |
 | Multi-level hierarchy | W itself structured as a discoverable graph (open problem) |
+
+**CoT as latent-graph traversal (Yuan et al. 2024):** Chain-of-thought prompting reduces shortcut reliance by 15–41% on adversarial NLI. In graph terms: CoT forces the model to materialize intermediate nodes (sub-steps) rather than taking a direct shortcut edge from observation to label. This is not a mechanism for discovering the correct causal graph — the edges were already learned during pretraining — but it biases path selection toward the intended multi-hop path over the memorized single-hop shortcut. The residual shortcut reliance under CoT (still ~30–40% on Constituent OOD for most models) reveals that CoT cannot fix fundamentally incorrect edge vocabularies, only select among existing ones.
 
 ---
 
@@ -131,6 +147,7 @@ ARC-AGI is the primary empirical instantiation of latent edge discovery:
 2. **Vocabulary co-discovery:** how does the system learn its action alphabet jointly with meta-graph structure, without a pre-given symbol set?
 3. **Aliasing with latent node content:** when node content is partially latent, aliasing and content learning interact — no current model handles both simultaneously.
 4. **Graph richness criterion:** what properties make an instance-graph sufficient to license ARC-AGI-class compositional transfer — what is the minimum required topology?
+5. **Mathematical vocabulary discovery:** FrontierMath shows that latent graph discovery fails even when the meta-graph (theorem network) exists in training data but at near-zero density. Is this the same unknown-vocabulary problem as in visual domains, just at a more extreme sparsity scale — or does formal mathematics require a qualitatively different mechanism for vocabulary co-discovery (e.g., explicit literature retrieval vs. statistical extraction)?
 
 ---
 
@@ -152,3 +169,10 @@ ARC-AGI is the primary empirical instantiation of latent edge discovery:
 - **[[wiki/entities/dnc-model.md]]** — DNC is the first architecture in the wiki empirically verified to solve graph traversal (98.8%), shortest-path (55.3%), and relational inference (81.8%) tasks via external read-write memory; demonstrates that instance-graph binding (fast M) and sequential path retrieval (temporal links) are sufficient for these tasks but that cross-environment meta-graph learning requires more than externalizing memory — the controller W must also generalize.
 - **[[wiki/papers/dnc-graves-2016.md]]** — source: graph task results; LSTM-vs-DNC 37%-vs-98.8% gap establishing external memory necessity; Mini-SHRDLU demonstrating prospective planning (write-before-execute) as an emergent property of read-write memory.
 - **[[wiki/papers/vla-survey-kawaharazuka-2025.md]]** — LAPA provides a partial solution to vocabulary co-discovery (hardness source 2): VQ-VAE on (frame_t, frame_{t+H}) differences learns a discrete action codebook jointly with a visual world model; the codebook is the discovered action alphabet; limitation is that it is domain-specific to the training video distribution and does not generalize meta-graph structure across environments.
+- **[[wiki/papers/shortcut-suite-yuan-2024.md]]** — empirical quantification of hardness source 5 (spurious edge covariate shift) in LLMs: Constituent OOD accuracy drops >50% at scale; inverse scaling paradox (larger LLM → more shortcut use under ICL) confirms that capability accumulation amplifies false edge availability rather than suppressing it; CoT as partial graph traversal bypass is a design implication.
+- **[[wiki/papers/shortcut-learning-geirhos-2020.md]]** — formal taxonomy of shortcut solutions as the i.i.d./intended-solution gap; inductive bias decomposition (architecture/data/loss/optimisation) identifies why all four factors can independently produce false edges; recommended solution path (IRM + meta-learning + causal disentanglement) maps to the causal edge invariance requirement.
+- **[[wiki/entities/frontiermath-benchmark.md]]** — FrontierMath instantiates the hardest latent graph configuration: both edge vocabulary (applicable theorems) and traversal path are latent, and the vocabulary has near-zero training coverage; the benchmark confirms that all four hardness sources are active simultaneously in formal mathematical reasoning, and that the frontier AI failure at <2% parallels the ARC-AGI gap from the opposite prior-knowledge extreme.
+- **[[wiki/papers/glazer-frontiermath-2024.md]]** — source: FrontierMath domain distribution, construction methodology, 3-axis difficulty decomposition, and model results establishing the <2% frontier capability gap in research-level mathematics.
+- **[[wiki/entities/gsm-symbolic.md]]** — GSM-NoOp failures instantiate the spurious edge covariate shift hardness source at the mathematical graph level: LLMs absorb irrelevant clauses into computation paths, and nonlinear clause-count collapse shows they cannot maintain structural graph topology under modification; arithmetic accuracy (97–99%) confirms the failure is structural, not computational.
+- **[[wiki/entities/gsm-plus.md]]** — reversal perturbations demonstrate LLMs cannot navigate reversed edge direction in a computation graph; critical thinking failures show they cannot detect underspecified graphs — convergent empirical confirmation of structural reasoning failure from a math robustness perspective.
+- **[[wiki/entities/hle.md]]** — HLE's near-zero frontier accuracy (<15% across all models) provides cross-domain empirical evidence that current architectures fail at latent graph discovery in expert-level problems; HLE-Verified's finding that model confidence is *higher* on annotation-flawed items directly instantiates the spurious covariate shift hardness source — models exploit false edges from annotation artifacts rather than recovering the intended causal structure.
