@@ -3,9 +3,9 @@ title: "Engrams"
 type: concept
 tags: [engrams, memory, sparse-coding, excitability, memory-linkage, hippocampus, CREB, memory-allocation]
 created: 2026-06-12
-updated: 2026-06-21
-sources: [engram-transcript, memory-gate-transcript, sparse_representations, lisman-memory-allocation-2018]
-related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/replay.md, wiki/concepts/structural-generalization.md, wiki/concepts/associative-memory.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/hebbian-learning.md, wiki/concepts/spike-frequency-adaptation.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/engram-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/hopfield-networks-crouse-2022.md, wiki/papers/podlaski-context-modular-memory-2025.md, wiki/papers/ahmad-hawkins-sdr-2016.md, wiki/papers/lisman-memory-allocation-2018.md]
+updated: 2026-06-27
+sources: [engram-transcript, memory-gate-transcript, sparse_representations, lisman-memory-allocation-2018, "The prefrontal cortex controls memory organization in the hippocampus"]
+related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/replay.md, wiki/concepts/structural-generalization.md, wiki/concepts/associative-memory.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/hebbian-learning.md, wiki/concepts/spike-frequency-adaptation.md, wiki/concepts/pattern-separation.md, wiki/concepts/memory-schemas.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/engram-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/hopfield-networks-crouse-2022.md, wiki/papers/podlaski-context-modular-memory-2025.md, wiki/papers/ahmad-hawkins-sdr-2016.md, wiki/papers/lisman-memory-allocation-2018.md, wiki/papers/desousa-pfc-memory-organization-hpc-2026.md]
 ---
 
 # Engrams
@@ -37,6 +37,28 @@ Two mechanisms link engrams by creating overlapping neuron populations:
 
 1. **Temporal co-encoding — allocate-to-link hypothesis:** CREB-mediated excitability increase persists ~5–24h post-encoding. If a second memory forms within this window, the same CREB-elevated cells preferentially win allocation again → shared engram neurons → behavioral linking. Ca²⁺ imaging of CA1 confirms greater ensemble overlap for contexts explored 5h apart vs. 7d apart. The shared ensemble is **necessary for associative transfer but not for individual recall**: silencing it blocks fear transfer from one context to another while leaving memory for each context intact (Yokose et al. 2017). This is the mechanism behind the "temporal contiguity → associative memory" observation — it is cellular and molecular, not merely statistical.
 2. **Co-retrieval:** repeatedly reactivating two non-overlapping engrams simultaneously causes them to merge a shared neuron pool. This shared pool encodes the *link between memories*, not their content — silencing it blocks associative recall while leaving individual memories intact. This is the physical mechanism for building abstract concepts from episodic experience.
+
+---
+
+## Top-Down Memory Allocation via vmPFC→MEC (De Sousa et al. 2026)
+
+CREB-mediated excitability sets *which cells win* in the moment via local lateral inhibition. A second, orthogonal mechanism operates *across time*: the vmPFC controls which prior-memory engram cells are re-recruited during a new encoding event, biasing the excitability landscape that CREB competition plays out over.
+
+**Circuit:** vmPFC (excitatory, deep layers, GAD67−) → MEC (layers II/III/V) → neurogliaform/NDNF+ cells in CA1 SLM → gate EC and CA3 inputs to CA1 pyramidal neurons.
+
+**Allocation shift under vmPFC→MEC inhibition:**
+
+| Condition | Prior-context A neurons (top 10%) | Home-cage neurons | Context-B-unique |
+|---|---|---|---|
+| Control (vmPFC→MEC intact) | ~15% | ~24% | ~45% |
+| vmPFC→MEC inhibited | ~27% | ~18% | ~38% |
+| Same-context revisit (natural integration) | ~25% | ~19% | ~38% |
+
+When vmPFC→MEC is inhibited, the allocation profile becomes indistinguishable from same-context revisit — prior-memory engram cells are preferentially co-allocated even to an objectively different context 7 days later. This shift is not mediated by total neuron count (unchanged) but by which cells are recruited into the active top-10% tier.
+
+**Relationship to CREB mechanism:** CREB tags are transient (~5–24h); they are irrelevant at the 7-day timescale studied here. The vmPFC→MEC mechanism operates on a different substrate: it modulates the *excitability* of the dCA1 ensemble by controlling inhibitory tone (NGF cells), thereby biasing which neurons clear the threshold for active participation — an indirect top-down excitability gate, not a cell-intrinsic tag. The two mechanisms are complementary: CREB governs fast same-session linkage (5h window); vmPFC→MEC governs slow cross-session schema-guided allocation (7-day+ window).
+
+**ML implication:** A reasoning model's memory-write module needs both components: (1) local sparse excitability competition (the CREB/sparsity layer → determines sparsity and interference avoidance) and (2) a top-down schema-activated bias signal (the vmPFC→MEC analog → determines which prior-memory cells are reactivated at write time, enabling schema-consistent co-allocation across timescales beyond any local plasticity trace).
 
 ---
 
@@ -96,3 +118,7 @@ Memory is not localized — it is a distributed puzzle, with HC as the index bin
 - **[[wiki/concepts/hebbian-learning.md]]** — Hebb's cell assembly theory is the conceptual precursor to the engram: repeated co-firing of neurons establishes auto-associated assemblies that reconstitute from partial cues; excitability competition is the mechanism that determines which neurons participate in the Hebbian write and enforces the sparsity that keeps assemblies distinct.
 - **[[wiki/concepts/spike-frequency-adaptation.md]]** — CREB-mediated AHP (AfterHyperPolarization) reduction (K⁺ conductance decrease) is mechanistically opposed to SFA-mediated AHP (AfterHyperPolarization) buildup (K⁺ channel activation): SFA (Spike Frequency Adaptation) suppresses chronically active neurons via a rising threshold; CREB tags plasticity-eligible neurons by lowering their threshold — both act at the same K⁺ channel family in opposite directions, setting each neuron's effective excitability in a learning context.
 - **[[wiki/papers/lisman-memory-allocation-2018.md]]** — primary source for CREB as the molecular mechanism of excitability-based engram allocation, the dual-pathway coincidence detection (somatic CaMKIV + dendritic ERK), the allocate-to-link hypothesis (Ca²⁺ imaging confirmation of ensemble overlap at 5h vs. 7d), and the assembly consolidation hypothesis (SWR participation bias).
+- **[[wiki/entities/ch-hnn-model.md]]** — CH-HNN demonstrates that task-agnostic continual learning can be achieved via ANN-generated episode-routing masks rather than per-episode engram allocation, providing indirect computational evidence that discrete engrams may not be the primary encoding mechanism during incremental learning (see [[wiki/empirical-tensions.md]]).
+- **[[wiki/papers/desousa-pfc-memory-organization-hpc-2026.md]]** — source for the top-down vmPFC→MEC memory allocation mechanism; establishes that prior-memory engram co-allocation at the 7-day timescale is controlled by a descending cortical circuit rather than local CREB excitability, extending the allocation account across timescales.
+- **[[wiki/concepts/memory-schemas.md]]** — the vmPFC→MEC co-allocation mechanism IS schema-guided assimilation at the cellular level: schema-consistent new events get co-allocated into the existing schema engram; schema-inconsistent events are kept separate; the boundary between assimilation and accommodation is set by vmPFC activity.
+- **[[wiki/concepts/pattern-separation.md]]** — the vmPFC→MEC top-down circuit controls the integration/separation balance in dCA1 by modulating NGF cell activity in SLM; this is the cross-session regulatory layer that complements the local DG hilar and noradrenergic circuits operating within a session.

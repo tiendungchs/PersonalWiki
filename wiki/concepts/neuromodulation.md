@@ -3,9 +3,9 @@ title: "Neuromodulation"
 type: concept
 tags: [neuromodulation, reinforcement-learning, dopamine, serotonin, noradrenaline, acetylcholine, meta-learning, learning-rate, basal-ganglia]
 created: 2026-06-19
-updated: 2026-06-24
-sources: [Metalearning_and_Neuromodulation, PFC_as_a_meta_RL_system, making_working_mem_work, The role of prefrontal cortex in cognitive control and executive function, Pattern separation in the hippocampus.md, Modulation of striatal projection systems by dopamine, The free-energy principle - a rough guide to the brain, Improving the adaptive and continuous learning capabilities of artificial neural networks Lessons from multi-neuromodulatory dynamics]
-related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/predictive-coding.md, wiki/concepts/meta-learning.md, wiki/concepts/cognitive-control.md, wiki/concepts/associative-memory.md, wiki/concepts/pattern-separation.md, wiki/concepts/spike-frequency-adaptation.md, wiki/concepts/phase-precession.md, wiki/concepts/continual-learning.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/prefrontal-cortex.md, wiki/entities/basal-ganglia.md, wiki/entities/snn.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/papers/metalearning-neuromodulation-doya-2002.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/pbwm-oreilly-frank-2006.md, wiki/papers/pfc-cognitive-control-friedman-2021.md, wiki/papers/podlaski-context-modular-memory-2025.md, wiki/papers/yassa-stark-pattern-separation-2011.md, wiki/papers/gerfen-surmeier-dopamine-striatum-2011.md, wiki/papers/friston-free-energy-2009.md, wiki/papers/sfa-ganguly-2024.md, wiki/papers/spiking-tem-kawahara-2025.md, wiki/papers/mei-multimodulatory-continual-2025.md]
+updated: 2026-06-27
+sources: [Metalearning_and_Neuromodulation, PFC_as_a_meta_RL_system, making_working_mem_work, The role of prefrontal cortex in cognitive control and executive function, Pattern separation in the hippocampus.md, Modulation of striatal projection systems by dopamine, The free-energy principle - a rough guide to the brain, Improving the adaptive and continuous learning capabilities of artificial neural networks Lessons from multi-neuromodulatory dynamics, "Dynamic Network Connectivity A New Form of Neuroplasticity"]
+related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/predictive-coding.md, wiki/concepts/meta-learning.md, wiki/concepts/cognitive-control.md, wiki/concepts/associative-memory.md, wiki/concepts/pattern-separation.md, wiki/concepts/spike-frequency-adaptation.md, wiki/concepts/phase-precession.md, wiki/concepts/continual-learning.md, wiki/concepts/excitation-inhibition-balance.md, wiki/concepts/pfc-dynamic-network-connectivity.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/prefrontal-cortex.md, wiki/entities/basal-ganglia.md, wiki/entities/snn.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/papers/metalearning-neuromodulation-doya-2002.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/pbwm-oreilly-frank-2006.md, wiki/papers/pfc-cognitive-control-friedman-2021.md, wiki/papers/podlaski-context-modular-memory-2025.md, wiki/papers/yassa-stark-pattern-separation-2011.md, wiki/papers/gerfen-surmeier-dopamine-striatum-2011.md, wiki/papers/friston-free-energy-2009.md, wiki/papers/sfa-ganguly-2024.md, wiki/papers/spiking-tem-kawahara-2025.md, wiki/papers/mei-multimodulatory-continual-2025.md, wiki/papers/spedding-jay-hpfc-psychiatric-2013.md, wiki/papers/arnsten-dynamic-network-connectivity-2010.md, wiki/papers/lai-mpfc-bla-nac-affective-2026.md]
 ---
 
 # Neuromodulation
@@ -22,7 +22,7 @@ Doya (2002) maps each to a specific RL metaparameter, providing a falsifiable co
 |---|---|---|---|---|
 | **Dopamine (DA)** | TD (Temporal Difference) error δ | Global learning signal for value + action | VTA / SNc (midbrain) | Striatum, PFC (Prefrontal Cortex) |
 | **Serotonin (5-HT)** | Discount factor γ | Time horizon of reward prediction | Dorsal raphe | Striatum, cortex |
-| **Noradrenaline (NA)** | Inverse temperature β | Exploration/exploitation balance | Locus coeruleus (LC) | Cortex, globus pallidus |
+| **Noradrenaline (NA)** | Inverse temperature β; **network integration mode** | Exploration/exploitation balance; shifts whole-brain topology from segregated to integrated | Locus coeruleus (LC) | Cortex, globus pallidus |
 | **Acetylcholine (ACh)** | Learning rate α | Speed of memory storage vs. retrieval | Basal forebrain / brainstem | Hippocampus, cortex, striatum |
 
 ---
@@ -192,6 +192,35 @@ These are experimentally dissociable: optogenetically blocking/inducing Dopamine
 
 ---
 
+## PFC Network Modulation: The DNC Mechanism (Arnsten et al. 2010)
+
+While Doya 2002 maps neuromodulators to RL metaparameters and Gerfen & Surmeier 2011 gives the striatal D1/D2 cascade, Arnsten et al. 2010 ([[wiki/papers/arnsten-dynamic-network-connectivity-2010.md]]) reveal the molecular implementation of neuromodulatory control specifically in PFC working memory circuits. All four signals converge on **cAMP** as the central switch for network connection strength.
+
+**The cAMP hub:**
+```
+cAMP ↑  →  HCN channels open (direct) + KCNQ K⁺ channels open (via PKA)
+        →  K⁺ conductance ↑ at spine neck  →  shunts synaptic input  →  network WEAKENED
+cAMP ↓  →  HCN/KCNQ close + TRPC depolarizing channels open  →  network STRENGTHENED
+```
+
+| Signal | Receptor | cAMP | Network effect |
+|--------|----------|------|---------------|
+| **NE (optimal)** | α2A-AR → Gi | ↓ | Strengthens preferred-direction firing (signal ↑) |
+| **ACh** | α7 nAChR → NMDA direct | — | Strengthens (direct spine depolarization) |
+| **ACh** | M1 muscarinic → KCNQ closure | — | Strengthens (M-current block) |
+| **DA (moderate)** | D1R → Gs (nonpreferred spines) | ↑ moderate | Sculpts network: reduces noise in nonpreferred directions |
+| **DA/NE (high/stress)** | D1R/α1-AR/β-AR | ↑↑ | Collapses entire network |
+| Ca²⁺ entry (NMDA) | → SK channels | — | Negative feedback: limits excitability |
+| Glu spillover | mGluR1/5 → Gq → IP3-Ca²⁺ | — | Negative feedback |
+
+**Stress → PFC offline:** Acute stress drives massive NE + DA release → cAMP surge → HCN/KCNQ open → PFC delay-period firing collapses within seconds → amygdala and striatum simultaneously strengthen → reflexive behavior takes over. Molecular mechanism for the integration→segregation switch (see [[wiki/concepts/network-integration-segregation.md]]).
+
+**WM capacity limit as epilepsy prevention:** The same negative feedback (Ca²⁺/SK + cAMP/HCN/KCNQ) that prevents seizures in recurrent PFC circuits also limits WM duration to ~10–30 sec. This is why HC must engage for longer delay periods — HC provides storage not subject to this ceiling.
+
+**Design implication:** The NA (NE) analog (α2A-AR axis) is the molecular basis for Gap #8's conditional hub activation. A reasoning model's hub module should have an analog of α2A-AR gating: a global demand/arousal signal that, when at optimal level, closes the equivalent of HCN channels and strengthens hub connectivity; when overdriven (stress analog), collapses it. See [[wiki/concepts/pfc-dynamic-network-connectivity.md]] for the full mechanistic formalism.
+
+---
+
 ## Neurochemical CC (Cognitive Control) Specificity (Friedman & Robbins 2021)
 
 Friedman & Robbins identify a finer-grained mapping between neuromodulators and CC (Cognitive Control) components than Doya's global metaparameter account:
@@ -206,6 +235,8 @@ Friedman & Robbins identify a finer-grained mapping between neuromodulators and 
 **Key implication for reasoning model:** Dopamine and 5-HT mediate *different* CC (Cognitive Control) components, not just different timescales of the same signal. The dissociation (DA impairs flexibility while improving WM; 5-HT specifically modulates OFC (Orbitofrontal Cortex) value-reversal not rule-shifting) means neuromodulation should be CC-component-specific in the model, not a global learning-rate dial.
 
 The NA/RIFG/STN inhibitory circuit is a separate response-gating mechanism distinct from the Dopamine D1 WM-stability mechanism — this maps to the distinction between Block 3D (goal generator, driven by goal/error signal) and Block 3B (WM, stabilized by Dopamine D1 analog).
+
+**D1 modulation of H-PFC pathway plasticity (Spedding & Jay 2013 [[wiki/papers/spedding-jay-hpfc-psychiatric-2013.md]]):** D1 receptors regulate LTP/LTD in the direct vHPC→mPFC projection — not only in PFC-internal circuits. Two mechanisms: (a) D1 activation increases interneuron excitability in mPFC, shifting the H-PFC pathway's net effect from direct pyramidal excitation to interneuron-mediated feed-forward inhibition — a gain-normalizing mechanism stabilizing PFC representation under variable hippocampal drive; (b) dopamine application to PFC increases HC-PFC theta-coherence, directly linking DA neuromodulation to H-PFC channel strength. Stress disrupts D1-gated LTP → WM failure; antidepressants and glucocorticoid receptor antagonists restore both LTP and WM. This extends the D1=WM-stability mapping from PFC-internal dynamics to the incoming HC-PFC information channel.
 
 ---
 
@@ -248,6 +279,8 @@ Doya's one-to-one mapping (DA=δ, 5-HT=γ, NA=β, ACh=α) is a useful first-orde
 - Spatial memory at BF→dorsal HC
 - Cue encoding at BF→medial PFC
 
+**Cortical neuron projection-specificity (Lai et al. 2026 [[wiki/papers/lai-mpfc-bla-nac-affective-2026.md]]):** This principle extends beyond neuromodulatory systems to cortical excitatory neurons. mPFC prelimbic neurons projecting to BLA vs. NAc are functionally distinct ensembles within the same cortical region: mPFC→BLA encodes negatively-valenced states (anxiety, aversion); mPFC→NAc encodes positively-valenced states (exploration, social preference via pattern decorrelation). Critically, population-level firing rates are equivalent — functional divergence is invisible to rate coding and emerges only at the ensemble dynamics level. This means a single global modulatory signal to mPFC cannot explain the routing; structural projection identity is the primary functional determinant. See [[wiki/entities/prefrontal-cortex.md]] for the full table and architectural implication.
+
 A single global ACh broadcast cannot implement this diversity — the neuromodulatory effect is target-circuit-specific.
 
 **Ionotropic vs. metabotropic timescales:** Two receptor classes enable multi-timescale operations within a single neuromodulatory system:
@@ -271,6 +304,8 @@ Viewing neural dynamics through the lens of **attractor landscapes** provides a 
 
 **NA's role in contingency shifting** is the clearest example: when the LC-NA system detects an unexpected environmental change (via a predictive coding discrepancy signal), a phasic NA (Noradrenaline / Norepinephrine) burst transiently *flattens* the energy landscape, increasing the network's effective temperature and enabling rapid exploration of alternative action policies. Once a new policy is found, tonic NA (Noradrenaline / Norepinephrine) decreases and the landscape steepens around the new attractor. This is the mechanism by which DA-only learning fails after a set-shift (trapped at old optimum) while DA+NA co-modulation recovers (NA flattens → explores → new basin found).
 
+**NA as whole-brain topology gate (Shine et al. 2016 [[wiki/papers/shine-2016-integrated-network-states.md]]):** The same LC-NA arousal signal also governs the macroscale integration/segregation toggle. Pupil diameter (LC proxy) correlates with network-wide between-module participation coefficient B_T (r = 0.241 ± 0.06), maximal in frontoparietal, striatal, and thalamic hub regions. Mechanistically: NA gain increase amplifies cross-module hub inputs relative to within-module recurrence, shifting whole-brain topology from segregated (high-modularity, low global efficiency) to integrated (low modularity, high global efficiency). This is the attractor-landscape framing instantiated at the whole-brain scale: NA flattens within-module energy wells → inter-module coupling wins → integration. Crucially, integration specifically accelerates evidence accumulation (drift rate ↑, non-decision time ↓) without affecting response caution (boundary unchanged), ruling out a global arousal confound. See [[wiki/concepts/network-integration-segregation.md]] for the full topology formalism.
+
 **Design implication:** An adaptive reasoning model needs not just a learning-rate dial (Doya) but an attractor topology modulator — a signal that can transiently increase effective temperature (NA-like) when the model detects environmental non-stationarity.
 
 ---
@@ -290,6 +325,31 @@ Standard two-factor Hebb: `Δw ∝ pre · post`. The third factor M gates *when*
 | Goal relevance | ACh (BF) | Tags synapses encoding task-relevant cue-action mappings for preferential consolidation |
 
 **Key distinction from pure RL:** Eligibility traces allow the synapse to remember that it was recently active even if no reward has yet arrived — M converts this latent eligibility into a committed weight change when contextual information arrives asynchronously. This is the biological credit assignment solution that bridges fast synaptic events (ms) and slow neuromodulatory signals (sec).
+
+---
+
+## Artificial Threshold Modulation as Neuromodulation (HMN)
+
+Zhao et al. 2022 ([[wiki/entities/hnn-framework.md]]) provide a direct artificial implementation of neuromodulatory threshold control in the **Hybrid Modulation Network (HMN)**:
+
+An ANN backbone processes task context → learnable HUs generate a per-neuron threshold modulation vector $V_{\text{th},i}$ (same dimension as the SNN branch neuron count), trained to be cosine-similar to a task-similarity score:
+
+$$V_{\text{th},i} = \max\left(\mathbb{E}_{(x,y)\in\mathcal{D}_i}[\text{HU}[\text{ANN}(x)]] - \tfrac{1}{2},\ 0\right)$$
+
+Applied threshold: $\tilde{v} = (1 - V_{\text{th},i}) \cdot v_T$
+
+High $V_{\text{th}}$ → large additional threshold → neuron inhibited (analogous to DA-D1 / high-ACh driven threshold elevation). Low $V_{\text{th}}$ → neuron active → task-specific subnet engaged. The ANN backbone learns to cluster similar tasks in the modulation space (confirmed by t-SNE of $V_{\text{th}}$), enabling parameter reuse across similar sub-tasks and preventing interference across dissimilar ones.
+
+**Mapping to biological neuromodulation:**
+
+| HMN component | Biological analog |
+|---|---|
+| ANN backbone (task context encoding) | Slow neuropeptide network / PFC contextual signal |
+| Learnable HUs (→ threshold vector) | Cholinergic basal forebrain projections modulating cortical excitability |
+| $V_{\text{th}}$ (per-neuron binary gate) | ACh/DA sculpting of which neurons enter up-state under convergent input |
+| Task similarity alignment objective | Learning to map task structure onto neuromodulatory pattern space |
+
+This is the first demonstration that a *learned* ANN signal can implement fine-grained neuromodulation (per-neuron, per-task) and achieve meta-continual learning performance superior to hand-designed EWC/SI approaches.
 
 ---
 
@@ -333,3 +393,10 @@ Standard two-factor Hebb: `Δw ∝ pre · post`. The third factor M gates *when*
 - **[[wiki/concepts/continual-learning.md]]** — neuromodulatory plasticity gating (three-factor rule, synaptic tagging, LC network-reset) are the biological solutions to catastrophic forgetting; the ACh/DA/NA metaparameter roles directly determine which CL paradigm (transfer, incremental, online) a system can support.
 - **[[wiki/entities/snn.md]]** — SNNs are the natural substrate for integrating multi-timescale neuromodulatory signals; Dopamine R-STDP + NA-phasic burst implements the three-factor rule in the Mei et al. Go/No-Go conceptual demo.
 - **[[wiki/papers/mei-multimodulatory-continual-2025.md]]** — source for the many-to-one principle, three interaction modes (modulatory/convergent/opponent), projection-specificity, ionotropic vs. metabotropic timescale hierarchy, attractor landscape framing, and NA-as-contingency-reset mechanism.
+- **[[wiki/concepts/network-integration-segregation.md]]** — LC-NA broadcast is the gating signal for the whole-brain integration/segregation toggle; pupil-B_T correlation (r=0.241) provides empirical evidence; the attractor-landscape flattening by phasic NA implements the state transition from segregated to integrated topology.
+- **[[wiki/concepts/excitation-inhibition-balance.md]]** — ACh, DA-D1, and NA all converge on E/I balance as the shared downstream variable through which neuromodulatory signals shift whole-brain synchrony and WM stability; E/I balance is the common currency of the metaparameter effects described in this page.
+- **[[wiki/entities/hnn-framework.md]]** — HMN's ANN-generated threshold modulation vectors are the only published artificial implementation of fine-grained per-neuron neuromodulatory control: a learned ANN signal encoding task similarity directly modulates SNN excitability thresholds, achieving meta-continual learning performance superior to EWC/SI baselines and demonstrating that the neuromodulatory threshold-control principle is directly implementable in silicon.
+- **[[wiki/papers/spedding-jay-hpfc-psychiatric-2013.md]]** — source for D1 modulation of H-PFC pathway LTP; interneuron-mediated inhibitory mechanism; dopamine → HC-PFC coherence link; stress-disrupted LTP as pathophysiology model; extends D1=WM-stability mapping to the incoming HC-PFC channel rather than PFC-internal dynamics alone.
+- **[[wiki/concepts/pfc-dynamic-network-connectivity.md]]** — molecular implementation of NE/DA/ACh effects specifically in PFC working memory circuits; all three modulators act through the cAMP → HCN/KCNQ hub to rapidly and reversibly adjust network connection strength on seconds timescales; grounds the RL-metaparameter level in a biophysically specific cascade.
+- **[[wiki/papers/arnsten-dynamic-network-connectivity-2010.md]]** — primary source for PFC DNC mechanism; α2A-AR/D1R/ACh pathways; stress-collapse mechanism; WM capacity limit from negative feedback; DISC1 as stress buffer.
+- **[[wiki/papers/lai-mpfc-bla-nac-affective-2026.md]]** — demonstrates that projection-specificity applies to cortical excitatory neurons (not just neuromodulators): mPFC→BLA vs. mPFC→NAc are functionally distinct ensembles encoding opposite affective valences; rate coding cannot distinguish them — ensemble dynamics are required.

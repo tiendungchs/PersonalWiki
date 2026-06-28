@@ -5,7 +5,7 @@ tags: [latent-graph-discovery, abstract-reasoning, structural-generalization, pr
 created: 2026-06-20
 updated: 2026-06-24
 sources: []
-related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/path-integration.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/analogical-reasoning.md, wiki/concepts/latent-states.md, wiki/entities/tem-model.md, wiki/entities/arc-agi.md, wiki/entities/cscg-model.md, wiki/entities/tiwm-model.md, wiki/entities/dnc-model.md, wiki/entities/frontiermath-benchmark.md, wiki/entities/olymmath.md, wiki/papers/hutter-aixi-2000.md, wiki/papers/dnc-graves-2016.md, wiki/papers/shortcut-suite-yuan-2024.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/papers/glazer-frontiermath-2024.md, wiki/papers/olymmath.md, wiki/papers/odouard-2022-concept-evaluation.md, wiki/entities/vsa-model.md, wiki/papers/joffe-vsa-arc-2025.md, wiki/papers/math-perturb-2025.md, wiki/entities/gpqa-benchmark.md, wiki/papers/gpqa-rein-2024.md, wiki/papers/adversarial-nli-nie-2020.md]
+related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/path-integration.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/analogical-reasoning.md, wiki/concepts/latent-states.md, wiki/entities/tem-model.md, wiki/entities/arc-agi.md, wiki/entities/cscg-model.md, wiki/entities/tiwm-model.md, wiki/entities/dnc-model.md, wiki/entities/frontiermath-benchmark.md, wiki/entities/olymmath.md, wiki/papers/hutter-aixi-2000.md, wiki/papers/dnc-graves-2016.md, wiki/papers/shortcut-suite-yuan-2024.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/papers/glazer-frontiermath-2024.md, wiki/papers/olymmath.md, wiki/papers/odouard-2022-concept-evaluation.md, wiki/entities/vsa-model.md, wiki/papers/joffe-vsa-arc-2025.md, wiki/papers/math-perturb-2025.md, wiki/entities/gpqa-benchmark.md, wiki/papers/gpqa-rein-2024.md, wiki/papers/adversarial-nli-nie-2020.md, wiki/papers/spatial-learning-pfc-martinet-2011.md, wiki/entities/prefrontal-cortex.md]
 ---
 
 # Latent Graph Discovery
@@ -86,6 +86,24 @@ AIXI fails only on computability grounds: it is uncomputable. Every entry in the
 
 ---
 
+## Biological Instantiation: PFC Columnar Model
+
+Martinet et al. 2011 ([[wiki/papers/spatial-learning-pfc-martinet-2011.md]]) provide the most direct biological proof that a neural system can solve latent graph discovery from sequential observations:
+
+| LGD element | Biological implementation |
+|---|---|
+| **Nodes (locations)** | Cortical minicolumns, each becoming selective to one environmental state via Hebbian learning from HC place-cell input |
+| **Edges (adjacency)** | Lateral collateral synapses (ψ/φ connections) potentiated when the animal moves between two columns — edge = co-activation during locomotion |
+| **Graph never given** | Animal explores; topology is inferred from sequential (position, motion, next-position) triples — exact LGD problem setup |
+| **Graph search (planning)** | Spreading activation (BFS): reward signal back-propagates from goal node, decaying per edge; current-location node detects goal signal and fires; forward path signal propagates to goal |
+| **Two levels** | α columns = fine spatial topology (instance graph); β columns = corridor-level topology (coarser meta-graph layer) |
+
+**Why spreading activation = BFS:** because the goal signal decays exponentially per synaptic relay, the first signal to arrive at the current-position column has traversed the *minimum number of edges* (shortest path). This is BFS without an explicit queue — the distance-to-goal property is implemented by exponential signal decay through the graph, not by any explicit search data structure.
+
+**HC → PFC compression as source hardness mitigation:** HC provides a redundant high-dimensional code (many place cells per location, ~85% spatial information) that the PFC columnar system compresses to a sparse topological code (~5× fewer active units). This solves the aliasing problem locally: each PFC column has a unique, non-overlapping receptive field, so observation aliasing is resolved by the compression step rather than by explicit de-aliasing (contrast: CSCG uses clone cells for the same purpose).
+
+---
+
 ## Why Current Architectures Fail
 
 | Architecture | Satisfies | Fails |
@@ -141,6 +159,8 @@ FrontierMath ([[wiki/entities/frontiermath-benchmark.md]]) is the formal-mathema
 
 **Self-poisoning via model-generated intermediate nodes (MATH 2021):** Training on ground-truth step-by-step solutions improves test accuracy by ~10% relative, but asking models to generate their own CoT (Chain of Thought) at test time *decreases* accuracy. Self-generated intermediate nodes are unreliable latent graph positions — errors at step k propagate through all subsequent steps. This is distinct from the bias-reduction effect of ground-truth CoT: ground-truth CoT (Chain of Thought) prevents shortcut path selection; model-generated CoT (Chain of Thought) corrupts the intermediate nodes on which subsequent traversal depends. The implication: CoT's benefit requires reliable intermediate structure, which current architectures cannot self-generate under distribution.
 
+**Domain-module assignment for metric vs. associative graphs:** Kumaran & Maguire 2005 ([[wiki/papers/kumaran-maguire-2005-hippocampus.md]]) establish that HC engages only metric or temporal-sequential latent graphs, not purely declarative associative ones. Even when two graph-traversal tasks are matched in relational complexity and behavioral difficulty (same 14 nodes; edges differ: spatial proximity vs. social acquaintance), only the spatially-embedded graph drives HC. For a brain-inspired reasoning model, this implies a domain split within the latent-graph taxonomy: *metric/sequential latent graphs* (spatial navigation, temporal sequence traversal, path integration with continuous distances) → HC-analog module; *purely topological/declarative latent graphs* (social networks, logical propositions without sequential ordering) → mPFC/social-brain analog (STS, TPJ, temporal poles). In the task taxonomy: path-discovery over metric space → HC; pure edge-discovery in declarative associative domains → mPFC.
+
 ---
 
 ## Open Problems
@@ -183,3 +203,5 @@ FrontierMath ([[wiki/entities/frontiermath-benchmark.md]]) is the formal-mathema
 - **[[wiki/papers/joffe-vsa-arc-2025.md]]** — primary empirical source for the VSA/SSP performance gap; diagnoses vocabulary co-discovery as the architectural gap separating brain-inspired structured methods from genuine ARC-AGI-class generalization.
 - **[[wiki/papers/adversarial-nli-nie-2020.md]]** — ANLI is the clearest quantified NLI (Natural Language Inference) instantiation of hardness source 5 (spurious edge covariate shift): 72% IID accuracy from the false H→label edge collapses to 42–51% when adversarial collection forces traversal of the true P→H entailment edge; the inference-type failure taxonomy maps which NLI (Natural Language Inference) edge types remain unsolvable even after the primary shortcut is blocked.
 - **[[wiki/concepts/shortcut-reasoning.md]]** — shortcut reasoning is the failure mode that hardness source 5 (spurious edge covariate shift) produces; the full taxonomy of shortcut mechanisms (discriminative/generative asymmetry, ARC catalogue, NLI (Natural Language Inference) instantiation) and the architectural solution path (IRM + causal disentanglement) are consolidated there.
+- **[[wiki/papers/spatial-learning-pfc-martinet-2011.md]]** — biological proof-of-concept: PFC columnar network solves latent graph discovery from sequential spatial observations via Hebbian edge inference and spreading activation planning; uniquely maps all LGD components to identifiable neural populations and synaptic mechanisms.
+- **[[wiki/entities/prefrontal-cortex.md]]** — PFC is the biological latent graph discovery module: compresses HC redundant code into a sparse topological graph (instance graph), uses recurrent column dynamics for corridor-level abstraction (meta-graph layer), and runs spreading activation for optimal path planning.

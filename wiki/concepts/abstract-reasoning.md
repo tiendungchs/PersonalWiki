@@ -5,7 +5,7 @@ tags: [abstract-reasoning, model-building, causal-models, compositionality, one-
 created: 2026-06-20
 updated: 2026-06-24
 sources: [building_machine_that_thinks_like_people, ARC-AGI-3-paper.md, analogy_reasoning.md, How does the brain solve visual object recognition, geometry-of-abstraction-bernardi-2020, raven, The ConceptARC Benchmark, A Path Towards Autonomous Machine Intelligence, shortcut learning.md, choi-intelligence-density-2026, beger-conceptarc-multimodal-2025, Evaluating Understanding on Conceptual Abstraction Benchmarks.md, math-dataset-hendrycks-2021, math-perturb-2025, verifiers-math-cobbe-2021]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/meta-learning.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/continual-learning.md, wiki/entities/arc-agi.md, wiki/entities/pgm-benchmark.md, wiki/entities/frontiermath-benchmark.md, wiki/papers/arc-agi-overview.md, wiki/papers/arc-agi-3-paper.md, wiki/papers/building-machine-thinks-like-people-lake-2016.md, wiki/concepts/analogical-reasoning.md, wiki/papers/analogy-holyoak-2012.md, wiki/papers/dicarlo-visual-object-recognition-2012.md, wiki/concepts/representational-geometry.md, wiki/papers/geometry-abstraction-bernardi-2020.md, wiki/papers/hutter-aixi-2000.md, wiki/papers/hassabis-neuroscience-ai-2017.md, wiki/papers/pgm-barrett-2018.md, wiki/papers/conceptarc-moskvichev-2023.md, wiki/concepts/world-models.md, wiki/entities/jepa-model.md, wiki/concepts/energy-based-models.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/concepts/intelligence-density.md, wiki/concepts/shortcut-reasoning.md, wiki/papers/beger-conceptarc-multimodal-2025.md, wiki/papers/glazer-frontiermath-2024.md, wiki/papers/odouard-2022-concept-evaluation.md, wiki/papers/math-perturb-2025.md, wiki/papers/verifiers-math-cobbe-2021.md]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/meta-learning.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/continual-learning.md, wiki/entities/arc-agi.md, wiki/entities/pgm-benchmark.md, wiki/entities/frontiermath-benchmark.md, wiki/papers/arc-agi-overview.md, wiki/papers/arc-agi-3-paper.md, wiki/papers/building-machine-thinks-like-people-lake-2016.md, wiki/concepts/analogical-reasoning.md, wiki/papers/analogy-holyoak-2012.md, wiki/papers/dicarlo-visual-object-recognition-2012.md, wiki/concepts/representational-geometry.md, wiki/papers/geometry-abstraction-bernardi-2020.md, wiki/papers/hutter-aixi-2000.md, wiki/papers/hassabis-neuroscience-ai-2017.md, wiki/papers/pgm-barrett-2018.md, wiki/papers/conceptarc-moskvichev-2023.md, wiki/concepts/world-models.md, wiki/entities/jepa-model.md, wiki/concepts/energy-based-models.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/concepts/intelligence-density.md, wiki/concepts/shortcut-reasoning.md, wiki/papers/beger-conceptarc-multimodal-2025.md, wiki/papers/glazer-frontiermath-2024.md, wiki/papers/odouard-2022-concept-evaluation.md, wiki/papers/math-perturb-2025.md, wiki/papers/verifiers-math-cobbe-2021.md, wiki/papers/frontal-cortex-abstract-rules-badre2010.md]
 ---
 
 # Abstract Reasoning
@@ -169,6 +169,29 @@ Across all 16 Core Knowledge concepts, human errors are near-misses. No program 
 
 ---
 
+## Step-Wise Learning Curves as Neural Signature of Rule Discovery (Badre et al. 2010)
+
+The model-building/pattern-recognition distinction produces a measurable difference in the *temporal dynamics* of learning, complementing the error-structure diagnostic from ConceptARC.
+
+**Two learning regimes:**
+
+| Regime | Learning curve shape | Sigmoid α | Sigmoid β | Mechanism |
+|---|---|---|---|---|
+| Abstract rule learning (Hierarchical) | Step-wise jump | Large (steep step) | Small (early) | Higher-order rule discovered → all subsumed lower-order rules immediately available |
+| Rote association (Flat) | Gradual monotone | Small (shallow ramp) | Large (late) | Each rule must be learned independently, one by one |
+
+Both α (p<0.01) and β (p<0.005) differ significantly. Crucially, the step-wise jump is specifically faster for 1st-order rules that are *members of a known 2nd-order set* — not for Hierarchical rules generally (rules not subsumed by a known 2nd-order rule learn at the same rate as Flat rules). The learning benefit is structural, not generic familiarity.
+
+**Behavioral efficiency numbers:** Terminal accuracy 84% Hierarchical vs. 58% Flat; 72% vs. 43% of individual rules learned. This efficiency gain directly results from compression: 9 individual rules become learnable as consequences of a single 2nd-order rule.
+
+**Neural substrate:** prePMd (~BA6/44) is active from trial 1 of learning — before any 2nd-order rule is known — and its early activation predicts subsequent rule discovery (r=0.51–0.56). prePMd is the neural substrate of the *search* for higher-order rules, not only their execution. When no higher-order rule exists (Flat condition), prePMd activity declines to baseline by the Middle phase — reward-gated suppression of the unproductive higher-level search.
+
+**Design implication:** A reasoning model that discovers abstract rules should produce step-wise learning curves as a byproduct of its architecture. If a model only produces gradual curves even on Hierarchical-type tasks, it is likely learning each instance independently rather than discovering the compressing abstraction. Step-wise curve shape is an architectural diagnostic for genuine rule compression, not just accuracy measurement.
+
+See [[wiki/papers/frontal-cortex-abstract-rules-badre2010.md]] for experimental details.
+
+---
+
 ## Autonomous Goal Inference (ARC-AGI-3 Extension)
 
 ARC-AGI-3 reveals a fourth required capability not captured by Lake et al. 2016's three-ingredient model: the ability to infer the objective itself.
@@ -302,3 +325,4 @@ $\mathcal{I}(n) \to \infty$ as domain scales is a **formal sufficient criterion 
 - **[[wiki/papers/odouard-2022-concept-evaluation.md]]** — introduces concept-based evaluation (OOD concept variations as understanding probe) and provides the earliest empirical demonstration of the concept-shortcut gap on RAVEN/ARC; directly precedes ConceptARC, which formalized this methodology into a systematic 16-concept benchmark.
 - **[[wiki/papers/math-perturb-2025.md]]** — MATH-Perturb's hard perturbations (12–28% drops vs. <5% on surface edits) empirically show that high benchmark accuracy does not imply structural robustness; the subtle memorization failure mode (technique-without-structural-check) is a mathematical instantiation of shortcut learning.
 - **[[wiki/papers/verifiers-math-cobbe-2021.md]]** — verifier training shows path evaluation is more learnable than path generation (30× size multiplier), revealing that correctness structure is more regular than solution structure — relevant to the model-building / pattern-recognition distinction.
+- **[[wiki/papers/frontal-cortex-abstract-rules-badre2010.md]]** — neural and behavioral evidence that abstract rule acquisition produces step-wise sigmoid learning curves (large α, small β) whereas rote association produces gradual curves; the step-wise jump is structurally selective (only for rules subsumed by a known 2nd-order rule) — an architectural diagnostic for genuine rule compression vs. independent rote learning.

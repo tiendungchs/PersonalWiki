@@ -3,7 +3,8 @@ title: "Entities Index"
 type: overview
 tags: [index]
 created: 2026-06-20
-updated: 2026-06-24
+updated: 2026-06-28
+
 sources: []
 related: []
 ---
@@ -16,6 +17,7 @@ Each entry: `[Title](path) — one-line description`. Updated when a new entity 
 
 ## Models
 
+- [Spacetime Attractor (STA)](wiki/entities/spacetime-attractor.md) — PFC planning model: T neural subspaces encode full future trajectory simultaneously; world model in inter-subspace weights; attractor dynamics infer optimal plans; unifies sequence WM and planning; outperforms TD/SR on dynamic tasks
 - [HAMI (Hippocampal-Augmented Memory Integration)](wiki/entities/hami-model.md) — episodic control RL framework; event/context disentanglement (LEC/MEC split); symbolic indexing for O(1) CAM (Content-Addressable Memory) retrieval; NVM-CAM hardware-aligned; no structural generalization
 - [Transformer](wiki/entities/transformer-model.md) — encoder-decoder self-attention architecture; O(1) max path length; multi-head attention; 28.4 BLEU EN-DE; localism failure; foundational for TEM-t and JEPA
 - [DNC (Differentiable Neural Computer)](wiki/entities/dnc-model.md) — LSTM controller + external N×W read-write memory; graph traversal 98.8%; emergent planning; engineered HC/PFC analog
@@ -41,6 +43,13 @@ Each entry: `[Title](path) — one-line description`. Updated when a new entity 
 - [Equilibrium Propagation](wiki/entities/equilibrium-propagation.md) — two-phase energy-based learning algorithm; identical leaky-integrator dynamics perform inference and credit assignment; contrastive Hebbian rule computes exact gradient; canonical resolution to biologically plausible slow-W learning
 - [IWMT (Integrated World Modeling Theory)](wiki/entities/iwmt.md) — theoretical synthesis of IIT, GNWT, and FEP-AI; consciousness as integrated spatiotemporal-causal world modeling; proposes turbo-coding (inter-level loopy BP) and SOHMs as implementation mechanisms
 - [Vector Symbolic Algebra (VSA / HRR)](wiki/entities/vsa-model.md) — neuro-symbolic framework: circular convolution for invertible role-filler binding, Spatial Semantic Pointers (SSPs) for continuous spatial encoding with emergent grid-cell-like representations; isolates vocabulary co-discovery bottleneck on ARC-AGI (3% Eval vs. 94.5% Sort-of-ARC)
+- [fcANN (Functional Connectivity-based Attractor Neural Network)](wiki/entities/fcann.md) — whole-brain attractor model grounded in FEP; coupling weights J = −Σ⁻¹ from resting-state fMRI; brain ≈ Kanter-Sompolinsky projector with orthogonal attractors; validated across 7 datasets
+- [C2C (Connectome-to-Connectome) State Transformation Model](wiki/entities/c2c-model.md) — linear generative model (PCA + PLS) predicting task-specific connectomes from resting-state FC; reveals task-general (DMN component 6) vs task-specific subsystems; amplifies individual fingerprint for behavior prediction
+- [HNN Framework (Hybrid Neural Networks)](wiki/entities/hnn-framework.md) — ANN+SNN framework via Hybrid Units (HU formalism); HRN for interpretable causal VQA (91.7% CLEVRER descriptive); HMN for meta-continual learning via learned threshold modulation; HSN for neuromorphic sensing (11× speedup)
+- [CH-HNN (Corticohippocampal Hybrid Neural Network)](wiki/entities/ch-hnn-model.md) — ANN (mPFC-CA1) + SNN (DG-CA3) hybrid; episode inference via sparse binary masks; task-agnostic continual learning; metaplasticity; bidirectional corticohippocampal loop validated
+- [S4 (Structured State Space Sequence Model)](wiki/entities/s4-model.md) — NPLR parameterization of HiPPO matrix enables O(N+L) SSM kernel; dual recurrent/convolutional modes; first to solve LRA Path-X; foundational SSM baseline for Mamba and MS-SSM
+- [MS-SSM (Multi-Scale State Space Model)](wiki/entities/ms-ssm-model.md) — multi-resolution SWT decomposition + parallel SSM array with scale-dependent initialization; 2× Mamba on ListOps hierarchical reasoning; ablation confirms multi-scale conv (not selective gating) is the key inductive bias
+- [Mamba](wiki/entities/mamba-model.md) — selective SSM (S6 block) with input-dependent gating B_t/C_t/Δ_t = f(x_t); linear inference; strong NLP baseline but collapses on hierarchical reasoning (ListOps 38% vs. S4 60%)
 
 ---
 
@@ -56,6 +65,7 @@ Each entry: `[Title](path) — one-line description`. Updated when a new entity 
 
 ## Biological Systems
 
+- [Default Mode Network (DMN)](wiki/entities/default-mode-network.md) — cortical hub network integrating episodic memory, semantics, and self-reference into "frames of thought"; hosts the strongest abstract grid-code signals (vmPFC); suppressed during working memory tasks
 - [Prefrontal Cortex (PFC)](wiki/entities/prefrontal-cortex.md) — goal maintenance; SEC (Structured Event Complex) storage; hierarchical BA (Brodmann Area)-8→9/46→10 gradient; meta-RL substrate; mapping to Blocks 3A–3D
 - [Basal Ganglia](wiki/entities/basal-ganglia.md) — Go/NoGo/Hold three-pathway dissociation; D1/D2 opponent plasticity; MSPRT optimal selection; PVLV; SPEED automaticity
 - [Hippocampal-Entorhinal System](wiki/entities/hippocampal-entorhinal-system.md) — MEC/LEC/HC anatomy; BTSP single-shot encoding; DNC (Differentiable Neural Computer) as engineered HC/PFC; map vs. memory dual role
@@ -67,3 +77,4 @@ Each entry: `[Title](path) — one-line description`. Updated when a new entity 
 - [Cephalopod Vertical Lobe](wiki/entities/cephalopod-vertical-lobe.md) — (tentative) amacrine expansion → large-field-cell compression; DG→CA3 topological analog; ~500 Mya independent
 - [Crustacean Hemiellipsoid Bodies](wiki/entities/crustacean-hemiellipsoid-bodies.md) — (tentative) Kenyon-like expansion; place-cell-like activity in crabs; mantis shrimp disproportionate size
 - [Polychaete Annelid Mushroom Bodies](wiki/entities/polychaete-mushroom-bodies.md) — Kenyon-like motif in Nereis/Platynereis; ~600 Mya; deep homology vs. convergence actively debated
+- [Nucleus Reuniens (RE)](wiki/entities/nucleus-reuniens.md) — midline thalamic relay; single neurons fan out to both HC and mPFC simultaneously; mPFC→RE→HPC indirect channel for spatial WM and goal-directed future path planning; active plasticity modulator in both targets

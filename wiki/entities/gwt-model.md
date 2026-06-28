@@ -3,9 +3,9 @@ title: "Global Neuronal Workspace (GNW)"
 type: entity
 tags: [global-workspace, consciousness, ignition, PFC, parietal, attention, working-memory, broadcasting, NMDA, AMPA]
 created: 2026-06-22
-updated: 2026-06-23
+updated: 2026-06-28
 sources: [Conscious Processing and the Global Neuronal Workspace Hypothesis, Adversarial testing of global neuronal workspace and integrated information theories of consciousness, Integrated world modeling theory expanded Implications for the future of consciousness]
-related: [wiki/papers/gnw-mashour-2020.md, wiki/papers/raccah-pfc-consciousness-2021.md, wiki/papers/ferrante-adversarial-gnwt-iit-2025.md, wiki/concepts/working-memory.md, wiki/concepts/attention.md, wiki/concepts/cognitive-control.md, wiki/concepts/binding-problem.md, wiki/concepts/predictive-coding.md, wiki/concepts/small-world-networks.md, wiki/entities/prefrontal-cortex.md, wiki/entities/iwmt.md, wiki/papers/safron-iwmt-expanded-2022.md]
+related: [wiki/papers/gnw-mashour-2020.md, wiki/papers/raccah-pfc-consciousness-2021.md, wiki/papers/ferrante-adversarial-gnwt-iit-2025.md, wiki/concepts/working-memory.md, wiki/concepts/attention.md, wiki/concepts/cognitive-control.md, wiki/concepts/binding-problem.md, wiki/concepts/predictive-coding.md, wiki/concepts/small-world-networks.md, wiki/entities/prefrontal-cortex.md, wiki/entities/iwmt.md, wiki/papers/safron-iwmt-expanded-2022.md, wiki/entities/default-mode-network.md, wiki/papers/dmn-20years-menon.md, wiki/concepts/network-integration-segregation.md]
 ---
 
 # Global Neuronal Workspace (GNW)
@@ -75,6 +75,22 @@ Adversarial collaboration (Ferrante et al., Nature 2025) [[wiki/papers/ferrante-
 
 ---
 
+## DMN vs. GNW: Complementary Broadcasting Systems
+
+| Property | GNW | DMN |
+|---|---|---|
+| Trigger | External stimulus above salience threshold | No external trigger; internally maintained |
+| Timescale | Fast (~300ms ignition event) | Slow (seconds-to-minutes frame persistence) |
+| Content | Single attended item | Rich contextual frame (narrative + schema + episodic context) |
+| Suppression | Reduced by removing feedforward drive | Actively suppressed by salience network (anterior insula) |
+| Design role | Conscious access; transformable workspace for one step | Background narrative context within which GNW items gain meaning |
+
+The two systems work in concert for reasoning: GNW broadcasts the current reasoning step into the global workspace; DMN ([[wiki/entities/default-mode-network.md]]) maintains the high-level context frame (goal, prior episodes, semantic schema) within which that step is interpreted. A reasoning system that only implements GNW ignition without DMN-style context maintenance will lack the ability to accumulate narrative structure across many steps — each ignition event will fire into a contextless void.
+
+(brainstorm) The salience network is the biological gate that arbitrates between these regimes: strong external event → suppress DMN → ignite GNW; internal deliberation → sustain DMN → suppress GNW. A reasoning architecture may need an analogous macro-routing gate above the token-level attention and workspace-entry mechanisms already modeled by GNW.
+
+---
+
 ## Limitations
 
 - Scope: access consciousness; phenomenal consciousness not addressed
@@ -104,3 +120,5 @@ Together: PFC (Prefrontal Cortex) encodes abstract categorical content, not fine
 - **[[wiki/papers/raccah-pfc-consciousness-2021.md]]** — causal iES challenge to GNW: stimulating dlPFC/frontopolar (the claimed hub) produces near-zero phenomenal effects across 1537 electrode sites — constrains GNW's constitutive claim; see Limitations section above.
 - **[[wiki/papers/ferrante-adversarial-gnwt-iit-2025.md]]** — preregistered adversarial collaboration directly testing GNW (Global Neuronal Workspace) vs. IIT: offset ignition absent in PFC, PFC (Prefrontal Cortex) encodes category but not perceptual detail; two design implications for the hub module; see Limitations section above.
 - **[[wiki/entities/iwmt.md]]** — IWMT extends GNW (Global Neuronal Workspace) by requiring that hub-broadcast content simultaneously satisfy IIT's integration criterion and FEP-AI's prediction-error minimization; proposes SOHMs as the biophysical mechanism of hub broadcasting dynamics and turbo-coding as the inter-level inference structure that makes GNW-style convergence iterative rather than a single ignition event.
+- **[[wiki/entities/default-mode-network.md]]** — DMN's integrate-and-broadcast is the internally-directed, slow-timescale complement to GNW ignition-broadcast; DMN maintains the contextual narrative frame within which GNW-active items are interpreted; together they cover the full spectrum from transient conscious access (GNW) to sustained context maintenance (DMN).
+- **[[wiki/concepts/network-integration-segregation.md]]** — GNW ignition (segregated → integrated) is the architectural analog of the integration/segregation toggle: pre-ignition is segregated local parallel processing; post-ignition is global broadcast (integrated); the LC arousal signal that gates the toggle is the trigger for ignition in this framing, providing a neuromodulatory mechanism for when the GNW switches from listening to broadcasting.

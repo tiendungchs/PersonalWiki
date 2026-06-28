@@ -1,5 +1,5 @@
 ---
-updated: 2026-06-23
+updated: 2026-06-28
 ---
 
 # Wiki Index — Brain-Inspired Models for Abstract Reasoning
@@ -12,8 +12,8 @@ updated: 2026-06-23
 
 ---
 
-- [Papers](wiki/index-papers.md) — 83 stubs
-- [Concepts](wiki/index-concepts.md) — 41 pages
+- [Papers](wiki/index-papers.md) — 183 stubs
+- [Concepts](wiki/index-concepts.md) — 56 pages
 - [Entities](wiki/index-entities.md) — Models, benchmarks, biological systems
 
 ---

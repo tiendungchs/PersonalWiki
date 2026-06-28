@@ -3,9 +3,9 @@ title: "Neural Manifolds and Intrinsic Dynamics"
 type: concept
 tags: [neural-manifolds, intrinsic-dynamics, learning-constraints, architecture, motor-cortex]
 created: 2026-06-12
-updated: 2026-06-23
-sources: [brain-learning-limits-transcript, memory-gate-transcript, convergence-wiring-transcript, reservoir-computing-transcript, Recurrent neural networks with transient trajectory explain working memory encoding mechanisms, How does the brain solve visual object recognition, nieh-hippocampal-geometry-2021, sun-hippocampal-osm-2025]
-related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/predictive-coding.md, wiki/concepts/replay.md, wiki/concepts/small-world-networks.md, wiki/concepts/working-memory.md, wiki/concepts/hierarchical-representations.md, wiki/entities/reservoir-computing.md, wiki/papers/brain-learning-limits-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/trnn-liu-2025.md, wiki/papers/dicarlo-visual-object-recognition-2012.md, wiki/papers/nieh-hippocampal-geometry-2021.md, wiki/concepts/latent-states.md, wiki/entities/place-cells.md, wiki/papers/friston-kiebel-pc-2009.md, wiki/papers/sun-hippocampal-osm-2025.md]
+updated: 2026-06-27
+sources: [brain-learning-limits-transcript, memory-gate-transcript, convergence-wiring-transcript, reservoir-computing-transcript, Recurrent neural networks with transient trajectory explain working memory encoding mechanisms, How does the brain solve visual object recognition, nieh-hippocampal-geometry-2021, sun-hippocampal-osm-2025, vohryzek-2024-lr-connections]
+related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/predictive-coding.md, wiki/concepts/replay.md, wiki/concepts/small-world-networks.md, wiki/concepts/working-memory.md, wiki/concepts/hierarchical-representations.md, wiki/entities/reservoir-computing.md, wiki/papers/brain-learning-limits-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/trnn-liu-2025.md, wiki/papers/dicarlo-visual-object-recognition-2012.md, wiki/papers/nieh-hippocampal-geometry-2021.md, wiki/concepts/latent-states.md, wiki/entities/place-cells.md, wiki/papers/friston-kiebel-pc-2009.md, wiki/papers/sun-hippocampal-osm-2025.md, wiki/papers/vohryzek-2024-lr-connections.md, wiki/concepts/neural-field-theory.md]
 ---
 
 # Neural Manifolds and Intrinsic Dynamics
@@ -192,13 +192,50 @@ Bernardi et al. 2020 ([[wiki/papers/geometry-abstraction-bernardi-2020.md]]) ide
 
 This differs from types 1–5 in that it characterizes not *where* activity lives in neural state space but the *coding-direction structure* across experimental conditions. A representation lies on the CCGP (Cross-Condition Generalization Performance) manifold when its coding directions for key variables are parallel across condition subsets — placing zero-shot generalization in the reachable set for a downstream linear readout without sacrificing the SD (Shattering Dimensionality) needed for flexible responses.
 
-The full manifold taxonomy is now six types:
+The full manifold taxonomy is now eight types:
 1. **Spatial:** hard anatomical constraint (BCI reversal failure)
 2. **Task-plastic:** reshapes to encode current behavioral dimensions (HC UMAP)
 3. **Temporal WM:** trajectory path encodes identity (TRNN dPCA)
 4. **Hierarchical perceptual:** each stage improves hyperplane separability (IT)
 5. **Expressive CT:** how much of temporal manifold a CT model sweeps (LTC trajectory length)
 6. **Representational geometry:** CCGP (Cross-Condition Generalization Performance)/SD configuration; coding-direction parallelism for abstract variables (HPC/PFC)
+7. **Structural-functional (connectome):** leading eigenvectors of the anatomy graph span most of brain dynamics; task and spontaneous activity share the same ~20-dimensional subspace
+8. **Structured flows (SFM):** connectome-induced symmetry breaking produces organized low-D flows on a manifold; serves as both the object of forward simulation and the target of causal inference
+
+### Type 7: Structural-Functional Manifold (Vohryzek et al. 2024)
+
+Brain activity decomposes as $F(x,t) = \sum_k a_k(t)\psi_k(x)$ where $\psi_k$ are Laplacian eigenvectors of the EDR+LR anatomy graph. Key properties:
+
+| Property | Finding |
+|---|---|
+| **Dimensionality** | ~20 modes reconstruct bulk of dynamics; ~200 modes plateau |
+| **Shared basis** | Spontaneous and task-evoked dynamics lie in the *same* low-D subspace |
+| **Topology dependence** | EDR+LR modes outperform geometry-only modes for LR FC ($p < 10^{-4}$) |
+| **Identity specificity** | Shuffling LR connection locations eliminates the advantage |
+
+Contrast with type 1 (hard anatomical manifold): the structural-functional manifold is not a constraint on which patterns are *reachable* but which patterns the anatomy *prefers* — the subspace of highest spontaneous and task-evoked activity. Not a hard barrier but a soft structural prior on the dynamic repertoire.
+
+**ML implication:** Initializing connectivity to match a domain's EDR+LR structure should "pre-load" the low-D functional manifold, providing a geometry-aware basis without needing to discover it purely from data.
+
+---
+
+### Type 8: Structured Flows on Manifolds (SFM; Jirsa & Sheheitli)
+
+When the connectome breaks the symmetry of an otherwise uniform neural field, the resulting heterogeneous coupling produces **organized, low-dimensional flows** on the state-space manifold rather than isotropic diffusion. Key properties:
+
+| Property | Detail |
+|---|---|
+| **Origin** | Symmetry breaking via heterogeneous long-range connectivity (the connectome); uniform coupling → no SFM |
+| **Content** | Can represent multistable network states, limit cycles, traveling waves, or any low-D attractor |
+| **Dual role** | Forward simulation: mechanistic account of spatiotemporal pattern formation; Inverse: the mathematical object sampled during causal inference from brain imaging |
+| **Sensitivity to SC** | As structural connectivity changes (neurodevelopment → neurodegeneration), SFM deforms — disease manifests as SFM distortion |
+| **Dimensionality** | Low-D by construction; adiabatic elimination eliminates fast variables near instabilities, leaving slow order parameters as the SFM axes |
+
+The SFM is conceptually distinct from type 7 (structural-functional manifold): type 7 describes which subspace brain activity occupies (a static structural prior); SFM describes the *organized flow* within that subspace (a dynamical property). Both are shaped by the connectome, but type 7 is about the basis, SFM is about the vector field on that basis.
+
+**Connection to criticality:** SFM is maximally structured near the critical working point — near bifurcation, slow modes dominate and the effective dimensionality of the flow collapses to its minimum, producing the most organized SFM. Far from criticality (deep in attractor or fully chaotic), flows lose structure.
+
+**ML design implication:** An architecture that builds SFMs is not just doing dimensionality reduction — it is building a dynamical object whose structure encodes the causal graph of the domain. Inference in such a system means inverting the SFM to recover hidden causal parameters, not fitting a static function.
 
 ---
 
@@ -235,3 +272,6 @@ The full manifold taxonomy is now six types:
 - **[[wiki/concepts/latent-states.md]]** — the task-plastic HC manifold is the geometric substrate within which latent-state firing fields (evidence cells, splitter cells, lap cells) are organized; manifold dimensionality ≈ number of jointly tracked task variables.
 - **[[wiki/entities/place-cells.md]]** — place cells (and their latent-state variants) are the individual units that tile the manifold surface; the ~1.7 2D firing fields per evidence cell make the joint encoding concrete.
 - **[[wiki/papers/friston-kiebel-pc-2009.md]]** — provides the generative account of temporal trajectory manifolds: higher-level PC (Predictive Coding) attractor state parametrically reshapes the lower-level attractor manifold (structural priors), while intrinsic connections maintain temporal flow within it (dynamical priors); the manifold's shape is top-down, its dynamics are intrinsic.
+- **[[wiki/papers/vohryzek-2024-lr-connections.md]]** — source for type 7 (structural-functional manifold): ~20 EDR+LR harmonic modes span the bulk of spontaneous and task-evoked brain activity, with EDR+LR outperforming geometry modes for long-range functional connectivity.
+- **[[wiki/concepts/neural-field-theory.md]]** — the harmonic modes (Laplacian eigenvectors) used in the structural-functional manifold are the discrete graph analog of the neural field PDE eigenmodes; the EDR+LR manifold and the LBO manifold are related by the Belkin-Niyogi convergence theorem; the NMM taxonomy (A1–A5) and bistability/separatrix formalism underlie the node dynamics that generate SFM structure.
+- **[[wiki/concepts/criticality.md]]** — SFM is maximally organized near the critical working point: near-bifurcation adiabatic elimination produces the slowest, lowest-D flows; fluidity (FCD variance) is the operational proxy for when the SFM reaches its most structured state; criticality is the necessary condition for SFM to carry stable, decodable causal information.

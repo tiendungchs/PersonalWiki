@@ -3,9 +3,9 @@ title: "Place Cells"
 type: entity
 tags: [place-cells, hippocampus, latent-states, successor-representation, conjunctive-code]
 created: 2026-06-09
-updated: 2026-06-23
-sources: [t-TEM, engram-transcript, jumping-spiders-cognition, The mechanisms for pattern completion and pattern separation in the hippocampus, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, spiking-tem-kawahara-2025, nieh-hippocampal-geometry-2021, sun-hippocampal-osm-2025]
-related: [wiki/concepts/latent-states.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/structural-generalization.md, wiki/concepts/attention.md, wiki/concepts/engrams.md, wiki/concepts/binding-problem.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/two-learning-timescales.md, wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/cscg-model.md, wiki/entities/arthropod-mushroom-bodies.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/engram-transcript.md, wiki/papers/jumping-spiders-cognition.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/spiking-tem-kawahara-2025.md, wiki/papers/nieh-hippocampal-geometry-2021.md, wiki/papers/sun-hippocampal-osm-2025.md]
+updated: 2026-06-27
+sources: [t-TEM, engram-transcript, jumping-spiders-cognition, The mechanisms for pattern completion and pattern separation in the hippocampus, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, spiking-tem-kawahara-2025, nieh-hippocampal-geometry-2021, sun-hippocampal-osm-2025, valero-interneuron-families-2025]
+related: [wiki/concepts/latent-states.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/structural-generalization.md, wiki/concepts/attention.md, wiki/concepts/engrams.md, wiki/concepts/binding-problem.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/excitation-inhibition-balance.md, wiki/concepts/btsp.md, wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/cscg-model.md, wiki/entities/arthropod-mushroom-bodies.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/engram-transcript.md, wiki/papers/jumping-spiders-cognition.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/spiking-tem-kawahara-2025.md, wiki/papers/nieh-hippocampal-geometry-2021.md, wiki/papers/sun-hippocampal-osm-2025.md, wiki/papers/valero-interneuron-families-2025.md, wiki/papers/wu-maass-btsp-2025.md]
 ---
 
 # Place Cells
@@ -19,7 +19,7 @@ related: [wiki/concepts/latent-states.md, wiki/concepts/factorized-representatio
 - **Sparse, location-specific firing** — one (or few) place fields per environment
 - **Context-dependent remapping** — different cells activate, or same cells at different locations, across environments
 - **Non-random remapping:** cells remap to positions consistent with their grid-phase input (verified Barry 2012, Chen 2018); x changes, g-phase is preserved
-- **One-shot binding via BTSP:** place fields emerge in a single trial through behavioral timescale synaptic plasticity (BTSP; Bittner et al. 2017) — an EC-instructed dendritic plateau potential potentiates all inputs active within a seconds-long window simultaneously; this is the fast-M write operation, mechanistically distinct from millisecond-scale Hebbian STDP; first synapse-level in vivo confirmation: Fan et al. 2023; Gonzalez et al. 2023
+- **One-shot binding via BTSP:** place fields emerge in a single trial through behavioral timescale synaptic plasticity (BTSP; Bittner et al. 2017) — an EC3-instructed dendritic plateau potential opens a ~10s plasticity window; binary weights updated with stochastic ±1 rule (probability 0.5 per synapse) depending on current weight value and timing relative to plateau onset; gating parameter $f_q$ ≈ 0.005 (plateau probability per pattern) distributes place field allocation uniformly across CA1 neurons; the resulting bimodal weight distribution (plateau-gated neurons vs. others) enables recall from up to 33% masked input cues (Wu & Maass 2025 [[wiki/papers/wu-maass-btsp-2025.md]]); LTD branch actively pushes apart memory traces for similar spatial contexts (repulsion effect); first synapse-level in vivo confirmation: Fan et al. 2023; Gonzalez et al. 2023; see [[wiki/concepts/btsp.md]] for full formalism
 
 ## SR (Successor Representation) Rows
 
@@ -116,6 +116,27 @@ Jumping spiders (*Salticidae*) achieve allocentric spatial mapping without a hip
 
 ---
 
+## Interneuron Cooperative Control of Place Field Features (Valero et al. 2025)
+
+Four GABAergic interneuron families cooperatively gate distinct spatial coding dimensions of CA1 pyramidal cells [[wiki/papers/valero-interneuron-families-2025.md]]:
+
+| Family | Place field property | Optogenetic evidence | Anatomical target |
+|---|---|---|---|
+| **Pvalb** | Spatial stability | Suppresses first half (EC input phase) | Soma/AIS perisomatic |
+| **Sst** (OLM) | Context generalization (L/R arm) | Suppresses second half (CA3 recurrent phase) | Distal apical dendrites |
+| **Vip** | Space-rate MI, selectivity | Boosts amplitude via Sst disinhibition | Suppresses Sst/OLM |
+| **Id2** | Context specificity | Suppresses second half; broad Id2→Sst/Pvalb coupling | Neurogliaform + CCK basket |
+
+**Time-division control:** entorhinal cortex (EC) provides dominant excitation in the first half of the place field; CA3 recurrent input dominates the second half. As the animal traverses the field, the place cell–OLM (Sst) synapse potentiates, weakening EC input while CA3 drive grows. Pvalb timing gates the EC phase; Sst/Id2 gate the CA3 phase.
+
+**VIP disinhibitory gate:** Vip → suppresses Sst/OLM → releases distal dendritic compartments → strongest place field amplitude boost of any family. This is the biological implementation of a context-sensitive gain modulator — Vip activation modulates encoding gain without altering the structural code.
+
+**Interneurons as active spatial coders:** interneuron-only CEBRA position decoder matches an equal-count pyramidal cell decoder; omitting any single family significantly degrades decoding accuracy (Vip, Id2, Pvalb exclusions most damaging). Inhibitory cells are active participants in spatial coding, not passive normalizers.
+
+**(brainstorm) ML design implication:** a differentiable memory module with four inhibitory sub-circuits — each controlling a different representational property (stability, generalization, gain, specificity) — would enable post-hoc modulation of stored representations without rewriting their content.
+
+---
+
 ## Connections
 
 - **[[wiki/concepts/latent-states.md]]** — splitter cells, lap cells, and evidence cells are place cells in expanded cognitive maps; the conjunctive binding p = f(g, x) extends naturally to non-spatial task dimensions.
@@ -139,3 +160,7 @@ Jumping spiders (*Salticidae*) achieve allocentric spatial mapping without a hip
 - **[[wiki/papers/nieh-hippocampal-geometry-2021.md]]** — evidence cells as the canonical empirical instance of place cells in a higher-dimensional cognitive map: ~29% of CA1 neurons tile the joint (position × evidence) manifold with 2D firing fields, and ~70% of that manifold geometry is shared across animals.
 - **[[wiki/papers/sun-hippocampal-osm-2025.md]]** — establishes that place/splitter/lap cell distinctions are points on a 2D continuum (difference score × correlation) rather than discrete categories; shows individual CA1 neurons dynamically shift response profiles during learning, so functional role is not fixed but is an expression of task experience.
 - **[[wiki/concepts/prospective-coding.md]]** — spatial preplay at choice points (place cell sequences of candidate future paths) is the spatial instance of prospective coding; the same CA1 look-ahead operation that generates spatial preplay also generates the non-spatial X→Y prediction during sensory preconditioning inference.
+- **[[wiki/papers/valero-interneuron-families-2025.md]]** — source for interneuron division of labor in place field coding: Pvalb→stability, Sst→generalization, Vip→gain/MI, Id2→specificity; VIP disinhibitory gate; time-division control of EC vs. CA3 input phases across the field.
+- **[[wiki/concepts/excitation-inhibition-balance.md]]** — the four interneuron families are the cell-type decomposition of the E/I parameter; each shapes a distinct spatial coding dimension that the global E/I ratio collapses into a single number.
+- **[[wiki/concepts/btsp.md]]** — dedicated concept page for BTSP: the molecular write mechanism for place fields; formalization of the binary stochastic rule, bimodal distribution enabling masking-robust recall, stochastic gating parameter $f_q$, and the repulsion effect for similar spatial contexts.
+- **[[wiki/papers/wu-maass-btsp-2025.md]]** — establishes that binary-weight BTSP achieves Hopfield-equivalent CAM quality for sparse inputs; provides the analytical theory for memory trace properties and demonstrates the repulsion effect of the LTD branch.

@@ -5,7 +5,7 @@ tags: [basal-ganglia, reinforcement-learning, dopamine, striatum, action-selecti
 created: 2026-06-20
 updated: 2026-06-20 (2)
 sources: [Modulation of striatal projection systems by dopamine, Exploring the cognitive and motor functions of the basal ganglia an integrative review of computational cognitive neuroscience models, Basal_Ganglia_and_Cortex]
-related: [wiki/concepts/neuromodulation.md, wiki/concepts/meta-learning.md, wiki/concepts/working-memory.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/cognitive-control.md, wiki/concepts/sequence-memory.md, wiki/entities/prefrontal-cortex.md, wiki/papers/pbwm-oreilly-frank-2006.md, wiki/papers/metalearning-neuromodulation-doya-2002.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/gerfen-surmeier-dopamine-striatum-2011.md, wiki/papers/helie-ccn-bg-2013.md, wiki/papers/bogacz-gurney-bg-msprt-2007.md, wiki/papers/long-sequence-hopfield-chaudhry-2023.md, wiki/entities/covis-model.md]
+related: [wiki/concepts/neuromodulation.md, wiki/concepts/meta-learning.md, wiki/concepts/working-memory.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/cognitive-control.md, wiki/concepts/sequence-memory.md, wiki/entities/prefrontal-cortex.md, wiki/papers/pbwm-oreilly-frank-2006.md, wiki/papers/metalearning-neuromodulation-doya-2002.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/gerfen-surmeier-dopamine-striatum-2011.md, wiki/papers/helie-ccn-bg-2013.md, wiki/papers/bogacz-gurney-bg-msprt-2007.md, wiki/papers/long-sequence-hopfield-chaudhry-2023.md, wiki/entities/covis-model.md, wiki/papers/frontal-cortex-abstract-rules-badre2010.md]
 ---
 
 # Basal Ganglia
@@ -140,6 +140,30 @@ Loops interact at striatal input (partial overlap) and at GPi/SNr output (conver
 
 ---
 
+## Effective Connectivity in Fronto-Striatal Rule Learning (Badre et al. 2010)
+
+Granger causality (GC) analysis of BOLD time series during abstract rule learning establishes the directed architecture of the fronto-striatal RL loop across abstraction levels:
+
+| Connection | GC value (left / right) | Significance |
+|---|---|---|
+| Putamen → PMd | 0.016 / 0.026 | p<0.05 |
+| Putamen → prePMd | 0.003 / 0.007 | p<0.05 |
+| PMd → Caudate | 0.012 / 0.022 | p<0.0005 |
+| prePMd → Caudate | 0.013 / 0.013 | p<0.0005 |
+
+Directed chain: **anterior putamen → frontal cortex (PMd/prePMd) → caudate**. This chain is consistent across Hierarchical and Flat rule sets (no between-condition GC differences, ps>0.18) — the RL circuit architecture is abstraction-level invariant; only the content of the cortical rule representations changes between conditions.
+
+**Computational interpretation:**
+- *Putamen → cortex*: putamen delivers the RL gating signal (reward prediction error or salience) that opens the update window for frontal cortical rule representations; corresponds to the "putamen provides context for cortical rule learning" hypothesis (Houk & Wise 1995).
+- *Cortex → caudate*: frontal rule representations drive caudate learning — cortex provides the structured representation of what was learned, which caudate integrates for value and future action selection; corresponds to the "cortex consolidates into BG" hypothesis (Graybiel 1998).
+- The directed chain reconciles both accounts: the putamen instructs cortex (bottom-up RL gate) and cortex instructs caudate (top-down consolidation). Neither is purely prior; they are separate roles in a single directed chain.
+
+**Late striatal activation for abstract rules:** Caudate and putamen showed greater stimulus-related activation by the End of learning for the Hierarchical vs. Flat set (F(1,19)=6.9, p<0.05), without a time × condition interaction. Once a 2nd-order rule is acquired, the more valuable abstract rule (compressing 9 individual rules) is represented more strongly by striatum, consistent with value-weighted consolidation.
+
+**Design implication:** The BG loop is not a symmetric bidirectional loop. For Block 3D: (a) the putamen module provides per-level reward gates to Block 3C rule representations; (b) the caudate module receives signals from those rule representations and learns value over them. These are distinct functional roles requiring distinct architectural connections — not a generic RL signal broadcast to all modules equally.
+
+---
+
 ## Mapping to Model Components
 
 | Building block | Biology | Design implication |
@@ -183,3 +207,4 @@ Loops interact at striatal input (partial overlap) and at GPi/SNr output (conver
 - **[[wiki/papers/bogacz-gurney-bg-msprt-2007.md]]** — primary source for MSPRT as the algorithmic level of BG (Basal Ganglia) action selection; STN (Subthalamic Nucleus) exponential + GP log transfer functions validated in physiology; Hick's Law derivation; proficient-vs.-learning-phase dissociation that pairs with PVLV (this page) as a complete two-mode BG (Basal Ganglia) account.
 - **[[wiki/concepts/sequence-memory.md]]** — DenseNet's bipartite implementation maps onto the CBGT loop, adding a second mode to BG (Basal Ganglia)'s computational repertoire: beyond Go/NoGo action selection, BG (Basal Ganglia) gates thalamic motor-motif hidden units to control which sequence-memory program drives motor cortex — a context-dependent sequence executor distinct from competitive action selection.
 - **[[wiki/papers/long-sequence-hopfield-chaudhry-2023.md]]** — source for the CBGT bipartite implementation: visible neurons (motor cortex) + hidden neurons (thalamic motor motifs) + BG (Basal Ganglia) context gate; thalamo-cortical loops for song generation in zebra finches cited as biological confirmation.
+- **[[wiki/papers/frontal-cortex-abstract-rules-badre2010.md]]** — source for the directed putamen→cortex→caudate Granger causality chain: putamen provides the RL gate signal to frontal cortical rule representations (PMd/prePMd), which in turn drive caudate learning; chain is consistent across abstraction levels; late striatal activation for hierarchical rule learning reflects value consolidation of the discovered abstract rule.

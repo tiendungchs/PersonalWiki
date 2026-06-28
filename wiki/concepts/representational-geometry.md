@@ -3,9 +3,9 @@ title: "Representational Geometry"
 type: concept
 tags: [representational-geometry, abstraction, CCGP (Cross-Condition Generalization Performance), shattering-dimensionality, mixed-selectivity, neural-population]
 created: 2026-06-21
-updated: 2026-06-23
-sources: [geometry-of-abstraction-bernardi-2020, courellis-hpc-abstract-inference-2024, nieh-hippocampal-geometry-2021]
-related: [wiki/concepts/abstract-reasoning.md, wiki/concepts/factorized-representations.md, wiki/concepts/latent-states.md, wiki/concepts/neural-manifolds.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/prefrontal-cortex.md, wiki/papers/geometry-abstraction-bernardi-2020.md, wiki/papers/raccah-pfc-consciousness-2021.md, wiki/papers/courellis-hpc-abstract-inference-2024.md, wiki/papers/nieh-hippocampal-geometry-2021.md]
+updated: 2026-06-27
+sources: [geometry-of-abstraction-bernardi-2020, courellis-hpc-abstract-inference-2024, nieh-hippocampal-geometry-2021, Dendrites endow artificial neural networks with accurate, robust and parameter-efficient learning]
+related: [wiki/concepts/abstract-reasoning.md, wiki/concepts/factorized-representations.md, wiki/concepts/latent-states.md, wiki/concepts/neural-manifolds.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/prefrontal-cortex.md, wiki/concepts/dendritic-computation.md, wiki/papers/geometry-abstraction-bernardi-2020.md, wiki/papers/raccah-pfc-consciousness-2021.md, wiki/papers/courellis-hpc-abstract-inference-2024.md, wiki/papers/nieh-hippocampal-geometry-2021.md, wiki/papers/chavlis-dann-2025.md]
 ---
 
 # Representational Geometry
@@ -53,6 +53,8 @@ Pure disentanglement limits SD (Shattering Dimensionality) because XOR dichotomi
 ## Mixed Selectivity as Substrate
 
 HPC/DLPFC/ACC neurons predominantly show mixed selectivity. This is not a problem: a *rotated* factorized code (linear mixed selectivity) has identical CCGP (Cross-Condition Generalization Performance) to a pure-selective code. The distortion that recovers SD (Shattering Dimensionality) can be layered on top of any rotation. Population geometry — not individual tuning purity — determines abstraction. Single-neuron analysis misses this entirely.
+
+**ML validation (dANN, Chavlis & Poirazi 2025):** Dendritic ANNs trained on standard image classification via backprop spontaneously develop mixed-selectivity nodes (high entropy, multi-class responses) whereas vanilla ANNs develop class-specific nodes. Neither architecture is explicitly trained toward either geometry — the representational outcome follows from structural connectivity alone. This confirms that mixed selectivity is not a training artifact but can be induced by architectural constraints, and that it co-occurs with efficiency gains (1–3 OoM fewer parameters to reach same accuracy).
 
 **Behavioral correlate — iES elicitation gradient:** The near-zero elicitation rate of conscious effects following intracranial electrical stimulation (iES) of lateral PFC (Prefrontal Cortex) (Raccah et al. 2021, [[wiki/papers/raccah-pfc-consciousness-2021.md]]) is the expected consequence of dense, non-topographic PFC (Prefrontal Cortex) codes: disrupting a local iES patch does not perturb the population representation because it is distributed across a large circuit. Unimodal sensory regions (sparse, topographic codes) reach ~67% elicitation because patch disruption directly distorts the local feature representation. The PFC–sensory gradient in iES responsiveness is thus a *in vivo* validation of the representational geometry dissociation: local perturbation power decays as code density increases.
 
@@ -126,3 +128,5 @@ Nieh et al. 2021 ([[wiki/papers/nieh-hippocampal-geometry-2021.md]]) show that w
 - **[[wiki/papers/raccah-pfc-consciousness-2021.md]]** — iES elicitation gradient (near-zero in lateral PFC, ~67% in unimodal) is a behavioral in vivo validation of the dense-vs-sparse representational geometry dissociation: local perturbation power decays with code density as predicted by mixed-selectivity distributed codes.
 - **[[wiki/papers/courellis-hpc-abstract-inference-2024.md]]** — human single-unit replication of CCGP (Cross-Condition Generalization Performance)/PS in 6 brain areas; establishes HC as the only region achieving simultaneous multi-variable abstraction (amygdala included as negative control); introduces sparsification (60% firing-rate decrease) as the mechanism co-occurring with abstract representation emergence.
 - **[[wiki/papers/nieh-hippocampal-geometry-2021.md]]** — demonstrates gradient manifold organization as the continuous analog of CCGP (Cross-Condition Generalization Performance): evidence coding axis is orthogonal to and consistent across all position values in the CA1 neural manifold, satisfying the parallelism criterion for a continuous abstract variable.
+- **[[wiki/concepts/dendritic-computation.md]]** — dANN structured sparsity (dendritic connectivity) induces mixed-selectivity nodes without explicit training pressure, providing a concrete architectural mechanism for producing the mixed-selectivity geometry associated with high CCGP (Cross-Condition Generalization Performance)/SD balance.
+- **[[wiki/papers/chavlis-dann-2025.md]]** — ML-side validation that mixed selectivity emerges from structured bio-inspired connectivity, and co-occurs with parameter efficiency — bridging the biological mixed-selectivity finding to a concrete ML architecture choice.

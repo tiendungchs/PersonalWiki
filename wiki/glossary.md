@@ -133,4 +133,20 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | VCO | Velocity-Coupled Oscillator | [[wiki/concepts/path-integration.md]] |
 | VLA | Vision-Language-Action | [[wiki/concepts/hierarchical-representations.md]] |
 
+| DSI | Diffusion Spectrum Imaging | [[wiki/papers/mapping-structural-core-hagmann-2008.md]] |
+| DTI | Diffusion Tensor Imaging | [[wiki/papers/mapping-structural-core-hagmann-2008.md]] |
+| ODF | Orientation Distribution Function | [[wiki/papers/mapping-structural-core-hagmann-2008.md]] |
+| rCBF | Regional Cerebral Blood Flow | [[wiki/papers/mapping-structural-core-hagmann-2008.md]] |
+
+| FC | Functional Connectivity (statistical dependence between BOLD time series) | [[wiki/concepts/connectivity-gradients.md]] |
+| SC | Structural Connectivity (white-matter tract strength from diffusion MRI) | [[wiki/papers/mapping-structural-core-hagmann-2008.md]] |
+| PCC | Posterior Cingulate Cortex | [[wiki/entities/default-mode-network.md]] |
+| SSM | State Space Model | [[wiki/entities/s4-model.md]] |
+| FPN | Frontoparietal Network (one of 7 canonical ICNs) | [[wiki/concepts/temporal-multiplexing.md]] |
+| ICN | Intrinsic Connectivity Network (canonical resting-state network, e.g. DMN, FPN, VIS) | [[wiki/concepts/temporal-multiplexing.md]] |
+| LC | Locus Coeruleus (pontine NA nucleus; pupil-diameter proxy) | [[wiki/concepts/network-integration-segregation.md]] |
+| MDN | Multi-Demand Network (task-positive network, antagonistic to DMN on G3 gradient) | [[wiki/concepts/connectivity-gradients.md]] |
+| EF | Effective oscillation Frequency (oscillation frequency a region assumes when embedded in the coupled network, distinct from its intrinsic IF) | [[wiki/concepts/cortical-traveling-waves.md]] |
+| IF | Intrinsic Frequency (isolated oscillation frequency of a neural mass, before network coupling) | [[wiki/concepts/cortical-traveling-waves.md]] |
+
 *This table is maintained by the lint pass. When lint reports a missing abbreviation, add it here.*

@@ -110,17 +110,18 @@ Triggered when the user drops a new source in `raw/` and says "ingest [filename]
 
 **Steps (in order):**
 1. Read the source file fully.
-2. Read `wiki/index-concepts.md` + `wiki/index-entities.md` to verify what exists.
-3. Extract key takeaways relevant to the main goal (ask: does this content help build a reasoning model?, if not, skip it), identify all entities and concepts that might be touched/created and confirm the user wants to proceed with the plan.
-4. Run qmd search on the paper title and key terms to find additional related pages.
-5. Read all related pages in parallel to have the full context.
-6. Create a paper page under `wiki/papers/[slug].md`.
-7. Update `wiki/index-papers.md`; update `wiki/index-concepts.md` and/or `wiki/index-entities.md` if new pages were created. Update `updated`.
-8. Update cross-references: add links from new pages to existing ones and vice versa.
-9. If this source contradicts an existing claim in the wiki, add a row to `wiki/empirical-tensions.md`. On the affected concept/entity pages, update the prose to reflect both positions (or the settled framing if one exists).
-10. Append at the end one-liner to `log.md`: `## YYYY-MM-DD | ingest | [Title] | created: ...; updated: ...`
+2. Read `wiki/index-concepts.md` + `wiki/index-entities.md` + `wiki/architectural-gaps.md` to verify what exists and what is needed.
+3. Ask: does this content help build a reasoning model?, if not, suggest to skip the ingest
+4. Else, extract key takeaways relevant to the main goal, identify entities and concepts that might be touched/created and confirm the user wants to proceed with the plan.
+5. Run qmd search on the paper title and key terms to find additional related pages.
+6. Read all related pages in parallel to have the full context.
+7. Create a paper page under `wiki/papers/[slug].md` for a significant ingest only.
+8. Update `wiki/index-papers.md`; update `wiki/index-concepts.md` and/or `wiki/index-entities.md` if new pages were created. Update `updated`.
+9. Update cross-references: add links from new pages to existing ones and vice versa.
+10. If this source contradicts an existing claim in the wiki, add a row to `wiki/empirical-tensions.md`. On the affected concept/entity pages, update the prose to reflect both positions (or the settled framing if one exists).
+11. Append at the end one-liner to `log.md`: `## YYYY-MM-DD | ingest | [Title] | created: ...; updated: ...` using command line.
 
-**Scope:** a single ingest typically touches 3–8 wiki pages. Prefer updating existing pages over creating new ones. Only create a new page for a concept or model that has no existing home.
+**Scope:** a single ingest typically touches 3–8 wiki pages. Prefer updating existing pages over creating new ones. Only create a new page for a concept or model that is important and has no existing home.
 
 ### QUERY
 
@@ -130,10 +131,10 @@ Triggered when the user asks a question.
 1. Run qmd search on the question terms to find the most relevant pages.
 2. Read `wiki/index-concepts.md` + `wiki/index-entities.md` to ensure complete coverage.
 3. Read all relevant wiki pages.
-4. Synthesize an answer.
+4. Synthesize an answer. If the knowledge is not available or cannot be derived from the wiki, answer with your opinion and suggest sources to ingest.
 5. **Decide:** is this answer significant enough to file? File it if: it synthesizes multiple sources, reveals a non-obvious connection, or the user is likely to return to this question. If filing, create `wiki/queries/[slug].md`.
 6. Update cross-references if the synthesis reveals new connections between existing pages.
-7. Append one-liner to `log.md`: `## YYYY-MM-DD | query | [Question summary] | filed: [slug or no]`
+7. Append one-liner to `log.md`: `## YYYY-MM-DD | query | [Question summary] | filed: [slug or no]` using command line.
 
 ### LINT
 
@@ -154,7 +155,7 @@ Triggered when the user says "lint the wiki" or periodically suggested after eve
 6. Update `wiki/index-papers.md`; update `wiki/index-concepts.md` and/or `wiki/index-entities.md` if new pages were created. Update `updated`.
 7. Update `wiki/architectural-gaps.md`, `wiki/priority-tasks.md` and `wiki/empirical-tensions.md`: remove resolved problems, add new unresolved problems.
 8. Update cross-references of pages touched.
-9. Append one-liner to `log.md`: `## YYYY-MM-DD | lint | [lint summary] | created: ...; updated: ...`.
+9. Append one-liner to `log.md`: `## YYYY-MM-DD | lint | [lint summary] | created: ...; updated: ...` using command line.
 
 ### WEB SEARCH
 

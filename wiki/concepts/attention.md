@@ -3,9 +3,9 @@ title: "Attention (Transformer Self-Attention)"
 type: concept
 tags: [attention, transformer, hopfield, positional-encodings, associative-memory]
 created: 2026-06-12
-updated: 2026-06-23
-sources: [t-TEM, convergence-wiring-transcript, bolzman-machine-transcript, Compositionality_decomposed, Attention Is All You Need]
-related: [wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/small-world-networks.md, wiki/concepts/compositional-generalization.md, wiki/concepts/associative-memory.md, wiki/concepts/canonical-microcircuit.md, wiki/concepts/binding-problem.md, wiki/entities/tem-model.md, wiki/entities/transformer-model.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/boltzmann-machine.md, wiki/entities/ltc-model.md, wiki/entities/gwt-model.md, wiki/papers/vaswani-attention-2017.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/boltzmann-machine-transcript.md, wiki/papers/compositionality-decomposed-hupkes-2020.md, wiki/papers/hopfield-networks-crouse-2022.md, wiki/papers/ltc-emergentmind-overview.md, wiki/papers/language-modeling-compression-deletang-2023.md, wiki/papers/gnw-mashour-2020.md]
+updated: 2026-06-25
+sources: [t-TEM, convergence-wiring-transcript, bolzman-machine-transcript, Compositionality_decomposed, Attention Is All You Need, tripathi-2025-dmn-biomarker]
+related: [wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/small-world-networks.md, wiki/concepts/compositional-generalization.md, wiki/concepts/associative-memory.md, wiki/concepts/canonical-microcircuit.md, wiki/concepts/binding-problem.md, wiki/entities/tem-model.md, wiki/entities/transformer-model.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/boltzmann-machine.md, wiki/entities/ltc-model.md, wiki/entities/gwt-model.md, wiki/entities/default-mode-network.md, wiki/papers/vaswani-attention-2017.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/boltzmann-machine-transcript.md, wiki/papers/compositionality-decomposed-hupkes-2020.md, wiki/papers/hopfield-networks-crouse-2022.md, wiki/papers/ltc-emergentmind-overview.md, wiki/papers/language-modeling-compression-deletang-2023.md, wiki/papers/gnw-mashour-2020.md, wiki/papers/dmn-20years-menon.md, wiki/papers/tripathi-2025-dmn-biomarker.md]
 ---
 
 # Attention (Transformer Self-Attention)
@@ -152,6 +152,37 @@ Only representations reaching Stage 2 (GNW-active ignition) can be transformed b
 
 ---
 
+## Triple-Network Model: Macro-Scale Attention Switching
+
+Transformer self-attention is *token-level* attention — which features to attend to within a representation. The brain has an additional *network-level* attention system (Menon 2024 [[wiki/papers/dmn-20years-menon.md]]) that determines which processing *regime* receives resources:
+
+| Network | Core nodes | State | Computational role |
+|---|---|---|---|
+| **DMN** | PCC, mPFC, RSC, AG | Default | Internal attention; context-frame maintenance |
+| **Salience Network** | Anterior insula, dACC | Event-triggered | Macro-level routing gate; suppresses DMN, activates FPN |
+| **FPN** | dlPFC, IPS | Task-engaged | External attention; WM; step-by-step computation |
+
+Intracranial EEG + optogenetics confirm the salience network causally switches between DMN and FPN regimes — this is not a correlational observation. All three networks are anti-correlated at rest.
+
+**Why this matters for reasoning architectures:** Transformer attention routes information *within* a fixed representation. The triple-network model adds a higher-level gate that routes *between modes*: internal deliberation (DMN-like) vs. step-by-step external processing (FPN-like). A reasoning system pairing a DMN-analog context buffer with an FPN-analog computation engine needs an analogous salience gate to arbitrate when to update the context vs. when to execute within the current frame. This is a distinct design layer from GNW ignition (which selects which item enters the workspace) and from transformer attention (which routes features within the workspace).
+
+### Behavioral Quantification of DMN-FPN Anti-Correlation
+
+The triple-network model is not merely anatomical — anti-correlation strength is a direct, measurable individual-level predictor of attentional stability (Tripathi et al. 2025):
+
+| Measure | Finding |
+|---|---|
+| DMN-FPN anti-correlation vs. flanker task RT variability | Stronger negative correlation → less variable RT; replicated at large-N population neuroscience scale |
+| Within-subject mind-wandering variation | Highly predicted by DMN anti-correlation magnitude |
+| CPM sustained attention signature | Whole-brain; spans DMN, FPN, visual, cerebellar, and motor networks — not FPN alone |
+| CPM mind-wandering signature | DMN, somatomotor, DAN, ventral attention, visual, FPN all contribute |
+
+**Key refinement:** Earlier models treated attention and mind-wandering as a simple FPN-on/DMN-on double dissociation. CPM evidence shows both states involve multiple canonical networks with the DMN-FPN anti-correlation as the primary organizing gradient. Within-subject fluctuations in mind-wandering are more predictable from DMN anti-correlations than from FPN activity alone, confirming the network *relationship* (not single-network activity) as the functional unit.
+
+**Cooperative mode:** During goal-directed internal cognition (episodic retrieval, semantic processing, creative idea evaluation), DMN and FPN co-activate. FPN contains a sub-network more correlated with the DMN for this cooperative mode, and another correlated with DAN for external attention — the antagonism is not a fixed constraint but a task-mode-dependent configuration.
+
+---
+
 ## Connections
 
 - **[[wiki/concepts/factorized-representations.md]]** — the key/value factorization (Q=K=f(g), V=f(x)) is the structural/sensory split; this is not a transformer design choice but a derivation from the TEM memory structure.
@@ -175,3 +206,5 @@ Only representations reaching Stage 2 (GNW-active ignition) can be transformed b
 - **[[wiki/entities/transformer-model.md]]** — the Transformer is the engineering instantiation of multi-head attention; its architecture table, complexity analysis, and localism failure profile make the concept page's theoretical claims concrete and testable.
 - **[[wiki/papers/vaswani-attention-2017.md]]** — primary source for scaled dot-product attention, multi-head formalism, sinusoidal positional encodings, and the O(1) max path length complexity argument.
 - **[[wiki/concepts/binding-problem.md]]** — O(1) maximum path length is attention's key contribution to feature binding: any two positions interact in a single step, enabling constant-depth long-range binding that recurrent architectures cannot achieve at equivalent cost.
+- **[[wiki/entities/default-mode-network.md]]** — the triple-network model introduces a macro-scale attention regime above token-level self-attention; salience network mediates DMN↔FPN switching, deciding when internal (DMN) vs. external (FPN/transformer) attention gets resources; a reasoning architecture needs this higher-level routing gate in addition to within-regime token attention.
+- **[[wiki/papers/tripathi-2025-dmn-biomarker.md]]** — empirical grounding for the triple-network attention model: DMN-FPN anti-correlation strength directly predicts sustained attention performance and within-subject mind-wandering variation; CPM reveals whole-brain (not FPN-only) connectivity signatures for both states.

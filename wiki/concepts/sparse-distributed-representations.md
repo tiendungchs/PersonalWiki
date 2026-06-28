@@ -3,7 +3,7 @@ title: "Sparse Distributed Representations"
 type: concept
 tags: [sdr, sparse-coding, neocortex, active-dendrites, nmda, pattern-recognition, capacity, htm, sdm]
 created: 2026-06-20
-updated: 2026-06-23
+updated: 2026-06-27
 sources: [sparse_representations, kanerva-sdm-1993, barlow_twins]
 related: [wiki/concepts/pattern-separation.md, wiki/concepts/engrams.md, wiki/concepts/associative-memory.md, wiki/concepts/binding-problem.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/spike-frequency-adaptation.md, wiki/entities/htm-thousand-brains.md, wiki/papers/ahmad-hawkins-sdr-2016.md, wiki/papers/sfa-ganguly-2024.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/papers/snn-encoding-auge-2021.md, wiki/entities/sdm-model.md, wiki/papers/kanerva-sdm-1993.md, wiki/entities/cerebellum.md, wiki/entities/snn.md, wiki/papers/barlow-twins-zbontar-2021.md]
 ---
@@ -109,6 +109,24 @@ The operational regime for any fast-M store: T should stay below 10% of M hard l
 
 ---
 
+## Computing in Superposition (VSA Polynomial Features)
+
+Kleyko et al. 2025 ([[wiki/papers/kleyko-neuromorphic-rc-2025.md]]) extend the superposition concept from binary SDR union to real-valued dense VSA vectors, enabling polynomial feature composition without exponential scaling:
+
+| Approach | Feature representation | Dimension scaling with degree p |
+|---|---|---|
+| **Explicit product representation** | G = ⊕_{t∈T} (⊗^t G^(1)) ∈ ℝ^Σ(dk+t choose t+1) | Exponential: ~(dk)^p / p! |
+| **VSA distributed representation** | F = Σ_{t∈T} ∘^t(F^(1)) ∈ ℝ^D | Fixed D; approximation quality improves as D grows |
+| **Required D for error ε** | — | $D = O((pR/\varepsilon)^2)$ — quadratic in p |
+
+The mechanism is the "computing in superposition" principle: binding distributes over superposition, so all p orders of polynomial features coexist in the same D-dimensional vector. A linear readout disentangles them. This is the real-valued analog of the SDR union property: just as one dendritic segment can store M sparse binary patterns via OR, one D-vector can store T polynomial feature orders via VSA superposition — with a formal approximation guarantee rather than hypergeometric false-positive guarantee.
+
+**Key difference from SDR union:** SDR union stores *which patterns were active* (binary, lossless up to M); VSA superposition stores *weighted polynomial interactions* (continuous, lossy but approximation-bounded). Both rely on high dimensionality to suppress interference.
+
+**Design implication for reasoning models:** A working memory or feature buffer implemented in VSA can hold first-, second-, and higher-order relational features of the current context simultaneously in one fixed-size vector — without pre-committing to which features the readout will need. The D dimension becomes a quality-vs-resource dial.
+
+---
+
 ## SFA (Spike Frequency Adaptation) as Intrinsic Auto-Sparsification
 
 Spike frequency adaptation (SFA) provides a single-neuron mechanism for enforcing sparse outputs that does not require lateral inhibition or population-level k-WTA competition.
@@ -165,4 +183,5 @@ This grounds SDR (Sparse Distributed Representations) recognition in the same fr
 - **[[wiki/entities/cerebellum.md]]** — cerebellar granule cells implement the same SDR (Sparse Distributed Representations) random-expansion logic as DG: k=3–5 mossy fiber inputs per cell, ~1% active fraction maintained by Golgi cells; confirms that high-dimensional sparse activation is the universal biological primitive for content-addressable storage across motor and memory circuits.
 - **[[wiki/entities/snn.md]]** — synchrony coding (the SNN native sparse code) requires a sparse active population (≈2% activity) for NMDA coincidence detection to be reliable; SDR's hypergeometric capacity analysis explains why temporal binding via ALIF (Adaptive Leaky Integrate-and-Fire) thresholding demands neocortical sparsity as its substrate.
 - **[[wiki/papers/barlow-twins-zbontar-2021.md]]** — BT is the ML operationalization of Barlow's 1961 redundancy-reduction principle; the cross-correlation decorrelation loss drives embeddings toward a factorial code, confirming that SDR (Sparse Distributed Representations) sparsity's biological rationale is computationally effective in modern deep learning.
-- **[[wiki/entities/vsa-model.md]]** — VSA/HRR uses dense real-valued vectors rather than sparse binary SDRs; circular convolution binding achieves compositionality that SDR (Sparse Distributed Representations) bundling alone cannot, but at the cost of sparsity's hypergeometric interference guarantee; the two approaches share the high-dimensionality intuition but occupy opposite density/compositionality tradeoffs.
+- **[[wiki/entities/vsa-model.md]]** — VSA/HRR uses dense real-valued vectors rather than sparse binary SDRs; circular convolution binding achieves compositionality that SDR (Sparse Distributed Representations) bundling alone cannot, but at the cost of sparsity's hypergeometric interference guarantee; the two approaches share the high-dimensionality intuition but occupy opposite density/compositionality tradeoffs; the computing-in-superposition result (Kleyko 2025) shows VSA superposition stores mixed polynomial features in O(p²) dimensions vs. exponential for explicit features.
+- **[[wiki/papers/kleyko-neuromorphic-rc-2025.md]]** — source for VSA computing in superposition: binding distributes over superposition so all polynomial feature orders t ∈ T coexist in one D-vector; D = O((pR/ε)²) is the key scaling guarantee; parallels the SDR union property but for real-valued polynomial features rather than binary pattern sets.

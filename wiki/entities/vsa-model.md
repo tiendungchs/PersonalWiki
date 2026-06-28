@@ -4,8 +4,9 @@ type: entity
 tags: [VSA, HRR, hyperdimensional-computing, neurosymbolic, binding, spatial-semantic-pointers, grid-cells]
 created: 2026-06-24
 updated: 2026-06-24
-sources: [Vector Symbolic Algebras for the Abstraction and Reasoning Corpus.md]
-related: [wiki/concepts/binding-problem.md, wiki/concepts/path-integration.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/compositional-generalization.md, wiki/entities/arc-agi.md, wiki/papers/joffe-vsa-arc-2025.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/abstract-reasoning.md]
+sources: [Vector Symbolic Algebras for the Abstraction and Reasoning Corpus.md, Principled neuromorphic reservoir computing]
+related: [wiki/concepts/binding-problem.md, wiki/concepts/path-integration.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/compositional-generalization.md, wiki/entities/arc-agi.md, wiki/entities/reservoir-computing.md, wiki/papers/joffe-vsa-arc-2025.md, wiki/papers/kleyko-neuromorphic-rc-2025.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/abstract-reasoning.md]
+updated: 2026-06-27
 ---
 
 # Vector Symbolic Algebra (VSA / HRR)
@@ -41,6 +42,49 @@ $$\phi(\mathbf{x}) = \mathcal{F}^{-1}\left\{e^{i\Theta \mathbf{x}/l}\right\}$$
 | **Grid-cell periodicity** | Specific $\Theta$ → hexagonal grid patterns | MEC grid codes emerge from fractional binding |
 
 The grid-cell-like periodicity is an emergent property of the fractional binding structure, not separately imposed.
+
+---
+
+## Polynomial Kernel Approximation via Binding
+
+Kleyko et al. 2025 ([[wiki/papers/kleyko-neuromorphic-rc-2025.md]]) provide formal guarantees connecting VSA binding to polynomial kernel approximation:
+
+**Similarity structure correspondence:**
+
+| VSA operation | Similarity structure | Explicit analog |
+|---|---|---|
+| Superposition + permutation ρ | Additive: ⟨F^(i), F^(j)⟩ = Σ_l ⟨X(M_l^(i)), X(M_l^(j))⟩ | Concatenation |
+| Binding ∘ | Multiplicative: ⟨ϕ_p(x), ϕ_p(y)⟩ → ⟨x,y⟩^p | Tensor product (degree-p kernel) |
+
+**Approximation guarantee:** For binding via component-wise product (MAP) or circular convolution (HRR), the VSA embedding $\phi_p$ satisfies:
+$$\mathbb{E}[\langle \phi_p(\mathbf{x}), \phi_p(\mathbf{y}) \rangle] = \kappa_p(\mathbf{x}, \mathbf{y}) = \langle \mathbf{x}, \mathbf{y} \rangle^p$$
+
+For any $\varepsilon > 0$, choosing $D = O((pR/\varepsilon)^2)$ where $R = \max\{\|\mathbf{x}\|_1, \|\mathbf{y}\|_1\}$ guarantees $|\phi_p(\mathbf{x}) \cdot \phi_p(\mathbf{y}) - \kappa_p(\mathbf{x}, \mathbf{y})| \leq \varepsilon$ with high probability. Crucially, D is **quadratic** in p (explicit product features require exponential dimensions).
+
+**Computing in superposition:** Mixed polynomial features of orders $\mathcal{T} = \{0, 1, \ldots, n\}$ are represented as a single D-vector via superposition:
+$$\mathbf{F}(i) = \sum_{t \in \mathcal{T}} \bigcirc^t(\mathbf{F}^{(1)}(i)) \in \mathbb{R}^D$$
+The linear readout disentangles the contributions of each order — all polynomial features coexist without cross-interference up to the approximation error.
+
+---
+
+## Sigma-Pi Network Motifs (Neuromorphic Implementation)
+
+| Neuron type | Computation | Role |
+|---|---|---|
+| **Sigma (Σ)** | Weighted sum of inputs + nonlinearity | Memory buffer, superposition |
+| **Pi (Π)** | Product of two input channels | Tensor product / binding |
+
+Three VSA models and their hardware resource requirements for D-dimensional representations:
+
+| Model | Binding operation | Pi neurons | Sigma neurons | Synapses (embedding) |
+|---|---|---|---|---|
+| **MAP** | Hadamard product | D | 0 | d × D |
+| **SBC** (L-blocks of size L) | Block circular convolution | DL | D | d × D / L |
+| **HRR** | Circular convolution | D² | D | d × D |
+
+SBC is preferred for neuromorphic hardware due to sparse synaptic structure. High-order features computed recurrently (binding output fed back as input), so hardware resources do not grow with feature order. Implemented on Loihi 2 (Intel) using 24-bit graded spikes; CPU-equivalent accuracy confirmed on Lorenz63 dynamical system prediction.
+
+**Biological plausibility:** Experimental evidence for multiplication-like nonlinearity in individual neurons (e.g., gain-modulation, direction selectivity in V1). Pi neurons are an idealized model of this property.
 
 ---
 
@@ -91,3 +135,5 @@ Object-centric program synthesis: objects encoded as colour + SSP(centre) + bund
 - **[[wiki/entities/arc-agi.md]]** — VSA solver achieves 3% ARC-AGI-1-Eval; diagnoses vocabulary co-discovery as the residual bottleneck; strong performance on simpler benchmarks confirms the binding and objectness approach is sound.
 - **[[wiki/papers/joffe-vsa-arc-2025.md]]** — primary source: HRR (Holographic Reduced Representations) formalism, SSP derivation, ARC-AGI solver architecture, benchmark results, and failure mode analysis.
 - **[[wiki/concepts/abstract-reasoning.md]]** — explicit System-1/System-2 integration and objectness prior encoding implement model-building at a fraction of LLM compute; the 20.5% ConceptARC result confirms genuine rule representations rather than shortcut pattern matching.
+- **[[wiki/entities/reservoir-computing.md]]** — VSA binding and superposition provide the algebraic foundation for the principled two-module reservoir architecture: superposition+permutation = fading memory buffer; binding = polynomial feature expansion with quadratic D scaling.
+- **[[wiki/papers/kleyko-neuromorphic-rc-2025.md]]** — primary source for kernel approximation guarantees, Sigma-Pi network motifs (MAP/SBC/HRR comparison), Loihi 2 implementation, and the computing-in-superposition result for mixed polynomial features.

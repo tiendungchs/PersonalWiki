@@ -3,9 +3,9 @@ title: "Ring Attractor"
 type: concept
 tags: [ring-attractor, path-integration, head-direction, continuous-attractor, working-memory, navigation, traveling-wave, levy-flights]
 created: 2026-06-13
-updated: 2026-06-22
-sources: [landmark-orientation, acann-li-2024]
-related: [wiki/concepts/path-integration.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/binding-problem.md, wiki/concepts/neural-manifolds.md, wiki/entities/insect-central-complex.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/seelig-jayaraman-2015.md, wiki/papers/turner-evans-neuron-2020.md, wiki/concepts/spike-frequency-adaptation.md, wiki/concepts/replay.md, wiki/papers/acann-li-chu-wu-2024.md]
+updated: 2026-06-28
+sources: [landmark-orientation, acann-li-2024, deco-dynamic-brain-2008]
+related: [wiki/concepts/path-integration.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/binding-problem.md, wiki/concepts/neural-manifolds.md, wiki/entities/insect-central-complex.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/seelig-jayaraman-2015.md, wiki/papers/turner-evans-neuron-2020.md, wiki/concepts/spike-frequency-adaptation.md, wiki/concepts/replay.md, wiki/papers/acann-li-chu-wu-2024.md, wiki/entities/fcann.md, wiki/papers/fcann-attractor-dynamics-englert-2026.md, wiki/concepts/neural-field-theory.md, wiki/entities/spacetime-attractor.md, wiki/concepts/planning-as-inference.md, wiki/concepts/cortical-traveling-waves.md]
 ---
 
 # Ring Attractor
@@ -123,8 +123,9 @@ $$\tau_v \frac{dV(x,t)}{dt} = -V(x,t) + mU(x,t), \quad \tau_v \gg \tau$$
 ## Open Problems
 
 1. **Symmetry breaking:** how does the ring attractor select an initial bump position when first activated — noise, sensory bias, or prior state?
-2. **Multi-scale extension:** insects have one heading ring; mammals have head direction, place, and grid representations across regions — how do multiple ring attractors coordinate?
+2. **Multi-scale extension:** insects have one heading ring; mammals have head direction, place, and grid representations across regions — how do multiple ring attractors coordinate? fcANN (Englert et al. 2026) partially addresses this at the whole-brain scale: functional connectome eigenvectors define approximately orthogonal macro attractor states (K-S projector), analogous to the ring's equi-spaced bump positions but in N-dimensional FC space. Coordination across circuit-level ring attractors and whole-brain fcANN attractors remains open.
 3. **Abstract ring attractors:** do ring attractor dynamics generalize to cyclic abstract state spaces (e.g., periodic task variables, temporal contexts)?
+4. **Spatiotemporal extension:** the Spacetime Attractor (Jensen et al. 2026) generalizes ring/grid attractors from inferring a single current state to inferring an entire future trajectory simultaneously. Fixed points in the STA (Spacetime Attractor) are full paths through space and time, not single locations. The same "consistent states excite, inconsistent inhibit" principle is preserved but the topology is 3D (space × time) rather than 1D/2D. This confirms that ring attractor circuit motifs generalize beyond instantaneous state inference.
 
 ---
 
@@ -141,3 +142,7 @@ $$\tau_v \frac{dV(x,t)}{dt} = -V(x,t) + mU(x,t), \quad \tau_v \gg \tau$$
 - **[[wiki/concepts/spike-frequency-adaptation.md]]** — SFA (Spike Frequency Adaptation) is the adaptation mechanism in A-CANN; the traveling-wave threshold m = τ/τ_v shows how SFA (Spike Frequency Adaptation) timescale τ_v determines whether the network is in WM mode or spontaneous search mode; neuromodulation of SFA (Spike Frequency Adaptation) timescale is the biological mode-switching interface.
 - **[[wiki/concepts/replay.md]]** — the traveling-wave state of A-CANN provides an intrinsic, trigger-free mechanism for sequential memory search, complementing the SWR-triggered replay mechanism; Lévy flight statistics from noisy adaptation match stochastic reactivation patterns observed in vivo.
 - **[[wiki/papers/acann-li-chu-wu-2024.md]]** — primary source for the A-CANN phase diagram, four-mode analytical framework, and all derived quantities including v_int, t_ant, ω, and the Lévy flight exponent α = 1 + 2μ/γ².
+- **[[wiki/entities/fcann.md]]** — fcANN extends ring attractor principles to the whole-brain functional connectome: eigenvectors of J = −Σ⁻¹ define approximately orthogonal macro attractor "positions" analogous to the ring's equi-spaced bump positions; the K-S projector result addresses the multi-scale extension open problem at the systems level.
+- **[[wiki/concepts/neural-field-theory.md]]** — neural field theory provides the foundational derivation from which the ring attractor emerges as a special case: the Amari bump solution on a 2D neural field PDE with Mexican-hat connectivity, restricted to a 1D circular domain, yields exactly the ring attractor's continuous manifold of fixed points; the stability conditions (σ_e < σ_i, net excitation) from neural field theory are the theoretical justification for the cosine connectivity W_ij = A cos(θ_i − θ_j) + B used in the ring attractor model.
+- **[[wiki/entities/spacetime-attractor.md]]** — STA is the 3D generalization of ring/grid attractors to spatiotemporal planning; it extends the same circuit motif (consistent states excite, inconsistent inhibit) so that fixed points encode entire future trajectories rather than single instantaneous states; confirms the generality of ring-attractor principles beyond navigation.
+- **[[wiki/concepts/cortical-traveling-waves.md]]** — ring attractors exhibit a traveling-wave mode (A-CANN) when SFA adaptation strength m crosses the Hopf threshold; the cortical traveling-wave page treats instrength gradients as an alternative direction-selection mechanism for waves without requiring SFA; both mechanisms interact with intrinsic frequency gradients to determine wave behavior in extended networks.

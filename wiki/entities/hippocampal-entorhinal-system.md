@@ -3,9 +3,9 @@ title: "Hippocampal-Entorhinal System"
 type: entity
 tags: [hippocampus, entorhinal-cortex, MEC, LEC, memory, navigation, relational-inference]
 created: 2026-06-09
-updated: 2026-06-23
-sources: [gridlikecode, t-TEM, engram-transcript, convergence-wiring-transcript, jumping-spiders-cognition, convergent-brain-structures-spatial-memory, Metalearning_and_Neuromodulation, Structure and function of the hippocampal CA3 module, The mechanisms for pattern completion and pattern separation in the hippocampus, Complementary Learning Systems, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, Pattern separation in the hippocampus.md, Neuroscience-Inspired Artificial Intelligence, High-capacity flexible hippocampal associative and episodic memory enabled by prestructured "spatial" representations, courellis-hpc-abstract-inference-2024, Bio-inspired computational memory model of the Hippocampus An approach to a neuromorphic spike-based Content-Advocated Memory, nieh-hippocampal-geometry-2021, sun-hippocampal-osm-2025, A scalable reinforcement learning framework inspired by hippocampal memory mechanisms for efficient contextual and sequential decision making, inferential-reasoning-dupret-2020]
-related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/latent-states.md, wiki/concepts/attention.md, wiki/concepts/engrams.md, wiki/concepts/small-world-networks.md, wiki/concepts/binding-problem.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/neuromodulation.md, wiki/concepts/associative-memory.md, wiki/concepts/pattern-separation.md, wiki/concepts/replay.md, wiki/concepts/continual-learning.md, wiki/concepts/phase-precession.md, wiki/concepts/prospective-coding.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/entities/tem-model.md, wiki/entities/cscg-model.md, wiki/entities/htm-thousand-brains.md, wiki/entities/insect-central-complex.md, wiki/entities/arthropod-mushroom-bodies.md, wiki/entities/cephalopod-vertical-lobe.md, wiki/entities/vector-hash-model.md, wiki/entities/dnc-model.md, wiki/entities/snn.md, wiki/entities/hami-model.md, wiki/papers/gridlikecode-constantinescu-2016.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/engram-transcript.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/jumping-spiders-cognition.md, wiki/papers/metalearning-neuromodulation-doya-2002.md, wiki/papers/ca3-sammons-2023.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/hassabis-neuroscience-ai-2017.md, wiki/papers/spiking-tem-kawahara-2025.md, wiki/papers/vector-hash-chandra-2023.md, wiki/papers/dnc-graves-2016.md, wiki/papers/courellis-hpc-abstract-inference-2024.md, wiki/papers/spiking-cam-hippocampus-casanueva-2024.md, wiki/papers/nieh-hippocampal-geometry-2021.md, wiki/papers/sun-hippocampal-osm-2025.md, wiki/papers/hami-poursiami-2025.md, wiki/papers/inferential-reasoning-dupret-2020.md]
+updated: 2026-06-27
+sources: [gridlikecode, t-TEM, engram-transcript, convergence-wiring-transcript, jumping-spiders-cognition, convergent-brain-structures-spatial-memory, Metalearning_and_Neuromodulation, Structure and function of the hippocampal CA3 module, The mechanisms for pattern completion and pattern separation in the hippocampus, Complementary Learning Systems, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, Pattern separation in the hippocampus.md, Neuroscience-Inspired Artificial Intelligence, High-capacity flexible hippocampal associative and episodic memory enabled by prestructured "spatial" representations, courellis-hpc-abstract-inference-2024, Bio-inspired computational memory model of the Hippocampus An approach to a neuromorphic spike-based Content-Advocated Memory, nieh-hippocampal-geometry-2021, sun-hippocampal-osm-2025, A scalable reinforcement learning framework inspired by hippocampal memory mechanisms for efficient contextual and sequential decision making, inferential-reasoning-dupret-2020, dmn-20years-menon, valero-interneuron-families-2025, Interplay of hippocampus and prefrontal cortex in memory, Prefrontal-Hippocampal Interactions in Memory and Emotion, "The hippocampal–prefrontal pathway: The weak link in psychiatric disorders?", "The prefrontal cortex controls memory organization in the hippocampus"]
+related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/latent-states.md, wiki/concepts/attention.md, wiki/concepts/engrams.md, wiki/concepts/small-world-networks.md, wiki/concepts/binding-problem.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/neuromodulation.md, wiki/concepts/associative-memory.md, wiki/concepts/pattern-separation.md, wiki/concepts/replay.md, wiki/concepts/continual-learning.md, wiki/concepts/phase-precession.md, wiki/concepts/prospective-coding.md, wiki/concepts/canonical-microcircuit.md, wiki/concepts/btsp.md, wiki/concepts/memory-schemas.md, wiki/concepts/network-integration-segregation.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/entities/tem-model.md, wiki/entities/cscg-model.md, wiki/entities/htm-thousand-brains.md, wiki/entities/insect-central-complex.md, wiki/entities/arthropod-mushroom-bodies.md, wiki/entities/cephalopod-vertical-lobe.md, wiki/entities/vector-hash-model.md, wiki/entities/dnc-model.md, wiki/entities/snn.md, wiki/entities/hami-model.md, wiki/entities/default-mode-network.md, wiki/entities/nucleus-reuniens.md, wiki/entities/prefrontal-cortex.md, wiki/papers/gridlikecode-constantinescu-2016.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/engram-transcript.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/jumping-spiders-cognition.md, wiki/papers/metalearning-neuromodulation-doya-2002.md, wiki/papers/ca3-sammons-2023.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/hassabis-neuroscience-ai-2017.md, wiki/papers/spiking-tem-kawahara-2025.md, wiki/papers/vector-hash-chandra-2023.md, wiki/papers/dnc-graves-2016.md, wiki/papers/courellis-hpc-abstract-inference-2024.md, wiki/papers/spiking-cam-hippocampus-casanueva-2024.md, wiki/papers/nieh-hippocampal-geometry-2021.md, wiki/papers/sun-hippocampal-osm-2025.md, wiki/papers/hami-poursiami-2025.md, wiki/papers/inferential-reasoning-dupret-2020.md, wiki/papers/dmn-20years-menon.md, wiki/papers/valero-interneuron-families-2025.md, wiki/papers/wu-maass-btsp-2025.md, wiki/papers/preston-eichenbaum-hpc-pfc-2013.md, wiki/papers/jin-maren-hpc-pfc-emotion-2015.md, wiki/papers/spedding-jay-hpfc-psychiatric-2013.md, wiki/papers/desousa-pfc-memory-organization-hpc-2026.md]
 ---
 
 # Hippocampal-Entorhinal System
@@ -20,7 +20,7 @@ The brain's relational inference engine. TEM models it as a factorized world mod
 
 **LEC (Lateral Entorhinal Cortex):** sensory content — object and event representations. Environment-specific. = sensory input x.
 
-**HC (Hippocampus):** conjunctive binding — place cells, plus latent-state variants (splitter, lap, evidence cells). Rapid one-shot episodic memory. Remaps between environments (but non-randomly: preserves grid-phase relationships). = conjunctive code p + Hebbian weights M.
+**HC (Hippocampus):** conjunctive binding — place cells, **time cells** (fire at sequential moments within an episode, mapping the temporal axis of experience), plus latent-state variants (splitter, lap, evidence cells). Rapid one-shot episodic memory. Remaps between environments (but non-randomly: preserves grid-phase relationships). = conjunctive code p + Hebbian weights M.
 
 ```
 MEC (g) ─────────────────────────────► HC (p = f(g, x))
@@ -75,6 +75,36 @@ Behavioral timescale synaptic plasticity (BTSP; Bittner et al. 2017, reviewed in
 | BTSP (CA1) | Seconds | Concept acquisition — new p code in one trial | Yes |
 | STDP (CA3 RC) | Milliseconds | Sequence embedding — edge weights across trials | No (many-shot) |
 | Theta-phase delta rule (CA3/CA1) | 4–8 Hz | Error-driven self-correction | Continuous |
+
+**Binary weights and content-addressable memory (Wu & Maass 2025 [[wiki/papers/wu-maass-btsp-2025.md]]):** A simple binary BTSP rule ($\Delta w_i = \pm 1$ with prob 0.5, gated by plateau) produces a high-capacity CAM matching or surpassing Hopfield networks with continuous weights, for the sparse input regime ($f_p$ ≈ 0.005) characteristic of CA1:
+
+- **Stochastic gating parameter $f_q$ ≈ 0.005:** the probability that any CA1 neuron receives a plateau potential during a given input pattern; the 10s plasticity window duration brings plateau rate (0.0005/s) × window (10s) into this experimentally optimal range
+- **Bimodal distribution:** neurons receiving plateaus for pattern **x** (set Q(**x**)) accumulate weights biased toward **x** → high weighted-sum cluster; others → low cluster; threshold between clusters → recall robust to 33% masking
+- **Repulsion effect:** BTSP's LTD branch cancels shared-input weights when Q(**x_a**) ∩ Q(**x_b**) ≠ ∅ for similar patterns → memory traces pulled apart; first model reproducing human brain's documented repulsion of similar memories
+- **Load balancing:** stochastic plateau gating distributes memory writes uniformly across all CA1 neurons, preventing the repeated-neuron recruitment that causes forgetting in Hebbian-based rules; memory quality is equal for items learned early and late in a 10k-item sequence
+
+See [[wiki/concepts/btsp.md]] for the full formalism and ML design implications.
+
+---
+
+## Interneuron Cooperative Control of the CA1 Cognitive Map (Valero et al. 2025)
+
+CA1 contains four GABAergic interneuron families that cooperatively shape pyramidal place field properties through division of labor [[wiki/papers/valero-interneuron-families-2025.md]]:
+
+| Family | Target | Place field role | Time-division role |
+|---|---|---|---|
+| **Pvalb** | Soma/AIS perisomatic | Stability | Controls first half (EC input phase) |
+| **Sst** (OLM) | Distal apical dendrites | Context generalization | Controls second half (CA3 recurrent phase) |
+| **Vip** | Sst/OLM cells (disinhibitory) | Gain / MI amplifier | Boosts amplitude by releasing pyramidal apical dendrites |
+| **Id2** (neurogliaform, CCK basket) | Broad multi-target | Context specificity | Controls second half alongside Sst |
+
+**Circuit interpretation of place field phases:** as the animal enters the place field, EC input dominates (gated by Pvalb timing). Traversal progressively potentiates the place cell–OLM (Sst) synapse, weakening EC input while CA3 recurrent excitation grows. Pvalb/Sst temporal switching implements the EC→CA3 input dominance transition within a single traversal.
+
+**VIP disinhibitory gate:** Vip → suppresses Sst/OLM → releases distal dendritic compartments → strongest place field amplitude boost of any family. This is the circuit-level implementation of a context-sensitive gain modulator: Vip activation changes encoding amplitude without altering the structural (g) code.
+
+**Interneurons as active spatial coders:** interneuron-only CEBRA decoder matches count-matched pyramidal decoder; all four families are required for full position decoding. Inhibitory cells actively participate in the cognitive map, not merely normalize pyramidal activity.
+
+**Circuit motif conservation:** functional coupling matrices are conserved between hippocampus and neocortex, confirming the four-family motif is a canonical circuit module (see [[wiki/concepts/canonical-microcircuit.md]]).
 
 ---
 
@@ -139,6 +169,41 @@ With increasing experience in an environment type, there is a predicted transiti
 
 ---
 
+## Spatial Bias: Cognitive Map Theory vs. Relational Theory
+
+Kumaran & Maguire 2005 ([[wiki/papers/kumaran-maguire-2005-hippocampus.md]]) provide the clearest direct test of the cognitive map vs. relational debate in humans, using a factorial design that controls for relational complexity.
+
+**Paradigm:** Two tasks matched on difficulty, reaction time, relational demands, and graph topology — same 14 friends as nodes; edges differ:
+- *Spatial relational:* navigate London street network between friends' homes (fewest road segments)
+- *Social relational:* navigate the same friends' social network using acquaintance connections (fewest intermediaries)
+
+Both are formally identical directed graphs. The social task was not significantly different from the spatial task on any of eight behavioral parameters, including task difficulty, reaction time, episodic memory use, and imagery.
+
+**fMRI factorial result (domain: spatial/social × task: relational/nonrelational):**
+
+| Condition | HC activation? | Regions activated |
+|---|---|---|
+| Spatial relational | **Yes** (bilateral) | HC, PHG, RSC, PPC |
+| Social relational | **No** — not even vs. low-level baseline | mPFC, insula, STS, TPJ, temporal poles |
+| Spatial nonrelational | No | PHG, RSC, PPC |
+| Social nonrelational | No | (below threshold) |
+
+**Key finding:** Only one region showed a significant domain × task interaction: right posterior hippocampus (peak: 30, −36, −3; z = 4.28). PHG/RSC/PPC activate for spatial processing *regardless* of task type — they are the spatial-context substrate. HC uniquely requires **spatial + relational together**; neither alone suffices.
+
+**Social network drives social brain, not HC:** mPFC, STS, TPJ, insula, temporal poles — the mentalizing / theory-of-mind network — carry the social relational computation. These regions and HC are completely dissociated in this paradigm.
+
+**Reconciliation with non-spatial HC evidence:** Later studies show HC participating in non-spatial abstract inference — Dupret 2020 (sensory preconditioning sequences), Bernardi 2020 (abstract context CCGP), Courellis 2024 (multi-variable abstraction). The common thread: those tasks share **temporal-sequential or metric structure** with navigation — pairs learned in ordered trials, contexts alternating over time, sequences of events. Social graph traversal lacks this structure: edges are declarative (A knows B), not metric (A is N steps from B). The pattern:
+
+| Relational structure | HC engaged? | Examples |
+|---|---|---|
+| Metric/spatial | Yes | Navigation, place cells, path integration |
+| Temporal-sequential | Yes | Sensory preconditioning (Dupret 2020), context learning (Bernardi 2020) |
+| Declarative associative (no metric/temporal embedding) | **No** | Social network traversal (Kumaran & Maguire 2005) |
+
+**Design implication:** The HC analog in a reasoning model handles **metric or temporal-sequential relational graphs**. Purely declarative associative schemas (social networks, logical propositions without temporal ordering, family trees) are the domain of the mPFC/social-brain circuit.
+
+---
+
 ## Hippocampal Indexing Theory (TEM-t)
 
 TEM-t [[wiki/papers/t-tem-whittington-2022.md]] instantiates hippocampal indexing theory (Teyler & Rudy 2007): HC provides an *index* binding cortical representations across disparate brain areas. Memory neurons in HC link `g̃` (MEC), `x̃` (LEC), and any number of additional cortical regions `c̃`. Each new region adds only n_c feature neurons; HC memory neuron count stays fixed. Any cortical subset can reinstate the others via the HC index. This explains why hippocampal damage disrupts multimodal binding without destroying individual cortical memories.
@@ -152,6 +217,8 @@ Constantinescu et al. 2016 ([[wiki/papers/gridlikecode-constantinescu-2016.md]])
 - The structural-coding system is cortex-wide, not MEC-local.
 - vmPFC's established role in value, memory, and conceptual generalization tasks suggests it may be where structural codes get applied to decision-making, not just maintained.
 - This motivates incorporating prefrontal/DMN components into any model of structural generalization, beyond the MEC-HC core.
+
+**HC-DMN coupling for episodic integration (Menon 2024 [[wiki/papers/dmn-20years-menon.md]]):** Individual DMN nodes track distinct aspects of episodic memories — hippocampus tracks encoding/retrieval success; PCC/mPFC track value- and emotion-laden features; RSC bridges spatial context with autobiographical memory. This functional division is consistent with hippocampal indexing theory but extends the indexed regions beyond LEC/MEC to the full DMN: HC provides the binding index; DMN cortical nodes hold the semantic and contextual dimensions that HC alone cannot represent. For reasoning models, this implies that the HC-DMN circuit together forms the full episodic integration system.
 
 ---
 
@@ -344,6 +411,73 @@ At spatial choice points (T-junctions, maze forks), hippocampal SWR (Sharp Wave 
 
 ---
 
+## vmPFC→MEC→dCA1 Top-Down Circuit for Memory Organization (De Sousa et al. 2026)
+
+While the canonical HC-PFC circuit runs HC→PFC (providing episodic content to PFC), a parallel direct descending circuit runs vmPFC→MEC→dCA1, exerting top-down control over what gets encoded in HC in the first place.
+
+**Anatomy of the descending pathway:**
+
+| Segment | Cell type | Layer | Evidence |
+|---|---|---|---|
+| vmPFC neurons | Excitatory (GAD67−) | Deep layers of PL + ILA | Retrograde CTB + confocal |
+| vmPFC→MEC terminals | Glutamatergic | MEC layers II, III, V (II: 25%, III: 23%, V: 48%) | Intersectional viral + anterograde transsynaptic |
+| MEC→dCA1 projection | Temporoammonic | CA1 stratum lacunosum moleculare (SLM) | Anterograde transsynaptic; mCherry in SLM + DG mol. layer |
+| NGF/NDNF+ cells | GABAergic interneuron | CA1 SLM | RNAscope for NDNF; c-Fos correlation with MEC activity |
+
+**Functional logic:** vmPFC high activity → MEC high activity → NGF/NDNF+ cells active in SLM → gate EC and CA3 inputs to CA1 pyramidal neurons via SLM inhibition → low dCA1 ensemble overlap → memory separation. Inhibiting any step in this chain releases the gate and allows integration.
+
+**What the NGF cells do:** NGF (neurogliaform/NDNF+) cells in CA1 SLM are proposed to modulate the relative balance of EC (temporoammonic) vs. CA3 (Schaffer) inputs to CA1 pyramidal cells. Their activity correlates positively with MEC c-Fos (r > 0, control mice); when vmPFC→MEC is inhibited, both MEC and NGF c-Fos decrease together; direct NDNF cell inhibition replicates the increased-overlap phenotype. This makes NGF cells a fourth interneuron type with a distinct role in ensemble overlap control — complementing the Pvalb/Sst/Vip/Id2 families characterized by Valero et al. 2025.
+
+**vmPFC activity pattern during context learning:**
+
+| Condition | vmPFC activity | vmPFC→MEC projecting neurons | dCA1 overlap | Memory outcome |
+|---|---|---|---|---|
+| Same context, 5h | Decreased | Decreased | High | Integration (local mechanism) |
+| Same context, 7d | Decreased | Decreased | High | Integration (vmPFC permits) |
+| Different contexts, 5h | Decreased | Decreased | High | Integration (temporal proximity dominates) |
+| Different contexts, 7d | **Increased** | **Maintained** | Low | Separation (vmPFC→MEC active) |
+
+The vmPFC effect is only present at the 7-day interval — systems consolidation must first transfer the prior-memory representation to vmPFC before the descending circuit becomes operational.
+
+**Top-down memory allocation:** vmPFC→MEC projections bias co-allocation of prior-memory engram cells. Under inhibition of vmPFC→MEC, prior-context A neurons rise from ~15% to ~27% of the top-10%-active population encoding context B — matching the same-context-revisit distribution. This is a novel allocation mechanism that supplements CREB excitability competition, operating at cross-session (7-day+) timescales.
+
+**Contextual specificity:** The pathway is selective — vmPFC→MEC inhibition increases overlap between two contexts but not between a context and a home-cage event, or between two different HC-dependent tasks (social transmission of food preference vs. context). Top-down integration control is content-sensitive, not a global gain change.
+
+**LEC arm (separate function):** vmPFC→LEC inhibition produces memory generalization (elevated freezing in novel context C), suggesting the LEC pathway has a complementary role in context-boundary control rather than overlap regulation per se.
+
+**Architectural implication:** The HC-MEC system is not just an afferent to PFC — it receives a direct descending control signal from vmPFC that shapes what gets stored in HC. Any model treating HC as a purely bottom-up episodic encoder misses this top-down schema-integration gate. The canonical architecture must include a vmPFC→MEC channel that controls the HC encoding mode based on consolidated prior knowledge.
+
+---
+
+## HC-PFC Communication: Encoding vs. Retrieval Dissociation
+
+Sigurdsson & Duvarci 2016 ([[wiki/papers/hpc-pfc-interactions-sigurdsson-2016.md]]) synthesize the electrophysiological evidence linking theta/gamma synchrony to the distinct phases of spatial WM:
+
+| Phase | Synchrony band | Circuit | Functional role |
+|-------|---------------|---------|----------------|
+| **Sample/encoding** | Gamma (30–80 Hz) | vHPC → mPFC direct glutamatergic monosynaptic | Transmits spatial content to PFC; silencing this input abolishes gamma sync and goal-specific PFC coding |
+| **Choice/retrieval** | Theta (4–12 Hz) | Indirect (NR thalamus + dHPC relay) | Accumulates HC content into decision; unaffected by silencing direct vHPC terminals |
+
+**Key finding (optogenetics):** Spellman et al. 2015 silenced vHPC axon terminals in mPFC with millisecond precision. Impairments: encoding (sample phase) and gamma synchrony. Unaffected: theta synchrony and the choice phase. This dissociates the two synchrony carriers at the circuit level.
+
+**Phase locking as information channel:** PFC neurons phase-locked to hippocampal theta show stronger spatial tuning — the degree of theta phase-locking predicts behavioral performance. Synchrony is not epiphenomenal; it is the carrier of spatial information from HC to PFC.
+
+**Anatomical substrate:** vHPC → mPFC (monosynaptic, glutamatergic); ACC → dHPC CA1/CA3 (reverse monosynaptic, causally required for memory retrieval). NR thalamus is reciprocally connected to both structures and is the main candidate for coordinating theta synchrony between dHPC and mPFC.
+
+**Division of labor:** HC provides episodic/spatial content (sample phase) → PFC accumulates and decides (choice phase). This maps onto the HC one-step look-ahead / mPFC outcome translation split from Dupret 2020 ([[wiki/concepts/prospective-coding.md]]).
+
+---
+
+## H-PFC Pathway: Stress Vulnerability and Task-Demand Scaling
+
+Two properties of the vHPC→mPFC pathway underappreciated in computational accounts (Spedding & Jay 2013 [[wiki/papers/spedding-jay-hpfc-psychiatric-2013.md]]):
+
+**Stress sensitivity:** Acute and chronic stress specifically disrupt LTP induction in the H-PFC pathway. Molecular substrates: stress downregulates MEK/MAPK signaling and BDNF levels; antidepressants, glucocorticoid receptor antagonists, and clozapine each restore LTP and WM performance. Chronic stress additionally causes mPFC neuron atrophy. This identifies the H-PFC pathway as the stress-sensitive bottleneck of the corticolimbic network — failure here produces WM deficits and emotional regulation disruption simultaneously, because the same pathway serves both (via PL fear-expression vs. IL fear-inhibition arms; see HPC-Amygdala-mPFC Tripartite Motivational Circuit above). For a reasoning model: the HC→PFC channel is the highest-risk single point of failure under resource constraints or noise.
+
+**Task-demand theta scaling:** PFC neurons with the highest task-related firing rate show the strongest coupling to hippocampal theta — synchrony preferentially recruits the most engaged PFC ensembles rather than broadcasting uniformly. This parallels LC-NA gating of whole-brain integration ([[wiki/concepts/network-integration-segregation.md]]): cognitive demand upregulates HC-PFC channel gain, concentrating HC input onto the most active PFC assembly. Design implication: HC-PFC coupling strength should be conditioned on PFC engagement level, not set as a global constant.
+
+---
+
 ## Prospective Code for Non-Spatial Inference (Dupret et al. 2020)
 
 Hassabis et al. 2017 documented HC preplay at spatial choice points. Dupret et al. 2020 ([[wiki/papers/inferential-reasoning-dupret-2020.md]]) demonstrate the same prospective coding in a purely cognitive domain, using a **sensory preconditioning** paradigm:
@@ -392,6 +526,48 @@ Sun et al. 2025 ([[wiki/papers/sun-hippocampal-osm-2025.md]]) characterize how C
 
 ---
 
+## Ventral/Dorsal HC Gradient: Schema Context vs. Episodic Specificity
+
+Preston & Eichenbaum (2013) ([[wiki/papers/preston-eichenbaum-hpc-pfc-2013.md]]) provide behavioral evidence for a functional gradient along the HC longitudinal axis that parallels the latent-state geometry findings:
+
+| Division | Rodent | Human | Functional role |
+|---|---|---|---|
+| **Ventral** | Ventral HC | Anterior HC | Gradual acquisition of generalized context representations; distinguishes *which context* events belong to; projects directly to mPFC |
+| **Dorsal** | Dorsal HC | Posterior HC | Encodes specific events at specific places within a context; receives mPFC schema-selection input via perirhinal/LEC |
+
+**Circuit consequence:** Ventral HC sends context-generalized signals to mPFC → mPFC selects the appropriate schema/rule → mPFC projects back via perirhinal cortex and LEC to gate what dorsal HC retrieves. When mPFC is inactivated, dorsal HC neurons indiscriminately fire to both appropriate and inappropriate object-reward associations — the dorsal HC can retrieve memories without mPFC input, but cannot be context-appropriately gated.
+
+**Link to schema formation:** Transitive inference (A-B + B-C → A-C) and food-location schema tasks engage both divisions: ventral HC generalizes the schema context; dorsal HC retrieves the specific A-C association within that context. HC lesions block inferential expression even when individual pairs (A-B, B-C) are independently learned — the integration of overlapping associations into a schematic network requires HC, not just individual associative storage.
+
+See **[[wiki/concepts/memory-schemas.md]]** for the full HC-mPFC division of labor across learning, consolidation, and expression stages.
+
+---
+
+## HPC-Amygdala-mPFC Tripartite Motivational Circuit
+
+The HPC-mPFC connection is not a two-node system. **Ventral HC (VH) neurons that project to mPFC also simultaneously project to the amygdala** — a dual-projection architecture that places the VH as the switcher for the entire HC-amygdala-mPFC loop (Jin & Maren 2015; [[wiki/papers/jin-maren-hpc-pfc-emotion-2015.md]]).
+
+**Circuit logic:**
+
+| VH output | Target | Effect |
+|---|---|---|
+| VH context signal → PL (prelimbic) | mPFC | Drives fear expression via PL→amygdala BLA projection |
+| VH context signal → IL (infralimbic) | mPFC | Drives fear inhibition via IL→amygdala ITC cells |
+| VH dual-projection neurons | mPFC + amygdala simultaneously | VH gates *which* mPFC arm wins by simultaneously priming the amygdala to receive that arm's output |
+
+**Fear renewal** (fear returning outside extinction context): VH-mPFC disconnection abolishes fear renewal. The VH context signal is the switch that determines whether the PL (fear) or IL (extinction/safety) arm of the mPFC-amygdala reciprocal circuit wins retrieval.
+
+**Extinction memory is context-bound — not erasure:** fear and extinction memories coexist as competing schemas; HPC-dependent context gating selects which is expressed. Chronic stress blocks VH-evoked LTP in mPFC → impairs extinction encoding. BDNF in the VH-IL pathway and histone acetylation in the HPC-IL network are molecular substrates of extinction memory formation.
+
+**NAcc as the motivational convergence zone:** the nucleus accumbens (NAcc) receives convergent inputs from all three nodes — PFC (cognitive rule), HPC (contextual state), amygdala (emotional/motivational valence). NAcc integrates these three signals to produce goal-directed action selection. This makes NAcc the downstream hub where:
+- HC provides *where/when am I* (context)
+- Amygdala provides *how much does this matter* (emotional salience)
+- PFC provides *what rule applies here* (schema/goal)
+
+**Design implication for a reasoning model:** the context-encoding module (HC analog) should not only route to the schema-selector (PFC analog) but simultaneously gate the motivational/valuation module (amygdala/NAcc analog). This motivational gating determines *priority* — which schema is relevant given current goal-relevance — not just which schema matches the context. Motivation is a first-class input to schema selection, not a downstream consequence of it. The RE (nucleus reuniens) provides the complementary top-down channel: PFC goal signal → RE → HC, biasing HC toward goal-relevant forward simulation.
+
+---
+
 ## Connections
 
 - **[[wiki/concepts/factorized-representations.md]]** — the MEC/LEC/HC anatomy is the factorized architecture made concrete: MEC = structural code `g`, LEC = sensory input `x`, HC = conjunctive code `p`; understanding the anatomy grounds the abstraction.
@@ -423,6 +599,9 @@ Sun et al. 2025 ([[wiki/papers/sun-hippocampal-osm-2025.md]]) characterize how C
 - **[[wiki/concepts/replay.md]]** — theta-phase oscillation is the fine-grained mechanism controlling when HC replays (retrieval sub-phase) versus encodes (encoding sub-phase); SWR (Sharp Wave Ripple) replay during sleep is the offline extension of the same encoding/retrieval alternation into consolidated consolidation.
 - **[[wiki/papers/cls-oreilly-2011.md]]** — source for CA1 invertible mapper role, theta-phase error-driven learning, consolidation-as-transformation, and bidirectional HC-neocortex synergy; foundational CLS (Complementary Learning Systems) review establishing the biological two-timescale architecture.
 - **[[wiki/papers/learning-fast-slow-liao-2024.md]]** — source for BTSP mechanism in CA1; EC (Entorhinal Cortex) as instructive signal source for plateau potentials; BTSP+STDP within-HC two-timescale hierarchy; adaptive replay selectivity and inhibitory plasticity as structural filtering mechanism.
+- **[[wiki/concepts/btsp.md]]** — dedicated concept page: binary BTSP rule, bimodal distribution mechanism, stochastic gating parameter $f_q$, repulsion effect, capacity analysis, and ML design implications for episodic memory systems.
+- **[[wiki/papers/wu-maass-btsp-2025.md]]** — primary source for the binary BTSP model; establishes that binary weights achieve Hopfield-equivalent CAM performance at sparse input densities; first learning-based model of the human memory repulsion effect.
+- **[[wiki/papers/hpc-pfc-interactions-sigurdsson-2016.md]]** — source for the theta/gamma encoding/retrieval dissociation; causal optogenetic evidence that direct vHPC→mPFC input drives gamma synchrony during encoding but not theta during retrieval; NR thalamus as indirect theta relay.
 - **[[wiki/papers/yassa-stark-pattern-separation-2011.md]]** — source for CA3 bidirectional transfer function (completion for small Δinput, separation for large Δinput) and CA1 linear response; multi-species convergent validation of the DG→CA3→CA1 three-zone model.
 - **[[wiki/concepts/continual-learning.md]]** — HC's CLS (Complementary Learning Systems) architecture is the primary biological solution to catastrophic forgetting: DG (Dentate Gyrus) sparsity orthogonalizes stored patterns, preventing interference; SWR (Sharp Wave Ripple) replay drives neocortical consolidation; HC preplay extends the fast-M simulation function beyond retrospective recall to prospective planning without requiring new slow-W updates.
 - **[[wiki/papers/hassabis-neuroscience-ai-2017.md]]** — source for HC preplay as internal forward simulation at choice points; PFC-controller/HC-world-model architecture for simulation-based planning; experience replay in DQN as a "primitive hippocampus" implementing complementary learning in silico.
@@ -440,3 +619,17 @@ Sun et al. 2025 ([[wiki/papers/sun-hippocampal-osm-2025.md]]) characterize how C
 - **[[wiki/entities/hami-model.md]]** — the most complete RL-level operationalization of the hippocampal processing pipeline: separate LEC (event) and MEC (context) encoders feed a CA3-inspired conjunctive symbolic indexing module, with CA1-inspired temporal integration and PFC-style action selection; confirms that the LEC/MEC anatomical split translates into a useful inductive bias for context-dependent sequential RL.
 - **[[wiki/concepts/prospective-coding.md]]** — the dedicated concept page for the look-ahead mechanism; the inference-version (X→Y in association space) and spatial preplay version are the same CA1 operation; optogenetic causal necessity and RSA operationalization live there.
 - **[[wiki/papers/inferential-reasoning-dupret-2020.md]]** — primary source for the prospective code during inference, SWR (Sharp Wave Ripple) shortcut construction, and the HC-vs-mPFC/midbrain division of mnemonic labor; the most direct mechanistic evidence that HC implements one-step look-ahead rather than full-chain inference.
+- **[[wiki/entities/default-mode-network.md]]** — DMN cortical nodes (PCC, RSC, mPFC) are downstream recipients of HC episodic codes and the site of the strongest abstract grid signals; HC-DMN coupling is the full episodic integration circuit, with HC as indexing hub and DMN as the semantic/contextual layer holding what the index binds.
+- **[[wiki/papers/valero-interneuron-families-2025.md]]** — four GABAergic families (Pvalb/Sst/Vip/Id2) cooperatively implement the CA1 cognitive map through division of labor; VIP disinhibitory gate provides context-sensitive gain modulation; circuit motifs conserved across hippocampus and neocortex.
+- **[[wiki/concepts/canonical-microcircuit.md]]** — the four-family interneuron dissociation in CA1 is the hippocampal instance of the canonical circuit's inhibitory dissociation; conservation across regions supports treating it as a universal circuit module.
+- **[[wiki/concepts/memory-schemas.md]]** — ventral/anterior HC sends generalized context representations to mPFC to initiate schema selection; dorsal/posterior HC retrieves specific events under mPFC schema-gating; time cells provide the temporal axis that schemas require to order episodes into organized networks; HC lesions block schematic inference (A-C) even when individual associations (A-B, B-C) are learned; fear/extinction coexistence is the biological instance of competing schemas selected by context.
+- **[[wiki/papers/preston-eichenbaum-hpc-pfc-2013.md]]** — source for the ventral/dorsal HC functional gradient, time cells, schema formation via overlapping associations, and the bidirectional HC↔mPFC circuit model; provides behavioral evidence that HC integrates overlapping pairs into schematic organizations that support transitive inference.
+- **[[wiki/entities/nucleus-reuniens.md]]** — RE (nucleus reuniens) is the indirect mPFC→HC relay; single RE neurons fan out simultaneously to HC and mPFC; mPFC→RE→sHPC pathway causally required for goal-directed future path representation and spatial WM; RE stimulation modulates plasticity in both targets — an active gain-controller, not a passive relay.
+- **[[wiki/papers/jin-maren-hpc-pfc-emotion-2015.md]]** — primary source for the HPC-amygdala-mPFC tripartite circuit; VH dual-projecting neurons; context-bound extinction; NAcc as motivational convergence zone (HC context + amygdala valence + PFC rule → goal-directed action); RE anatomy and functional evidence.
+- **[[wiki/papers/spedding-jay-hpfc-psychiatric-2013.md]]** — source for H-PFC pathway stress vulnerability (stress → MEK/MAPK + BDNF disruption → LTP failure → WM impairment + mPFC neuron atrophy) and task-demand theta scaling (highest task-active PFC neurons show strongest HC-theta coupling); D1 dopamine regulation of H-PFC LTP and interneuron-mediated inhibitory mechanism.
+- **[[wiki/papers/kumaran-maguire-2005-hippocampus.md]]** — primary source for HC spatial bias; factorial fMRI design directly refutes the relational theory's domain-generality prediction; defines the boundary conditions of "HC as relational inference engine" as metric or temporal-sequential structure specifically, not amodal associative networks.
+- **[[wiki/papers/desousa-pfc-memory-organization-hpc-2026.md]]** — source for the vmPFC→MEC→dCA1 SLM descending circuit; establishes NGF/NDNF+ cells in CA1 SLM as the interneuron population through which vmPFC controls ensemble overlap; demonstrates top-down memory allocation bias; characterizes the time-gate (~7 days) and content-specificity of the circuit.
+- **[[wiki/entities/prefrontal-cortex.md]]** — vmPFC is the origin of the descending circuit described in the vmPFC→MEC section above; vmPFC schema consolidation (~7 days via systems consolidation) is the prerequisite for the descending signal to become operational; the bidirectional HC↔vmPFC relationship (HC→vmPFC for episodic content; vmPFC→MEC→HC for schema-guided encoding control) must be understood together.
+- **[[wiki/concepts/memory-schemas.md]]** — the vmPFC→MEC→dCA1 circuit is the biological implementation of schema-guided assimilation/accommodation in HC; MEC is the relay between vmPFC's schema representation and HC's encoding machinery.
+- **[[wiki/concepts/engrams.md]]** — the vmPFC→MEC top-down circuit controls which prior-memory engram cells are co-allocated during new encoding; this is an experience-gated allocation mechanism that supplements CREB excitability competition and operates at 7-day+ timescales.
+- **[[wiki/concepts/pattern-separation.md]]** — NGF/NDNF+ cells in CA1 SLM are the effectors of the top-down separation/integration control; they extend the regulatory hierarchy (ACh→global mode; NA→DG gain; vmPFC→MEC→NGF→CA1 overlap) to include a cortical schema-level layer.

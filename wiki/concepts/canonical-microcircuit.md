@@ -3,9 +3,9 @@ title: "Canonical Microcircuit"
 type: concept
 tags: [canonical-microcircuit, neocortex, laminar-organization, recurrent-amplification, winner-take-all, cortical-column, inhibitory-interneurons]
 created: 2026-06-23
-updated: 2026-06-23
-sources: [douglas-martin-neocortex-2004, bastos-canonical-microcircuit-2012]
-related: [wiki/concepts/predictive-coding.md, wiki/concepts/dendritic-computation.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/attention.md, wiki/entities/htm-thousand-brains.md, wiki/papers/douglas-martin-neocortex-2004.md, wiki/papers/bastos-canonical-microcircuit-2012.md]
+updated: 2026-06-28
+sources: [douglas-martin-neocortex-2004, bastos-canonical-microcircuit-2012, valero-interneuron-families-2025]
+related: [wiki/concepts/predictive-coding.md, wiki/concepts/dendritic-computation.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/attention.md, wiki/concepts/excitation-inhibition-balance.md, wiki/entities/htm-thousand-brains.md, wiki/papers/douglas-martin-neocortex-2004.md, wiki/papers/bastos-canonical-microcircuit-2012.md, wiki/papers/valero-interneuron-families-2025.md, wiki/concepts/temporal-multiplexing.md]
 ---
 
 # Canonical Microcircuit
@@ -39,7 +39,7 @@ Thalamic synapses are **<10% of excitatory inputs** in L4; peak EPSPs from thala
 
 ## Inhibitory Dissociation
 
-Two anatomically and functionally distinct inhibitory modes gate the circuit:
+Two anatomically and functionally distinct inhibitory modes gate the canonical neocortical circuit:
 
 | Class | Cell types | Axon targets | Computation |
 |-------|------------|-------------|-------------|
@@ -47,6 +47,19 @@ Two anatomically and functionally distinct inhibitory modes gate the circuit:
 | **Vertical** | Double bouquet | Distal basal + apical dendrites | Dynamic gating of individual dendrite input-output transform |
 
 Horizontal cells (parvalbumin+) implement lateral competition: when one L2/3 patch wins, it suppresses neighbors via horizontal collaterals. Vertical cells (calbindin+, double bouquet) form a regular array spaced ~25 µm apart in tangential view, with narrow columnar axon bundles — each can modulate the dendritic transfer function of a column of pyramidal cells independently of somatic output.
+
+### Four-Family Functional Dissociation (Valero et al. 2025)
+
+In hippocampus — and conserved in neocortex (Valero et al. confirm cross-region coupling matrix equivalence) — the inhibitory taxonomy extends to four genetically defined families with orthogonal computational roles:
+
+| Family | Anatomical target | Canonical function | Cortical analog |
+|---|---|---|---|
+| **Pvalb** | Soma/AIS perisomatic | Timing precision; stability gating | Horizontal basket/chandelier cells |
+| **Sst** (OLM in HC) | Distal apical dendrites | Dendritic integration; context generalization | Vertical double bouquet cells |
+| **Vip** | Suppresses Sst/OLM | Disinhibitory gain modulator | Layer 1 / L2/3 interneuron-specific interneurons |
+| **Id2** (neurogliaform, CCK basket) | Broad soma + dendrite | Context specificity; broad multi-target suppression | Neurogliaform / late-spiking cells |
+
+**Disinhibitory motif:** Vip → suppresses Sst → releases pyramidal cell apical dendrites → increases encoding gain. This three-level disinhibitory hierarchy (Vip→Sst→Pyramidal) is the biologically validated implementation of a context-sensitive gain gate, applicable to any feedforward module that needs flexible input-output routing without changing weights.
 
 ---
 
@@ -106,3 +119,6 @@ Confirmed across macaque visual cortex hierarchy (V1→V4: 100% SLN%; V4→V1: <
 - **[[wiki/entities/htm-thousand-brains.md]]** — HTM's cortical column L1–L6 layer assignment (L4=sensory, L2/3=binding/consensus, L6=path integration, L5=motor output) directly instantiates the canonical circuit; TBT (Thousand Brains Theory) proposes ~150,000 columns each running this same loop independently and reaching consensus via L2/3 lateral connections.
 - **[[wiki/papers/douglas-martin-neocortex-2004.md]]** — primary anatomy source; establishes universality, recurrent amplification, soft WTA (Winner-Take-All) model, horizontal/vertical inhibitor dissociation, and SLN% rule.
 - **[[wiki/papers/bastos-canonical-microcircuit-2012.md]]** — derives the laminar PC (Predictive Coding) variable mapping from this circuit anatomy; establishes spectral asymmetry (gamma=superficial/error, beta=deep/prediction) as a mathematical consequence.
+- **[[wiki/papers/valero-interneuron-families-2025.md]]** — empirical grounding for the four-family inhibitory dissociation (Pvalb/Sst/Vip/Id2) in hippocampus and its conservation in neocortex; demonstrates the Vip→Sst→Pyramidal disinhibitory motif in vivo and the orthogonal computational roles of each family.
+- **[[wiki/concepts/excitation-inhibition-balance.md]]** — the four-family dissociation is the cell-type decomposition of the global E/I parameter; each family tunes a distinct dimension (timing/integration/gain/specificity) that the aggregate E/I ratio conflates.
+- **[[wiki/concepts/temporal-multiplexing.md]]** — the superficial (feedforward/fast γ,β-high) vs. deep (feedback/slow β-low,α,δ) layer split of the canonical microcircuit is the laminar anatomical substrate for temporal multiplexing; each frequency stream's preference for superficial vs. deep layers is a structural consequence of the L4→L2/3→L5→L6 hierarchy, not an emergent phenomenon.

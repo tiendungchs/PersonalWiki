@@ -3,9 +3,9 @@ title: "Hippocampal Replay"
 type: concept
 tags: [replay, memory-consolidation, credit-assignment, offline-learning, state-space-construction, cann, traveling-wave]
 created: 2026-06-09
-updated: 2026-06-24
-sources: [engram-transcript, memory-gate-transcript, Complementary Learning Systems, Complementary learning systems Why - Claude summary, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, acann-li-2024, inferential-reasoning-dupret-2020]
-related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/factorized-representations.md, wiki/concepts/engrams.md, wiki/concepts/neural-manifolds.md, wiki/concepts/structural-generalization.md, wiki/concepts/prospective-coding.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/engram-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/whittington-cognitive-map-2022.md, wiki/concepts/ring-attractor.md, wiki/papers/acann-li-chu-wu-2024.md, wiki/papers/inferential-reasoning-dupret-2020.md, wiki/papers/kessler-continual-dreamer-2023.md]
+updated: 2026-06-28
+sources: [engram-transcript, memory-gate-transcript, Complementary Learning Systems, Complementary learning systems Why - Claude summary, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, acann-li-2024, inferential-reasoning-dupret-2020, prefrontal-atrophy-nrem-mander-2013]
+related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/factorized-representations.md, wiki/concepts/engrams.md, wiki/concepts/neural-manifolds.md, wiki/concepts/structural-generalization.md, wiki/concepts/prospective-coding.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/engram-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/whittington-cognitive-map-2022.md, wiki/concepts/ring-attractor.md, wiki/papers/acann-li-chu-wu-2024.md, wiki/papers/inferential-reasoning-dupret-2020.md, wiki/papers/kessler-continual-dreamer-2023.md, wiki/papers/prefrontal-atrophy-nrem-mander-2013.md, wiki/entities/prefrontal-cortex.md, wiki/entities/spacetime-attractor.md, wiki/concepts/planning-as-inference.md, wiki/papers/mechanistic-planning-pfc-jensen-2026.md]
 ---
 
 # Hippocampal Replay
@@ -91,6 +91,25 @@ The E/I competition is structurally identical to engram allocation [[wiki/concep
 **Evidence for the pipeline:** awake SWR (Sharp Wave Ripple) content (decoded via UMAP projection onto maze manifold) specifically matches the most recent successful trial and trajectory. Post-learning sleep SWRs decode as the same patterns. Pre-learning sleep SWRs decode as completely different content.
 
 The temporal compression (~100ms) is functionally critical: compressed replays arrive within cortical STDP windows, enabling synaptic strengthening. Awake SWR (Sharp Wave Ripple) bookmarking solves the scheduling conflict — HC cannot both build the current map *and* run consolidation in parallel during waking.
+
+---
+
+## SWA: The Oscillatory Context for SWR Consolidation
+
+NREM slow-wave activity (SWA: 0.8–4.6 Hz) is the broader oscillatory envelope within which SWRs are nested — a distinct mechanism from the ~80–100 ms sharp-wave ripple events themselves.
+
+**Source and function:** mPFC cortical circuits are the dominant EEG source generator of NREM slow waves (Mander et al. 2013 [[wiki/papers/prefrontal-atrophy-nrem-mander-2013.md]]). SWA predicts overnight episodic memory retention (r ≈ 0.8) independently of sleep stage duration, spindle density, total sleep time, and sleep efficiency. The relationship holds within young and older adult groups separately.
+
+**SWA vs. SWR — the two-level NREM consolidation hierarchy:**
+
+| Oscillation | Frequency | Source | Function |
+|---|---|---|---|
+| **SWA (slow wave)** | 0.8–4.6 Hz | mPFC cortical networks | Sets oscillatory context; creates alternating up-states (high excitability) / down-states (inhibition); gates cortical plasticity windows |
+| **SWR (sharp-wave ripple)** | ~80–200 Hz nested within SWA | CA3→CA1 | Carries compressed episodic replay sequence; triggers cortical STDP during the up-state window |
+
+Slow waves create the excitability windows within which SWRs can drive cortical plasticity. Disrupting SWA (e.g., via mPFC atrophy) reduces and degrades these windows, limiting the number of SWR events that can produce lasting cortical weight changes — even if SWR generation itself is intact.
+
+**HC-independence as the consolidation outcome:** Sufficient SWA → post-sleep hippocampal retrieval activation decreases (memories become hippocampally independent) and HC-mPFC functional connectivity during retrieval increases. These two signatures — less HC activation, more HC-mPFC coupling — operationalize what CLS theory (McClelland et al. 1995 [[wiki/papers/cls-mcclelland-1995.md]]) predicts should result from successful HC→cortex consolidation. Insufficient SWA produces the opposite: persistent HC dependence during retrieval, and reduced HC-mPFC coupling — the observable markers of failed slow-W transfer.
 
 ---
 
@@ -187,3 +206,7 @@ The A-CANN framework (Li, Chu & Wu 2024) provides a complementary, **trigger-fre
 - **[[wiki/papers/inferential-reasoning-dupret-2020.md]]** — source for SWR (Sharp Wave Ripple) shortcuts in the cognitive inference domain: reward-biased X-Z doublet construction across recording days, reverse replay for credit assignment, and the distinction between online prospective code (per trial) and offline SWR (Sharp Wave Ripple) caching (persistent shortcut).
 - **[[wiki/concepts/prospective-coding.md]]** — online counterpart to SWR (Sharp Wave Ripple) shortcuts: prospective coding provides a per-trial look-ahead (X→Y) while SWR (Sharp Wave Ripple) shortcuts cache the full-chain result (X→Z) offline; together they serve the same inference function on different timescales.
 - **[[wiki/papers/kessler-continual-dreamer-2023.md]]** — source for the RL experience replay vs. biological replay comparison; reservoir sampling as the dominant strategy for model-based CRL; the convergence between uniform ML replay and selective biological replay when a world model handles content filtering.
+- **[[wiki/papers/prefrontal-atrophy-nrem-mander-2013.md]]** — source for SWA/SWR distinction; mPFC as the dominant generator of NREM slow waves; SWA predicts HC-independence during retrieval and HC-mPFC coupling; operationalizes what "successful slow-W transfer" looks like as a neural state.
+- **[[wiki/entities/prefrontal-cortex.md]]** — mPFC is both the online schema selector (waking) and the generator of SWA (sleep) — the same structure that organizes schemas offline orchestrates their consolidation into HC-independent form via slow-wave generation.
+- **[[wiki/entities/spacetime-attractor.md]]** — HC replay is the proposed biological mechanism for learning the STA's world model: replay trajectories provide the (state, next-state) co-activations needed to embed the environment adjacency matrix A_{ij} into PFC inter-subspace connections; Jensen et al. 2026 cite Bakermans et al. 2023 and Ou et al. 2025 for this HC→PFC structural consolidation via replay.
+- **[[wiki/concepts/planning-as-inference.md]]** — planning as inference in the STA presupposes the world model has been embedded via prior learning; replay is the candidate biological mechanism for that embedding, creating a two-phase system: offline replay → embed A in W; online attractor inference → plan using W.

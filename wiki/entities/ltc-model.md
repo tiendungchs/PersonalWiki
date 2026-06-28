@@ -5,7 +5,7 @@ tags: [continuous-time, RNN, neural-ODE, expressivity, biological-grounding, dyn
 created: 2026-06-20
 updated: 2026-06-24
 sources: [Liquid Time-constant Networks-HasaniR-ML, Liquid Time-constant Networks, Closed-form continuous-time neural networks - Nature Machine Intelligence]
-related: [wiki/papers/ltc-hasani-2021.md, wiki/papers/ltc-emergentmind-overview.md, wiki/papers/cfc-hasani-2022.md, wiki/concepts/neural-manifolds.md, wiki/concepts/neuromodulation.md, wiki/concepts/predictive-coding.md, wiki/concepts/spike-frequency-adaptation.md, wiki/entities/reservoir-computing.md, wiki/entities/trnn-model.md, wiki/concepts/working-memory.md, wiki/concepts/attention.md]
+related: [wiki/papers/ltc-hasani-2021.md, wiki/papers/ltc-emergentmind-overview.md, wiki/papers/cfc-hasani-2022.md, wiki/concepts/neural-manifolds.md, wiki/concepts/neuromodulation.md, wiki/concepts/predictive-coding.md, wiki/concepts/spike-frequency-adaptation.md, wiki/entities/reservoir-computing.md, wiki/entities/trnn-model.md, wiki/entities/s4-model.md, wiki/concepts/working-memory.md, wiki/concepts/attention.md]
 ---
 
 # LTC (Liquid Time-Constant) (Liquid Time-Constant Network)
@@ -119,6 +119,7 @@ $$\mathbf{x}(t) = \underbrace{\sigma(-f(\mathbf{x},\mathbf{I};\theta_f)\,\mathbf
 - **[[wiki/entities/reservoir-computing.md]]** — reservoirs use fixed random weights producing transient echo-state dynamics; LTCs replace the random fixed W with a trained continuous-time ODE system; the fused solver makes LTCs tractable where reservoir's frozen dynamics are task-agnostic.
 - **[[wiki/entities/trnn-model.md]]** — both achieve expressive temporal dynamics but via different mechanisms: TRNN (Transition RNN) via self-inhibition + sparse + hierarchical topology (discrete-step); LTC (Liquid Time-Constant) via liquid τ (continuous-time ODE); TRNN (Transition RNN) is better suited for multi-item WM and long delays; LTC (Liquid Time-Constant) for continuous-time signal modeling with stability guarantees.
 - **[[wiki/concepts/working-memory.md]]** — LTC (Liquid Time-Constant) is a continuous-time WM candidate for short-to-medium timescales; the liquid τ allows each neuron to self-select its memory timescale based on input statistics, but vanishing gradients limit long-range applicability.
+- **[[wiki/entities/s4-model.md]]** — Liquid-S4 is a direct extension of S4: it preserves S4's DPLR SSM framework and HiPPO initialization but adds LTC liquid kernel terms as an additive correction on the recurrence, achieving 87.32% LRA average with 30% fewer parameters than S4
 - **[[wiki/concepts/attention.md]]** — Liquid-S4 fuses LTC (Liquid Time-Constant) liquid kernels into the SSM DPLR framework, bridging continuous-time adaptive-memory dynamics to the attention/transformer thread; the liquid kernel encodes multi-way input correlations as an additive term on top of the SSM recurrence, achieving 87.32% LRA SOTA.
 - **[[wiki/papers/ltc-hasani-2021.md]]** — primary source for core LTC; ODE derivation, theorems, benchmark results.
 - **[[wiki/papers/ltc-emergentmind-overview.md]]** — broader survey covering CfC, Liquid-S4, LTC-SE, LGTC, and neuromorphic deployment.

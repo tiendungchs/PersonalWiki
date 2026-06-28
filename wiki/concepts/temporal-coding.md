@@ -3,9 +3,9 @@ title: "Temporal Coding"
 type: concept
 tags: [temporal-coding, spike-timing, phase-locking, population-coding, STDP, synchrony, auditory-system]
 created: 2026-06-22
-updated: 2026-06-23
-sources: [A neuronal learning rule for sub-millisecond temporal coding, snn-encoding-auge-2021, supervised_spiking_nn, bastos-canonical-microcircuit-2012, Networks of Spiking Neurons]
-related: [wiki/concepts/phase-precession.md, wiki/concepts/hebbian-learning.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/neuromodulation.md, wiki/papers/gerstner-temporal-coding-1996.md, wiki/papers/snn-encoding-auge-2021.md, wiki/papers/gardner-gruning-supervised-snn.md, wiki/concepts/sequence-memory.md, wiki/entities/snn.md, wiki/concepts/predictive-coding.md, wiki/papers/bastos-canonical-microcircuit-2012.md, wiki/papers/maass-snn-third-gen-1997.md, wiki/papers/maass-lsm-2002.md]
+updated: 2026-06-27
+sources: [A neuronal learning rule for sub-millisecond temporal coding, snn-encoding-auge-2021, supervised_spiking_nn, bastos-canonical-microcircuit-2012, Networks of Spiking Neurons, "Efficient event-based delay learning in spiking neural networks"]
+related: [wiki/concepts/phase-precession.md, wiki/concepts/hebbian-learning.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/neuromodulation.md, wiki/papers/gerstner-temporal-coding-1996.md, wiki/papers/snn-encoding-auge-2021.md, wiki/papers/gardner-gruning-supervised-snn.md, wiki/concepts/sequence-memory.md, wiki/entities/snn.md, wiki/concepts/predictive-coding.md, wiki/papers/bastos-canonical-microcircuit-2012.md, wiki/papers/maass-snn-third-gen-1997.md, wiki/papers/maass-lsm-2002.md, wiki/papers/meszaros-eventprop-delays-2025.md, wiki/concepts/credit-assignment.md]
 ---
 
 # Temporal Coding
@@ -100,6 +100,28 @@ Temporal codes are not only decodable — they are *learnable* with biologically
 
 ---
 
+## Gradient-Based Delay Learning (Mészáros et al. 2025)
+
+Hebbian W(s) selects delays unsupervised. EventProp+Delay provides a supervised, exact-gradient alternative that works in recurrent networks with multiple spikes per neuron.
+
+**Key insight:** With delays, spike emission $t_k^{\text{spike}}$ and arrival $t_k^{\text{spike}} + d_{mn}$ are distinct events. Extending the event set to $\mathcal{E} = \mathcal{S} \cup \{t_k^{\text{spike}} + d_{mn}\}$ and applying the adjoint method yields:
+
+$$\frac{d\mathcal{L}}{dd_{ji}} = -w_{ji}\sum_{\{t_k | n(k)=i\}} (\lambda_{I,j} - \lambda_{V,j})\big|_{t_k + d_{ji}}$$
+
+The adjoint dynamics $(\lambda_V, \lambda_I)$ are **identical** to the weight-gradient backward pass — delay gradients are a byproduct at zero extra computational cost.
+
+| Method | Supervision | Supports recurrent? | Multiple spikes? | Mechanism |
+|---|---|---|---|---|
+| **W(s) Hebbian** | None | Yes | Yes | Asymmetric STDP selects delay-matched axons |
+| **DelGrad** | Yes (exact) | No | No (1 spike/neuron) | Adjoint method, feedforward only |
+| **EventProp+Delay** | Yes (exact) | Yes | Yes | Adjoint on full event set $\mathcal{E}$ |
+
+**Empirical finding:** After learning, delay distributions follow a small-world pattern — most delays remain short, a few grow large — mirroring the brain's EDR + rare LR shortcut topology. This is not an architectural choice but an emergent consequence of gradient optimisation on temporal tasks.
+
+**Capacity implication (Maass & Schmitt):** $k$ adjustable delays compute a strictly richer function class than $k$ adjustable weights; recurrent delays are especially beneficial for small networks where width cannot compensate for temporal depth.
+
+---
+
 ## Cortical Gamma/Beta Spectral Split
 
 The gamma (superficial) / beta (deep) frequency asymmetry in cortical layers has a derivation from PC (Predictive Coding) dynamics (Bastos et al. 2012):
@@ -138,3 +160,5 @@ This gives feedforward inter-areal connections a gamma signature and feedback co
 - **[[wiki/papers/bastos-canonical-microcircuit-2012.md]]** — primary source for the cortical spectral split section: derives gamma/beta asymmetry from the Bayesian filtering math and confirms it against multi-laminar LFP data in visual cortex.
 - **[[wiki/papers/maass-snn-third-gen-1997.md]]** — establishes linear temporal coding (T − xc) as a formal primitive and proves via CD_n/ED_n lower bounds that temporal coding confers exponential size advantages over sigmoidal nets for coincidence-sensitive computations; provides the formal basis for preferring temporal coding over rate coding for binding-stage computations.
 - **[[wiki/papers/maass-lsm-2002.md]]** — dynamic synapses (Tsodyks-Markram depression+facilitation, τ_D/τ_F ~ 0.05–1.1s) are a synapse-level temporal trace that extends the effective fading memory of a spiking circuit from one membrane time constant (~30ms) to ~800ms; replacing dynamic with static synapses eliminates context-sensitivity, establishing that short-term synaptic plasticity is a temporal coding substrate at the behavioral timescale.
+- **[[wiki/papers/meszaros-eventprop-delays-2025.md]]** — primary source for gradient-based delay learning (EventProp+Delay): exact adjoint-method gradients w.r.t. delays complement Hebbian W(s) delay selection; empirical finding that learned delay distributions follow a small-world pattern; capacity result that adjustable delays compute a richer function class than adjustable weights alone.
+- **[[wiki/concepts/credit-assignment.md]]** — EventProp is the credit assignment mechanism underlying exact delay learning; adjoint variables $(\lambda_I, \lambda_V)$ computed for weight gradients simultaneously yield delay gradients — temporal credit assignment for two parameter types from a single backward pass.

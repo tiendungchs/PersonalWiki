@@ -3,9 +3,9 @@ title: "Reservoir Computing"
 type: entity
 tags: [reservoir-computing, echo-state-networks, recurrent-networks, dynamical-systems, random-basis, liquid-state-machine]
 created: 2026-06-12
-updated: 2026-06-23
-sources: [reservoir-computing-transcript, tavanaei-deep-snn-2018, maass-lsm-2002]
-related: [wiki/concepts/neural-manifolds.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/working-memory.md, wiki/concepts/spike-frequency-adaptation.md, wiki/concepts/small-world-networks.md, wiki/entities/htm-thousand-brains.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/trnn-liu-2025.md, wiki/papers/tavanaei-deep-snn-2018.md, wiki/papers/maass-lsm-2002.md]
+updated: 2026-06-27
+sources: [reservoir-computing-transcript, tavanaei-deep-snn-2018, maass-lsm-2002, Principled neuromorphic reservoir computing]
+related: [wiki/concepts/neural-manifolds.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/working-memory.md, wiki/concepts/spike-frequency-adaptation.md, wiki/concepts/small-world-networks.md, wiki/entities/htm-thousand-brains.md, wiki/entities/vsa-model.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/trnn-liu-2025.md, wiki/papers/tavanaei-deep-snn-2018.md, wiki/papers/maass-lsm-2002.md, wiki/papers/kleyko-neuromorphic-rc-2025.md]
 ---
 
 # Reservoir Computing
@@ -182,6 +182,35 @@ Kasabov et al. NeuCube organizes a 3D spiking reservoir by human brain structura
 
 ---
 
+## Principled Separation: Memory Buffer vs. Nonlinear Features
+
+Kleyko et al. 2025 ([[wiki/papers/kleyko-neuromorphic-rc-2025.md]]) identify that a traditional reservoir conflates two distinct functions:
+
+| Function | Traditional reservoir | Principled separation |
+|---|---|---|
+| **Fading memory buffer** | Reservoir state F(i) encodes trajectory of past inputs via echo-state dynamics | Reservoir network with permutation matrix W_ρ; fading controlled by spectral radius γ < 1 |
+| **Nonlinear feature expansion** | Saturating nonlinearities (tanh) produce some polynomial mixing, but uncontrolled | Sigma-Pi network computing explicit tensor products or VSA binding |
+
+The key insight is that VSA superposition (protected by permutation ρ) has the same similarity structure as concatenation — it is a fading memory buffer in distributed form. VSA binding (∘) has the same similarity structure as the tensor product — it produces polynomial nonlinear features. Formally:
+
+$$\mathbf{F}(i) = \sum_{t \in \mathcal{T}} \left( \bigcirc^t \left( \sum_{l=1}^k \mathbf{W}_\rho^{l-1} \mathbf{W}_{\text{in}} \mathbf{X}(\mathcal{M}_l) \right) \right) \in \mathbb{R}^D$$
+
+This is a *D-dimensional* representation approximating the explicit product representation **G** ∈ ℝ^Σ(dk+t choose t+1) — with only *quadratic* growth in polynomial degree p rather than exponential.
+
+**Sigma-Pi network motifs** implement the binding step in hardware. Pi neurons multiply two input channels; Sigma neurons aggregate. Three variants with different neuron counts:
+
+| VSA model | Binding operation | Pi neurons | Sigma neurons |
+|---|---|---|---|
+| **MAP** (multiply-add-permute) | Hadamard product | D | 0 |
+| **SBC** (sparse block code) | Block circular convolution | DL | D |
+| **HRR** (holographic reduced representation) | Circular convolution | D² | D |
+
+On Loihi 2, SBC was chosen for its sparse synaptic structure; accuracy matches CPU counterpart across all tested dynamical systems.
+
+**Design implication for reasoning models:** The reservoir's well-characterized fading memory (echo-state property, spectral radius control) becomes a plug-in memory buffer. Polynomial feature order p and dimensionality D are now independent hyperparameters — D need only grow as O(p²) to maintain approximation quality.
+
+---
+
 ## Limitations
 
 - Random W provides approximation capacity but not structural generalization — cannot transfer a learned temporal basis to a new task with different relational structure (unlike TEM's learned W)
@@ -195,6 +224,8 @@ Kasabov et al. NeuCube organizes a 3D spiking reservoir by human brain structura
 
 - **[[wiki/concepts/neural-manifolds.md]]** — echo-state property (ρ < 1) is the manifold stability condition: dynamics contract toward a computable manifold; chaos (ρ ≥ 1) places computation outside the reachable manifold; biological E/I balance is the neural implementation of this constraint.
 - **[[wiki/concepts/two-learning-timescales.md]]** — reservoir computing is the extreme W/M split: reservoir = maximally slow W (frozen at random initialization); readout = maximally fast M (one-shot linear regression); proves that fixed structural basis + adaptive readout is sufficient for arbitrary temporal computation.
+- **[[wiki/entities/vsa-model.md]]** — VSA is the algebraic framework that makes the reservoir's memory buffer function principled: superposition+permutation ≈ concatenation (fading memory); binding ≈ tensor product (polynomial features); together they replace the monolithic reservoir's uncontrolled feature mixing with a configurable two-module architecture.
+- **[[wiki/papers/kleyko-neuromorphic-rc-2025.md]]** — primary source for the principled separation of memory buffer and nonlinear features, Sigma-Pi network motifs, kernel approximation guarantees, and Loihi 2 implementation.
 - **[[wiki/concepts/factorized-representations.md]]** — the reservoir/readout split is a degenerate factorization: random fixed W encodes a universal temporal basis; learned w_out is the task projection; TEM replaces random W with learned W to add cross-environment structural transfer.
 - **[[wiki/concepts/path-integration.md]]** — reservoir dynamics maintain a fading temporal memory of past inputs (echo traces) analogous to path integration's structural position trace; but reservoir traces carry no structured transition rules, so cross-environment compression is absent.
 - **[[wiki/entities/htm-thousand-brains.md]]** — the transcript explicitly frames neocortex as a reservoir of cortical columns: fixed anatomical wiring = reservoir, theta/gamma pacemakers = driving signal, learned plasticity = readout.

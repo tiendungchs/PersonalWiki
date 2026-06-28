@@ -3,9 +3,9 @@ title: "Associative Memory"
 type: concept
 tags: [associative-memory, hopfield, attractor, hebbian, pattern-completion, content-addressable-memory, sdm]
 created: 2026-06-19
-updated: 2026-06-23
+updated: 2026-06-27
 sources: [Hopfield Networks Neural Memory Machines, Structure and function of the hippocampal CA3 module, The mechanisms for pattern completion and pattern separation in the hippocampus, Complementary Learning Systems, High Capacity and Dynamic Accessibility in Associative Memory Networks with Context-Dependent Neuronal and Synaptic Gating, sparse_representations, High-capacity flexible hippocampal associative and episodic memory enabled by prestructured "spatial" representations, Hybrid computing using a neural network with dynamic external memory, kanerva-sdm-1993, Bio-inspired computational memory model of the Hippocampus An approach to a neuromorphic spike-based Content-Addressable Memory]
-related: [wiki/concepts/attention.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/engrams.md, wiki/concepts/working-memory.md, wiki/concepts/binding-problem.md, wiki/concepts/neuromodulation.md, wiki/concepts/pattern-separation.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/hebbian-learning.md, wiki/concepts/sequence-memory.md, wiki/entities/equilibrium-propagation.md, wiki/entities/boltzmann-machine.md, wiki/entities/vector-hash-model.md, wiki/entities/dnc-model.md, wiki/entities/sdm-model.md, wiki/entities/cerebellum.md, wiki/entities/snn.md, wiki/entities/hami-model.md, wiki/papers/hopfield-networks-crouse-2022.md, wiki/papers/boltzmann-machine-transcript.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/ca3-sammons-2023.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/podlaski-context-modular-memory-2025.md, wiki/papers/ahmad-hawkins-sdr-2016.md, wiki/papers/vector-hash-chandra-2023.md, wiki/papers/long-sequence-hopfield-chaudhry-2023.md, wiki/papers/dnc-graves-2016.md, wiki/papers/kanerva-sdm-1993.md, wiki/papers/scellier-bengio-eqprop-2017.md, wiki/papers/spiking-cam-hippocampus-casanueva-2024.md, wiki/papers/hami-poursiami-2025.md]
+related: [wiki/concepts/attention.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/engrams.md, wiki/concepts/working-memory.md, wiki/concepts/binding-problem.md, wiki/concepts/neuromodulation.md, wiki/concepts/pattern-separation.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/hebbian-learning.md, wiki/concepts/sequence-memory.md, wiki/concepts/btsp.md, wiki/concepts/memory-schemas.md, wiki/entities/equilibrium-propagation.md, wiki/entities/boltzmann-machine.md, wiki/entities/vector-hash-model.md, wiki/entities/dnc-model.md, wiki/entities/sdm-model.md, wiki/entities/cerebellum.md, wiki/entities/snn.md, wiki/entities/hami-model.md, wiki/papers/hopfield-networks-crouse-2022.md, wiki/papers/boltzmann-machine-transcript.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/ca3-sammons-2023.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/podlaski-context-modular-memory-2025.md, wiki/papers/ahmad-hawkins-sdr-2016.md, wiki/papers/vector-hash-chandra-2023.md, wiki/papers/long-sequence-hopfield-chaudhry-2023.md, wiki/papers/dnc-graves-2016.md, wiki/papers/kanerva-sdm-1993.md, wiki/papers/scellier-bengio-eqprop-2017.md, wiki/papers/spiking-cam-hippocampus-casanueva-2024.md, wiki/papers/hami-poursiami-2025.md, wiki/papers/wu-maass-btsp-2025.md, wiki/papers/preston-eichenbaum-hpc-pfc-2013.md]
 ---
 
 # Associative Memory
@@ -204,6 +204,29 @@ No explicit "forget" call is needed; forgetting is a natural consequence of STDP
 
 ---
 
+## BTSP: Binary-Weight One-Shot CAM (Wu & Maass 2025)
+
+All Hopfield variants require continuous weights whose number of distinguishable values grows with M — biologically implausible and impractical for neuromorphic hardware. Wu & Maass 2025 ([[wiki/papers/wu-maass-btsp-2025.md]]) show that BTSP produces a high-quality CAM with binary weights from the start.
+
+**Core mechanism — bimodal weighted-sum distribution:**
+- Neurons in Q(**x**) (received plateau potential during pattern **x**) accumulate weights biased toward **x**; their weighted sum forms a **high cluster**
+- Neurons not in Q(**x**) accumulate random weight patterns; their weighted sum forms a **low cluster**
+- Setting threshold between clusters enables recall from up to 33% masked cues — unimodal random projections cannot tolerate any masking
+
+**Capacity for sparse inputs ($f_p$ = 0.005):**
+
+| Model | Weight type | Recall w/ 33% masking | Repulsion | One-shot? |
+|---|---|---|---|---|
+| Binary Hopfield | Continuous (quantized = fail) | Poor | No | Yes (Hebb) |
+| Random projection | Binary (fixed) | Fails | No | N/A |
+| **BTSP** | **Binary (learned)** | **Good (up to 800k items, human scale)** | **Yes** | **Yes** |
+
+**Repulsion effect:** BTSP's LTD branch cancels shared-input weights when a neuron receives plateau potentials for two similar patterns — the resulting memory traces have *lower* overlap than the input overlap. This is the opposite of random projections (which preserve input similarity) and matches the human brain's documented repulsion of similar memories. See [[wiki/concepts/btsp.md]] for the full mechanism.
+
+**Key parameter $f_q$:** the plateau potential probability per pattern (~0.005, experimentally measured) is a novel control variable with no analog in Hopfield or SDM. It trades off trace size, interference, and repulsion strength — the 10s plateau window duration appears tuned to bring $f_q$ into the optimal range.
+
+---
+
 ## Open Problems
 
 **CA3 connectivity:** Working estimate ~10% (Sammons 2023, mouse, 3D EM (Expectation Maximization) + octuple patch-clamp); Guzman 2016 (rat, slice) reported <1% and attributed pattern completion to enriched disynaptic motifs. At ~10%, random connectivity suffices — motif enrichment is unnecessary. Discrepancy attributed to species, preparation, and cell density; see [[wiki/open-problems.md]] Empirical Tensions for replication status.
@@ -221,6 +244,7 @@ No explicit "forget" call is needed; forgetting is a natural consequence of STDP
 Associative memory solves **key-based retrieval without explicit addressing**; a partial observation completes to the stored representation. Needed in:
 
 - **Mediated inference:** the biological hippocampus traverses associative chains (X→Y, Y→Z) during inference to answer X→? without direct X-Z pairing. Dupret et al. 2020 demonstrate this via RSA: CA1 completes X to Y (one hop); mPFC/midbrain then resolve Y to Z. The key insight is that associative memory enables *inference by chaining* — the brain does not need to store all higher-order associations directly, only the first-order links. SWR (Sharp Wave Ripple) shortcuts (offline) eventually cache X→Z pairs to bypass the chain. For a reasoning model, this argues for a two-stage architecture: a CAM (Content-Addressable Memory) lookup module (HC-like) paired with a downstream outcome-translation module (mPFC-like). See [[wiki/concepts/prospective-coding.md]].
+- **Schema formation from overlapping associations:** When multiple A-B and B-C pairs share element B, HC integration of these chains under mPFC guidance forms a *schema* — a latent graph in which B is a hub connecting A and C ([[wiki/concepts/memory-schemas.md]]). mPFC adds a second processing level: it detects the shared element, reconciles conflicts when B's associations are inconsistent across pairs (A-B vs. A-C), and builds a schematic organization that supports simultaneous retrieval of all A-B-C relationships. Transitive inference (A-C) requires both HC (prospective one-step look-ahead) and mPFC (schema-level integration) — neither suffices alone (Preston & Eichenbaum 2013 [[wiki/papers/preston-eichenbaum-hpc-pfc-2013.md]]).
 - **Block 3A (Transformation Inferrer):** retrieve the transformation rule most consistent with an observed before/after pair — a pattern completion over a stored vocabulary of transformations.
 - **Block 3B (WM / context maintenance):** one-shot Hebbian write (W = YᵀY/n) is the biological fast-M mechanism for encoding context into HC in a single episode.
 - **Attention mechanism:** modern Hopfield = transformer attention, so factorized keys/values (TEM-t) make every attention head a structured associative memory lookup over the structural code.
@@ -261,4 +285,7 @@ Associative memory solves **key-based retrieval without explicit addressing**; a
 - **[[wiki/entities/snn.md]]** — the spiking CA3-CAM is a content-addressable retrieval application of SNNs; STDP is the unsupervised learning rule driving both storage and implicit forgetting; SpiNNaker platform validates the approach on neuromorphic hardware.
 - **[[wiki/entities/hami-model.md]]** — HAMI's symbolic indexing reduces high-dimensional CAM (Content-Addressable Memory) retrieval to exact lookup over a 6-bit codebook; represents the discrete-quantization extreme of the CAM (Content-Addressable Memory) spectrum (vs. Hopfield's continuous energy minimization and DNC's soft attention); NVM-CAM hardware alignment enables single-clock-cycle parallel search across all stored episodic memories.
 - **[[wiki/concepts/prospective-coding.md]]** — prospective coding is content-addressable lookup in an asymmetric (directed) associative store: X retrieves Y because STDP encoded the X→Y temporal order; the directional asymmetry distinguishes prospective from standard (symmetric) Hopfield retrieval.
+- **[[wiki/concepts/memory-schemas.md]]** — overlapping associative chains (A-B + B-C) are the raw material from which schemas are built; HC one-shot binding creates first-order edges; mPFC integration creates the schematic organization (latent graph) that supports A-C transitive inference beyond single-pass associative retrieval.
 - **[[wiki/papers/inferential-reasoning-dupret-2020.md]]** — demonstrates that biological associative chains (X→Y, Y→Z) can be traversed at inference time via CA1 pattern completion; SWR (Sharp Wave Ripple) shortcuts later compress the two-hop chain into a direct X→Z association, showing how higher-order relational structure emerges from first-order pairwise memories.
+- **[[wiki/concepts/btsp.md]]** — BTSP creates a CAM with binary weights that matches or surpasses Hopfield with continuous weights for sparse inputs; the bimodal weighted-sum distribution (plateau-neurons vs. non-plateau-neurons) is the mechanism by which BTSP achieves masking-robust recall superior to random projections.
+- **[[wiki/papers/wu-maass-btsp-2025.md]]** — primary source for binary BTSP CAM: analytical capacity theory, comparison to Hopfield and random projections, repulsion effect, and the stochastic gating parameter $f_q$ as a novel memory control variable.

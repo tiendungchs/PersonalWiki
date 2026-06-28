@@ -3,9 +3,9 @@ title: "World Models"
 type: concept
 tags: [world-models, predictive-models, model-based-rl, planning, simulation, abstract-reasoning, self-supervised-learning]
 created: 2026-06-23
-updated: 2026-06-24
+updated: 2026-06-28
 sources: [A Path Towards Autonomous Machine Intelligence, Vision-Language-Action Models for Robotics A Review Towards Real-World Applications, V-JEPA 2 Self-Supervised Video Models Enable Understanding, Prediction and Planning, LeWorldModel Stable End-to-End Joint-Embedding Predictive Architecture from Pixels, "Critical review of LeCun's Introductory JEPA paper", Integrated world modeling theory expanded Implications for the future of consciousness, A Survey Learning Embodied Intelligence from Physical Simulators and World Models]
-related: [wiki/entities/jepa-model.md, wiki/concepts/energy-based-models.md, wiki/concepts/predictive-coding.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/abstract-reasoning.md, wiki/entities/tem-model.md, wiki/entities/ltc-model.md, wiki/entities/dnc-model.md, wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md, wiki/papers/vla-survey-kawaharazuka-2025.md, wiki/papers/v-jepa-2-assran-2026.md, wiki/papers/leworldmodel-maes-2026.md, wiki/papers/lecun-jepa-critical-review-lett-2025.md, wiki/entities/iwmt.md, wiki/papers/safron-iwmt-expanded-2022.md, wiki/concepts/continual-learning.md, wiki/papers/kessler-continual-dreamer-2023.md, wiki/papers/embodied-intelligence-survey-2025.md]
+related: [wiki/entities/jepa-model.md, wiki/concepts/energy-based-models.md, wiki/concepts/predictive-coding.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/abstract-reasoning.md, wiki/entities/tem-model.md, wiki/entities/ltc-model.md, wiki/entities/dnc-model.md, wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md, wiki/papers/vla-survey-kawaharazuka-2025.md, wiki/papers/v-jepa-2-assran-2026.md, wiki/papers/leworldmodel-maes-2026.md, wiki/papers/lecun-jepa-critical-review-lett-2025.md, wiki/entities/iwmt.md, wiki/papers/safron-iwmt-expanded-2022.md, wiki/concepts/continual-learning.md, wiki/papers/kessler-continual-dreamer-2023.md, wiki/papers/embodied-intelligence-survey-2025.md, wiki/entities/spacetime-attractor.md, wiki/concepts/planning-as-inference.md, wiki/papers/mechanistic-planning-pfc-jensen-2026.md]
 ---
 
 # World Models
@@ -87,6 +87,7 @@ Many systems combine types (Dreamer = Dynamics + Reward). The Neural Simulator /
 | **LeWM (Maes et al. 2026)** | End-to-end JEPA world model from pixels | Representation z_t | SIGReg N(0,I) prior | 2D/3D manipulation tasks; 15M params single GPU |
 | **IWMT (Safron 2022)** | IIT+GNWT+FEP-AI synthesis: consciousness = integrated spatiotemporal-causal world model achieved via turbo-coding (iterative inter-level loopy BP) | Integrated representation space; SOHMs broadcast globally via rich-club hub | Hierarchical FEP (Free Energy Principle) posterior q(z\|o) with precision weighting | Multi-modal cross-domain via "unlimited associative learning" |
 | **NewtonianVAE (Okumura et al. 2022)** | VAE with explicit Newtonian dynamics constraint in latent space enabling PD-controllable state representation | Representation z with physical dynamics | PD-control structural constraint | Applied to real robot socket insertion; single task/environment |
+| **STA (Jensen et al. 2026)** | World model embedded directly in recurrent synaptic weights (inter-subspace connectivity = environment adjacency matrix A_{ij}); not applied sequentially but used implicitly by attractor dynamics | No explicit prediction output — world model is implicit in fixed-point structure | Attractor-implicit — fixed points are reward-maximizing trajectories | Validated on spatial navigation; abstract state spaces untested; requires prior learning of A via HC replay |
 | **DayDreamer (Wu et al. 2022)** | DreamerV2 deployed on real robot with online learning pipeline: interact → collect → train WM → train policy → repeat | Categorical RSSM (discrete latent + recurrent state) | Recurrent belief state | Online real-robot learning with high sample efficiency; single task per run |
 | **EnerVerse (Liu et al. 2024)** | Action-conditioned multi-view video generation (Neural Simulator type); consistent visual rollouts over long horizons for locomotion policy training | Pixel space (video generation) | Diffusion-based | Locomotion tasks; strong visual consistency; single embodiment per run |
 | **HWM (Hierarchical WM)** | Multi-level Dynamics Model; top level predicts abstract sub-goals; lower levels predict transitions conditioned on sub-goals; solution to planning horizon dilemma via decomposition | Representation space at each level | RSSM-like per level | Long-horizon manipulation via hierarchical sub-goal decomposition |
@@ -115,6 +116,24 @@ This is classical Model-Predictive Control (MPC) with a learned world model and 
 **V-JEPA 2-AC as concrete Mode-2 instantiation (2026):** the first validated real-robot implementation. Energy function: `E(â_{1:T}) = ||P(â_{1:T}; s_k, z_k) − z_goal||₁`. Optimization: Cross-Entropy Method (non-gradient, sample-based). The energy landscape is empirically smooth and locally convex around the optimal action, making CEM tractable. Planning speed: 16 sec/action (800 samples) vs. 4 min/action for pixel-space Cosmos (80 samples). Pick-and-place success: 65–80% (V-JEPA 2-AC) vs. 0% (Cosmos) — direct empirical comparison showing that latent-space world models dramatically outperform generative pixel-space models for planning.
 
 ---
+
+## STA: World Model in Weights (Not Applied Sequentially)
+
+The Spacetime Attractor (Jensen et al. 2026) represents a qualitatively distinct world-model instantiation. In all the architectures above, the world model is a learned function Pred(s_t, a_t) → s_{t+1} that is *applied iteratively* at planning time. The STA instead **embeds the world model once in recurrent weights** and never applies it at decision time:
+
+- Inter-subspace connections W_{δ,δ+1} ≈ adjacency matrix A_{ij}
+- Planning = attractor relaxation; the world model is implicit in the fixed-point structure
+- All future timesteps evaluated *in parallel* rather than sequentially
+
+This sidesteps the planning horizon dilemma entirely: there is no rollout error accumulation because no rollout is performed. The cost is that A_{ij} must be pre-learned and cannot be updated at decision time — the STA trades flexibility (Mode-2's ability to plan in novel environments) for speed (no sequential simulation).
+
+**Architecture contrast:**
+
+| Approach | World model applied | Error accumulation | Novel env. |
+|---|---|---|---|
+| Sequential rollout (MPC, DreamerV2) | Iteratively at planning time | Grows with T | Yes (model generalizes) |
+| STA | Embedded in weights at learning time | None | No (W must be re-learned) |
+| Value function (TD, SR) | Never (amortized) | None | Partial (SR adapts to new r) |
 
 ## Planning Horizon Dilemma
 
@@ -195,6 +214,8 @@ This asymmetry confirms that representation-space world models naturally encode 
 - **[[wiki/papers/lecun-jepa-critical-review-lett-2025.md]]** — argues that Mode-2 (MPC with learned world model + hard-wired search) is System I, not System II; identifies learning the search/planning algorithm itself as the genuine System II gap; notes that simultaneous plasticity of world model + cost + control algorithm requires a stabilizing meta-management architecture.
 - **[[wiki/entities/iwmt.md]]** — IWMT proposes that phenomenal consciousness is integrated world modeling, implying that a world model achieving human-level generalization requires explicit spatiotemporal-causal coherence across modalities — a stronger architectural requirement than feedforward multi-modal fusion; the turbo-coding architecture is IWMT's proposal for how iterative inter-level inference achieves this coherence.
 - **[[wiki/papers/taniguchi-world-models-pc-robotics-2023.md]]** — names the planning horizon dilemma explicitly, formally unifies SSM world model learning with FEP (Free Energy Principle) (both maximize ELBO), and surveys neuro-symbolic bottom-up symbol discovery via binary bottleneck affordance autoencoders as a complement to LAPA's top-down approach.
+- **[[wiki/entities/spacetime-attractor.md]]** — STA is a qualitatively distinct world-model instantiation: the environment adjacency matrix is embedded in recurrent synaptic weights at learning time; planning uses attractor dynamics rather than sequential rollout, eliminating horizon-dilemma error accumulation at the cost of requiring prior W-learning.
+- **[[wiki/concepts/planning-as-inference.md]]** — the algorithmic framing of what the STA achieves: planning as attractor inference rather than sequential search; directly addresses the planning horizon dilemma by evaluating all future timesteps in parallel via a world model implicit in weights.
 - **[[wiki/concepts/continual-learning.md]]** — DreamerV2's imagination-based policy training decouples task gradients, enabling the world model to be shared across sequential tasks while the actor is regenerated per task; this factorization is the key architectural property that makes world models a natural fit for CRL.
 - **[[wiki/papers/kessler-continual-dreamer-2023.md]]** — first task-agnostic model-based CRL system; demonstrates that DreamerV2 + reservoir sampling resolves the stability-plasticity tradeoff for multi-task sequential RL; identifies interference when reward functions change within the same environment as the remaining open failure mode.
 - **[[wiki/papers/embodied-intelligence-survey-2025.md]]** — documents three-way WM taxonomy (Neural Simulator / Dynamics Model / Reward Model) and independent convergence on hierarchical WMs (HWM, PIVOT-R, OSVI-WM) across three robotics papers as the primary empirical solution to long-horizon planning in embodied settings.

@@ -3,12 +3,12 @@ title: "Concepts Index"
 type: overview
 tags: [index]
 created: 2026-06-20
-updated: 2026-06-25
+updated: 2026-06-28
 sources: []
 related: []
 ---
 
-# Concepts Index — 45 pages
+# Concepts Index — 56 pages
 
 Each entry: `[Title](path) — one-line description`. Updated when a new concept page is created.
 
@@ -44,7 +44,9 @@ Each entry: `[Title](path) — one-line description`. Updated when a new concept
 - [Hierarchical Representations](wiki/concepts/hierarchical-representations.md) — manifold untangling; CLSU canonical mechanism; staged local factorization vs. TEM global; feedforward ≠ model-building
 - [Dendritic Computation](wiki/concepts/dendritic-computation.md) — NMDA spike coincidence detection; >100 independent segment detectors per neuron; dual-compartment credit assignment (basal/apical)
 - [Continual Learning](wiki/concepts/continual-learning.md) — stability-plasticity tension; catastrophic forgetting; EWC; CLS (Complementary Learning Systems) as two-system solution; SDR (Sparse Distributed Representations) sparsity as passive protection; Vector-HaSH scaffold
+- [Excitation-Inhibition Balance](wiki/concepts/excitation-inhibition-balance.md) — E/I ratio as speed-accuracy dial; FC as empirical proxy for whole-brain E/I regime; neuromodulatory control; design implication: per-module E/I as System 1 / System 2 mode switch
 - [Ring Attractor](wiki/concepts/ring-attractor.md) — recurrent bump on circular topology; four A-CANN modes (static/traveling wave/anticipative/oscillatory); Lévy flights; confirmed in Drosophila EB
+- [Neural Field Theory](wiki/concepts/neural-field-theory.md) — Fokker-Planck → neural mass ODE → cortical field PDE; Amari bump = CANN/ring-attractor foundation; bifurcations (Hopf/saddle-node) as computational primitives; traveling waves; corticothalamic oscillations
 - [Latent States](wiki/concepts/latent-states.md) — hidden task-relevant variables inferred from sequences; unifies splitter/lap/evidence cells; CCGP (Cross-Condition Generalization Performance) as geometric criterion
 - [Successor Representation](wiki/concepts/successor-representation.md) — S = (I−γT)^{−1}; rows = place cells; eigenvectors = grid cells; intuitive planning
 - [Intelligence Density](wiki/concepts/intelligence-density.md) — $\mathcal{I} = \log_2 N / C$; four-way memorisation/knowing taxonomy; formal criterion for abstract reasoning; recurrence necessity; Legg-Hutter/Chollet unification
@@ -59,3 +61,13 @@ Each entry: `[Title](path) — one-line description`. Updated when a new concept
 - [Refinement Loops (Test-Time Compute)](wiki/concepts/refinement-loops.md) — ML taxonomy of iterative generate-verify-refine cycles: test-time training, zero-pretraining DL (TRM/CompressARC), evolutionary program synthesis, application-layer CoT (Chain of Thought) harnesses; verifier availability as the key constraint
 - [Prospective Coding](wiki/concepts/prospective-coding.md) — CA1 look-ahead: represents the expected next element in a learned sequence when given the current element; spatial (preplay) and cognitive/inferential (X→Y during inference) variants; one-step predictor with HC-mPFC division of labor
 - [Shortcut Reasoning](wiki/concepts/shortcut-reasoning.md) — exploiting spurious statistical regularities to pass i.i.d. benchmarks without causal-structural understanding; ARC-domain shortcut catalogue; missing objectness prior; discriminative/generative asymmetry
+- [Criticality](wiki/concepts/criticality.md) — near-bifurcation operating regime; maximum dynamic range and state repertoire; necessary condition for resting-state network emergence and metastability; stochastic resonance at optimal noise level
+- [Behavioral Timescale Synaptic Plasticity (BTSP)](wiki/concepts/btsp.md) — one-shot CA1 learning rule gated by stochastic EC3 plateau potentials (not postsynaptic firing); binary weights; bimodal distribution → 33% masking robustness; LTD repulsion effect for similar patterns; stochastic gating parameter $f_q$ ≈ 0.005
+- [Cortical Traveling Waves](wiki/concepts/cortical-traveling-waves.md) — SC instrength gradients (weighted in-degree) direct traveling waves from low→high instrength and suppress effective oscillation frequency (EF); IF gradients compete/interact; alpha/beta subnetworks produce opposing wave directions; structural substrate for frequency-multiplexed routing
+- [Temporal Multiplexing](wiki/concepts/temporal-multiplexing.md) — brain implements 6 parallel asynchronous connectome streams (~20–3000 ms) sharing the same ICN-combinatorial spatial vocabulary (126 blueprints) and transition grammar; speed-invariant design principle for multi-timescale processing
+- [Connectivity Gradients](wiki/concepts/connectivity-gradients.md) — smooth continuous axes of FC (Functional Connectivity) organization from eigendecomposition; principal gradient (G1) runs unimodal sensory→transmodal DMN (biological hierarchy); tertiary gradient (G3) separates DMN from Multi-Demand Network; PROFUMO spatial overlap beats temporal correlation
+- [Network Integration-Segregation Dynamics](wiki/concepts/network-integration-segregation.md) — brain alternates between segregated (high-modularity, specialist parallel) and integrated (high-global-efficiency, hub-mediated) states on ~10s timescales; LC-NA arousal gates the toggle; integration accelerates evidence accumulation; hub connector layer + global gain signal as design implication
+- [Differentiable Plasticity](wiki/concepts/differentiable-plasticity.md) — outer loop (BPTT or evolutionary) discovers plasticity rule parameters η; deployed inner loop adapts weights via fully local Hebbian/neuromodulated rule; retroactive neuromodulation (eligibility trace + delayed dopamine M) is biologically plausible variant; partial solution to gap #4; activations-as-weights equivalence connects to in-context learning
+- [Memory Schemas](wiki/concepts/memory-schemas.md) — organized overlapping association networks supporting transitive inference and rapid schema-consistent learning; HC integrates overlapping pairs; mPFC reconciles conflicts and selects schemas; assimilation/accommodation consolidation model; schemas = latent graphs
+- [PFC Dynamic Network Connectivity (PFC-DNC)](wiki/concepts/pfc-dynamic-network-connectivity.md) — rapid (seconds), reversible modulation of PFC pyramidal network strength via cAMP → HCN/KCNQ channel cascade; molecular implementation of NA analog gate (Gap #8); WM capacity limit = epilepsy prevention negative feedback
+- [Planning as Inference](wiki/concepts/planning-as-inference.md) — planning by recognition via attractor dynamics: world model embedded in recurrent weights; optimal trajectory inferred in parallel without sequential rollout; STA is the canonical instantiation; sidesteps planning horizon dilemma

@@ -3,9 +3,9 @@ title: "Prospective Coding"
 type: concept
 tags: [prospective-code, hippocampus, inference, look-ahead, sequence-memory, preplay, relational-inference]
 created: 2026-06-23
-updated: 2026-06-23
+updated: 2026-06-28
 sources: [neuronal-computation-inferential-reasoning]
-related: [wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/place-cells.md, wiki/concepts/replay.md, wiki/concepts/sequence-memory.md, wiki/concepts/latent-states.md, wiki/concepts/associative-memory.md, wiki/papers/inferential-reasoning-dupret-2020.md, wiki/papers/hassabis-neuroscience-ai-2017.md]
+related: [wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/place-cells.md, wiki/concepts/replay.md, wiki/concepts/sequence-memory.md, wiki/concepts/latent-states.md, wiki/concepts/associative-memory.md, wiki/papers/inferential-reasoning-dupret-2020.md, wiki/papers/hassabis-neuroscience-ai-2017.md, wiki/entities/default-mode-network.md, wiki/papers/gusnard-2001-mpfc-default-mode.md, wiki/papers/spatial-learning-pfc-martinet-2011.md, wiki/entities/prefrontal-cortex.md, wiki/entities/spacetime-attractor.md, wiki/concepts/planning-as-inference.md, wiki/papers/mechanistic-planning-pfc-jensen-2026.md]
 ---
 
 # Prospective Coding
@@ -46,6 +46,7 @@ Additionally, when X_n is presented, X-tuned neurons fire **before** Y-tuned neu
 | Dupret et al. 2020 | Mice (CA1 ensemble) + Humans (7T fMRI) | Sensory preconditioning (X→Y→Z) | RSA: CA1 represents Y when X shown; temporal order X→Y preserved; dCA1 optogenetic silencing blocks inference |
 | Hassabis et al. 2017 review | Multiple | Spatial navigation | HC SWR (Sharp Wave Ripple) at choice points activates sequential place cell representations of candidate future paths (preplay) |
 | Nieh et al. 2021 | Mice (CA1) | Evidence accumulation | CA1 jointly encodes current position and future-relevant latent variable (evidence) in a 5.4D manifold |
+| Martinet et al. 2011 | Simulated rat + real PFC recordings | Goal-directed navigation (Tolman maze) | PFC σ-type neurons show left-skewed asymmetric tuning curves; ranked pre-execution firing predicts serial order of planned trajectories; anticipatory discharge ~75 ms ahead of visited column; validated against medial PFC pyramidal cell recordings |
 
 ---
 
@@ -54,6 +55,40 @@ Additionally, when X_n is presented, X-tuned neurons fire **before** Y-tuned neu
 A critical asymmetry from Dupret et al. 2020: the hippocampus generates the look-ahead step **X→Y** but does **not** represent the inferred outcome **Z** during inference. Z is represented in mPFC and dopaminergic midbrain. This implies prospective coding in HC is a one-step predictor, not a full chain simulator — the chain completion (Y→Z) must happen downstream.
 
 This is analogous to the DNC (Differentiable Neural Computer) / preplay architecture: HC produces the sequence or prediction; a controller (PFC/mPFC) evaluates and translates it into a goal representation.
+
+---
+
+## PFC Prospective Coding: Multi-Step Trajectory Representation
+
+Martinet et al. 2011 ([[wiki/papers/spatial-learning-pfc-martinet-2011.md]]) identify a functionally distinct prospective code in PFC that differs from the one-step HC look-ahead:
+
+| Feature | HC (CA1) | PFC (σ-type neurons) |
+|---------|----------|---------------------|
+| Trigger | Cue X → predict Y | Goal-directed trajectory planning phase |
+| Steps ahead | 1 (X→Y only) | Full planned trajectory (N steps) |
+| Tuning curve shape | Symmetric | Asymmetric (left-skewed; negative skew increases linearly with path distance from start) |
+| Temporal anticipation | ~one sequence item | ~75 ms ahead of the actually visited column |
+| Sequence order content | Encodes expected next item | Ranked pre-execution firing predicts serial order of entire planned path |
+| Source in model | CA3 pattern completion → CA1 | φ-projection forward propagation through topological column network |
+
+**Sequence order coding:** before the animal executes a planned trajectory, the ranked discharge frequencies of σ neurons predict the serial order of the states to be visited. This pre-execution ordering is maintained not just at time 0 (start of trajectory) but at every time t — the ranking continuously predicts the remaining order of future states. Validated against Averbeck et al. (2006) monkey PFC recordings of sequential drawing tasks.
+
+**Design implication:** HC prospective coding and PFC prospective coding are hierarchically related. HC generates a one-step look-ahead from the current state; PFC maintains the full planned trajectory representation and uses it to propagate the motor-command sequence forward. A reasoning model needs both: a one-step HC-like predictor for online inference, and a PFC-like trajectory representation for multi-step planning.
+
+---
+
+## STA: Simultaneous Full-Trajectory Prospective Code
+
+Jensen et al. 2026 [[wiki/papers/mechanistic-planning-pfc-jensen-2026.md]] provide the mechanistic model for PFC multi-step prospective coding. The Spacetime Attractor (STA) extends the Martinet σ-neuron account into a full circuit theory:
+
+| Feature | HC CA1 (Dupret 2020) | PFC σ-neurons (Martinet 2011) | STA (Jensen 2026) |
+|---|---|---|---|
+| Steps represented | 1 (X→Y) | Full trajectory (ranked) | T simultaneous subspaces |
+| Mechanism | CA3 pattern completion | Spreading activation | Attractor dynamics |
+| Goal-dependence | Not modeled | Distance-to-goal firing rate | Reward input per subspace |
+| Updating during execution | N/A | Recalculated | Conveyor belt (subspace shift) |
+
+"Conveyor belt dynamics" (validated in El-Gaby et al. 2023 PFC recordings): as each action is taken, the δ=k representation shifts to δ=k−1, so the δ=1 subspace always encodes the immediate next step without replanning. This is the mechanistic bridge between prospective coding (hold a representation of the future) and planning (infer the optimal future).
 
 ---
 
@@ -88,3 +123,9 @@ With extended experience, SWR (Sharp Wave Ripple) shortcuts may reduce reliance 
 - **[[wiki/concepts/associative-memory.md]]** — prospective coding is content-addressable lookup in a directed (asymmetric) associative store: X → retrieve Y; the asymmetry (X triggers Y but not vice versa during inference) reflects the temporal order encoded by STDP.
 - **[[wiki/papers/inferential-reasoning-dupret-2020.md]]** — primary source for the cognitive / non-spatial version of prospective coding; provides both the RSA operationalization and the optogenetic causal proof.
 - **[[wiki/papers/hassabis-neuroscience-ai-2017.md]]** — source for the spatial version (HC preplay at choice points); motivates the unified account of prospective coding across spatial and non-spatial domains.
+- **[[wiki/entities/default-mode-network.md]]** — the dMPFC default-state simulation (narrative/autobiographical self; continuous behavioral rehearsal) is the temporal self-model within which HC prospective codes are interpreted and grounded; dMPFC provides the "who/when/where" context that translates a bare X→Y look-ahead into a personally relevant goal prediction.
+- **[[wiki/papers/gusnard-2001-mpfc-default-mode.md]]** — establishes dMPFC (BA 8/9/10) as the seat of ongoing behavioral simulation at rest; the spontaneous inner rehearsal maintained by dMPFC is the macro-timescale complement to HC's online one-step prospective code — two levels of the same planning hierarchy.
+- **[[wiki/papers/spatial-learning-pfc-martinet-2011.md]]** — source for PFC prospective coding (σ-type neurons): asymmetric left-skewed tuning curves, sequence order coding, ~75 ms anticipatory discharge, trajectory representation extending HC one-step look-ahead to the full planned path.
+- **[[wiki/entities/prefrontal-cortex.md]]** — PFC hosts both the topological planning mechanism (spreading activation) and the prospective-code output (σ-type neurons) that reads out the planned trajectory in temporal order; HC prospective coding and PFC prospective coding are hierarchically related, not equivalent.
+- **[[wiki/entities/spacetime-attractor.md]]** — STA is the mechanistic circuit model for PFC's full-trajectory prospective code: T simultaneous subspaces replace the ranked σ-neuron array; conveyor belt dynamics execute the plan; attractor inference replaces spreading activation.
+- **[[wiki/concepts/planning-as-inference.md]]** — planning as inference is the algorithmic framing of what prospective coding achieves at the multi-step level: the simultaneous T-step representation is the fixed point of the STA's attractor dynamics, not a sequential computation.

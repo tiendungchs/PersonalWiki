@@ -3,9 +3,9 @@ title: "Energy-Based Models (EBM)"
 type: concept
 tags: [energy-based-models, self-supervised-learning, contrastive-learning, world-models, reasoning, optimization]
 created: 2026-06-23
-updated: 2026-06-23
+updated: 2026-06-25
 sources: [A Path Towards Autonomous Machine Intelligence, barlow_twins, vicreg]
-related: [wiki/entities/jepa-model.md, wiki/concepts/world-models.md, wiki/concepts/predictive-coding.md, wiki/entities/boltzmann-machine.md, wiki/concepts/associative-memory.md, wiki/concepts/abstract-reasoning.md, wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md, wiki/papers/barlow-twins-zbontar-2021.md, wiki/papers/vicreg-bardes-2022.md, wiki/papers/lejepa-balestriero-lecun-2025.md, wiki/papers/weak-sigreg-akbar-2026.md]
+related: [wiki/entities/jepa-model.md, wiki/concepts/world-models.md, wiki/concepts/predictive-coding.md, wiki/entities/boltzmann-machine.md, wiki/concepts/associative-memory.md, wiki/concepts/abstract-reasoning.md, wiki/entities/fcann.md, wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md, wiki/papers/barlow-twins-zbontar-2021.md, wiki/papers/vicreg-bardes-2022.md, wiki/papers/lejepa-balestriero-lecun-2025.md, wiki/papers/weak-sigreg-akbar-2026.md, wiki/papers/fcann-attractor-dynamics-englert-2026.md]
 ---
 
 # Energy-Based Models (EBM)
@@ -136,6 +136,8 @@ The EBM (Energy-Based Model) framework unifies several architectures already in 
 | Predictive coding (PC) | E = Σ_l ε_l² | Local ε·x rule | Posterior over hidden causes |
 | JEPA | E = ||s_y − Pred(s_x, z)||² | VICReg (non-contrastive) | Abstract world model |
 | VAE | E = ||x − dec(z)||² + KL[q‖p] | ELBO | Latent generative model |
+| **fcANN** | E = −½ σᵀ J σ, J = −Σ⁻¹ | Hebbian + anti-Hebbian (contrastive PC; K-S self-orthogonalization) | ~Orthogonal macro brain attractors; K-S-optimal storage capacity |
+| V1 complex cell (energy model) | E = −([F^φ(k^φ·s)]² + [F^{φ+90°}(k^{φ+90°}·s)]²) | Fixed (developmental/evolutionary) | Phase-invariant orientation/SF detection; divisive normalization (`/ (σ² + Σ neighbors²)`) prevents response saturation — biological softmax |
 
 ---
 
@@ -163,3 +165,5 @@ The EBM (Energy-Based Model) framework unifies several architectures already in 
 - **[[wiki/papers/lejepa-balestriero-lecun-2025.md]]** — theoretical source of the isotropic Gaussian optimality theorem and SIGReg; proves that N(0,I) uniquely minimizes downstream risk and that SIGReg's characteristic-function matching is the provably correct way to enforce it.
 - **[[wiki/papers/weak-sigreg-akbar-2026.md]]** — supervised adaptation of LeJEPA's SIGReg; adds the Dean-Kawasaki particle dynamics framing of collapse and demonstrates that single-term full-covariance regularization (`||Cov − I||_F`) generalizes outside SSL to BN-free supervised training.
 - **[[wiki/concepts/shortcut-reasoning.md]]** — discriminative EBMs (cross-entropy classifiers) are maximally shortcut-prone because the energy is minimized as soon as any sufficient discriminative predictor is found; generative/reconstruction EBMs must model all training variation, forcing representations onto causally relevant features and making shortcuts structurally harder to exploit.
+- **[[wiki/entities/fcann.md]]** — fcANN instantiates the EBM at whole-brain scale: J = −Σ⁻¹ is the biologically derived energy function; the Kanter-Sompolinsky orthogonality result shows how FEP-ANN learning drives the EBM toward the collapse-free maximum-capacity regime through self-orthogonalization.
+- **[[wiki/papers/carandini-early-visual-2005.md]]** — source for the V1 complex cell energy model (Adelson & Bergen 1985) and divisive normalization (Heeger 1992); the biological fixed-weight EBM row in the unification table above.
