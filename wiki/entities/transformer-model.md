@@ -3,9 +3,9 @@ title: "Transformer"
 type: entity
 tags: [transformer, attention, sequence-transduction, multi-head-attention, positional-encoding]
 created: 2026-06-23
-updated: 2026-06-23
-sources: [Attention Is All You Need]
-related: [wiki/concepts/attention.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/binding-problem.md, wiki/concepts/associative-memory.md, wiki/concepts/working-memory.md, wiki/concepts/canonical-microcircuit.md, wiki/entities/tem-model.md, wiki/papers/vaswani-attention-2017.md, wiki/papers/t-tem-whittington-2022.md]
+updated: 2026-07-01
+sources: [Attention Is All You Need, fact-finding-post1, fact-finding-post2, fact-finding-post3]
+related: [wiki/concepts/attention.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/binding-problem.md, wiki/concepts/associative-memory.md, wiki/concepts/working-memory.md, wiki/concepts/canonical-microcircuit.md, wiki/entities/tem-model.md, wiki/papers/vaswani-attention-2017.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/fact-finding-factual-recall-nanda-2023.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/sparse-distributed-representations.md]
 ---
 
 # Transformer
@@ -57,12 +57,27 @@ Surpassed all previous models including ensembles at a fraction of training cost
 
 ---
 
+## Factual Recall Circuit (Nanda et al. 2023)
+
+Mechanistic case study in Pythia 2.8B (32 layers) tracing how athlete→sport facts are stored and recalled:
+
+| Stage | Layers | Function |
+|---|---|---|
+| Token concatenation | Attention L0–1 | Sum per-token embeddings of a multi-token entity name into distinct subspaces on the final name token |
+| Fact lookup | MLP L2–6 | Nonlinearly map concatenated tokens to a linear "multi-token embedding" of entity attributes (detokenization) |
+| Attribute extraction | Sparse mid/late attention heads (e.g. L16H20) | Linearly read the target attribute subspace and write it to the output logits |
+
+Context preceding the entity's name tokens is irrelevant to lookup — early-mid layers function as a "multi-token embedding table," structurally analogous to the token embedding layer but over multi-token inputs. **Storage is not localized**: ablating individual neurons shows near-zero cross-correlation in which neurons matter for different facts about the same entity — fact storage is maximally distributed/superposed across all 5 MLP layers, not modular. See [[wiki/papers/fact-finding-factual-recall-nanda-2023.md]].
+
+---
+
 ## Limitations
 
 - **O(n²) context cost** maps directly to WM capacity constraints: reasoning over long interaction sequences is architecturally expensive.
 - **Sinusoidal positional encodings** assume linear Euclidean sequence order — fail for non-Euclidean graph structures; TEM-t fixes this with learned recurrent structural encodings.
 - **Localism failure** (Hupkes 2020): global receptive field processes sub-expressions in full-sequence context, not in isolation; this is the one compositional facet where Transformer underperforms convolutional alternatives.
 - No explicit compositional structure; binds representations via attention weights that are learned end-to-end, with no inductive bias toward systematic compositionality.
+- **Memorization without macrostructure** (Nanda et al. 2023): for tasks approaching pure memorization (e.g., arbitrary name→fact lookup), MLP weights store content via dense distributed superposition with no interpretable intermediate representations — a structural ceiling on mechanistic interpretability distinct from capacity limits, and evidence that fact storage is slow-trained yet functionally M-like (memorized, non-generalizing) rather than W-like.
 
 ---
 
@@ -90,3 +105,6 @@ Surpassed all previous models including ensembles at a fraction of training cost
 - **[[wiki/entities/tem-model.md]]** — TEM-t rewrites TEM as a constrained Transformer (Q=K=f(g), V=f(x)); the Vaswani architecture is the starting point from which TEM-t's structural factorization is derived.
 - **[[wiki/papers/vaswani-attention-2017.md]]** — primary source; paper stub with the five key computational insights.
 - **[[wiki/papers/t-tem-whittington-2022.md]]** — shows that the Transformer with learned structural positional encodings is TEM; the Hopfield↔attention derivation completes the hippocampus ↔ Transformer equivalence.
+- **[[wiki/papers/fact-finding-factual-recall-nanda-2023.md]]** — mechanistic case study confirming that Transformer factual recall is stored via slow-trained, entangled, single-timescale weights functioning as pure memorization (M-like) with no generalizing macrostructure (W-like).
+- **[[wiki/concepts/two-learning-timescales.md]]** — the factual-recall circuit grounds the "Standard DNN: jointly trained, no factorization, single timescale" row of the W/M spectrum table at the neuron level.
+- **[[wiki/concepts/sparse-distributed-representations.md]]** — fact storage via dense polysemantic superposition (not sparse SDR-style coding) is the Transformer's solution to representing more facts than neurons.

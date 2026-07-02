@@ -3,12 +3,12 @@ title: "Concepts Index"
 type: overview
 tags: [index]
 created: 2026-06-20
-updated: 2026-06-28
+updated: 2026-07-02
 sources: []
 related: []
 ---
 
-# Concepts Index — 56 pages
+# Concepts Index — 57 pages
 
 Each entry: `[Title](path) — one-line description`. Updated when a new concept page is created.
 

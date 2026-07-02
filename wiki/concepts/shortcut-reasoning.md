@@ -3,9 +3,9 @@ title: "Shortcut Reasoning"
 type: concept
 tags: [shortcut-learning, generalization, abstract-reasoning, ARC, inductive-bias, objectness]
 created: 2026-06-24
-updated: 2026-06-24
+updated: 2026-07-01
 sources: [adversarial-nli-nie-2020]
-related: [wiki/concepts/abstract-reasoning.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/energy-based-models.md, wiki/concepts/meta-learning.md, wiki/entities/arc-agi.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/papers/shortcut-suite-yuan-2024.md, wiki/papers/beger-conceptarc-multimodal-2025.md, wiki/papers/odouard-2022-concept-evaluation.md, wiki/papers/math-perturb-2025.md, wiki/papers/adversarial-nli-nie-2020.md]
+related: [wiki/concepts/abstract-reasoning.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/energy-based-models.md, wiki/concepts/meta-learning.md, wiki/entities/arc-agi.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/papers/shortcut-suite-yuan-2024.md, wiki/papers/beger-conceptarc-multimodal-2025.md, wiki/papers/odouard-2022-concept-evaluation.md, wiki/papers/math-perturb-2025.md, wiki/papers/adversarial-nli-nie-2020.md, wiki/papers/fact-finding-factual-recall-nanda-2023.md]
 ---
 
 # Shortcut Reasoning
@@ -113,3 +113,4 @@ Humans apply Spelke's Core Knowledge "objectness" prior (objects persist, move c
 - **[[wiki/papers/odouard-2022-concept-evaluation.md]]** — earliest empirical quantification of concept-level shortcut gaps: RAVEN concept variations (Sameness/Progression) expose that MRNet and SCL learn distribution-specific features rather than abstract rules, predating ConceptARC's systematic benchmark by one year.
 - **[[wiki/papers/math-perturb-2025.md]]** — source: perturbation construction methodology, hard vs. simple taxonomy, per-model drop results, and the subtle memorization failure mode analysis.
 - **[[wiki/papers/adversarial-nli-nie-2020.md]]** — source for the NLI (Natural Language Inference) hypothesis-only shortcut numbers (72%→42–51%) and the inference-type failure taxonomy; extends the shortcut catalogue to the NLI (Natural Language Inference) domain and provides the cleanest empirical quantification of a spurious-edge gap.
+- **[[wiki/papers/fact-finding-factual-recall-nanda-2023.md]]** — the micro/macrofeature distinction formalizes when shortcuts are possible at all: no macrofeature exists ⟹ no shortcut is learnable, only pure memorization; this bounds the shortcut-reasoning phenomenon to tasks that have generalizable structure to exploit or ignore.

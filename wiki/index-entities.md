@@ -3,7 +3,7 @@ title: "Entities Index"
 type: overview
 tags: [index]
 created: 2026-06-20
-updated: 2026-06-28
+updated: 2026-07-02
 
 sources: []
 related: []
@@ -60,6 +60,7 @@ Each entry: `[Title](path) — one-line description`. Updated when a new entity 
 - [PGM (Procedurally Generated Matrices)](wiki/entities/pgm-benchmark.md) — Raven-style visual abstract reasoning benchmark; 8 generalisation regimes; composition-decomposition asymmetry; WReN best model
 - [OlymMATH](wiki/entities/olymmath.md) — bilingual olympiad benchmark; HARD/LEAN subsets; Lean 4 process-level verification detects heuristic shortcut guessing; intermediate tier between saturated competition math and open FrontierMath
 - [GPQA Benchmark](wiki/entities/gpqa-benchmark.md) — 448-question graduate-level MCQ (biology, physics, chemistry); google-proof gap (experts 65% vs. non-experts+web 34%); node-content-latent tier; scalable oversight motivation
+- [Baba Is AI](wiki/entities/baba-is-ai.md) — rules-as-movable-objects benchmark (from *Baba Is You*); the maximally-tractable pole of non-stationary topology (controllable + legible + bounded rewrites); frontier LLMs score ~15–20% on composing rule-manipulations
 
 ---
 

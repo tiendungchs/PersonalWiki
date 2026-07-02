@@ -5,7 +5,7 @@ tags:
   - reference
   - glossary
 created: 2026-06-20
-updated: 2026-06-25
+updated: 2026-07-02
 sources: []
 related: []
 ---
@@ -43,6 +43,9 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | DA | Dopamine | [[wiki/concepts/neuromodulation.md]] |
 | DG | Dentate Gyrus | [[wiki/concepts/pattern-separation.md]] |
 | **DLPFC** | Dorsolateral Prefrontal Cortex | [[wiki/entities/prefrontal-cortex.md]] |
+| DMC | Delayed Match-to-Category (task) | [[wiki/papers/pfc-categories-concepts-miller-2002.md]] |
+| ITC | Inferior Temporal Cortex | [[wiki/papers/pfc-categories-concepts-miller-2002.md]] |
+| FEF | Frontal Eye Field | [[wiki/entities/prefrontal-cortex.md]] |
 | DNC | Differentiable Neural Computer | [[wiki/entities/dnc-model.md]] |
 | EC | Entorhinal Cortex | [[wiki/entities/hippocampal-entorhinal-system.md]] |
 | **ELBO** | Evidence Lower Bound | [[wiki/concepts/predictive-coding.md]] |
@@ -148,5 +151,9 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | MDN | Multi-Demand Network (task-positive network, antagonistic to DMN on G3 gradient) | [[wiki/concepts/connectivity-gradients.md]] |
 | EF | Effective oscillation Frequency (oscillation frequency a region assumes when embedded in the coupled network, distinct from its intrinsic IF) | [[wiki/concepts/cortical-traveling-waves.md]] |
 | IF | Intrinsic Frequency (isolated oscillation frequency of a neural mass, before network coupling) | [[wiki/concepts/cortical-traveling-waves.md]] |
+| MDL | Minimum Description Length | [[wiki/concepts/information-theory.md]] |
+| VoE | Violation of Expectation (probing whether a world model has internalized rules) | [[wiki/concepts/world-models.md]] |
+| SLM | Stratum Lacunosum-Moleculare (hippocampal layer receiving long-range entorhinal input) | [[wiki/entities/hippocampal-entorhinal-system.md]] |
+| NGF | Neurogliaform cell (interneuron in the vmPFC→MEC→NGF memory-allocation circuit) | [[wiki/entities/hippocampal-entorhinal-system.md]] |
 
 *This table is maintained by the lint pass. When lint reports a missing abbreviation, add it here.*

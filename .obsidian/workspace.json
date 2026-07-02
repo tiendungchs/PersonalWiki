@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "153d8e8c3c4b789c",
+        "id": "588cc7a74996c6cc",
         "type": "tabs",
         "children": [
           {
-            "id": "65a5b03acc06875e",
+            "id": "7616e189e4aff41f",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "wiki/overview.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "overview"
             }
           }
         ]
@@ -152,12 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "wiki/overview.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of overview"
             }
           }
         ],
@@ -165,8 +170,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -179,44 +183,44 @@
       "bases:Create new base": false
     }
   },
-  "active": "65a5b03acc06875e",
+  "active": "7616e189e4aff41f",
   "lastOpenFiles": [
+    "raw/Peter Suber, Nomic.md",
+    "wiki/queries/review-abstract-introduction.md",
+    "wiki/glossary.md.tmp.7256.628b622f5cb0",
+    "index.md.tmp.7256.899d50425622",
+    "wiki/concepts/cognitive-control.md.tmp.7256.c286a4efb9a6",
+    "wiki/papers/pfc-categories-concepts-miller-2002.md",
+    "wiki/queries/rule-changes-as-meta-graph-rules.md",
+    "wiki/concepts/latent-graph-discovery.md",
+    "wiki/overview.md",
+    "wiki/concepts/latent-graph-discovery.md.tmp.7256.9a9f027bc985",
+    "raw/Peter Suber, \"Nomic\".md",
+    "wiki/entities/baba-is-ai.md",
+    "raw/Review Batman Fluxx (Game).md",
+    "raw/Fluxx5.0Rules_0.md",
+    "raw/The prefrontal cortex- categories, concepts and cognition.md",
+    "raw/Review 'Batman Fluxx' (Game).md",
+    "raw/Baba Is AI Break the Rules to Beat the Benchmark.md",
+    "wiki/entities/prefrontal-cortex.md",
+    "wiki/queries/review-article-abstract-introduction.md",
+    "wiki/concepts/abstract-reasoning.md",
+    "wiki/queries/allocentric-navigation-direction-evaluation.md",
+    "wiki/queries/dynamic-graph-vs-time-dimension.md",
+    "wiki/queries/mec-abstract-codes-vs-declarative-rules.md",
+    "wiki/architectural-gaps.md.tmp.15172.f37095b2086d",
+    "wiki/papers/fact-finding-factual-recall-nanda-2023.md",
+    "index.md",
+    "raw/Fact Finding Do Early Layers Specialise in Local Processing? (Post 5) — AI Alignment Forum.md",
+    "raw/Fact Finding How to Think About Interpreting Memorisation (Post 4) — AI Alignment Forum.md",
+    "raw/Fact Finding Trying to Mechanistically Understanding Early MLPs (Post 3) — AI Alignment Forum.md",
+    "raw/Fact Finding Simplifying the Circuit (Post 2) — AI Alignment Forum.md",
+    "raw/Fact Finding Attempting to Reverse-Engineer Factual Recall on the Neuron Level (Post 1) — AI Alignment Forum.md",
     "wiki/concepts/small-world-networks.md.tmp.58517.d3737875c2e3",
     "wiki/concepts/canonical-microcircuit.md.tmp.58517.969dfa31ae57",
-    "wiki/papers/li-yap-mechanistic-connectome-2022.md",
     "wiki/concepts/meta-learning.md.tmp.58517.fe840589607a",
-    "wiki/concepts/planning-as-inference.md",
-    "wiki/entities/spacetime-attractor.md",
-    "wiki/papers/mechanistic-planning-pfc-jensen-2026.md",
     "wiki/concepts/memory-schemas.md.tmp.30979.084dc80b81a1",
     "wiki/concepts/prospective-coding.md.tmp.30979.0b885ab766b1",
-    "wiki/papers/spatial-learning-pfc-martinet-2011.md",
-    "wiki/papers/lebedev-pfdl-attention-memory-2004.md",
-    "wiki/papers/tvb-scalable-simulation.md",
-    "wiki/concepts/memory-schemas.md.tmp.15063.57bd9c62ec1d",
-    "wiki/papers/euston-mpfc-memory-decision-2012.md",
-    "wiki/concepts/predictive-coding.md",
-    "raw/Spatial Learning and Action Planning in a Prefrontal Cortical Network Model.md",
-    "wiki/index-papers.md.tmp.15063.dbee46e9bcca",
-    "wiki/papers/desousa-pfc-memory-organization-hpc-2026.md",
-    "wiki/concepts/replay.md.tmp.15063.8891b448159a",
-    "wiki/papers/prefrontal-atrophy-nrem-mander-2013.md",
-    "raw/A mechanistic theory of planning in prefrontal cortex.md",
-    "wiki/overview.md",
-    "wiki/architectural-gaps.md.tmp.15063.860b213be81b",
-    "wiki/concepts/cognitive-control.md.tmp.15063.259df25c012d",
-    "wiki/entities/prefrontal-cortex.md.tmp.15063.34976c5395b0",
-    "wiki/papers/neuronal-tactic-sensorimotor-awan-2020.md",
-    "wiki/index-entities.md",
-    "wiki/papers/matsuzaka-pmpfc-tactics-2012.md",
-    "wiki/index-concepts.md",
-    "raw/Representation of Attended Versus Remembered Locations in Prefrontal Cortex.md",
-    "wiki/papers/gusnard-2001-mpfc-default-mode.md",
-    "wiki/papers/lai-mpfc-bla-nac-affective-2026.md",
-    "wiki/papers/frontal-cortex-abstract-rules-badre2010.md",
-    "wiki/concepts/pfc-dynamic-network-connectivity.md",
-    "wiki/papers/arnsten-dynamic-network-connectivity-2010.md",
-    "raw/Prefrontal cortex intrinsic functional connectivity and executive function in early childhood and early adulthood using fNIRS.md",
     "Untitled.canvas",
     "raw/assets/gaps1.png",
     "raw/assets/gaps.png",

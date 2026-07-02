@@ -3,9 +3,9 @@ title: "Compositional Generalization"
 type: concept
 tags: [compositional-generalization, abstract-reasoning, systematicity, productivity, seq2seq]
 created: 2026-06-19
-updated: 2026-06-22
+updated: 2026-07-02
 sources: [Compositionality_decomposed, Human-like_systematic_generalization, ARC-AGI-2.md, building_machine_that_thinks_like_people, raven, The ConceptARC Benchmark]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/binding-problem.md, wiki/concepts/attention.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/meta-learning.md, wiki/concepts/abstract-reasoning.md, wiki/papers/compositionality-decomposed-hupkes-2020.md, wiki/papers/mlc-lake-baroni-2023.md, wiki/entities/mlc-model.md, wiki/entities/arc-agi.md, wiki/papers/arc-agi-overview.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/building-machine-thinks-like-people-lake-2016.md, wiki/papers/pgm-barrett-2018.md, wiki/papers/conceptarc-moskvichev-2023.md]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/binding-problem.md, wiki/concepts/attention.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/meta-learning.md, wiki/concepts/abstract-reasoning.md, wiki/papers/compositionality-decomposed-hupkes-2020.md, wiki/papers/mlc-lake-baroni-2023.md, wiki/entities/mlc-model.md, wiki/entities/arc-agi.md, wiki/papers/arc-agi-overview.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/building-machine-thinks-like-people-lake-2016.md, wiki/papers/pgm-barrett-2018.md, wiki/papers/conceptarc-moskvichev-2023.md, wiki/entities/baba-is-ai.md]
 ---
 
 # Compositional Generalization
@@ -163,3 +163,4 @@ ME is context-sensitive, not rigid: it weakens with contradictory evidence (β=1
 - **[[wiki/papers/vlm-intro-bordes-2024.md]]** — Winoground, ARO, PUG benchmarks add VLM-scale evidence that compositional failures persist even at billion-sample contrastive pretraining; generative classifiers (analysis-by-synthesis) partially outperform discriminative models on Winoground, supporting the world-model approach.
 - **[[wiki/concepts/shortcut-reasoning.md]]** — shortcut reasoning is the concurrent failure mode: when systems fail compositionality (localism, systematicity) they typically learn distribution-specific chunked co-occurrence patterns, which are precisely the shortcuts that fail on o.o.d. recompositions; the inverse scaling paradox (larger LLMs more shortcut-prone) and chunking failure compound each other.
 - **[[wiki/entities/vsa-model.md]]** — VSA's slot-filler encoding (ROLE ⊛ FILLER) directly implements the localism requirement: sub-expression results are bound to roles before composition, satisfying the binding constraint that transformers fail on; the 94.5% Sort-of-ARC score confirms systematic generalization when the vocabulary is pre-specified.
+- **[[wiki/entities/baba-is-ai.md]]** — Baba's `break→make→goto` test is compositional generalization over *rule-manipulation* primitives rather than object features; frontier models score ~15–20%, showing the localism/systematicity failure extends to composing edits of the environment's own rules.

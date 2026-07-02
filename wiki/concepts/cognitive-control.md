@@ -4,8 +4,8 @@ type: concept
 tags: [cognitive-control, executive-function, PFC, goal-maintenance, inhibition, working-memory, set-shifting, hierarchy]
 created: 2026-06-19
 updated: 2026-06-28
-sources: [The role of prefrontal cortex in cognitive control and executive function, pfc-wood-grafman-2003.md, A Path Towards Autonomous Machine Intelligence, "Deep brain stimulation of the internal capsule enhances human cognitive control and prefrontal cortex function.md", frontal-cortex-abstract-rules-badre2010.md, "Neuronal activity in the primate dorsomedial prefrontal cortex contributes to strategic selection of response tactics.md", "Neuronal Representations of Tactic-Based Sensorimotor Transformations in the Primate Medial Prefrontal, Presupplementary, and Supplementary Motor Areas A Comparative Study.md"]
-related: [wiki/concepts/meta-learning.md, wiki/concepts/working-memory.md, wiki/concepts/neuromodulation.md, wiki/concepts/predictive-coding.md, wiki/concepts/attention.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/papers/pfc-cognitive-control-friedman-2021.md, wiki/papers/pfc-wood-grafman-2003.md, wiki/entities/prefrontal-cortex.md, wiki/entities/basal-ganglia.md, wiki/concepts/analogical-reasoning.md, wiki/papers/analogy-holyoak-2012.md, wiki/papers/bogacz-gurney-bg-msprt-2007.md, wiki/entities/gwt-model.md, wiki/papers/gnw-mashour-2020.md, wiki/papers/raccah-pfc-consciousness-2021.md, wiki/entities/jepa-model.md, wiki/concepts/world-models.md, wiki/entities/c2c-model.md, wiki/papers/yoo-2022-c2c.md, wiki/papers/frontal-cortex-abstract-rules-badre2010.md, wiki/papers/matsuzaka-pmpfc-tactics-2012.md, wiki/papers/neuronal-tactic-sensorimotor-awan-2020.md, wiki/concepts/network-integration-segregation.md]
+sources: [The role of prefrontal cortex in cognitive control and executive function, "The prefrontal cortex- categories, concepts and cognition", pfc-wood-grafman-2003.md, A Path Towards Autonomous Machine Intelligence, "Deep brain stimulation of the internal capsule enhances human cognitive control and prefrontal cortex function.md", frontal-cortex-abstract-rules-badre2010.md, "Neuronal activity in the primate dorsomedial prefrontal cortex contributes to strategic selection of response tactics.md", "Neuronal Representations of Tactic-Based Sensorimotor Transformations in the Primate Medial Prefrontal, Presupplementary, and Supplementary Motor Areas A Comparative Study.md"]
+related: [wiki/concepts/meta-learning.md, wiki/concepts/working-memory.md, wiki/concepts/two-learning-timescales.md, wiki/papers/pfc-categories-concepts-miller-2002.md, wiki/concepts/neuromodulation.md, wiki/concepts/predictive-coding.md, wiki/concepts/attention.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/papers/pfc-cognitive-control-friedman-2021.md, wiki/papers/pfc-wood-grafman-2003.md, wiki/entities/prefrontal-cortex.md, wiki/entities/basal-ganglia.md, wiki/concepts/analogical-reasoning.md, wiki/papers/analogy-holyoak-2012.md, wiki/papers/bogacz-gurney-bg-msprt-2007.md, wiki/entities/gwt-model.md, wiki/papers/gnw-mashour-2020.md, wiki/papers/raccah-pfc-consciousness-2021.md, wiki/entities/jepa-model.md, wiki/concepts/world-models.md, wiki/entities/c2c-model.md, wiki/papers/yoo-2022-c2c.md, wiki/papers/frontal-cortex-abstract-rules-badre2010.md, wiki/papers/matsuzaka-pmpfc-tactics-2012.md, wiki/papers/neuronal-tactic-sensorimotor-awan-2020.md, wiki/concepts/network-integration-segregation.md]
 ---
 
 # Cognitive Control
@@ -122,6 +122,27 @@ This "active bias" account subsumes response inhibition (goal causes inhibition 
 
 ---
 
+## Sustained Activity as a Distinct Representational Format (Miller, Freedman & Wallis 2002)
+
+A core computational argument of the Miller & Cohen model: cognitive control requires holding task knowledge in **sustained neural activity**, not in **synaptic weights** — these are two representational formats with opposite affordances.
+
+| Property | Synaptic-weight code | Sustained-activity code |
+|---|---|---|
+| Persistence | Long-term (structural change) | Seconds (until overwritten) |
+| Flexibility | Inflexible — fires the same way when triggered | Instantly reconfigurable — "changing behaviour is as easy as changing the pattern" |
+| Reach | **Local** — only affects neurons sharing the synapse | **Global** — can be broadcast to bias many brain systems at once |
+| Role | Slow storage of learned mappings | Orchestrating diverse processors around a current goal |
+
+**Why control needs the activity format:** cognitive control must impose one pattern of task demands on *many* distinct circuits simultaneously. A synaptic-weight code can only express itself when its own circuit fires; a sustained-activity code can be read out and propagated everywhere. This is the mechanistic reason goal maintenance is implemented as persistent PFC firing rather than fast synaptic learning.
+
+**Capacity limit falls out for free:** because control-relevant information is a *population code* distributed across simultaneously-active neurons, holding more than a few items causes the overlapping patterns to overwrite and interfere. The severe capacity limit of controlled (vs. automatic) processing is a direct consequence of using sustained activity as the carrier — not a separate bottleneck.
+
+**Task model = "map of the neural pathways":** reward-related signals (VTA dopamine, via basal ganglia) strengthen associative links among the PFC neurons that were active just before reward, bootstrapping from direct reward-associations to a multivariate network describing the task. Once built, a subset of cues re-evokes the full model including the correct response; excitatory bias then selects the needed forebrain pathways. As pathways consolidate, they run without PFC — control → automaticity.
+
+**Architectural mapping:** this activity-format vs. synaptic-format distinction is the biological statement of the wiki's **fast-M / slow-W split** ([[wiki/concepts/two-learning-timescales.md]]): the activity/fast store holds the currently-configured task model (broadcastable, disposable), while slow synaptic weights hold consolidated structure. A reasoning system's "configurator" state (LeCun) is an activity-format code by this logic — it must be globally broadcast and cheaply swapped, which is exactly why it cannot be baked into weights.
+
+---
+
 ## Application to Reasoning Model
 
 | CC (Cognitive Control) Component | Building Block | Mechanism |
@@ -230,6 +251,8 @@ Comparative CPD (coefficient of partial determination) analysis of all three med
 - **[[wiki/queries/building-blocks-mec-hc-pfc.md]]** — three CC (Cognitive Control) components → Blocks 3D (inhibition), 3B (updating), 3A (shifting); hierarchical PFC (Prefrontal Cortex) gradient → Block 3C three-level template (BA-8/9/46/10).
 - **[[wiki/papers/pfc-cognitive-control-friedman-2021.md]]** — primary source for three CC (Cognitive Control) components, hierarchical PFC (Prefrontal Cortex) gradient, ACC (Anterior Cingulate Cortex) PRO model, and neurochemical specificity content.
 - **[[wiki/papers/pfc-wood-grafman-2003.md]]** — source for SEC (Structured Event Complex) framework; resolves representation/process debate; establishes vmPFC/dlPFC categorical specificity via connectivity.
+- **[[wiki/papers/pfc-categories-concepts-miller-2002.md]]** — source for the sustained-activity-vs-synaptic-weight format argument, the capacity-limit-from-population-code corollary, the task-model-as-pathway-map, and VTA-dopamine bootstrapping; the single-neuron empirical grounding of the Miller & Cohen biased-competition model.
+- **[[wiki/concepts/two-learning-timescales.md]]** — the activity-format vs. synaptic-format distinction is the biological statement of the fast-M / slow-W split: sustained PFC activity holds the disposable, broadcastable task configuration while slow weights hold consolidated structure.
 - **[[wiki/entities/prefrontal-cortex.md]]** — biological substrate of all CC (Cognitive Control) mechanisms; anatomy, connectivity, and mapping to Blocks 3A–3D; vmPFC/dlPFC categorical specificity informs Block 3C content types.
 - **[[wiki/concepts/analogical-reasoning.md]]** — the mapping stage of analogy is the canonical task that drives frontopolar BA (Brodmann Area)-10: simultaneous satisfaction of structural + semantic + pragmatic constraints is a concrete operationalization of "multi-relational integration"; the ≤2-3 proposition WM limit constrains how the Block 3C three-level hierarchy must decompose long compositional chains into sequential integration steps.
 - **[[wiki/papers/analogy-holyoak-2012.md]]** — source for the BA (Brodmann Area)-10 multi-relational integration specificity and its dissociation from BA (Brodmann Area)-44/45 interference control; refines what "frontopolar" means in the Block 3C template.

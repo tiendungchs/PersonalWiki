@@ -3,16 +3,18 @@ title: "Papers Index"
 type: overview
 tags: [index]
 created: 2026-06-20
-updated: 2026-06-28sources: []
+updated: 2026-07-02
+sources: []
 related: []
 ---
 
-# Papers Index — 183 stubs
+# Papers Index — 185 stubs
 
 Each entry: `[Title](path) — one-line description`. Updated after each ingest.
 
 ---
 
+- [Fact Finding: Reverse-Engineering Factual Recall in Pythia 2.8B (Posts 1–5) — Nanda, Rajamanoharan, Kramár & Shah 2023](wiki/papers/fact-finding-factual-recall-nanda-2023.md) — mechanistic case study: token concatenation → MLP fact lookup → attribute extraction circuit; falsifies single-step detokenization; formalizes micro/macrofeature criterion for when memorization admits no generalizable intermediate representations; dense superposed storage, not localized
 - [A mechanistic theory of planning in prefrontal cortex — Jensen et al. 2026](wiki/papers/mechanistic-planning-pfc-jensen-2026.md) — proposes the Spacetime Attractor (STA) as PFC's planning circuit: neural subspaces encode the full future trajectory simultaneously; world model embedded in inter-subspace weights; attractor dynamics infer optimal plans; outperforms TD/SR on dynamic tasks; RNNs meta-trained on dynamic tasks discover STA spontaneously
 - [Representation of Attended Versus Remembered Locations in Prefrontal Cortex — Lebedev et al. 2004](wiki/papers/lebedev-pfdl-attention-memory-2004.md) — 61% of spatially tuned PFdl neurons encode attended location vs. 16% remembered; challenges Goldman-Rakic maintenance-memory theory; regional specialization (ventrolateral = attention-dominant, dorsomedial = mixed); hybrid cells encode both signals; dynamic attentional tracking after saccade
 - [The Role of Medial Prefrontal Cortex in Memory and Decision Making — Euston et al. 2012](wiki/papers/euston-mpfc-memory-decision-2012.md) — canonical (context, events) → adaptive response input-output model of mPFC; HC-mPFC theta coupling as retrieval mechanism (50% cells; synchrony at choice points; errors predicted by reduced coherence); HC-mPFC disconnection ≈ bilateral mPFC inactivation; post-task 1–2h consolidation window; remote memory more mPFC-dependent because mPFC stores both the mapping and its components after ~2 weeks consolidation
@@ -20,6 +22,7 @@ Each entry: `[Title](path) — one-line description`. Updated after each ingest.
 - [Prefrontal atrophy, disrupted NREM slow waves, and impaired hippocampal-dependent memory in aging — Mander et al. 2013](wiki/papers/prefrontal-atrophy-nrem-mander-2013.md) — mPFC is the dominant NREM SWA generator; three-way mediation (mPFC atrophy → ↓SWA → ↓overnight memory retention); HC-independence and HC-mPFC retrieval coupling as consolidation metrics; SWA vs SWR distinction
 - [Medial prefrontal cortex and self-referential mental activity: Relation to a default mode of brain function — Gusnard et al. 2001](wiki/papers/gusnard-2001-mpfc-default-mode.md) — fMRI evidence for dMPFC (BA 8/9/10) as self-referential/SIT engine (increases with internally-directed tasks); vMPFC (BA 24/25/32) as emotional monitoring region (decreases under any cognitive load); behavioral simulation as the active content of the default state
 - [Functional Specialization of mPFC-BLA and mPFC-NAc Pathways in Affective State Representation — Lai et al. 2026](wiki/papers/lai-mpfc-bla-nac-affective-2026.md) — in-vivo Ca²⁺ imaging shows mPFC→BLA encodes aversive/anxiety states; mPFC→NAc encodes exploration/social preference via ensemble pattern decorrelation; same prelimbic region, divergent valence tuning by projection target
+- [The Prefrontal Cortex: Categories, Concepts and Cognition — Miller, Freedman & Wallis 2002](wiki/papers/pfc-categories-concepts-miller-2002.md) — single-neuron grounding of PFC as store of abstract task knowledge: sharp-boundary category tuning carved into single cells (remappable to orthogonal schemes), abstract rules that generalize to novel stimuli (compression over paired associates), nonlinear conjunctive tuning (origin of mixed selectivity), rapid plasticity (5–15 trials); sustained activity vs. synaptic weights as two representational formats
 - [Frontal Cortex and the Discovery of Abstract Action Rules — Badre et al. 2010](wiki/papers/frontal-cortex-abstract-rules-badre2010.md) — parallel multi-level policy search: all frontal hierarchy levels (PMd/1st-order → prePMd/2nd-order → DLPFC → FPC) search simultaneously from trial 1; reward-gated depth pruning; step-wise sigmoid learning curves as signature of abstract rule discovery; putamen→cortex→caudate Granger causality chain
 - [Neuronal activity in the primate dorsomedial PFC contributes to strategic selection of response tactics — Matsuzaka et al. 2012](wiki/papers/matsuzaka-pmpfc-tactics-2012.md) — pmPFC (~area 8b) encodes tactic selection (which response strategy, not which action); demand-responsive activation (silent under single-tactic conditions); predictive ensemble onset (~125–145ms before RT); dissociated from ACC conflict monitoring; disengages when behavior becomes habitual
 - [Neuronal Representations of Tactic-Based Sensorimotor Transformations in the Primate Medial PFC, pre-SMA, and SMA — Awan & Mushiake et al. 2020](wiki/papers/neuronal-tactic-sensorimotor-awan-2020.md) — CPD analysis of three-area cascade: pmPFC integrates tactics + spatial cue + action; pre-SMA handles tactics + action (no spatial); SMA executes action; spatial info PFC-gated; dynamic supervisory control (hub suppresses satellite); schizophrenia hypo-PFC → compensatory pre-SMA activation

@@ -3,7 +3,7 @@ title: "Grid Cells"
 type: entity
 tags: [grid-cells, MEC, path-integration, structural-generalization, successor-representation]
 created: 2026-06-09
-updated: 2026-06-22
+updated: 2026-07-01
 sources: [gridlikecode, spiking-tem-kawahara-2025, High-capacity flexible hippocampal associative and episodic memory enabled by prestructured "spatial" representations]
 related: [wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/phase-precession.md, wiki/concepts/associative-memory.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/htm-thousand-brains.md, wiki/entities/arthropod-mushroom-bodies.md, wiki/entities/vector-hash-model.md, wiki/papers/gridlikecode-constantinescu-2016.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/jumping-spiders-cognition.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/spiking-tem-kawahara-2025.md, wiki/papers/vector-hash-chandra-2023.md]
 ---
@@ -107,3 +107,4 @@ Thousand Brains Theory [[wiki/entities/htm-thousand-brains.md]] proposes that gr
 - **[[wiki/entities/vector-hash-model.md]]** — Vector-HaSH formalizes grid modules as a content-free scaffold: the torus topology, coprime-scale state count, and invariance properties are the three features that give the scaffold exponential capacity at logarithmic neuron cost.
 - **[[wiki/concepts/associative-memory.md]]** — grid scaffold generates the fixed points that Vector-HaSH heteroassociates with content; the scaffold/content factorization is what prevents the Hopfield memory cliff.
 - **[[wiki/papers/vector-hash-chandra-2023.md]]** — primary source for the scaffold capacity analysis, strong-generalization metric-topology argument, and domain-general grid-code claim.
+- **[[wiki/queries/mec-abstract-codes-vs-declarative-rules.md]]** — argues grid coding's domain-generality (vmPFC/DMN, social rank, odor space) reflects a shared computational problem (continuous-dimension coordinate assignment) with navigation, not a metaphorical borrowing; contrasts this metric/scaffold system with the separate discrete rule-hierarchy system in PFC.

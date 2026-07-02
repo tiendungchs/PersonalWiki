@@ -213,6 +213,7 @@ This wiki covers the intersection of neuroscience-inspired AI and abstract reaso
 - When a concept page is updated, scan for all pages in `related:` frontmatter and check if they need updating too.
 - The `related:` frontmatter list is the authoritative cross-reference graph. Keep it current.
 - Full expansion of all abbreviations (e.g. FT (Full-Term)), except terms that are really common (e.g AI, NN, ML, DNA, etc) or too long (AMPA (α-amino-3-hydroxy-5-methyl-4-isoxazolepropionic acid receptor)), in that case, they will be stored in `wiki/glossary.md`.
+- **Editing existing lines:** never reconstruct an Edit `old_string` from memory — copy the exact current text, including markdown emphasis markers, whitespace, and link formatting. `wiki/glossary.md` in particular bolds *some* abbreviation keys inconsistently (`| **DLPFC** | ...` vs. `| PFC | ...`) with no rule; always grep/read the target row first and match it verbatim.
 - Uncertainty: prefix claims with `(tentative)` when based on non-scientific source or the user has flagged doubt.
 - **Unsourced content:** general domain knowledge, cross-paper synthesis, and architectural speculation are allowed without a source slug. Leave `sources:` frontmatter empty for synthesis pages. Prefix speculative or brainstorming claims with `(brainstorm)` when they are hypotheses rather than established facts. Do not mark widely accepted domain knowledge.
 - Quote policy: keep direct quotes minimal and always cite the source slug.

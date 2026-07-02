@@ -3,9 +3,9 @@ title: "Spacetime Attractor (STA)"
 type: entity
 tags: [planning, prefrontal-cortex, attractor, world-models, RNN, working-memory, meta-learning]
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-07-02
 sources: [A mechanistic theory of planning in prefrontal cortex]
-related: [wiki/concepts/planning-as-inference.md, wiki/entities/prefrontal-cortex.md, wiki/concepts/ring-attractor.md, wiki/concepts/world-models.md, wiki/concepts/successor-representation.md, wiki/concepts/working-memory.md, wiki/concepts/meta-learning.md, wiki/concepts/replay.md, wiki/concepts/prospective-coding.md, wiki/papers/mechanistic-planning-pfc-jensen-2026.md]
+related: [wiki/concepts/planning-as-inference.md, wiki/entities/prefrontal-cortex.md, wiki/concepts/ring-attractor.md, wiki/concepts/world-models.md, wiki/concepts/successor-representation.md, wiki/concepts/working-memory.md, wiki/concepts/meta-learning.md, wiki/concepts/replay.md, wiki/concepts/prospective-coding.md, wiki/papers/mechanistic-planning-pfc-jensen-2026.md, wiki/concepts/latent-graph-discovery.md, wiki/queries/dynamic-graph-vs-time-dimension.md, wiki/entities/baba-is-ai.md]
 ---
 
 # Spacetime Attractor (STA)
@@ -109,3 +109,6 @@ In changing-structure environments, networks represent future **transitions** τ
 - **[[wiki/concepts/replay.md]]** — hippocampal replay is the proposed biological mechanism for learning the STA's world model: replay trajectories provide the (state, next-state) pairs needed to embed A_{ij} into inter-subspace connections.
 - **[[wiki/concepts/prospective-coding.md]]** — STA provides the multi-step generalization of prospective coding: while HC CA1 represents one step ahead, PFC STA subspaces simultaneously represent the full planned trajectory T steps ahead.
 - **[[wiki/papers/mechanistic-planning-pfc-jensen-2026.md]]** — primary source.
+- **[[wiki/concepts/latent-graph-discovery.md]]** — STA is the concrete demonstration that time can be a static-structure index rather than evidence of a dynamic graph: T subspaces share one fixed adjacency matrix A_{ij}; only per-timestep reward varies, not topology.
+- **[[wiki/queries/dynamic-graph-vs-time-dimension.md]]** — filed synthesis using STA's time-as-dimension result and its wall-gating mechanism as the two data points separating "time as dimension" from genuinely dynamic topology.
+- **[[wiki/entities/baba-is-ai.md]]** — STA's wall-gating only *masks* a known edge set contextually; Baba requires *appearance/removal* of edges the agent itself causes (non-stationary topology), which STA does not model — the boundary of STA's applicability.

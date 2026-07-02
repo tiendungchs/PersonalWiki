@@ -3,9 +3,9 @@ title: "Sparse Distributed Representations"
 type: concept
 tags: [sdr, sparse-coding, neocortex, active-dendrites, nmda, pattern-recognition, capacity, htm, sdm]
 created: 2026-06-20
-updated: 2026-06-27
-sources: [sparse_representations, kanerva-sdm-1993, barlow_twins]
-related: [wiki/concepts/pattern-separation.md, wiki/concepts/engrams.md, wiki/concepts/associative-memory.md, wiki/concepts/binding-problem.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/spike-frequency-adaptation.md, wiki/entities/htm-thousand-brains.md, wiki/papers/ahmad-hawkins-sdr-2016.md, wiki/papers/sfa-ganguly-2024.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/papers/snn-encoding-auge-2021.md, wiki/entities/sdm-model.md, wiki/papers/kanerva-sdm-1993.md, wiki/entities/cerebellum.md, wiki/entities/snn.md, wiki/papers/barlow-twins-zbontar-2021.md]
+updated: 2026-07-01
+sources: [sparse_representations, kanerva-sdm-1993, barlow_twins, fact-finding-post1, fact-finding-post3]
+related: [wiki/concepts/pattern-separation.md, wiki/concepts/engrams.md, wiki/concepts/associative-memory.md, wiki/concepts/binding-problem.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/spike-frequency-adaptation.md, wiki/entities/htm-thousand-brains.md, wiki/papers/ahmad-hawkins-sdr-2016.md, wiki/papers/sfa-ganguly-2024.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/papers/snn-encoding-auge-2021.md, wiki/entities/sdm-model.md, wiki/papers/kanerva-sdm-1993.md, wiki/entities/cerebellum.md, wiki/entities/snn.md, wiki/papers/barlow-twins-zbontar-2021.md, wiki/papers/fact-finding-factual-recall-nanda-2023.md]
 ---
 
 # Sparse Distributed Representations
@@ -127,6 +127,21 @@ The mechanism is the "computing in superposition" principle: binding distributes
 
 ---
 
+## Dense Superposition: An Alternative Solution to the Same Capacity Problem (Nanda et al. 2023)
+
+Nanda et al. 2023 ([[wiki/papers/fact-finding-factual-recall-nanda-2023.md]]) provide a contrasting instantiation of "representing more items than units": Pythia 2.8B's fact-lookup MLPs (layers 2–6, ~50,000 neurons) store at least 1,500 athlete-sport facts (and likely far more facts overall) via **dense polysemantic superposition** rather than SDR-style sparse orthogonal codes. Ablating individual neurons showed near-zero correlation in which neurons mattered for different facts about the same entity — evidence of maximal distribution — yet only one clearly interpretable unit emerged (a "baseball neuron," L5N6045, 89% ROC AUC as a baseball/non-baseball classifier), and even it was not monosemantic outside the athlete-name distribution.
+
+| | SDR (sparse) | MLP superposition (dense) |
+|---|---|---|
+| Activation density | $a/n < 5\%$ | Effectively unconstrained; most units contribute to most patterns |
+| Interference control | Structural — hypergeometric false-positive bound, independent of training | Learned — gradient descent pushes representations toward near-orthogonality only where useful ("hashing": 60–70% of the way to breaking linear token structure, vs. 20–40% for a random MLP) |
+| Guarantee | Closed-form, distribution-independent | None — a learned compromise specific to the training distribution |
+| Interpretability | Individual active units are often meaningful (union property still legible) | Individual neurons are largely uninterpretable in isolation; meaning lives in the joint pattern |
+
+**Design implication / open question:** SDR and dense superposition solve the same problem (more items than dimensions) with opposite strategies — sparsity trades capacity for a hard interference guarantee; superposition trades the guarantee for higher effective capacity per parameter. Whether biological cortex ever uses a dense-superposition-like regime for content that must be memorized without generalizable macrostructure (as opposed to DG-style sparse episodic indexing) is untested; SDR sparsity may be required specifically to support *fast one-shot Hebbian writes* [[wiki/concepts/two-learning-timescales.md]], a constraint slow-trained MLP weights never face.
+
+---
+
 ## SFA (Spike Frequency Adaptation) as Intrinsic Auto-Sparsification
 
 Spike frequency adaptation (SFA) provides a single-neuron mechanism for enforcing sparse outputs that does not require lateral inhibition or population-level k-WTA competition.
@@ -185,3 +200,4 @@ This grounds SDR (Sparse Distributed Representations) recognition in the same fr
 - **[[wiki/papers/barlow-twins-zbontar-2021.md]]** — BT is the ML operationalization of Barlow's 1961 redundancy-reduction principle; the cross-correlation decorrelation loss drives embeddings toward a factorial code, confirming that SDR (Sparse Distributed Representations) sparsity's biological rationale is computationally effective in modern deep learning.
 - **[[wiki/entities/vsa-model.md]]** — VSA/HRR uses dense real-valued vectors rather than sparse binary SDRs; circular convolution binding achieves compositionality that SDR (Sparse Distributed Representations) bundling alone cannot, but at the cost of sparsity's hypergeometric interference guarantee; the two approaches share the high-dimensionality intuition but occupy opposite density/compositionality tradeoffs; the computing-in-superposition result (Kleyko 2025) shows VSA superposition stores mixed polynomial features in O(p²) dimensions vs. exponential for explicit features.
 - **[[wiki/papers/kleyko-neuromorphic-rc-2025.md]]** — source for VSA computing in superposition: binding distributes over superposition so all polynomial feature orders t ∈ T coexist in one D-vector; D = O((pR/ε)²) is the key scaling guarantee; parallels the SDR union property but for real-valued polynomial features rather than binary pattern sets.
+- **[[wiki/papers/fact-finding-factual-recall-nanda-2023.md]]** — empirical case of dense polysemantic superposition (transformer MLP fact storage) as the opposite-density solution to the same more-items-than-units problem SDR solves via sparsity; contrasts a learned, distribution-specific compromise against SDR's closed-form, training-independent guarantee.
