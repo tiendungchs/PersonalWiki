@@ -40,10 +40,10 @@ Baba Is AI isolates the **maximally tractable pole** of non-stationary topology:
 |---|---|---|---|
 | **Baba Is AI** | non-stationary, agent-rewritten, observable | latent + constructible | bounded (`noun × property`) |
 | ARC-AGI ([[wiki/entities/arc-agi.md]]) | static per task; edges latent | fixed | ~fixed (Core Knowledge) |
-| ARC-AGI-3 | static; target node latent | latent | ~fixed |
+| ARC-AGI-3 | static rules, state evolves via action | latent | fixed action set, **per-game latent semantics** |
 | FrontierMath | static; edges + path latent | fixed | near-empty (open) |
 
-Baba Is AI is the only wiki benchmark where the **edge set mutates within an episode by design**, making it the empirical counterpart to source-6 hardness — as ARC-AGI is to latent-edge discovery.
+Baba Is AI is the only wiki benchmark where the **edge set mutates within an episode by design**, making it the empirical counterpart to source-6 hardness — as ARC-AGI is to latent-edge discovery. ARC-AGI-3 occupies a distinct cell: the rule set does *not* mutate, but the *edge labels are latent* (per-game action semantics discovered only by probing) **and** the target node is latent, all in an environment whose state the agent's own actions change — combining latent-edge discovery with latent-goal discovery under dynamic state, without the self-editing topology that defines Baba.
 
 ## Connections
 

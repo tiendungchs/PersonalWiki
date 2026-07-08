@@ -3,7 +3,7 @@ title: "DINOv2"
 type: entity
 tags: [self-supervised-learning, vision-transformers, foundation-models, representation-learning, non-contrastive]
 created: 2026-06-23
-updated: 2026-06-23
+updated: 2026-07-02
 sources: [DINOv2 Learning Robust Visual Features without Supervision]
 related: [wiki/entities/dinov3-model.md, wiki/entities/jepa-model.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/energy-based-models.md, wiki/concepts/attention.md, wiki/papers/dinov2-oquab-2023.md]
 ---
@@ -71,6 +71,7 @@ related: [wiki/entities/dinov3-model.md, wiki/entities/jepa-model.md, wiki/conce
 
 ## Connections
 
+- **[[wiki/queries/sota-review-brain-inspired-abstract-reasoning.md]]** — §4.5 casts DINOv2 as the *perception front-end* (not a world model) of the world-model pivot; its emergent, label-free object-part decomposition (patch-token PCA) is a candidate solution to the objectness/Core-Knowledge prior the review flags as missing (§3, §8.3), slotting into the sensory front-end (Blocks 1A+2A).
 - **[[wiki/entities/dinov3-model.md]]** — DINOv3 is DINOv2's direct successor: same DINO+iBOT+KoLeo training recipe, scaled to 7B params, with Gram anchoring added to prevent dense feature degradation that DINOv2 suffers at scale.
 - **[[wiki/entities/jepa-model.md]]** — DINOv2's EMA (Exponential Moving Average) teacher-student design (same momentum schedule 0.994→1.0), iBOT masked patch prediction, and KoLeo regularizer are all directly inherited by I-JEPA / V-JEPA 2; DINOv2 is the architectural ancestor of the JEPA family.
 - **[[wiki/concepts/hierarchical-representations.md]]** — DINOv2's CLS+patch dual-level objective is a two-scale hierarchy; emergent part segmentation from patch-token PCA is empirical evidence that self-supervised patch-level objectives produce semantically structured spatial codes without spatial supervision.

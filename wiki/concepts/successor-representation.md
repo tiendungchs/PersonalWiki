@@ -5,7 +5,7 @@ tags: [successor-representation, reinforcement-learning, predictive-map, plannin
 created: 2026-06-12
 updated: 2026-06-28
 sources: [cognitivemap]
-related: [wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/tem-model.md, wiki/entities/cscg-model.md, wiki/papers/whittington-cognitive-map-2022.md, wiki/papers/tem-whittington-2020.md, wiki/entities/spacetime-attractor.md, wiki/concepts/planning-as-inference.md, wiki/papers/mechanistic-planning-pfc-jensen-2026.md]
+related: [wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/temporal-context.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/tem-model.md, wiki/entities/cscg-model.md, wiki/papers/whittington-cognitive-map-2022.md, wiki/papers/tem-whittington-2020.md, wiki/entities/spacetime-attractor.md, wiki/concepts/planning-as-inference.md, wiki/papers/mechanistic-planning-pfc-jensen-2026.md, wiki/papers/tcm-mtl-howard-2005.md]
 ---
 
 # Successor Representation (SR)
@@ -61,8 +61,24 @@ SR fails on within-trial dynamic tasks because the successor matrix collapses fu
 
 Design implication: SR and STA are complementary, not competing. SR provides efficient planning when environment structure is stable and rewards change between but not within trials. STA takes over when rewards change within a single trial or episode.
 
+## Temporal Precursor: The Temporal Context Model
+
+SR did not appear in isolation. The Temporal Context Model (TCM; Howard & Kahana 2002; Howard et al. 2005 [[wiki/papers/tcm-mtl-howard-2005.md]]) is its conceptual ancestor: a leaky integrator `t_i = ρ_i t_{i-1} + β t_iᴵᴺ` whose similarity structure `t_i·t_j = ρ^{|i−j|}` is a decaying trace of past experience — exactly the object SR generalizes.
+
+| | TCM temporal context | Successor Representation |
+|---|---|---|
+| Accumulated object | Item-driven inputs `t_iᴵᴺ` | State occupancy |
+| Decay operator | Scalar ρ (single fixed rate) | Policy-dependent γT (full transition matrix) |
+| Similarity kernel | `ρ^{|i−j|}` | `(I−γT)^{−1}` |
+| Structure | Implicit (one leaky rate) | Explicit (learned/estimated T) |
+
+The move from TCM to SR (and then to TEM's learned W) is the move from an unstructured scalar decay to a structured, action-conditioned transition operator. TCM already demonstrated that such a decaying trace produces place-like fields and transitive-inference gradients — SR explains *why* those fall out of the transition structure.
+
+---
+
 ## Connections
 
+- **[[wiki/concepts/temporal-context.md]]** — TCM is the temporal precursor from which SR descends: its scalar-ρ leaky integrator is the degenerate case of SR's policy-dependent γT, and its memory-space transitive-inference gradient is the pre-structural version of SR's predictive map.
 - **[[wiki/concepts/path-integration.md]]** — SR (Successor Representation) and path integration are mathematically unified: both operate on grid-code eigenvectors and differ only in how eigenvalues update per action; they are not competing theories but the same computation from two perspectives.
 - **[[wiki/concepts/structural-generalization.md]]** — SR (Successor Representation) provides an RL-theoretic derivation of why grid codes support multi-step planning with the same representations as 1-step transitions (T^n shares eigenvectors with S).
 - **[[wiki/concepts/factorized-representations.md]]** — SR (Successor Representation) independently derives the factorized split: eigenvectors = grid cells (g, structural) and rows = place cells (p, conjunctive); a convergent derivation from RL theory.
@@ -74,3 +90,4 @@ Design implication: SR and STA are complementary, not competing. SR provides eff
 - **[[wiki/papers/tem-whittington-2020.md]]** — TEM paper that derives the SR (Successor Representation) grid-cell equivalence from first principles; the path integration g-update RNN implements the SR's iterative γT application.
 - **[[wiki/entities/spacetime-attractor.md]]** — STA is the PFC complement to HC's SR: SR collapses future occupancy across time into time-averaged value; STA maintains a separate representation per future timestep, extending SR's power to within-trial dynamic rewards.
 - **[[wiki/concepts/planning-as-inference.md]]** — SR is a special case of planning as inference where the future is compressed into a single time-averaged representation (v = Sr); STA generalizes this by maintaining per-timestep representations and using attractor dynamics rather than a dot product.
+- **[[wiki/concepts/recursion.md]]** — the successor function that generates discrete infinity (natural numbers, recursive count list) is the same iterated operation the SR applies (γT); Hauser-Chomsky-Fitch's domain-general-recursion hypothesis proposes this navigation/number machinery is what became the uniquely-human combinatorial engine.

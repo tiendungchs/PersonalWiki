@@ -3,7 +3,7 @@ title: "ARC-AGI-3: A New Challenge for Frontier Agentic Intelligence"
 type: paper
 tags: [ARC-AGI, benchmark, agentic-intelligence, fluid-intelligence, abstract-reasoning, action-efficiency]
 created: 2026-06-20
-updated: 2026-06-20
+updated: 2026-07-02
 sources: [ARC-AGI-3-paper.md]
 related: [wiki/entities/arc-agi.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/meta-learning.md, wiki/papers/arc-agi-overview.md]
 ---
@@ -18,7 +18,7 @@ related: [wiki/entities/arc-agi.md, wiki/concepts/abstract-reasoning.md, wiki/co
 
 - **RHAE (Relative Human Action Efficiency) scoring:** Per-level score = (h_{l,e}/a_{l,e})², where h is the upper-median human action count and a is the AI action count. Squared penalty makes 10× human action count yield 1% credit (not 10%), discriminating near-human from brute-force more sharply than a linear formulation. Levels weighted linearly within each environment (level l contributes l/Σl of environment score, so later levels matter more). Per-environment cap = weighted fraction of levels completed, so completing more levels is always rewarded; high efficiency on a few levels cannot substitute for breadth. Inspired by the robotics SPL (Success weighted by Path Length) metric.
 
-- **Four-pillar agentic decomposition — Goal-Setting as the critical gap:** Exploration (actively gather information), Modeling (build a generalizable world model from observations), Goal-Setting (autonomously infer win conditions — **the agent is never told the objective or given instructions**), Planning/Execution (multi-step action sequences with course-correction). The minimal system prompt is literally "You are playing a game. Your goal is to win." The agent must determine what winning means by interacting with the environment. This is the first ARC-AGI benchmark to require autonomous objective inference, probing the ability to handle "unknown unknowns."
+- **Four-pillar agentic decomposition — Goal-Setting as the critical gap:** Exploration (actively gather information — **action semantics are undefined and vary per game, so what each action does must be discovered by probing**), Modeling (build a generalizable, *adaptable* world model — actions change the environment state, so the transition dynamics must be inferred, not assumed), Goal-Setting (autonomously infer win conditions — **the agent is never told the objective or given instructions**), Planning/Execution (multi-step action sequences with course-correction). The minimal system prompt is literally "You are playing a game. Your goal is to win." The agent must simultaneously discover what its actions do, how the world responds, and what winning means, purely by interacting with the environment. This is the first ARC-AGI benchmark to require autonomous objective inference, probing the ability to handle "unknown unknowns."
 
 - **LRM knowledge-boundedness — structural constraint on test-time reasoning:** LRMs can automate a domain only when (a) base model training has domain knowledge coverage AND (b) an exact correctness verifier exists. Human reasoning has neither constraint. This is not "jagged AI" (inconsistency) but a structural prediction: test-time reasoning (the ARC-AGI-1 breakthrough via o3) scales only within the pretraining distribution envelope. ARC-AGI-3 environments have novel mechanics absent from any training corpus and no in-loop verifier — both conditions violated simultaneously, which is the mechanism behind the <1% frontier AI score.
 

@@ -3,7 +3,7 @@ title: "VL-JEPA (Vision-Language JEPA)"
 type: entity
 tags: [jepa, vision-language, world-models, embedding-prediction, non-autoregressive, selective-decoding, self-supervised-learning]
 created: 2026-06-23
-updated: 2026-06-23
+updated: 2026-07-02
 sources: [VL-JEPA]
 related: [wiki/entities/jepa-model.md, wiki/concepts/world-models.md, wiki/concepts/energy-based-models.md, wiki/concepts/predictive-coding.md, wiki/concepts/hierarchical-representations.md, wiki/papers/vl-jepa-chen-2025.md, wiki/papers/assran-ijepa-2023.md, wiki/papers/v-jepa-2-assran-2026.md]
 ---
@@ -73,6 +73,7 @@ In token space, two semantically equivalent answers ("the lamp is off" / "room g
 
 ## Connections
 
+- **[[wiki/queries/sota-review-brain-inspired-abstract-reasoning.md]]** — §4.5 cites VL-JEPA's WorldPrediction-WM win over GPT-4o/Claude/Gemini as the strongest empirical evidence that representation-space prediction beats token generation for world modeling — one of the two review pillars the JEPA pivot corroborates.
 - **[[wiki/entities/jepa-model.md]]** — VL-JEPA extends JEPA/I-JEPA from unimodal (image/video) to multimodal (vision-language) by adding a text Y-Encoder as the target representation source; the core prediction-in-representation-space principle is identical.
 - **[[wiki/concepts/world-models.md]]** — VL-JEPA-SFT achieves SoTA on WorldPrediction-WM by matching state-change embeddings to action embeddings without language generation; empirically confirms that representation-space world modeling outperforms token-generative approaches.
 - **[[wiki/concepts/energy-based-models.md]]** — VL-JEPA's training loss is InfoNCE, a contrastive EBM (Energy-Based Model) loss; the model is an LVEBM where the energy is the cosine distance between predicted and target embeddings in the shared space; InfoNCE's uniformity term is the collapse-prevention regularizer.

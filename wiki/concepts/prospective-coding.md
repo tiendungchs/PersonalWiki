@@ -5,7 +5,7 @@ tags: [prospective-code, hippocampus, inference, look-ahead, sequence-memory, pr
 created: 2026-06-23
 updated: 2026-06-28
 sources: [neuronal-computation-inferential-reasoning]
-related: [wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/place-cells.md, wiki/concepts/replay.md, wiki/concepts/sequence-memory.md, wiki/concepts/latent-states.md, wiki/concepts/associative-memory.md, wiki/papers/inferential-reasoning-dupret-2020.md, wiki/papers/hassabis-neuroscience-ai-2017.md, wiki/entities/default-mode-network.md, wiki/papers/gusnard-2001-mpfc-default-mode.md, wiki/papers/spatial-learning-pfc-martinet-2011.md, wiki/entities/prefrontal-cortex.md, wiki/entities/spacetime-attractor.md, wiki/concepts/planning-as-inference.md, wiki/papers/mechanistic-planning-pfc-jensen-2026.md]
+related: [wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/place-cells.md, wiki/concepts/replay.md, wiki/concepts/sequence-memory.md, wiki/concepts/latent-states.md, wiki/concepts/associative-memory.md, wiki/concepts/temporal-context.md, wiki/papers/inferential-reasoning-dupret-2020.md, wiki/papers/hassabis-neuroscience-ai-2017.md, wiki/entities/default-mode-network.md, wiki/papers/gusnard-2001-mpfc-default-mode.md, wiki/papers/spatial-learning-pfc-martinet-2011.md, wiki/entities/prefrontal-cortex.md, wiki/entities/spacetime-attractor.md, wiki/concepts/planning-as-inference.md, wiki/papers/mechanistic-planning-pfc-jensen-2026.md, wiki/papers/tcm-mtl-howard-2005.md]
 ---
 
 # Prospective Coding
@@ -105,6 +105,17 @@ With extended experience, SWR (Sharp Wave Ripple) shortcuts may reduce reliance 
 
 ---
 
+## Retrospective Counterpart: TCM's Leaky Integrator
+
+Prospective coding has a mirror image — **retrospective coding**, where an EC "place" cell's firing depends on the *history* of movements leading to the current location. The Temporal Context Model (Howard et al. 2005 [[wiki/papers/tcm-mtl-howard-2005.md]]) derives both from a single leaky integrator `t_i = ρ_i t_{i-1} + β t_iᴵᴺ` fed velocity input:
+
+- **Retrospective / trajectory coding falls out for free** — the drifting context carries a decaying trace of prior head directions, so two visits to the same spot with different approach paths (W-maze steps 6 vs. 12) evoke different codes. Robust in the model.
+- **Prospective coding is fragile in a purely retrospective model** — TCM's cells only "predict" the upcoming turn because head direction begins changing just before the choice point; genuine future-content prediction requires HC→EC feedback the drift equation lacks. This localizes prospective coding to *deep* EC (hippocampal-recipient) layers, exactly where Frank et al. 2000 observed it.
+
+**Design reading:** retrospection is cheap (any leaky recurrent state gives it); prospection is expensive (needs a learned forward model). A reasoning model gets a trajectory/episode index almost for free but must add explicit look-ahead machinery for planning.
+
+---
+
 ## Open Problems
 
 - **Multi-hop depth** — does prospective coding extend beyond one step (X→Y) to two steps (X→Y→Z directly in HC)? Current evidence says no; HC stops at Y. Whether longer chains are possible with different task designs is unknown.
@@ -115,6 +126,7 @@ With extended experience, SWR (Sharp Wave Ripple) shortcuts may reduce reliance 
 
 ## Connections
 
+- **[[wiki/concepts/temporal-context.md]]** — TCM's leaky-integrator context is the retrospective counterpart to prospective coding: it derives trajectory/retrospective EC coding analytically and shows prospective coding is fragile without HC→EC feedback, explaining why prospection concentrates in deep (hippocampal-recipient) EC layers.
 - **[[wiki/entities/hippocampal-entorhinal-system.md]]** — prospective coding is a core CA1 function; the inference version (X→Y in cognitive space) generalizes the spatial preplay already documented at choice points; both require CA1 causal activity.
 - **[[wiki/entities/place-cells.md]]** — spatial preplay is the original instance of prospective coding; place cell sequential activation at choice points and the X→Y sequential firing during inference are the same computational operation in different domains.
 - **[[wiki/concepts/replay.md]]** — SWR (Sharp Wave Ripple) shortcuts (offline) are the cached complement to the online prospective code; both serve inference, but one is computed on-the-fly while the other is pre-built during rest.
@@ -129,3 +141,4 @@ With extended experience, SWR (Sharp Wave Ripple) shortcuts may reduce reliance 
 - **[[wiki/entities/prefrontal-cortex.md]]** — PFC hosts both the topological planning mechanism (spreading activation) and the prospective-code output (σ-type neurons) that reads out the planned trajectory in temporal order; HC prospective coding and PFC prospective coding are hierarchically related, not equivalent.
 - **[[wiki/entities/spacetime-attractor.md]]** — STA is the mechanistic circuit model for PFC's full-trajectory prospective code: T simultaneous subspaces replace the ranked σ-neuron array; conveyor belt dynamics execute the plan; attractor inference replaces spreading activation.
 - **[[wiki/concepts/planning-as-inference.md]]** — planning as inference is the algorithmic framing of what prospective coding achieves at the multi-step level: the simultaneous T-step representation is the fixed point of the STA's attractor dynamics, not a sequential computation.
+- **[[wiki/queries/reasoning-as-coupled-navigation-strategizing.md]]** — prospective coding is the mechanism that makes each candidate reasoning sequence simulable: the one-step CA1 look-ahead (→ PFC/STA multi-step trajectory) is the generator whose sampled chains the Strategist rolls forward and scores against the goal in the reasoning refinement loop.

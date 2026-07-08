@@ -5,7 +5,7 @@ tags: [place-cells, hippocampus, latent-states, successor-representation, conjun
 created: 2026-06-09
 updated: 2026-06-27
 sources: [t-TEM, engram-transcript, jumping-spiders-cognition, The mechanisms for pattern completion and pattern separation in the hippocampus, Learning Fast and Slow Single- and Many-Shot Learning in the Hippocampus, spiking-tem-kawahara-2025, nieh-hippocampal-geometry-2021, sun-hippocampal-osm-2025, valero-interneuron-families-2025]
-related: [wiki/concepts/latent-states.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/structural-generalization.md, wiki/concepts/attention.md, wiki/concepts/engrams.md, wiki/concepts/binding-problem.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/excitation-inhibition-balance.md, wiki/concepts/btsp.md, wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/cscg-model.md, wiki/entities/arthropod-mushroom-bodies.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/engram-transcript.md, wiki/papers/jumping-spiders-cognition.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/spiking-tem-kawahara-2025.md, wiki/papers/nieh-hippocampal-geometry-2021.md, wiki/papers/sun-hippocampal-osm-2025.md, wiki/papers/valero-interneuron-families-2025.md, wiki/papers/wu-maass-btsp-2025.md]
+related: [wiki/concepts/latent-states.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/structural-generalization.md, wiki/concepts/attention.md, wiki/concepts/engrams.md, wiki/concepts/binding-problem.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/excitation-inhibition-balance.md, wiki/concepts/btsp.md, wiki/concepts/temporal-context.md, wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/cscg-model.md, wiki/entities/arthropod-mushroom-bodies.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/engram-transcript.md, wiki/papers/jumping-spiders-cognition.md, wiki/papers/pattern-completion-rolls-2013.md, wiki/papers/learning-fast-slow-liao-2024.md, wiki/papers/spiking-tem-kawahara-2025.md, wiki/papers/nieh-hippocampal-geometry-2021.md, wiki/papers/sun-hippocampal-osm-2025.md, wiki/papers/valero-interneuron-families-2025.md, wiki/papers/wu-maass-btsp-2025.md, wiki/papers/tcm-mtl-howard-2005.md]
 ---
 
 # Place Cells
@@ -37,6 +37,18 @@ Place cells do not form directly from MEC grid cells; the dentate gyrus (DG) is 
 3. Both sparse DG (Dentate Gyrus) representation and Hebbian learning are required; fixed random feed-forward weights alone produce broad overlapping fields.
 
 **Primate adaptation:** The same mechanism produces *spatial view cells* rather than place cells. The primate fovea covers ~10-20° (vs. rat's ~180-270°), so the DG (Dentate Gyrus) combination encodes a viewed patch in space rather than a body location. This unifies the rodent and primate HC literatures under a single DG (Dentate Gyrus) competitive learning account.
+
+---
+
+## The "Place" Code Is a History-Dependent Pseudo-Place Code (TCM)
+
+Howard et al. 2005 [[wiki/papers/tcm-mtl-howard-2005.md]] argue the entorhinal "place" code is not a representation of position at all, but a **leaky-integrated trace of recent movements** — `t_i = ρ_i t_{i-1} + β·velocity`. Position is merely a *correlate*, because the set of paths reaching a location constrains the accumulated trace:
+
+- **Place-like fields emerge from kinematics** — a cell tuned to "East" fires along the East wall because East movements cannot reach the West wall; the field location follows the cell's preferred head direction.
+- **Topological consistency across enclosures** — the same field appears in square and circular arenas (matches Quirk et al. 1992 EC), because analogous positions share analogous approach paths. EC does *not* remap; HC does (via DG → downstream x-change).
+- **History-dependence is the signature** — retrospective/trajectory coding (same location, different approach → different firing; Frank et al. 2000 W-maze) is a *prediction*, not an anomaly. A pure positional code cannot produce it.
+
+This reframes place cells as **episode indices**: the leaky trajectory trace simultaneously localizes *and* disambiguates which episode is unfolding — the same property that later makes TEM's `g` a structural code rather than a coordinate.
 
 ---
 
@@ -139,6 +151,7 @@ Four GABAergic interneuron families cooperatively gate distinct spatial coding d
 
 ## Connections
 
+- **[[wiki/concepts/temporal-context.md]]** — TCM derives the entorhinal place code as a leaky-integrated velocity history (a "pseudo-place code"), explaining topological cross-enclosure consistency and predicting retrospective/trajectory coding that a pure positional code cannot; recasts place cells as episode indices.
 - **[[wiki/concepts/latent-states.md]]** — splitter cells, lap cells, and evidence cells are place cells in expanded cognitive maps; the conjunctive binding p = f(g, x) extends naturally to non-spatial task dimensions.
 - **[[wiki/concepts/factorized-representations.md]]** — place cells implement the conjunctive code `p`; their environment-specific remapping while preserving grid-phase is the behavioral signature of factorization working correctly.
 - **[[wiki/concepts/successor-representation.md]]** — place cells = SR (Successor Representation) rows; SR (Successor Representation) predicts their asymmetric fields, barrier fragmentation, and environment-specific character.

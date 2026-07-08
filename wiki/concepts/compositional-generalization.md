@@ -3,9 +3,9 @@ title: "Compositional Generalization"
 type: concept
 tags: [compositional-generalization, abstract-reasoning, systematicity, productivity, seq2seq]
 created: 2026-06-19
-updated: 2026-07-02
-sources: [Compositionality_decomposed, Human-like_systematic_generalization, ARC-AGI-2.md, building_machine_that_thinks_like_people, raven, The ConceptARC Benchmark]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/binding-problem.md, wiki/concepts/attention.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/meta-learning.md, wiki/concepts/abstract-reasoning.md, wiki/papers/compositionality-decomposed-hupkes-2020.md, wiki/papers/mlc-lake-baroni-2023.md, wiki/entities/mlc-model.md, wiki/entities/arc-agi.md, wiki/papers/arc-agi-overview.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/building-machine-thinks-like-people-lake-2016.md, wiki/papers/pgm-barrett-2018.md, wiki/papers/conceptarc-moskvichev-2023.md, wiki/entities/baba-is-ai.md]
+updated: 2026-07-08
+sources: [Compositionality_decomposed, Human-like_systematic_generalization, ARC-AGI-2.md, building_machine_that_thinks_like_people, raven, The ConceptARC Benchmark, a-natural-history-of-the-human-mind, penn-darwins-mistake-2008, review-spelke-what-babies-know, hauser-chomsky-fitch-2002]
+related: [wiki/concepts/recursion.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/binding-problem.md, wiki/concepts/attention.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/meta-learning.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/relational-reinterpretation.md, wiki/concepts/core-knowledge.md, wiki/papers/revencu-csibra-what-babies-know-2023.md, wiki/papers/compositionality-decomposed-hupkes-2020.md, wiki/papers/mlc-lake-baroni-2023.md, wiki/entities/mlc-model.md, wiki/entities/arc-agi.md, wiki/papers/arc-agi-overview.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/building-machine-thinks-like-people-lake-2016.md, wiki/papers/pgm-barrett-2018.md, wiki/papers/conceptarc-moskvichev-2023.md, wiki/entities/baba-is-ai.md, wiki/papers/sherwood-natural-history-mind-2008.md, wiki/concepts/neoteny.md, wiki/papers/penn-darwins-mistake-2008.md]
 ---
 
 # Compositional Generalization
@@ -38,8 +38,6 @@ High task accuracy ≠ compositional understanding. Models learn representations
 
 **Causality as a co-prerequisite (Lake et al. 2016):** Chunking is not merely a statistical artifact — it is a symptom of lacking causal representations of how expressions are generated. Models learn joint probabilities over (function-pair, output) rather than the generative process that produces outputs from atomic rules. This explains why compositional representations alone do not achieve human-level learning-to-learn: without causality, the slow loop's prior does not resemble the actual generative mechanism of the domain, so the prior cannot be reused across novel task variants.
 
-**Implication for TIWM:** If the W-matrix in TEM absorbs multi-step transformation sequences as chunks, it will fail on novel transformation compositions even with good training accuracy. The slow-W system must learn atomic transformation primitives, not co-occurrence-weighted composition shortcuts.
-
 ---
 
 ## Localism Is the Hardest Property
@@ -57,6 +55,33 @@ Frege's principle (strong / local compositionality):
 `M(E) = F(M(A), M(B))` where `E = compose(A, B)` and F depends only on E's top-level rule.
 
 Weak (global) compositionality: `M(E) = G(M(A), M(B), structure(E))` — meaning depends on the full expression tree, not just immediate children. All tested models operate closer to the weak version; none implements strong compositionality by default.
+
+---
+
+## Functional vs. Concatenative Compositionality (Penn et al. 2008)
+
+A second axis, from comparative cognition, cuts orthogonally to Hupkes' facets and pins down *what kind* of composition current systems achieve. Van Gelder's distinction:
+
+| Type | Requirement | Who has it |
+|---|---|---|
+| **Functional** | Reliable, effective mechanisms to (1) build a complex representation from constituents and (2) decompose it back — *by any means*, concatenative or not | Non-human animals; standard transformers |
+| **Concatenative** (PSS-grade) | Constituents retain their identity *within* the composite, preserving **role-filler independence** — `loves` is the same token in `John loves Mary` and `Mary loves John` | Human System-2 reasoning; hand-coded symbolic systems; LISA (via synchrony) |
+
+The chunking failure mode above is precisely the gap between these: a model that stores `append+swap` as one unit *is* functionally compositional (it can build/decompose the pair reliably) but not concatenatively compositional (the atomic constituents are not independently recoverable). This is why high task accuracy coexists with 22–34% systematicity shortfalls — functional composition is sufficient for i.i.d. task accuracy; only concatenative composition supports role-based recombination onto novel fillers. Frames the target sharply: the reasoning model must add **concatenative** composition on top of the functional composition transformers already have — the [[wiki/concepts/relational-reinterpretation.md]] "graft," not a new pooling scheme. See also the [[wiki/concepts/binding-problem.md]]: role-filler independence *is* the binding requirement.
+
+---
+
+## The Composition Engine: Natural Language vs. Language of Thought (Revencu & Csibra 2023)
+
+*Where do the primitives and the composer come from?* Spelke (*What Babies Know*, 2022) grounds the primitives in [[wiki/concepts/core-knowledge.md]] — a handful of encapsulated, domain-specific core systems — and locates the composer in **natural language**: syntax builds complex representations from units; compositional semantics interprets them from parts + rules; linguistic expressions *point to* core representations without consuming attention. She **rejects an innate language of thought (LoT)** to avoid combinatorial explosion. Revencu & Csibra ([[wiki/papers/revencu-csibra-what-babies-know-2023.md]]) attack this and thereby surface three problems any module-composition architecture must solve:
+
+| Problem | The bind | Design implication for a reasoning model |
+|---|---|---|
+| **Bidirectional-link failure** | Core concepts are *taken for granted* → rarely spoken → language can't supply them; many function words (logical ops, tense/aspect, modals) have *no* core counterpart → language can't bootstrap them from core primitives. | A learned language-like interface over frozen specialist modules is **insufficient on its own** — the composer needs primitives (logical connectives, quantifiers) that no perceptual module emits. An LoT-like symbolic layer is required, not just an emergent inter-module code. |
+| **Combinatorial-explosion double bind** | Spelke rejects LoT *because* it over-generates; but a productive language composer faces the same explosion — if composition is internally driven, *why is SOCIAL AGENT composed first* out of myriad possibilities? Language "only pushes the problem slightly further in development." | Productivity is not the hard part — **selection is**. A composer that can build anything must be gated by a usefulness/relevance signal choosing *which* compositions to realize. This is the composition-selection face of Gap #3 (vocabulary co-discovery) and connects to active-inference epistemic value (Gap #6). |
+| **Representational-format codec** | If language is needed to bring core outputs into a *common* format, then core concepts are a *different kind* than thought's building blocks and cannot be used directly as primitives — an equivocation Spelke never resolves. | Composing over specialist modules requires an explicit **codec** translating each module's native format (continuous/metric/perceptual) into a shared compositional format (discrete/role-filler) and back. This is the continuous↔discrete codec of Gap #2, now motivated from development, not just from the MEC/PFC split. |
+
+**Association vs. productive composition.** Spelke grants animals a limited *associative* combination and reserves *productive* composition for language-endowed humans — but gives no criterion to distinguish them (is SOCIAL AGENT productive, or just "efficient agents tend to engage"?). This is the same boundary as functional vs. concatenative composition above: the missing criterion is exactly **role-filler independence**. A reasoning model's evaluation must therefore test recombination onto novel fillers, not just successful combination — the associative composer passes the latter and fails the former.
 
 ---
 
@@ -133,6 +158,18 @@ ME is context-sensitive, not rigid: it weakens with contradictory evidence (β=1
 
 ---
 
+## Cross-Domain Connectivity as the Substrate for Domain-Independence (Sherwood et al. 2008)
+
+Hupkes' *systematicity* and Lake's compositionality require a system that can combine terms from *different* content domains into one representation. Sherwood et al. ([[wiki/papers/sherwood-natural-history-mind-2008.md]]) offer a biological substrate for exactly this — the **"common code" hypothesis**:
+
+- Human language is uniquely **task-domain-neutral** and **generally systematic**: it can represent any object it has a term for as having any property it has a term for. A sentence combining concepts from two cognitive domains *cannot* be domain-specific — it must transcend the proprietary task domains of its components.
+- The proposed enabling change is **enhanced long-range corticocortical association connectivity** — e.g. the arcuate fasciculus projects more prominently to middle-temporal semantic areas in humans than in chimp/macaque. Richer inter-module wiring provides a shared medium in which previously **encapsulated** domain-specific modules can be integrated.
+- This directly predicts the human facility for **analogical transfer** across domains ("light as a wave") — the prototype case of abstract reasoning ([[wiki/concepts/abstract-reasoning.md]]).
+
+**Design implication:** domain-independence may be less a property of a dedicated "compositional module" than an *emergent consequence of cross-module connectivity* laid down during an extended plastic window ([[wiki/concepts/neoteny.md]]). A reasoning model built as a set of specialist modules will fail generalized systematicity unless it also has a shared, high-bandwidth interconnect that lets tokens from any module bind to tokens from any other — the architectural analog of the "common code." This is the connectivity precondition beneath the localism/binding requirement above.
+
+---
+
 ## Open Problems
 
 1. **Preventing chunking without parse-tree supervision:** largely addressed by MLC's episodic meta-training — different grammar per episode forces atomic rule learning without explicit structural annotations. Remaining gap: extending to open-ended, multi-level compositional chains (ARC-AGI rule hierarchies).
@@ -144,6 +181,7 @@ ME is context-sensitive, not rigid: it weakens with contradictory evidence (β=1
 
 ## Connections
 
+- **[[wiki/concepts/recursion.md]]** — recursion / discrete infinity (Hauser, Chomsky & Fitch 2002) is the strongest form of the *productivity* facet: HCF localize unbounded-length generativity to a single recursive operator (FLN), and the AₙBₙ-vs-ABₙ tamarin result gives the comparative-cognition instance of the productivity gap (finite-state learnable, phrase-structure/recursive not).
 - **[[wiki/concepts/structural-generalization.md]]** — complementary capability: structural generalization transfers graph topology; compositional generalization recombines symbolic operations; the five facets operationalise what "transformers fail at structural generalization" means in precise, testable terms — they fail on all five facets simultaneously.
 - **[[wiki/concepts/binding-problem.md]]** — localism failure is a compositional binding failure: models do not bind sub-expression results to their intermediate meanings before computing the parent expression; this is the binding problem instantiated at the rule-composition level, distinct from feature binding or variable-slot binding.
 - **[[wiki/concepts/attention.md]]** — transformer's global receptive field (no inherent sequentiality) is a liability for localism specifically; ConvS2S's local convolutions are architecturally better matched; transformer leads on 4 of 5 other facets.
@@ -164,3 +202,9 @@ ME is context-sensitive, not rigid: it weakens with contradictory evidence (β=1
 - **[[wiki/concepts/shortcut-reasoning.md]]** — shortcut reasoning is the concurrent failure mode: when systems fail compositionality (localism, systematicity) they typically learn distribution-specific chunked co-occurrence patterns, which are precisely the shortcuts that fail on o.o.d. recompositions; the inverse scaling paradox (larger LLMs more shortcut-prone) and chunking failure compound each other.
 - **[[wiki/entities/vsa-model.md]]** — VSA's slot-filler encoding (ROLE ⊛ FILLER) directly implements the localism requirement: sub-expression results are bound to roles before composition, satisfying the binding constraint that transformers fail on; the 94.5% Sort-of-ARC score confirms systematic generalization when the vocabulary is pre-specified.
 - **[[wiki/entities/baba-is-ai.md]]** — Baba's `break→make→goto` test is compositional generalization over *rule-manipulation* primitives rather than object features; frontier models score ~15–20%, showing the localism/systematicity failure extends to composing edits of the environment's own rules.
+- **[[wiki/papers/sherwood-natural-history-mind-2008.md]]** — source for the "common code" hypothesis: enhanced long-range association connectivity (arcuate fasciculus → semantic areas) is the biological substrate for task-domain-neutral, generally systematic thought and cross-domain analogical transfer.
+- **[[wiki/concepts/neoteny.md]]** — the cross-module connectivity that enables domain-independence is laid down during the extended plastic window; domain-independence is framed as emergent from schedule + connectivity, not a hard-coded compositional module.
+- **[[wiki/concepts/relational-reinterpretation.md]]** — supplies the functional-vs-concatenative axis: transformers' chunking is functional (build/decompose) but not concatenative (role-filler-preserving) composition; the reasoning model must add the concatenative form, the RR "graft."
+- **[[wiki/papers/penn-darwins-mistake-2008.md]]** — comparative-cognition source for van Gelder's functional/concatenative distinction and the role-filler-independence requirement.
+- **[[wiki/concepts/core-knowledge.md]]** — supplies the *primitives* to be composed (encapsulated core systems); the composition-engine debate is about the *composer* that binds them; together they frame human productivity as composition across domain-specific priors.
+- **[[wiki/papers/revencu-csibra-what-babies-know-2023.md]]** — source for the language-vs-LoT composition-engine debate: the bidirectional-link failure, the combinatorial-explosion double bind (selection > productivity), and the representational-format codec problem.

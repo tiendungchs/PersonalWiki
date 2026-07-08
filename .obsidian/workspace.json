@@ -4,24 +4,81 @@
     "type": "split",
     "children": [
       {
-        "id": "588cc7a74996c6cc",
+        "id": "aeda3a2722607e5d",
         "type": "tabs",
         "children": [
           {
-            "id": "7616e189e4aff41f",
+            "id": "516e16f2e20639ec",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/overview.md",
+                "file": "wiki/queries/sota-review-brain-inspired-abstract-reasoning.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "overview"
+              "title": "sota-review-brain-inspired-abstract-reasoning"
+            }
+          },
+          {
+            "id": "57e89bbc1967e615",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/concepts/latent-graph-discovery.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "latent-graph-discovery"
+            }
+          },
+          {
+            "id": "4192752cc02945b8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/queries/reasoning-as-coupled-navigation-strategizing.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "reasoning-as-coupled-navigation-strategizing"
+            }
+          },
+          {
+            "id": "6496a6562b220a0d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/queries/proposed-reasoning-model-block-architectures.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "proposed-reasoning-model-block-architectures"
+            }
+          },
+          {
+            "id": "21734a843b28d617",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/queries/proposed-reasoning-model-block-architectures.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "proposed-reasoning-model-block-architectures"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -156,13 +213,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/overview.md",
+                "file": "wiki/queries/proposed-reasoning-model-block-architectures.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of overview"
+              "title": "Outline of proposed-reasoning-model-block-architectures"
             }
           }
         ],
@@ -170,7 +227,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -183,54 +241,54 @@
       "bases:Create new base": false
     }
   },
-  "active": "7616e189e4aff41f",
+  "active": "21734a843b28d617",
   "lastOpenFiles": [
-    "raw/Peter Suber, Nomic.md",
-    "wiki/queries/review-abstract-introduction.md",
-    "wiki/glossary.md.tmp.7256.628b622f5cb0",
-    "index.md.tmp.7256.899d50425622",
-    "wiki/concepts/cognitive-control.md.tmp.7256.c286a4efb9a6",
-    "wiki/papers/pfc-categories-concepts-miller-2002.md",
-    "wiki/queries/rule-changes-as-meta-graph-rules.md",
+    "wiki/architectural-gaps.md.tmp.28557.00555523e701",
+    "wiki/concepts/cultural-learning.md",
+    "wiki/papers/tomasello-rakoczy-human-cognition-2003.md",
+    "wiki/queries/sota-review-brain-inspired-abstract-reasoning.md",
+    "wiki/papers/hauser-chomsky-fitch-2002.md",
+    "wiki/concepts/recursion.md",
+    "raw/Core knowledge.md",
+    "wiki/papers/revencu-csibra-what-babies-know-2023.md",
+    "wiki/papers/penn-darwins-mistake-2008.md",
+    "wiki/concepts/relational-reinterpretation.md",
+    "wiki/papers/spelke-kinzler-core-knowledge-2007.md",
+    "wiki/concepts/core-knowledge.md",
+    "wiki/papers/somel-transcriptional-neoteny-2009.md",
+    "wiki/concepts/cognitive-control.md.tmp.28557.b80a98921488",
+    "wiki/papers/sherwood-natural-history-mind-2008.md",
+    "wiki/concepts/neoteny.md",
+    "wiki/papers/maclean-human-cognition-evolution-2016.md",
+    "raw/Transcriptional neoteny in the human brain.md",
+    "raw/A natural history of the human mind tracing evolutionary changes in brain and cognition.md",
+    "raw/Unraveling the evolution of uniquely human cognition.md",
+    "raw/Review of Elizabeth Spelkes What babies know.md",
+    "raw/What Makes Human Cognition Unique_.md",
+    "raw/The Faculty of Languag.md",
+    "raw/Darwins mistake.md",
+    "CLAUDE.md",
     "wiki/concepts/latent-graph-discovery.md",
-    "wiki/overview.md",
-    "wiki/concepts/latent-graph-discovery.md.tmp.7256.9a9f027bc985",
-    "raw/Peter Suber, \"Nomic\".md",
-    "wiki/entities/baba-is-ai.md",
-    "raw/Review Batman Fluxx (Game).md",
-    "raw/Fluxx5.0Rules_0.md",
-    "raw/The prefrontal cortex- categories, concepts and cognition.md",
-    "raw/Review 'Batman Fluxx' (Game).md",
-    "raw/Baba Is AI Break the Rules to Beat the Benchmark.md",
-    "wiki/entities/prefrontal-cortex.md",
-    "wiki/queries/review-article-abstract-introduction.md",
-    "wiki/concepts/abstract-reasoning.md",
-    "wiki/queries/allocentric-navigation-direction-evaluation.md",
-    "wiki/queries/dynamic-graph-vs-time-dimension.md",
-    "wiki/queries/mec-abstract-codes-vs-declarative-rules.md",
-    "wiki/architectural-gaps.md.tmp.15172.f37095b2086d",
-    "wiki/papers/fact-finding-factual-recall-nanda-2023.md",
-    "index.md",
-    "raw/Fact Finding Do Early Layers Specialise in Local Processing? (Post 5) — AI Alignment Forum.md",
-    "raw/Fact Finding How to Think About Interpreting Memorisation (Post 4) — AI Alignment Forum.md",
-    "raw/Fact Finding Trying to Mechanistically Understanding Early MLPs (Post 3) — AI Alignment Forum.md",
-    "raw/Fact Finding Simplifying the Circuit (Post 2) — AI Alignment Forum.md",
-    "raw/Fact Finding Attempting to Reverse-Engineer Factual Recall on the Neuron Level (Post 1) — AI Alignment Forum.md",
-    "wiki/concepts/small-world-networks.md.tmp.58517.d3737875c2e3",
-    "wiki/concepts/canonical-microcircuit.md.tmp.58517.969dfa31ae57",
-    "wiki/concepts/meta-learning.md.tmp.58517.fe840589607a",
-    "wiki/concepts/memory-schemas.md.tmp.30979.084dc80b81a1",
-    "wiki/concepts/prospective-coding.md.tmp.30979.0b885ab766b1",
+    "wiki/queries/proposed-reasoning-model-block-architectures.md",
+    "test.txt",
+    "test.xxt",
+    "case4_topology_edges_latent.png",
+    "case3_node_content_latent.png",
+    "case2_path_latent.png",
+    "case1_edges_latent.png",
+    "test2.py",
+    "test.py",
+    "wiki/concepts/memory-schemas.md.tmp.15309.81a97118401f",
+    "wiki/queries/reasoning-as-coupled-navigation-strategizing.md.tmp.15309.d420f3a85a81",
+    "wiki/entities/tem-model.md.tmp.88683.3dded26f5307",
+    "wiki/entities/frontiermath-benchmark.md.tmp.79901.eef27464c843",
+    "wiki/entities/vl-jepa-model.md.tmp.79901.7ba342e51e1f",
     "Untitled.canvas",
     "raw/assets/gaps1.png",
     "raw/assets/gaps.png",
     "raw/assets/gap2.png",
     "raw/assets/gap3.png",
     "raw/assets/cognitivemap_fig3.png",
-    "raw/assets/cognitivemap_fig4.png",
-    "raw/assets/cognitivemap_fig5.png",
-    "raw/assets/cognitivemap_fig1.png",
-    "raw/assets/cognitivemap_fig2.png",
-    "raw/assets/cognitivemap_fig6.png"
+    "raw/assets/cognitivemap_fig4.png"
   ]
 }

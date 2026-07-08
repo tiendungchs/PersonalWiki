@@ -57,7 +57,6 @@
 ## 2026-06-20 | ingest | Helie et al. CCN BG 2013 | created: helie-ccn-bg-2013.md; updated: basal-ganglia, working-memory, two-learning-timescales, meta-learning
 ## 2026-06-20 | ingest | Bogacz & Gurney BG 2007 | created: bogacz-gurney-bg-msprt-2007.md; updated: basal-ganglia, cognitive-control, working-memory
 ## 2026-06-20 | maintenance | Latent graph discovery concept + CLAUDE.md update | created: latent-graph-discovery.md; updated: 8 pages, CLAUDE.md
-## 2026-06-20 | maintenance | Query cleanup — TIWM promoted, 3 query pages deleted | created: tiwm-model.md; deleted 3 superseded query pages; updated cross-refs in 7 files
 ## 2026-06-20 | update | Overview rewrite + wiki re-index | updated: overview.md; re-indexed with qmd
 ## 2026-06-20 | lint | Second lint pass | filed: lint-2026-06-20b.md
 ## 2026-06-20 | maintenance | Lint fix pass (second) | created: dendritic-computation.md, adult-neurogenesis.md, lisa-model.md, covis-model.md; fixed: orphan, stale dates, cross-refs, abbreviations, glossary
@@ -235,3 +234,40 @@
 ## 2026-07-02 | query | Are rule changes just another rule in the meta-graph? | filed: rule-changes-as-meta-graph-rules; updated: latent-graph-discovery, dynamic-graph-vs-time-dimension, two-learning-timescales, factorized-representations, index
 ## 2026-07-02 | ingest | The Prefrontal Cortex: Categories, Concepts and Cognition (Miller, Freedman & Wallis 2002) | created: wiki/papers/pfc-categories-concepts-miller-2002.md; updated: wiki/entities/prefrontal-cortex.md, wiki/concepts/cognitive-control.md, wiki/concepts/representational-geometry.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/two-learning-timescales.md, wiki/glossary.md, wiki/index-papers.md
 ## 2026-07-02 | lint | Count drift fixed (papers 185, concepts 57, benchmarks 6, queries 6), no orphans; folded source-6 non-stationary topology + Baba Is AI + Miller 2002 single-neuron rules + Nanda memorization boundary + MEC-vs-PFC two-subsystem split into overview; added 4 glossary abbrevs (MDL/VoE/SLM/NGF); bidirectional baba-is-ai backlinks | updated: index.md, index-papers.md, index-concepts.md, overview.md, glossary.md, arc-agi, compositional-generalization, spacetime-attractor
+## 2026-07-02 | ingest | ARC Prize 2026 (Kaggle ARC-AGI-3 competition) | created: none; updated: wiki/entities/arc-agi.md
+## 2026-07-02 | update | Propagate ARC-AGI-3 new info (per-game latent action semantics, adaptable world models, contamination resistance) | updated: overview, arc-agi-overview, arc-agi-3-paper, world-models, abstract-reasoning, latent-graph-discovery, baba-is-ai
+## 2026-07-02 | query | State-of-the-art review of brain-inspired abstract-reasoning architectures (foundation/rationale for method direction) | filed: sota-review-brain-inspired-abstract-reasoning
+## 2026-07-02 | ingest | AI for Mathematical Reasoning: Integrated Survey (2026) | created: wiki/papers/math-reasoning-survey-2026.md, wiki/queries/brain-inspired-vs-solver-approach.md; updated: wiki/concepts/latent-graph-discovery.md, wiki/concepts/refinement-loops.md, wiki/entities/frontiermath-benchmark.md, wiki/empirical-tensions.md, wiki/glossary.md, wiki/index-papers.md, index.md
+## 2026-07-02 | query | Add world-model pivot (JEPA/DINO) as alternative approach to SOTA review | filed: sota-review-brain-inspired-abstract-reasoning (updated); created: none; updated: sota-review-brain-inspired-abstract-reasoning, jepa-model, vl-jepa-model, dinov2-model, dinov3-model
+## 2026-07-02 | query | Expand SOTA review with the solver (generate+verify) pivot | updated: wiki/queries/sota-review-brain-inspired-abstract-reasoning.md, wiki/concepts/refinement-loops.md, wiki/papers/math-reasoning-survey-2026.md
+## 2026-07-02 | query | Add benchmarks×hardness-sources and LGD-requirements×models tables to SOTA review | updated: wiki/queries/sota-review-brain-inspired-abstract-reasoning.md
+## 2026-07-02 | update | Refresh obsolete ARC-AGI-2 results (ARC Prize 2025 Tech Report + ARC-AGI v2 Leaderboard) | created: none; updated: overview.md, entities/arc-agi.md, entities/frontiermath-benchmark.md, concepts/abstract-reasoning.md, concepts/structural-generalization.md, concepts/latent-graph-discovery.md, papers/arc-agi-2-paper.md, papers/glazer-frontiermath-2024.md, papers/shortcut-learning-geirhos-2020.md, queries/sota-review-brain-inspired-abstract-reasoning.md, empirical-tensions.md (new tension row: verified 24-54% vs self-reported <=85%)
+## 2026-07-03 | query | Which benchmark isolates reasoning from perceptual/language/domain-knowledge confounds | filed: sota-review-brain-inspired-abstract-reasoning (added §3.1 capability-confound table)
+## 2026-07-03 | ingest | The Temporal Context Model in Spatial Navigation and Relational Learning (Howard, Fotedar, Datey & Hasselmo 2005) | created: wiki/papers/tcm-mtl-howard-2005.md, wiki/concepts/temporal-context.md; updated: successor-representation, path-integration, prospective-coding, tem-model, place-cells, structural-generalization, index-papers, index-concepts
+## 2026-07-03 | query | Building blocks of the declarative/schema subsystem + metric↔declarative gating interface | filed: building-blocks-declarative-subsystem; updated: architectural-gaps (Gap #2), building-blocks-mec-hc-pfc, mec-abstract-codes-vs-declarative-rules, index
+
+## 2026-07-06 | query | Reasoning as coupled path-integration/strategizing information flow (+ fine-tuning curriculum) | filed: reasoning-as-coupled-navigation-strategizing
+
+## 2026-07-06 | query | Goal selection during diffuse-g exploration (learning progress / info gain / empowerment) | filed: no (folded into reasoning-as-coupled-navigation-strategizing)
+
+## 2026-07-06 | update | Propagate reasoning-as-coupled-navigation-strategizing insights into related pages | created: none; updated: reasoning-as-coupled-navigation-strategizing, building-blocks-mec-hc-pfc, building-blocks-declarative-subsystem, sota-review-brain-inspired-abstract-reasoning, tem-model, latent-graph-discovery, abstract-reasoning, replay, refinement-loops, meta-learning, two-learning-timescales, memory-schemas
+
+## 2026-07-06 | query | Proposed reasoning model: per-block architecture menus (ARC-AGI-3) | filed: proposed-reasoning-model-block-architectures
+
+## 2026-07-07 | ingest | Unraveling the evolution of uniquely human cognition (MacLean 2016) | created: papers/maclean-human-cognition-evolution-2016, concepts/neoteny; updated: concepts/abstract-reasoning, concepts/convergent-allocentric-coding, index-papers, index-concepts
+
+## 2026-07-08 | ingest | A Natural History of the Human Mind (Sherwood, Subiaul & Zawidzki 2008) | created: wiki/papers/sherwood-natural-history-mind-2008.md; updated: wiki/concepts/neoteny.md (STUB→full), wiki/concepts/abstract-reasoning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/cognitive-control.md, wiki/concepts/neuromodulation.md, wiki/index-papers.md, wiki/papers/maclean-human-cognition-evolution-2016.md
+
+## 2026-07-08 | ingest | Transcriptional neoteny in the human brain (Somel et al. 2009) | created: wiki/papers/somel-transcriptional-neoteny-2009.md; updated: wiki/concepts/neoteny.md, wiki/concepts/two-learning-timescales.md, wiki/papers/sherwood-natural-history-mind-2008.md, wiki/index-papers.md, wiki/index-concepts.md, wiki/glossary.md
+
+## 2026-07-08 | ingest | Core Knowledge — Spelke & Kinzler 2007 | created: concepts/core-knowledge, papers/spelke-kinzler-core-knowledge-2007; updated: index-concepts, index-papers, abstract-reasoning, shortcut-reasoning, arc-agi, arc-agi-overview, architectural-gaps (Gap 9)
+
+## 2026-07-08 | ingest | Darwin's Mistake (Penn, Holyoak & Povinelli 2008, BBS) | created: wiki/concepts/relational-reinterpretation.md, wiki/papers/penn-darwins-mistake-2008.md; updated: wiki/entities/lisa-model.md, wiki/concepts/shortcut-reasoning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/analogical-reasoning.md, wiki/concepts/abstract-reasoning.md, wiki/index-concepts.md, wiki/index-papers.md
+
+## 2026-07-08 | ingest | Review of Spelke's What Babies Know (Revencu & Csibra 2023) | created: papers/revencu-csibra-what-babies-know-2023; updated: concepts/core-knowledge, concepts/compositional-generalization, concepts/binding-problem, concepts/relational-reinterpretation, empirical-tensions, index-papers
+
+## 2026-07-08 | ingest | The Faculty of Language (Hauser, Chomsky & Fitch 2002) | created: wiki/concepts/recursion.md, wiki/papers/hauser-chomsky-fitch-2002.md; updated: compositional-generalization, core-knowledge, latent-graph-discovery, index-concepts, index-papers
+
+## 2026-07-08 | ingest | What Makes Human Cognition Unique? (Tomasello & Rakoczy 2003) | created: wiki/papers/tomasello-rakoczy-human-cognition-2003.md, wiki/concepts/cultural-learning.md; updated: recursion, relational-reinterpretation, neoteny, core-knowledge, maclean-human-cognition-evolution-2016, index-concepts, index-papers, architectural-gaps (Gap #3)
+
+## 2026-07-08 | update | Fold new concept pages (RR, recursion, core-knowledge, neoteny, temporal-context) into 3 query pages | updated: wiki/queries/sota-review-brain-inspired-abstract-reasoning.md, wiki/queries/reasoning-as-coupled-navigation-strategizing.md, wiki/queries/proposed-reasoning-model-block-architectures.md

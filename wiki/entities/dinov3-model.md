@@ -3,7 +3,7 @@ title: "DINOv3"
 type: entity
 tags: [self-supervised-learning, vision-transformers, foundation-models, representation-learning, dense-features, scaling]
 created: 2026-06-23
-updated: 2026-06-23
+updated: 2026-07-02
 sources: [DINOv3]
 related: [wiki/entities/dinov2-model.md, wiki/entities/jepa-model.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/energy-based-models.md, wiki/papers/dinov3-simeoni-2025.md, wiki/papers/lejepa-balestriero-lecun-2025.md]
 ---
@@ -91,6 +91,7 @@ where `X_S` and `X_G` are L2-normalized patch feature matrices (P×d) of student
 
 ## Connections
 
+- **[[wiki/queries/sota-review-brain-inspired-abstract-reasoning.md]]** — §4.5 uses the LeJEPA-beats-DINOv3 in-domain result (11K images vs. hundreds of millions) to argue that for the narrow-data regime of abstract reasoning, principled SSL — not scale — is the operative lever, reinforcing the review's "scaling the wrong inductive structure cannot reach the target."
 - **[[wiki/entities/dinov2-model.md]]** — DINOv3 is the direct successor: same DINO+iBOT+KoLeo recipe scaled to 7B; Gram anchoring directly addresses DINOv2's dense feature degradation at scale; RoPE replaces DINOv2's learnable positional embeddings for resolution generalization.
 - **[[wiki/entities/jepa-model.md]]** — The DINOv2/DINOv3 EMA (Exponential Moving Average) teacher-student pattern is the architectural ancestor of I-JEPA's target encoder; LeJEPA's SIGReg provably outperforms both DINOv2 and DINOv3 in-domain, identifying KoLeo as a weaker version of N(0,I) regularization.
 - **[[wiki/concepts/hierarchical-representations.md]]** — DINOv3 maintains the CLS (Complementary Learning Systems) (global semantic) + patch (local spatial) dual-level representation; Gram anchoring preserves the patch-level hierarchy independently of the global DINO objective.

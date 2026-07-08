@@ -3,9 +3,9 @@ title: "ARC-AGI Benchmark Series — Chollet 2019 / arcprize.org 2025"
 type: paper
 tags: [ARC-AGI, benchmark, fluid-intelligence, skill-acquisition, test-time-reasoning, compositional-reasoning]
 created: 2026-06-19
-updated: 2026-06-19
+updated: 2026-07-08
 sources: [ARC-AGI-1.md, ARC-AGI-2.md, ARC-AGI-3.md, What is ARC-AGI.md]
-related: [wiki/entities/arc-agi.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/meta-learning.md, wiki/queries/building-blocks-mec-hc-pfc.md]
+related: [wiki/entities/arc-agi.md, wiki/concepts/core-knowledge.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/meta-learning.md, wiki/queries/building-blocks-mec-hc-pfc.md]
 ---
 
 # ARC-AGI Benchmark Series — Chollet 2019 / arcprize.org 2025
@@ -17,10 +17,10 @@ related: [wiki/entities/arc-agi.md, wiki/concepts/structural-generalization.md, 
 ## Key Computational Insights
 
 - **Intelligence = skill-acquisition efficiency, not task skill:** Chollet's formal definition excludes crystallized knowledge (developer-encoded priors) and isolates fluid generalization. Benchmarks testing PhD-level knowledge or domain-specific skills measure the developer's encoding cleverness, not the system's intelligence — a critical distinction for designing principled evaluations.
-- **Core Knowledge Priors define the fair prior budget:** Restricting to objectness, numbers/counting, geometry/spatial relations, and agency/intentionality creates a universal substrate accessible to both humans and any AI system without prior exposure. Anything beyond this is crystallized knowledge that biases the comparison toward well-pretrained systems.
+- **Core Knowledge Priors define the fair prior budget:** Restricting to objectness, numbers/counting, geometry/spatial relations, and agency/intentionality (Spelke's four core systems; [[wiki/concepts/core-knowledge.md]]) creates a universal substrate accessible to both humans and any AI system without prior exposure. Anything beyond this is crystallized knowledge that biases the comparison toward well-pretrained systems.
 - **Scale alone fails fluid intelligence — test-time adaptation is the lever:** ARC-AGI-1 resisted 50,000× LLM scale-up from 2019 to 2024. o3 solved it via test-time reasoning rather than additional pre-training — empirically establishing that fast within-episode adaptation, not slow weight accumulation, is the critical variable for novel-task generalization.
 - **ARC-AGI-2 identifies three specific architectural deficits:** Symbolic interpretation (semantic role beyond visual pattern → Block 3A), compositional reasoning (multiple simultaneously interacting rules → Block 3C), contextual rule application (context-gated rule selection → Block 3B). These are not data or scale problems — they require novel architectural mechanisms targeting each block.
-- **ARC-AGI-3 defines the complete agent loop:** Moving from static puzzles to interactive environments requires on-the-fly goal acquisition, experience-driven world-model building, and long-horizon planning with sparse feedback — the full closed-loop architecture (Blocks 3A + 3B + 3D + world-model update) operating across sequential time steps, not just single inference passes.
+- **ARC-AGI-3 defines the complete agent loop:** Moving from static puzzles to interactive environments requires on-the-fly goal acquisition, discovery of **per-game action semantics** (the effect of each action is undefined and varies by environment — it must be learned by probing), experience-driven world-model building (actions *change* the environment, so the model must be adaptable to observed state transitions), and long-horizon planning with sparse feedback — the full closed-loop architecture (Blocks 3A + 3B + 3D + world-model update) operating across sequential time steps, not just single inference passes.
 - **Choi 2026 extends Chollet's generalisation criterion to substrate-independent grounding:** Intelligence Density $\mathcal{I}(S) = \log_2 N(S) / C(S)$ formalises the same generalisation-not-memorisation insight without requiring task or reward specification — $\mathcal{I}(n) \to \infty$ iff a system *knows* its domain. Proposition 2 shows Legg-Hutter $\Upsilon$ is monotonically increasing in $\mathcal{I}$, formally unifying Chollet's, Legg-Hutter's, and Choi's measures under a common monotonicity relationship [[wiki/concepts/intelligence-density.md]].
 
 ---

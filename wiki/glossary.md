@@ -5,7 +5,7 @@ tags:
   - reference
   - glossary
 created: 2026-06-20
-updated: 2026-07-02
+updated: 2026-07-08
 sources: []
 related: []
 ---
@@ -81,15 +81,19 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | PFC | Prefrontal Cortex | [[wiki/entities/prefrontal-cortex.md]] |
 | PGM | Progressive Generalization Matrix (Barrett 2018) | [[wiki/papers/pgm-barrett-2018.md]] |
 | PSP | Post-Synaptic Potential | [[wiki/papers/gardner-gruning-supervised-snn.md]] |
+| PSS | Physical Symbol System (Newell) | [[wiki/concepts/relational-reinterpretation.md]] |
 | **PVLV** | Primary Value and Learned Value (DA learning algorithm) | [[wiki/concepts/meta-learning.md]] |
 | RBM | Restricted Boltzmann Machine | [[wiki/entities/boltzmann-machine.md]] |
 | RL | Reinforcement Learning | [[wiki/concepts/meta-learning.md]] |
+| RMTS | Relational Match-To-Sample (comparative-cognition task) | [[wiki/concepts/relational-reinterpretation.md]] |
+| RR | Relational Reinterpretation (Penn et al. 2008) | [[wiki/concepts/relational-reinterpretation.md]] |
 | RNN | Recurrent Neural Network | [[wiki/entities/trnn-model.md]] |
 | SD | Shattering Dimensionality | [[wiki/concepts/representational-geometry.md]] |
 | SDM | Sparse Distributed Memory | [[wiki/entities/sdm-model.md]] |
 | SDR | Sparse Distributed Representations | [[wiki/concepts/sparse-distributed-representations.md]] |
 | SEC | Structured Event Complex | [[wiki/entities/prefrontal-cortex.md]] |
 | SFA | Spike Frequency Adaptation | [[wiki/concepts/spike-frequency-adaptation.md]] |
+| SFG | Superior Frontal Gyrus (prefrontal region) | [[wiki/papers/somel-transcriptional-neoteny-2009.md]] |
 | FA | Feedback Alignment | [[wiki/papers/bartunov-scalability-bio-dl-2018.md]] |
 | TP | Target-propagation | [[wiki/papers/bartunov-scalability-bio-dl-2018.md]] |
 | DTP | Difference Target Propagation | [[wiki/papers/bartunov-scalability-bio-dl-2018.md]] |
@@ -106,13 +110,15 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | TBT | Thousand Brains Theory | [[wiki/entities/htm-thousand-brains.md]] |
 | TD | Temporal Difference (learning) | [[wiki/concepts/neuromodulation.md]] |
 | TEM | Tolman-Eichenbaum Machine | [[wiki/entities/tem-model.md]] |
-| TIWM | Tolman-Inspired Working Memory (model) | [[wiki/entities/tiwm-model.md]] |
 | TRNN (Transition RNN) | Transition RNN (model) | [[wiki/entities/trnn-model.md]] |
 | WM | Working Memory | [[wiki/concepts/working-memory.md]] |
 | WTA | Winner-Take-All | [[wiki/concepts/sparse-distributed-representations.md]] |
 | **ANLI** | Adversarial Natural Language Inference | [[wiki/papers/adversarial-nli-nie-2020.md]] |
 | CAM | Content-Addressable Memory | [[wiki/entities/hami-model.md]] |
 | CoT | Chain of Thought | [[wiki/concepts/refinement-loops.md]] |
+| RLVR | Reinforcement Learning from Verifiable Rewards | [[wiki/papers/math-reasoning-survey-2026.md]] |
+| PRM | Process Reward Model | [[wiki/papers/math-reasoning-survey-2026.md]] |
+| MWP | Math Word Problem | [[wiki/papers/math-reasoning-survey-2026.md]] |
 | DSL | Domain-Specific Language | [[wiki/entities/vsa-model.md]] |
 | EBM | Energy-Based Model | [[wiki/concepts/energy-based-models.md]] |
 | EM | Expectation Maximization | [[wiki/entities/cscg-model.md]] |

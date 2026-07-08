@@ -5,7 +5,7 @@ tags: [path-integration, navigation, recurrent-networks, compression, graph-trav
 created: 2026-06-09
 updated: 2026-06-24
 sources: [t-TEM, reservoir-computing-transcript, landmark-orientation, Vector Symbolic Algebras for the Abstraction and Reasoning Corpus.md]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/attention.md, wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/htm-thousand-brains.md, wiki/entities/reservoir-computing.md, wiki/entities/insect-central-complex.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/seelig-jayaraman-2015.md, wiki/concepts/ring-attractor.md, wiki/papers/acann-li-chu-wu-2024.md, wiki/entities/vsa-model.md, wiki/papers/joffe-vsa-arc-2025.md]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/successor-representation.md, wiki/concepts/temporal-context.md, wiki/concepts/attention.md, wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/htm-thousand-brains.md, wiki/entities/reservoir-computing.md, wiki/entities/insect-central-complex.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/seelig-jayaraman-2015.md, wiki/concepts/ring-attractor.md, wiki/papers/acann-li-chu-wu-2024.md, wiki/entities/vsa-model.md, wiki/papers/joffe-vsa-arc-2025.md, wiki/papers/tcm-mtl-howard-2005.md]
 ---
 
 # Path Integration
@@ -31,6 +31,20 @@ TEM's update rule: `g_{t+1} = f(W g_t + B a_t)`, where a_t is the action/relatio
 Without path integration, every edge must be stored explicitly — O(E) memory, and new nodes require new edges.
 
 With path integration, only the *rules of traversal* are needed — O(relation types). New nodes are handled automatically because the same rules apply everywhere. For graphs that admit consistent action labels (same relation has the same structural effect at every node), this provides a combinatorially compressed, generalizable representation. Not all graphs qualify — social networks with generic relationships cannot be path-integrated.
+
+---
+
+## Leaky vs. Perfect Integration: The ρ Knob
+
+Path integration is usually framed as *exact* accumulation. The Temporal Context Model (Howard et al. 2005 [[wiki/papers/tcm-mtl-howard-2005.md]]) shows the biologically important regime is the **leaky** one. Write the integrator as `p_i = ρ p_{i-1} + v_i`:
+
+| ρ | Representation | Behavior |
+|---|---|---|
+| 0 | Pure head direction (`p_i = v_i`) | No memory of past movements |
+| 1 | Perfect path integrator | Exact metric position; cannot distinguish episodes at the same place |
+| **0 < ρ < 1** | **Trajectory code** (weighted sum over recent movements) | History-dependent — *retrospective/trajectory coding* |
+
+Only intermediate ρ reproduces the entorhinal place code's history-dependence (Frank et al. 2000 W-maze): two visits to the same location with different approach histories evoke different codes. A *leaky* integrator is therefore functionally superior to a perfect one for episodic disambiguation — it doubles as a place code and an episode index. TEM later replaces the scalar ρ with a learned, action-conditioned transition operator `W`, upgrading the leaky trace into a factorized structural code.
 
 ---
 
@@ -95,6 +109,7 @@ Specific choices of phase matrix $\Theta$ produce hexagonal grid-cell-like perio
 
 ## Connections
 
+- **[[wiki/concepts/temporal-context.md]]** — TCM's contextual-drift equation is leaky path integration with a single scalar decay ρ; feeding velocity as input reproduces the entorhinal place code, and intermediate ρ yields the trajectory/retrospective coding a perfect integrator cannot — the minimal precursor to TEM's learned W.
 - **[[wiki/concepts/structural-generalization.md]]** — path integration provides path-consistency (ingredient 3 of structural generalization) and compression: shared action-transition rules W are learned, not per-edge transitions.
 - **[[wiki/concepts/factorized-representations.md]]** — path integration operates exclusively on the structural code `g`; it is the update rule for the MEC/W subsystem and does not affect sensory code x.
 - **[[wiki/concepts/successor-representation.md]]** — mathematically unified: SR (Successor Representation) eigenvectors are grid codes (the same plane-wave basis used by CANNs/VCOs); SR (Successor Representation) propagation and path integration are the same computation viewed from RL theory vs. navigation theory.
@@ -112,3 +127,4 @@ Specific choices of phase matrix $\Theta$ produce hexagonal grid-cell-like perio
 - **[[wiki/papers/acann-li-chu-wu-2024.md]]** — provides the first full analytical phase diagram for CANN path integration: traveling-wave mode (bump precedes true position by constant t_ant), anticipative tracking, and oscillatory theta modes emerge from a single network; adaptation strength m and input strength α are the two control parameters that determine which path-integration regime operates.
 - **[[wiki/entities/vsa-model.md]]** — SSPs implement distributed path integration via fractional binding: φ(x) ⊛ φ(d) = φ(x+d) makes each step a circular convolution; specific phase matrices produce hexagonal grid-cell-like periodicity linking SSP encoding to the MEC substrate; unlike CANN/VCO, Θ is differentiable and can be learned end-to-end.
 - **[[wiki/papers/joffe-vsa-arc-2025.md]]** — applies SSPs to ARC-AGI spatial reasoning: object centre representations encoded as SSPs so spatial similarity queries reduce to dot-product similarity, demonstrating the differentiable path integration property in a practical neuro-symbolic solver.
+- **[[wiki/queries/reasoning-as-coupled-navigation-strategizing.md]]** — recasts reasoning as path integration over an *operator* graph whose edges and destination are latent; path integration is the Navigator half of the coupled loop, supplying `g` and the reverse/generative forward model that simulates candidate reasoning steps.

@@ -5,7 +5,7 @@ tags: [model, structural-generalization, world-models, relational-memory, hippoc
 created: 2026-06-09
 updated: 2026-06-21
 sources: [t-TEM, TEM, spiking-tem-kawahara-2025]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/latent-states.md, wiki/concepts/attention.md, wiki/concepts/information-theory.md, wiki/concepts/phase-precession.md, wiki/entities/cscg-model.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/tem-whittington-2020.md, wiki/papers/spiking-tem-kawahara-2025.md]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/latent-states.md, wiki/concepts/attention.md, wiki/concepts/information-theory.md, wiki/concepts/phase-precession.md, wiki/concepts/temporal-context.md, wiki/entities/cscg-model.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/papers/t-tem-whittington-2022.md, wiki/papers/tem-whittington-2020.md, wiki/papers/spiking-tem-kawahara-2025.md, wiki/papers/tcm-mtl-howard-2005.md, wiki/queries/reasoning-as-coupled-navigation-strategizing.md]
 ---
 
 # TEM — The Tolman-Eichenbaum Machine
@@ -68,6 +68,21 @@ Whittington et al. (ICLR 2022) [[wiki/papers/t-tem-whittington-2022.md]] show TE
 
 TEM handles structural generalization; CSCG handles fast local map learning in novel environments. Both use multiple clone hippocampal cells per observation → easy to combine formally. Proposed: TEM-like model where HC is additionally predictive of future HC states. Not yet implemented.
 
+## Lineage: From the Temporal Context Model
+
+TEM's name (Tolman-**Eichenbaum** Machine) and architecture descend directly from the Temporal Context Model (Howard et al. 2005 [[wiki/papers/tcm-mtl-howard-2005.md]]), which already argued that one MTL mechanism spans navigation, episodic, and relational memory:
+
+| TCM (2005) | TEM (2020) | Upgrade |
+|---|---|---|
+| Temporal context `t` (leaky integrator, scalar ρ) | Structural code `g` (learned path integration W) | Scalar decay → factorized action-conditioned operator |
+| Item input `t_iᴵᴺ` (given, orthonormal) | Sensory code `x` (LEC) | Same slot; TEM keeps it environment-specific |
+| Item↔context Hebbian `M^{TF}`/`M^{FT}` | Conjunctive `p = f(g,x)` + fast M | Outer-product heteroassociation → indexed binding |
+| "Memory space" (emergent similarity gradient) | Zero-shot structural generalization | Analytic gradient → learned graph transfer |
+
+TCM demonstrated the *phenomena* (place fields, transitive inference) from a hand-set leaky trace; TEM shows the same phenomena emerge from *learning* a structural transition operator, and adds cross-environment generalization TCM's single ρ cannot provide.
+
+---
+
 ## Limitations
 
 - Requires clean (observation, action) pairs — no structure discovery from raw data
@@ -99,6 +114,7 @@ TEM handles structural generalization; CSCG handles fast local map learning in n
 
 ## Connections
 
+- **[[wiki/concepts/temporal-context.md]]** — TEM is the direct descendant of TCM: context `t` → structural code `g`, scalar drift ρ → learned path-integration W, item-to-context Hebbian binding → conjunctive `p = f(g,x)`; TEM upgrades TCM's hand-set leaky trace into a learned factorized world model with cross-environment generalization.
 - **[[wiki/concepts/structural-generalization.md]]** — TEM is the reference proof-of-concept; it demonstrates that the five minimal ingredients produce zero-shot structural generalization empirically.
 - **[[wiki/concepts/factorized-representations.md]]** — TEM's g/x/p + W/M architecture is the factorized representation instantiated; every design choice in TEM follows from the factorization principle.
 - **[[wiki/concepts/two-learning-timescales.md]]** — TEM implements the two-timescale split concretely; W (slow backprop across environments) and M (fast Hebbian per environment) are TEM's variables, not abstractions.
@@ -111,3 +127,4 @@ TEM handles structural generalization; CSCG handles fast local map learning in n
 - **[[wiki/concepts/latent-graph-discovery.md]]** — TEM is the reference implementation of two-level latent graph discovery: W encodes the meta-graph, M encodes the instance-graph, and the g/x/p factorization solves two-level entanglement; TEM's limitations (pre-given action vocabulary, flat hierarchy) mark the open frontiers of the latent graph discovery problem.
 - **[[wiki/concepts/phase-precession.md]]** — Spiking TEM demonstrates that TEM's generative/inference split naturally produces a MECII (phase-precessing, current state) vs. MECIII (phase-locked, t+1 prediction) functional dissociation — temporal coding is an emergent property of the factorized architecture.
 - **[[wiki/papers/spiking-tem-kawahara-2025.md]]** — source for Spiking TEM results: emergent phase precession, predictive MECIII cells, neuromodulation as coding mode controller, sensory-ambiguity-driven grid emergence, and the four-factor minimum mechanism package.
+- **[[wiki/queries/reasoning-as-coupled-navigation-strategizing.md]]** — generalizes TEM's *navigation* information-flow (encode x → retrieve p → path-integrate g → reverse-predict x̂') into a *reasoning* loop: path integration over an operator graph whose edges (and sometimes goal) must be discovered while traversing. Directly addresses TEM's two limitations above — the externally-given action vocabulary (dissolved by the transition error `ε_x` training an inverse-path-integration inferrer) and forward-only operation (the Navigator becomes a simulator the Strategist searches over).

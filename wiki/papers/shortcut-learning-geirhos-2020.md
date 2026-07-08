@@ -3,7 +3,7 @@ title: "Shortcut Learning in Deep Neural Networks — Geirhos et al. 2020"
 type: paper
 tags: [shortcut-learning, generalization, inductive-bias, o.o.d, abstract-reasoning, compositionality]
 created: 2026-06-23
-updated: 2026-06-23
+updated: 2026-07-02
 sources: [shortcut learning.md]
 related: [wiki/concepts/abstract-reasoning.md, wiki/concepts/compositional-generalization.md, wiki/concepts/structural-generalization.md, wiki/entities/arc-agi.md, wiki/concepts/meta-learning.md, wiki/concepts/energy-based-models.md, wiki/papers/shortcut-suite-yuan-2024.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/shortcut-reasoning.md, wiki/papers/beger-conceptarc-multimodal-2025.md]
 ---
@@ -14,7 +14,7 @@ Geirhos, Jacobsen, Michaelis, Zemel, Brendel, Bethge & Wichmann. *Nature Machine
 
 ---
 
-- **Decision-rule taxonomy:** uninformative features → overfitting solutions → i.i.d. solutions (includes shortcuts) → intended solutions. A shortcut is any rule that achieves good i.i.d. test performance but fails on out-of-distribution (o.o.d.) data — the gap between appearing capable and being capable. ARC-AGI is precisely an o.o.d. generalisation benchmark: performance on static i.i.d. tasks (ARC-AGI-1 solved at 87% by o3) does not transfer to structurally novel tasks (ARC-AGI-2 <25%, ARC-AGI-3 <1%).
+- **Decision-rule taxonomy:** uninformative features → overfitting solutions → i.i.d. solutions (includes shortcuts) → intended solutions. A shortcut is any rule that achieves good i.i.d. test performance but fails on out-of-distribution (o.o.d.) data — the gap between appearing capable and being capable. ARC-AGI is precisely an o.o.d. generalisation benchmark: performance on static i.i.d. tasks (ARC-AGI-1 solved at 87% by o3) does not transfer to structurally novel tasks (ARC-AGI-2: verified 24–54%, closed-model self-reports ≤85% but unverified; ARC-AGI-3 <1%).
 - **Inductive bias decomposition:** four factors jointly determine which solutions are easy to learn — (a) **architecture** (hard constraints on representable functions), (b) **training data** (shortcut opportunities persist at scale; big data does not eliminate systematic bias), (c) **loss function** (cross-entropy stops learning once any discriminative predictor is found), (d) **optimisation** (SGD biases toward simple functions; large LR → shared coarse patterns, small LR → complex instance-specific patterns).
 - **Discriminative vs. generative:** discriminative learning takes any feature sufficient to distinguish training examples — shortcut features are preferred when they are simpler than the intended features. Generative/world-model learning (JEPA, PC, EBM) must model all variation in the training data, forcing representations onto features that span the full data manifold — structurally harder to exploit shortcuts.
 - **Biological shortcut learning:** unintended cue learning in rats (colour discrimination via smell) and surface learning in students both exhibit the same i.i.d./ intended-solution gap — shortcut learning may be a universal property of learning systems, not an artefact of gradient descent.

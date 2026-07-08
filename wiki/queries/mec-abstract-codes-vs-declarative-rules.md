@@ -5,7 +5,7 @@ tags: [MEC, grid-cells, PFC, mPFC, abstract-reasoning, structural-generalization
 created: 2026-07-01
 updated: 2026-07-01
 sources: []
-related: [wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/prefrontal-cortex.md, wiki/entities/default-mode-network.md, wiki/entities/vector-hash-model.md, wiki/concepts/structural-generalization.md, wiki/concepts/memory-schemas.md, wiki/papers/gridlikecode-constantinescu-2016.md, wiki/papers/kumaran-maguire-2005-hippocampus.md, wiki/papers/frontal-cortex-abstract-rules-badre2010.md, wiki/empirical-tensions.md, wiki/architectural-gaps.md]
+related: [wiki/entities/grid-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/prefrontal-cortex.md, wiki/entities/default-mode-network.md, wiki/entities/vector-hash-model.md, wiki/concepts/structural-generalization.md, wiki/concepts/memory-schemas.md, wiki/papers/gridlikecode-constantinescu-2016.md, wiki/papers/kumaran-maguire-2005-hippocampus.md, wiki/papers/frontal-cortex-abstract-rules-badre2010.md, wiki/empirical-tensions.md, wiki/architectural-gaps.md, wiki/queries/building-blocks-declarative-subsystem.md, wiki/queries/building-blocks-mec-hc-pfc.md]
 ---
 
 # MEC's "Abstract" Codes vs. Declarative Rule Learning: Same System or Two?
@@ -61,6 +61,8 @@ A reasoning-model architecture needs (at minimum) **two distinct latent-structur
 2. A discrete hierarchical rule-search system (PFC rostro-caudal-style, RL-driven) for arbitrary declarative structure with no metric embedding.
 
 Using only one architecture for both will fail on whichever domain doesn't match its geometry. This sharpens Gap #2 (multi-level meta-graph) in [[wiki/architectural-gaps.md]]: the "meta-graph" isn't one nested structure but potentially two structurally different representational formats that must be able to gate each other (e.g., "apply rule X only in region A of a continuous space").
+
+The block-level decomposition of System 2 (D1 discrete encoder → D2 schema slow-W → D3 rule-hierarchy search → D4 schema-integration write gate) and the gating interface — carried by two already-named bidirectional channels (ventral-HC→mPFC inbound; vmPFC→MEC→NGF / mPFC→RE→HC outbound), whose residual difficulty is a continuous↔discrete codec — are worked out in [[wiki/queries/building-blocks-declarative-subsystem.md]] (companion to the System 1 decomposition in [[wiki/queries/building-blocks-mec-hc-pfc.md]]).
 
 ---
 

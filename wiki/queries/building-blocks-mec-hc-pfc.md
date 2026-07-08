@@ -5,7 +5,7 @@ tags: [building-blocks, architecture, MEC, hippocampus, PFC, path-integration, a
 created: 2026-06-14
 updated: 2026-06-19 (3)
 sources: []
-related: [wiki/entities/tem-model.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/engrams.md, wiki/concepts/attention.md, wiki/concepts/neuromodulation.md, wiki/concepts/meta-learning.md, wiki/concepts/working-memory.md, wiki/concepts/cognitive-control.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/htm-thousand-brains.md, wiki/concepts/ring-attractor.md, wiki/entities/tiwm-model.md, wiki/concepts/latent-graph-discovery.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/trnn-liu-2025.md, wiki/papers/pfc-cognitive-control-friedman-2021.md, wiki/entities/prefrontal-cortex.md, wiki/papers/pfc-wood-grafman-2003.md]
+related: [wiki/entities/tem-model.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/engrams.md, wiki/concepts/attention.md, wiki/concepts/neuromodulation.md, wiki/concepts/meta-learning.md, wiki/concepts/working-memory.md, wiki/concepts/cognitive-control.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/htm-thousand-brains.md, wiki/concepts/ring-attractor.md, wiki/concepts/latent-graph-discovery.md, wiki/papers/pfc-meta-rl-wang-2018.md, wiki/papers/trnn-liu-2025.md, wiki/papers/pfc-cognitive-control-friedman-2021.md, wiki/entities/prefrontal-cortex.md, wiki/papers/pfc-wood-grafman-2003.md, wiki/queries/building-blocks-declarative-subsystem.md, wiki/queries/mec-abstract-codes-vs-declarative-rules.md, wiki/queries/reasoning-as-coupled-navigation-strategizing.md, wiki/queries/proposed-reasoning-model-block-architectures.md]
 ---
 
 # Building Blocks for MEC/HC/PFC Brain-Inspired Model
@@ -17,6 +17,10 @@ related: [wiki/entities/tem-model.md, wiki/concepts/factorized-representations.m
 ## Framework
 
 Decompose biology into independent functional units. For each: what the biology does, what TEM (current reference) implements, what ML has available, and how to bridge the gap.
+
+> **Scope note.** This page decomposes **System 1 — the metric scaffold** (continuous/path-integrable structure: MEC grid → HC binding → PFC control). It does *not* cover **System 2 — the declarative-rule/schema subsystem** (arbitrary non-metric graphs: PFC rostro-caudal hierarchy + mPFC schema slow-W), nor the interface that gates the two. Block 3C below is the one organ shared with System 2 (it *is* the rule hierarchy). For the System 2 block decomposition (D1–D4) and the metric↔declarative gating interface, see the companion page [[wiki/queries/building-blocks-declarative-subsystem.md]]; for the neuroscience of the two-system split, [[wiki/queries/mec-abstract-codes-vs-declarative-rules.md]].
+
+> **Dynamics note.** This page is a *static* module inventory — what each block is and its ML bridge. The **coupled update loop** that drives them (a metric **Navigator** ⇄ a **Strategist**, joined by a transition-error signal `ε_x = x' − x̂'` and a value-error signal `ε_r`) and the pretrain → imitate → practice training curriculum are specified in [[wiki/queries/reasoning-as-coupled-navigation-strategizing.md]]. Two blocks below are load-bearing in that loop: **Block 3A** (Transformation Inferrer) is *trained by* `ε_x` (the operator's effect is inferred from the prediction error), and **Block 3D**'s goal is *bootstrapped by* the loop rather than given.
 
 ---
 
@@ -112,7 +116,7 @@ Decompose biology into independent functional units. For each: what the biology 
 | **TEM** | Cannot infer transformations — `a_t` is always externally given. TEM is forward-only. This blocks all Type 2 tasks (ARC-AGI, analogy, rule induction). |
 | **Available in ML** | Neural Processes (posterior over functions from context pairs); set transformers; few-shot learning; in-context learning in LLMs |
 | **Gap** | No existing module cleanly computes: given K example pairs (g_in, g_out), return a posterior over the W vocabulary. |
-| **Bridge** | Set-attention Transformation Inferrer (TIWM — see [[wiki/entities/tiwm-model.md]]): input = `{Δg_i = g_out_i - g_in_i}` for i=1..K; output = soft posterior `q(a)` via cross-attention from Δg vectors to W columns. W is jointly optimized by forward model (path integration) and this inverse model — shared transformation vocabulary. With K=1: high uncertainty; with K≥3: sharp posterior concentrates on unique consistent transformation. |
+| **Bridge** | Set-attention Transformation Inferrer: input = `{Δg_i = g_out_i - g_in_i}` for i=1..K; output = soft posterior `q(a)` via cross-attention from Δg vectors to W columns. W is jointly optimized by forward model (path integration) and this inverse model — shared transformation vocabulary. With K=1: high uncertainty; with K≥3: sharp posterior concentrates on unique consistent transformation. |
 
 ### Block 3B: Working Memory / Context Maintenance (DLPFC)
 
@@ -143,7 +147,7 @@ Decompose biology into independent functional units. For each: what the biology 
 |---|---|
 | **Biology** | vmPFC encodes goal value; ACC (Anterior Cingulate Cortex) monitors goal-current conflict; PFL neurons (CX) implement: heading_error = goal_heading − current_heading → action output. |
 | **TEM** | No goal representation or action generation. |
-| **Bridge** | In g-space: goal = `g_goal`; action = the W column that minimizes `||f(W g_current, a) - g_goal||`. For the reasoning case: goal = target observation; action = inferred transformation (Block 3A already provides this when given before/after pairs). Goal-conditioned generation unifies with the Transformation Inferrer. |
+| **Bridge** | In g-space: goal = `g_goal`; action = the W column that minimizes `||f(W g_current, a) - g_goal||`. For the reasoning case: goal = target observation; action = inferred transformation (Block 3A already provides this when given before/after pairs). Goal-conditioned generation unifies with the Transformation Inferrer. **But in the verifier-free regime (ARC-AGI-3) `g_goal` is not given** — it must be *discovered*: begun as scalar neuromodulatory valence and sharpened into a structured g-space target by DA-stamped reward, with curiosity / learning-progress / empowerment as the intrinsic reward that closes the loop before any external goal exists ([[wiki/queries/reasoning-as-coupled-navigation-strategizing.md]]). This is the single overloaded DA signal (RPE + novelty) that lets a goal-free agent bootstrap a goal — absent from all current architectures. |
 
 ---
 

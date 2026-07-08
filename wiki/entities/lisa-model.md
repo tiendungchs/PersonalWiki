@@ -4,8 +4,8 @@ type: entity
 tags: [analogical-reasoning, binding-problem, symbolic-connectionist, working-memory, temporal-synchrony]
 created: 2026-06-20
 updated: 2026-06-20
-sources: [analogy-holyoak-2012]
-related: [wiki/concepts/analogical-reasoning.md, wiki/concepts/binding-problem.md, wiki/concepts/working-memory.md, wiki/entities/prefrontal-cortex.md, wiki/papers/analogy-holyoak-2012.md]
+sources: [analogy-holyoak-2012, penn-darwins-mistake-2008]
+related: [wiki/concepts/analogical-reasoning.md, wiki/concepts/binding-problem.md, wiki/concepts/working-memory.md, wiki/concepts/relational-reinterpretation.md, wiki/entities/prefrontal-cortex.md, wiki/papers/analogy-holyoak-2012.md, wiki/papers/penn-darwins-mistake-2008.md]
 ---
 
 # LISA (Learning and Inference with Schemas and Analogies)
@@ -44,6 +44,16 @@ Symbolic-connectionist model of analogical reasoning (Hummel & Holyoak 1997, 200
 
 ---
 
+## LISA as the "Graft" (Penn et al. 2008)
+
+Penn, Holyoak & Povinelli's *relational reinterpretation* hypothesis ([[wiki/concepts/relational-reinterpretation.md]]) casts LISA as the existence proof for its central architectural claim: the higher-order, role-governed relational system (System 2) is **grafted onto** a simpler conjunctive store (System 1) that is *functionally but not concatenatively* compositional — the store animals also possess. LISA's semantic→predicate→proposition hierarchy is the shared proto-symbolic substrate; the synchrony-based role-filler binding is the human-only addition.
+
+Two claims LISA is enlisted to support:
+- **Feasibility** — PSS-grade higher-order relational reasoning *can* run on a distributed connectionist substrate; it is not exclusively symbolic.
+- **Difficulty** — the hard, non-accidental part is achieving **role-filler independence AND dynamic role-filler binding simultaneously**. This argues the second system did not emerge from scale, plasticity, or brain size alone — a distinct binding mechanism (proposed: PFC gamma synchrony) was required. The comparative-cognition argument against "scale solves reasoning."
+
+---
+
 ## Comparison Table
 
 | Property | LISA | Symbolic logic | Transformer self-attention |
@@ -62,4 +72,6 @@ Symbolic-connectionist model of analogical reasoning (Hummel & Holyoak 1997, 200
 - **[[wiki/concepts/binding-problem.md]]** — role-filler binding via temporal synchrony is the fifth binding mechanism listed in the binding-problem table; LISA's anti-phase proposition separation is the mechanism that prevents illusory conjunctions between simultaneous relations.
 - **[[wiki/concepts/working-memory.md]]** — the ≤2–3 proposition limit directly sets the WM capacity for relational integration; this is a different constraint from the attention entropy bottleneck in transformers — structural, not positional.
 - **[[wiki/entities/prefrontal-cortex.md]]** — frontopolar BA (Brodmann Area)-10 lesions selectively impair the ≥2 simultaneous relation integration that LISA's driver capacity implements; IFG handles the distractor suppression that LISA's semantic co-activation can otherwise induce.
+- **[[wiki/concepts/relational-reinterpretation.md]]** — LISA is the worked existence proof for the RR graft: a higher-order role-filler system on top of a functionally-but-not-concatenatively compositional conjunctive store; demonstrates both feasibility and the independence+binding difficulty.
 - **[[wiki/papers/analogy-holyoak-2012.md]]** — primary source covering LISA architecture, WM capacity predictions, developmental evidence, and schema induction results.
+- **[[wiki/papers/penn-darwins-mistake-2008.md]]** — source casting LISA as the neurally-plausible implementation of relational reinterpretation and the comparative-cognition argument against scale-alone accounts.

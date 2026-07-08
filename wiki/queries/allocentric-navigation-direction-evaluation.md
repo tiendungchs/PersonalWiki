@@ -5,7 +5,7 @@ tags: [direction-evaluation, allocentric-coding, latent-graph, abstract-reasonin
 created: 2026-06-14
 updated: 2026-06-14
 sources: []
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/ring-attractor.md, wiki/entities/insect-central-complex.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/tiwm-model.md, wiki/papers/gridlikecode-constantinescu-2016.md, wiki/entities/htm-thousand-brains.md]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/convergent-allocentric-coding.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/ring-attractor.md, wiki/entities/insect-central-complex.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/papers/gridlikecode-constantinescu-2016.md, wiki/entities/htm-thousand-brains.md]
 ---
 
 # Direction Evaluation: Allocentric Navigation as the Key to Latent Graph Reasoning
@@ -61,7 +61,7 @@ The latent graph problem requires extracting transition rules from one task and 
 
 The allocentric navigation framing does not directly solve Type 2 tasks (latent edges / ARC-AGI / rule generalization), which require *inferring the transformation rule from before/after observation pairs*, not navigating a known graph. No allocentric system on record solves this.
 
-The proposed solution ([[wiki/entities/tiwm-model.md]]): an Inverse Path Integrator module that runs path integration backwards — solving `(g_in, g_out) → a` rather than `(g_in, a) → g_out`. Biological grounding: TBT (Thousand Brains Theory) efference copy ([[wiki/entities/htm-thousand-brains.md]]) — a cortical column infers the action by comparing its L6 prediction to actual L4 sensory input.
+Possible solution: an Inverse Path Integrator module that runs path integration backwards — solving `(g_in, g_out) → a` rather than `(g_in, a) → g_out`. Biological grounding: TBT (Thousand Brains Theory) efference copy ([[wiki/entities/htm-thousand-brains.md]]) — a cortical column infers the action by comparing its L6 prediction to actual L4 sensory input.
 
 This is an **augmentation** of the HC/MEC architecture, not a replacement. The rest of TEM's structure (W, M, g/x/p, two timescales) remains intact.
 
@@ -102,7 +102,7 @@ If Thousand Brains Theory ([[wiki/entities/htm-thousand-brains.md]]) is correct 
 
 1. **Do not narrow to the insect CX.** It is an excellent target for validating path integration + ring attractor mechanics, but the cross-environment structural generalization requirement forces the HC/MEC architecture as the core.
 2. **Expand to vmPFC/DMN.** Any model aimed at abstract reasoning in humans needs prefrontal + posterior association cortex, not just MEC-HC.
-3. **Transformation inference is the key unsolved addition.** The biological and computational groundwork for this exists (TBT efference copy + TIWM Inverse Path Integrator); it is the most important near-term architectural decision.
+3. **Transformation inference is the key unsolved addition.** The biological and computational groundwork for this exists (TBT efference copy); it is the most important near-term architectural decision.
 4. **The convergent evolution argument is an asset.** Six independent evolutionary solutions is unusually strong corroboration — use it when defending the direction.
 
 ---

@@ -3,9 +3,9 @@ title: "Shortcut Reasoning"
 type: concept
 tags: [shortcut-learning, generalization, abstract-reasoning, ARC, inductive-bias, objectness]
 created: 2026-06-24
-updated: 2026-07-01
-sources: [adversarial-nli-nie-2020]
-related: [wiki/concepts/abstract-reasoning.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/energy-based-models.md, wiki/concepts/meta-learning.md, wiki/entities/arc-agi.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/papers/shortcut-suite-yuan-2024.md, wiki/papers/beger-conceptarc-multimodal-2025.md, wiki/papers/odouard-2022-concept-evaluation.md, wiki/papers/math-perturb-2025.md, wiki/papers/adversarial-nli-nie-2020.md, wiki/papers/fact-finding-factual-recall-nanda-2023.md]
+updated: 2026-07-08
+sources: [adversarial-nli-nie-2020, penn-darwins-mistake-2008]
+related: [wiki/concepts/core-knowledge.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/relational-reinterpretation.md, wiki/concepts/energy-based-models.md, wiki/concepts/meta-learning.md, wiki/entities/arc-agi.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/papers/shortcut-suite-yuan-2024.md, wiki/papers/beger-conceptarc-multimodal-2025.md, wiki/papers/odouard-2022-concept-evaluation.md, wiki/papers/math-perturb-2025.md, wiki/papers/adversarial-nli-nie-2020.md, wiki/papers/fact-finding-factual-recall-nanda-2023.md, wiki/papers/penn-darwins-mistake-2008.md]
 ---
 
 # Shortcut Reasoning
@@ -58,6 +58,19 @@ On ConceptARC textual tasks, AI models use a domain-general "shortcut toolbox" n
 
 ---
 
+## Conceptual Chunking: The Representational-Level Root (Penn et al. 2008)
+
+Beneath the specific catalogues above lies a single representational mechanism, identified in comparative cognition long before the deep-learning shortcut literature: **conceptual chunking + segmentation** ([[wiki/concepts/relational-reinterpretation.md]]).
+
+- **Chunk:** collapse a relation into a single analog scalar — canonically a Shannon-entropy estimate of within-display variability — discarding constituent structure.
+- **Segment:** solve a multi-relation task as a sequence of chunked conditional discriminations, never holding relational structure open.
+
+This is the *most general* shortcut class: every entry in the ARC catalogue (integer-color ordinal, density heuristic, connectivity) is a specific analog-scalar chunk standing in for object/relational structure. The diagnostic signature is direct, from animal same/different studies: 16-item displays are *easier* than 2-item (entropy is more discriminable from zero), and "different" trials collapse at 2 items while "same" (zero entropy) do not. A system judging entropy is not judging the same/different *relation* — it passes the i.i.d. benchmark without the concept. Humans show the opposite signature: a *categorical* boundary (any variability = "different"), the mark of a role-governed relation rather than a chunk.
+
+**Why this matters for design:** chunking is lossy-but-sufficient exactly when the task does not require relational structure to be preserved — i.e., the i.i.d. regime. Discriminative losses converge on it because it is the simplest sufficient predictor. Shortcut avoidance therefore requires an objective that *forces* concatenative (role-filler-preserving) structure to be retained, not merely an analog similarity scalar.
+
+---
+
 ## Missing Objectness Prior
 
 The most pervasive shortcut on ARC-style tasks is the **absence of objectness**: models treat grids as pixel matrices rather than scenes of discrete bounded entities. This causes:
@@ -65,7 +78,7 @@ The most pervasive shortcut on ARC-style tasks is the **absence of objectness**:
 - Pixel-level and local connectivity patterns preferred over object-level abstractions
 - Failure on tasks requiring object persistence, coherent movement, or 3D stacking inference
 
-Humans apply Spelke's Core Knowledge "objectness" prior (objects persist, move coherently, have boundaries) even without explicit instruction — this prior is never acquired from token-prediction training.
+Humans apply Spelke's Core Knowledge "objectness" prior (objects persist, move coherently, have boundaries) even without explicit instruction — this prior is never acquired from token-prediction training. Objectness is one of four innate core systems ([[wiki/concepts/core-knowledge.md]]); shortcut features (integer color, connectivity, density) are precisely what a learner defaults to *in the absence of* the object-individuation prior.
 
 **Architectural implication:** standard discriminative training on token sequences does not produce objectness representations; a structured world model that explicitly represents discrete entities (as in TEM's factorized p = f(g, x)) is required.
 
@@ -101,6 +114,7 @@ Humans apply Spelke's Core Knowledge "objectness" prior (objects persist, move c
 
 ## Connections
 
+- **[[wiki/concepts/core-knowledge.md]]** — the missing objectness core system is the root cause of ARC pixel/color/connectivity shortcuts; a learner lacking the object-individuation prior defaults to whatever spurious feature is simplest.
 - **[[wiki/concepts/abstract-reasoning.md]]** — shortcut reasoning is the failure mode of abstract reasoning: shortcut solutions achieve benchmark accuracy without causal-structural model-building, passing i.i.d. tests while failing o.o.d. transfer.
 - **[[wiki/entities/arc-agi.md]]** — ARC-AGI is explicitly designed as an o.o.d. benchmark to break shortcut solutions; rule-level evaluation (Beger 2025) reveals that even tasks AI "solves" are frequently solved by ARC-specific shortcuts rather than the intended Core Knowledge abstractions.
 - **[[wiki/concepts/structural-generalization.md]]** — the intended solution in Geirhos's taxonomy requires structural generalization (factorized g/x/p representations transferable to new content); shortcut solutions are structurally entangled and cannot generalize.
@@ -114,3 +128,5 @@ Humans apply Spelke's Core Knowledge "objectness" prior (objects persist, move c
 - **[[wiki/papers/math-perturb-2025.md]]** — source: perturbation construction methodology, hard vs. simple taxonomy, per-model drop results, and the subtle memorization failure mode analysis.
 - **[[wiki/papers/adversarial-nli-nie-2020.md]]** — source for the NLI (Natural Language Inference) hypothesis-only shortcut numbers (72%→42–51%) and the inference-type failure taxonomy; extends the shortcut catalogue to the NLI (Natural Language Inference) domain and provides the cleanest empirical quantification of a spurious-edge gap.
 - **[[wiki/papers/fact-finding-factual-recall-nanda-2023.md]]** — the micro/macrofeature distinction formalizes when shortcuts are possible at all: no macrofeature exists ⟹ no shortcut is learnable, only pure memorization; this bounds the shortcut-reasoning phenomenon to tasks that have generalizable structure to exploit or ignore.
+- **[[wiki/concepts/relational-reinterpretation.md]]** — supplies the representational-level root: conceptual chunking + segmentation (analog-scalar substitution for relational structure) is the mechanism underlying every specific shortcut in the catalogue; feature-based systematicity is the System-1 competence a shortcut learner never transcends.
+- **[[wiki/papers/penn-darwins-mistake-2008.md]]** — comparative-cognition source for chunking/segmentation and the entropy-substitution signature (same/different set-size effects).

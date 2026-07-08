@@ -3,12 +3,12 @@ title: "Concepts Index"
 type: overview
 tags: [index]
 created: 2026-06-20
-updated: 2026-07-02
+updated: 2026-07-08
 sources: []
 related: []
 ---
 
-# Concepts Index — 57 pages
+# Concepts Index — 63 pages
 
 Each entry: `[Title](path) — one-line description`. Updated when a new concept page is created.
 
@@ -17,6 +17,8 @@ Each entry: `[Title](path) — one-line description`. Updated when a new concept
 - [Latent Graph Discovery](wiki/concepts/latent-graph-discovery.md) — **CORE PROBLEM FRAMING** — Unified problem: infer hidden graph structure from observations and navigate it; four sources of hardness; why current architectures fail
 - [Structural Generalization](wiki/concepts/structural-generalization.md) — **CORE** — Extract relational structure, transfer to new content; graph formalism; why transformers fail; 5 minimum ingredients
 - [Abstract Reasoning](wiki/concepts/abstract-reasoning.md) — **TARGET CAPABILITY** — causal model-building vs. pattern recognition; three required ingredients; diagnostic criteria; open problems
+- [Recursion / Discrete Infinity](wiki/concepts/recursion.md) — FLB/FLN split (Hauser-Chomsky-Fitch 2002); recursion as the uniquely-human combinatorial core; Chomsky hierarchy (finite-state vs. phrase-structure); AₙBₙ tamarin result; domain-general-recursion hypothesis; discrete infinity ≅ natural numbers
+- [Relational Reinterpretation (RR)](wiki/concepts/relational-reinterpretation.md) — comparative-cognition dual-system framing: proto-symbolic System 1 (featural systematicity, functional composition) shared with animals + human-only System 2 that reinterprets first-order relations as role-governed PSS structure; conceptual chunking as the shortcut root; four PSS features model-building must add; LISA graft
 - [Two Learning Timescales](wiki/concepts/two-learning-timescales.md) — Slow W (backprop, shared structure) + fast Hebbian M (episodic); HC bootstraps cortical learning; catastrophic interference as formal necessity
 - [Factorized Representations](wiki/concepts/factorized-representations.md) — g (MEC) / x (LEC) / p (HC) split; TEM generative equation; factorized vs. entangled phase; disentanglement ≠ abstraction
 - [Predictive Coding / Free Energy Principle](wiki/concepts/predictive-coding.md) — F = −ELBO; generative + recognition model; two-timescale minimization; active inference; biologically plausible backpropagation
@@ -71,3 +73,7 @@ Each entry: `[Title](path) — one-line description`. Updated when a new concept
 - [Memory Schemas](wiki/concepts/memory-schemas.md) — organized overlapping association networks supporting transitive inference and rapid schema-consistent learning; HC integrates overlapping pairs; mPFC reconciles conflicts and selects schemas; assimilation/accommodation consolidation model; schemas = latent graphs
 - [PFC Dynamic Network Connectivity (PFC-DNC)](wiki/concepts/pfc-dynamic-network-connectivity.md) — rapid (seconds), reversible modulation of PFC pyramidal network strength via cAMP → HCN/KCNQ channel cascade; molecular implementation of NA analog gate (Gap #8); WM capacity limit = epilepsy prevention negative feedback
 - [Planning as Inference](wiki/concepts/planning-as-inference.md) — planning by recognition via attractor dynamics: world model embedded in recurrent weights; optimal trajectory inferred in parallel without sequential rollout; STA is the canonical instantiation; sidesteps planning horizon dilemma
+- [Neoteny / Altriciality](wiki/concepts/neoteny.md) — developmental-timing traits (heterochrony, extended plastic window) as a lever on attainable cognition; domain-general→specific emergence; Somel 2009 molecular evidence: mosaic (~4%), gray-matter/synaptic-specific delay peaking at adolescent pruning → selective deferral of consolidation, not uniform slowdown; self-domestication
+- [Core Knowledge](wiki/concepts/core-knowledge.md) — Spelke's four (+1) innate domain-specific systems (objects/agents/number/geometry/social); individuation principles + signature limits (~4 set-size, Weber ratio); origin of ARC's Core Knowledge Priors and the objectness gap; the "start-up software" extreme-prior end of slow-W
+- [Temporal Context (Contextual Drift)](wiki/concepts/temporal-context.md) — TCM's leaky self-normalizing integrator `t_i = ρ_i t_{i-1} + β t_iᴵᴺ` as sole recall cue; two-component retrieved context (forward vs. backward/transitive via α_N); "memory space" recovers latent graph distance from co-occurrence; the scalar-ρ ancestor of SR's γT and TEM's learned W
+- [Cultural Learning / Shared Intentionality](wiki/concepts/cultural-learning.md) — the social *acquisition channel* (Tomasello & Rakoczy): imitation (copy intention) vs. emulation (copy surface); self-other equivalence + perspective + normativity; shared→collective intentionality two-step; sentential-complement syntax bootstraps meta-representation; supplies the mechanism behind "cumulative culture is the engine" and bears on vocabulary co-discovery (Gap #3)

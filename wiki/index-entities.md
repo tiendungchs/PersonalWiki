@@ -28,7 +28,6 @@ Each entry: `[Title](path) — one-line description`. Updated when a new entity 
 - [VL-JEPA](wiki/entities/vl-jepa-model.md) — JEPA extended to vision-language; predicts text embeddings not tokens; SoTA WorldPrediction-WM (65.7%); selective decoding 2.85× reduction; unified gen+retrieval+class
 - [DINOv2](wiki/entities/dinov2-model.md) — EMA (Exponential Moving Average) teacher-student SSL with DINO+iBOT+KoLeo; 1.1B ViT-giant; first SSL model matching CLIP; emergent part-segmentation from patch PCA; direct ancestor of I-JEPA
 - [DINOv3](wiki/entities/dinov3-model.md) — DINOv2 scaled to 7B with Gram anchoring (L_Gram preserving patch similarity structure); SoTA dense features with frozen backbone; first SSL matching weakly-supervised on classification
-- [TIWM](wiki/entities/tiwm-model.md) — **(brainstorm)** Proposed: extends TEM with Inverse Path Integrator to infer hidden transformation rules from (g_in, g_out) pairs
 - [TEM](wiki/entities/tem-model.md) — Tolman-Eichenbaum Machine: factorized world model (g/x/p + W/M); emergent grid/place cells; key results and limitations
 - [CSCG](wiki/entities/cscg-model.md) — Clone cells for de-aliasing; Bayesian EM; fast/local; no cross-environment generalization
 - [HTM / Thousand Brains Theory](wiki/entities/htm-thousand-brains.md) — ~150,000 cortical columns each miniaturizing HC formation; sensorimotor coupling; consensus voting

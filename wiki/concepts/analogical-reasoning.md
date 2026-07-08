@@ -4,8 +4,8 @@ type: concept
 tags: [analogy, relational-reasoning, abstract-reasoning, binding-problem, schema-induction, PFC, CWSG, LISA]
 created: 2026-06-20
 updated: 2026-06-20
-sources: [analogy_reasoning.md]
-related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/binding-problem.md, wiki/concepts/working-memory.md, wiki/concepts/cognitive-control.md, wiki/concepts/meta-learning.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/hierarchical-representations.md, wiki/entities/prefrontal-cortex.md, wiki/papers/analogy-holyoak-2012.md, wiki/entities/lisa-model.md]
+sources: [analogy_reasoning.md, penn-darwins-mistake-2008]
+related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/binding-problem.md, wiki/concepts/working-memory.md, wiki/concepts/cognitive-control.md, wiki/concepts/meta-learning.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/relational-reinterpretation.md, wiki/concepts/hierarchical-representations.md, wiki/entities/prefrontal-cortex.md, wiki/papers/analogy-holyoak-2012.md, wiki/papers/penn-darwins-mistake-2008.md, wiki/entities/lisa-model.md]
 ---
 
 # Analogical Reasoning
@@ -105,6 +105,14 @@ This is the analogical-level implementation of slow-W structure extraction from 
 
 ---
 
+## The Chunking Counterfeit: What Analogy Is Not (Penn et al. 2008)
+
+Role-based mapping has a persistent impostor — **feature-count chunking** — and distinguishing them is the cleanest diagnostic of genuine analogy ([[wiki/concepts/relational-reinterpretation.md]]). The chimpanzee Sarah, the sole nonhuman ever credited with analogy (Gillan et al. 1981), was shown by Oden et al. (2001) to track the *number of within-pair featural changes* rather than the *kind* of relation: a color+shape change and a size+fill change were "the same" to her because both = two changes. This passes RMTS-style tasks by chunking each transformation into an undifferentiated scalar — computationally identical to how pigeons/baboons pass same/different via display entropy.
+
+The lesson for AI evaluation: a system can score above chance on relational-match tasks *without any role-based mapping*, by counting or estimating featural variability. Genuine analogy requires (a) asymmetric, role-governed correspondences (the role John plays in `loves(John,Mary)` ≠ Mary's), and (b) omni-directional first-trial generalization to perceptually disparate fillers — neither of which a variability chunk supports. LLMs that solve near-domain analogies but collapse on far/structural ones (the retrieval gap above) are exhibiting the machine analog of the chunking counterfeit.
+
+---
+
 ## Open Problems
 
 1. **Autonomous relational learning:** how does the system discover role-filler structure from non-relational perceptual inputs without hand-coded predicates?
@@ -128,3 +136,5 @@ This is the analogical-level implementation of slow-W structure extraction from 
 - **[[wiki/entities/lisa-model.md]]** — entity page for Learning and Inference with Schemas and Analogies; the LISA section in this page provides the functional description; the entity page holds the full architecture, capacity limits (≤2–3 simultaneous propositions from anti-phase population limit), and comparison with alternative binding mechanisms.
 - **[[wiki/concepts/latent-graph-discovery.md]]** — analogy is a special case of latent edge discovery: given a source graph (understood causal model) and a target (partially observed), CWSG maps source edge labels onto target nodes and infers unobserved target edges; schema induction from two analogs is meta-graph discovery — building a new meta-graph entry from episodic comparison.
 - **[[wiki/concepts/hierarchical-representations.md]]** — the ventral-stream identity factorization (CLSU stages) provides the role-filler-separated representations that analogical mapping operates on; feedforward hierarchy is the perceptual prerequisite for relational structure extraction.
+- **[[wiki/concepts/relational-reinterpretation.md]]** — analogy is the prototype human-only System-2 operation (role-based structural mapping); feature-count chunking (Sarah the chimp) is its canonical counterfeit and the diagnostic boundary between the two systems.
+- **[[wiki/papers/penn-darwins-mistake-2008.md]]** — comparative-cognition source establishing analogy as a human cognitive autapomorphy and the Sarah/Oden feature-counting reanalysis.

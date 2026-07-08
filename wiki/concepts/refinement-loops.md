@@ -4,8 +4,8 @@ type: concept
 tags: [refinement-loop, test-time-training, evolutionary-program-synthesis, test-time-compute, abstract-reasoning, ARC-AGI, program-synthesis, MDL]
 created: 2026-06-23
 updated: 2026-06-23
-sources: [ARC Prize 2025 Technical Report.md]
-related: [wiki/concepts/meta-learning.md, wiki/concepts/information-theory.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/world-models.md, wiki/concepts/credit-assignment.md, wiki/entities/arc-agi.md, wiki/papers/arc-prize-2025-technical-report.md, wiki/papers/verifiers-math-cobbe-2021.md]
+sources: [ARC Prize 2025 Technical Report.md, "Artificial Intelligence for Mathematical Reasoning An Integrated Survey of Language Models, Neuro-symbolic Systems, and Verified Discovery"]
+related: [wiki/concepts/meta-learning.md, wiki/concepts/information-theory.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/world-models.md, wiki/concepts/credit-assignment.md, wiki/entities/arc-agi.md, wiki/papers/arc-prize-2025-technical-report.md, wiki/papers/verifiers-math-cobbe-2021.md, wiki/papers/math-reasoning-survey-2026.md, wiki/queries/brain-inspired-vs-solver-approach.md, wiki/queries/sota-review-brain-inspired-abstract-reasoning.md, wiki/queries/reasoning-as-coupled-navigation-strategizing.md]
 ---
 
 # Refinement Loops (Test-Time Compute)
@@ -146,6 +146,18 @@ The earliest large-scale empirical demonstration of the generate-verify-update l
 
 ---
 
+## The Supervision Ladder: The Paradigm at Research Scale (Math Survey 2026)
+
+The 2026 mathematical-reasoning survey ([[wiki/papers/math-reasoning-survey-2026.md]]) documents this exact generate–verify–refine paradigm driving *research-grade* results, and names the organizing principle a **supervision ladder** (answer-match → code exec → PRM → kernel-checked proof) and a shift from *representation engineering* to *verifier engineering*. Three additions sharpen this concept page:
+
+- **Verifier quality has three axes, not one.** Verification improves reasoning only when the verifier is (i) accurate, (ii) resistant to adversarial exploitation by the generator, (iii) rich enough to give partial-progress signal. Only **kernel-checked formal proofs** (Lean) satisfy all three — which is why the formal track moved fastest (MiniF2F 25%→93% in ~1yr). Rule-based answer graders satisfy (iii) cheaply but fail (i)/(ii): ~38% of correct RLVR answers are miss-graded on formatting, and the loop is Goodhart-gamed.
+- **Reward hacking scales with verifier richness.** More accurate learned verifiers (PRMs) can be *more* susceptible to hacking, because the policy has a richer signal to exploit — a caution against assuming "better verifier ⇒ better loop."
+- **The verifier-availability boundary is now empirically load-bearing.** The survey's discovery track works precisely where an external checker exists (Python fitness, Lean kernel). The domains it *cannot* touch (open conjecture with no verifier, ARC-AGI-3's latent goal) are exactly where refinement loops degenerate to unguided search — confirming this page's key prediction from the research frontier.
+
+This reframes refinement loops as the solver community's way of **externalizing verification** rather than learning a correct internal world model — see [[wiki/queries/brain-inspired-vs-solver-approach.md]].
+
+---
+
 ## Open Problems
 
 - **Verifier generalization:** current success depends on exact-match verifiers (ARC grid match, unit tests) or ground-truth answer verifiers (GSM8K). Can learned verifiers substitute for exact verifiers in open-ended domains? If so, refinement loops could generalize beyond currently verifiable tasks.
@@ -164,4 +176,8 @@ The earliest large-scale empirical demonstration of the generate-verify-update l
 - **[[wiki/concepts/credit-assignment.md]]** — within TTT, gradient computation is standard backprop; within evolutionary synthesis, credit assignment is score-based selection (no gradient); within CompressARC, the VAE loss provides a differentiable credit signal for weight updates; the variety of credit mechanisms across refinement loop types maps onto the bias-variance taxonomy of credit assignment methods.
 - **[[wiki/entities/arc-agi.md]]** — refinement loops are the primary technical driver of ARC-AGI-2 progress; the benchmark's verifiable nature (exact grid match) is what makes refinement loops tractable here; ARC-AGI-3 removes the in-loop verifier requirement, which should severely limit current refinement loop approaches.
 - **[[wiki/papers/arc-prize-2025-technical-report.md]]** — primary source for this concept page; survey of all 2025 winning solutions and paper awards
+- **[[wiki/papers/math-reasoning-survey-2026.md]]** — documents the generate–verify–refine paradigm at research scale (IMO gold, PutnamBench, Erdős solves); supplies the supervision-ladder framing, the three-axis verifier-quality criterion, and the reward-hacking-scales-with-richness caution.
+- **[[wiki/queries/brain-inspired-vs-solver-approach.md]]** — argues refinement loops = *externalized* verification: a way to prune an unreliable generator with a cheap external checker instead of learning a correct internal world model; frames where this paradigm owns the problem and where it hits a ceiling.
+- **[[wiki/queries/sota-review-brain-inspired-abstract-reasoning.md]]** — §4.6 folds the refinement-loop / supervision-ladder paradigm into the state-of-the-art review as the "solver pivot," the second non-brain-inspired response (alongside JEPA) to the LLM-failure verdict; scores it against the review's requirements and locates its verifier-availability ceiling on the same seam the brain-inspired program targets.
+- **[[wiki/queries/reasoning-as-coupled-navigation-strategizing.md]]** — gives the biological realization of the generate→verify→update loop: HC/DMN replay is the generator (sampled candidate sequences), vmPFC/ACC value-evaluation is the verifier; also frames Phase 3 of the training curriculum (verifier-gated practice on the agent's own rollouts) as the fix for imitation's covariate-shift and self-poisoning failure modes.
 - **[[wiki/papers/verifiers-math-cobbe-2021.md]]** — Cobbe et al. 2021 is the earliest large-scale empirical demonstration of the generate-verify-update loop: 30× effective size multiplier from separating path generation from path evaluation; token-level value functions and test-time compute scaling quantified. — source: verifier training methodology, token-level vs solution-level verifier comparison, test-time compute scaling, and the generator/verifier separation principle.

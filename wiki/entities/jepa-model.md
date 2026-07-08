@@ -3,7 +3,7 @@ title: "JEPA / H-JEPA (Joint Embedding Predictive Architecture)"
 type: entity
 tags: [world-models, self-supervised-learning, energy-based-models, non-contrastive, hierarchical-planning, representation-learning]
 created: 2026-06-23
-updated: 2026-06-23
+updated: 2026-07-02
 sources: [A Path Towards Autonomous Machine Intelligence, barlow_twins, jepa, V-JEPA 2 Self-Supervised Video Models Enable Understanding, Prediction and Planning, vicreg, LeJEPA, LeWorldModel Stable End-to-End Joint-Embedding Predictive Architecture from Pixels, HiT-JEPA A Hierarchical Self-supervised Trajectory Embedding Framework for Similarity Computation, "Critical review of LeCun's Introductory JEPA paper"]
 related: [wiki/concepts/energy-based-models.md, wiki/concepts/world-models.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/predictive-coding.md, wiki/entities/tem-model.md, wiki/entities/vl-jepa-model.md, wiki/entities/dinov2-model.md, wiki/entities/dinov3-model.md, wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md, wiki/papers/barlow-twins-zbontar-2021.md, wiki/papers/assran-ijepa-2023.md, wiki/papers/v-jepa-2-assran-2026.md, wiki/papers/vicreg-bardes-2022.md, wiki/papers/lejepa-balestriero-lecun-2025.md, wiki/papers/leworldmodel-maes-2026.md, wiki/papers/hit-jepa-li-2025.md, wiki/papers/dinov2-oquab-2023.md, wiki/papers/dinov3-simeoni-2025.md, wiki/papers/lecun-jepa-critical-review-lett-2025.md]
 ---
@@ -261,6 +261,7 @@ The first JEPA trained stably end-to-end from raw pixels for continuous control,
 
 ## Connections
 
+- **[[wiki/queries/sota-review-brain-inspired-abstract-reasoning.md]]** — §4.5 positions the JEPA program as the field's leading non-brain-inspired "world model" alternative: it corroborates representation-space prediction and SSL-from-observation, but as a monolithic, forward-only, single-timescale model it lacks structure/content factorization and latent transformation inference; the review's synthesis uses a JEPA-style encoder as sensory front-end feeding a factorized TEM-lineage core, not JEPA as the whole architecture.
 - **[[wiki/entities/vl-jepa-model.md]]** — VL-JEPA extends JEPA to multimodal vision-language by adding a text Y-Encoder as the prediction target; uses V-JEPA 2 ViT-L as its frozen visual backbone; controlled experiments confirm 2× better sample efficiency over token-generative VLMs and SoTA on WorldPrediction-WM.
 - **[[wiki/papers/v-jepa-2-assran-2026.md]]** — scaling V-JEPA to 1B parameters and 1M hours of video; introduces V-JEPA 2-AC as the first operational Mode-2 planning loop: frozen encoder + action-conditioned predictor + CEM planning; zero-shot pick-and-place on real robots.
 - **[[wiki/concepts/energy-based-models.md]]** — JEPA is an EBM (Energy-Based Model) whose energy is the prediction error in representation space; training via non-contrastive regularization rather than contrastive samples; collapse prevention via information maximization on encoders.
