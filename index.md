@@ -1,10 +1,10 @@
 ---
-updated: 2026-07-02
+updated: 2026-07-08
 ---
 
 # Wiki Index — Brain-Inspired Models for Abstract Reasoning
 
-- [Overview](overview.md) — Master synthesis: current understanding, open problems, promising directions
+- [Overview](wiki/overview.md) — Master synthesis: current understanding, open problems, promising directions
 - [Architectural gaps](wiki/architectural-gaps.md) — Architectural gaps
 - [Empirical Tensions](wiki/empirical-tensions.md) — Empirical tensions
 - [Priority Tasks](wiki/priority-tasks.md) — Priority tasks
@@ -12,9 +12,9 @@ updated: 2026-07-02
 
 ---
 
-- [Papers](wiki/index-papers.md) — 186 stubs
-- [Concepts](wiki/index-concepts.md) — 57 pages
-- [Entities](wiki/index-entities.md) — Models, benchmarks, biological systems
+- [Papers](wiki/index-papers.md) — 195 stubs
+- [Concepts](wiki/index-concepts.md) — 63 pages
+- [Entities](wiki/index-entities.md) — 51 models, benchmarks, biological systems
 
 ---
 

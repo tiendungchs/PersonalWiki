@@ -3,10 +3,10 @@ title: "Continual Learning"
 type: concept
 tags: [continual-learning, catastrophic-forgetting, synaptic-consolidation, EWC, plasticity, lifelong-learning]
 created: 2026-06-21
-updated: 2026-06-27
+updated: 2026-07-08
 
 sources: [Neuroscience-Inspired Artificial Intelligence, High-capacity flexible hippocampal associative and episodic memory enabled by prestructured "spatial" representations, Improving the adaptive and continuous learning capabilities of artificial neural networks Lessons from multi-neuromodulatory dynamics, Dendrites endow artificial neural networks with accurate, robust and parameter-efficient learning, Hybrid neural networks for continual learning inspired by corticohippocampal circuits, Interplay of hippocampus and prefrontal cortex in memory]
-related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/hebbian-learning.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/associative-memory.md, wiki/concepts/neuromodulation.md, wiki/concepts/memory-schemas.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/vector-hash-model.md, wiki/entities/snn.md, wiki/concepts/dendritic-computation.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/hassabis-neuroscience-ai-2017.md, wiki/papers/vector-hash-chandra-2023.md, wiki/concepts/world-models.md, wiki/papers/kessler-continual-dreamer-2023.md, wiki/papers/mei-multimodulatory-continual-2025.md, wiki/papers/chavlis-dann-2025.md, wiki/entities/ch-hnn-model.md, wiki/papers/shi-ch-hnn-2025.md, wiki/papers/preston-eichenbaum-hpc-pfc-2013.md]
+related: [wiki/concepts/two-learning-timescales.md, wiki/concepts/hebbian-learning.md, wiki/concepts/sparse-distributed-representations.md, wiki/concepts/associative-memory.md, wiki/concepts/neuromodulation.md, wiki/concepts/memory-schemas.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/vector-hash-model.md, wiki/entities/snn.md, wiki/concepts/dendritic-computation.md, wiki/papers/cls-mcclelland-1995.md, wiki/papers/cls-oreilly-2011.md, wiki/papers/hassabis-neuroscience-ai-2017.md, wiki/papers/vector-hash-chandra-2023.md, wiki/concepts/world-models.md, wiki/papers/kessler-continual-dreamer-2023.md, wiki/papers/mei-multimodulatory-continual-2025.md, wiki/papers/chavlis-dann-2025.md, wiki/entities/ch-hnn-model.md, wiki/papers/shi-ch-hnn-2025.md, wiki/papers/preston-eichenbaum-hpc-pfc-2013.md, wiki/concepts/meta-learning.md, wiki/concepts/differentiable-plasticity.md, wiki/concepts/btsp.md, wiki/entities/hnn-framework.md]
 ---
 
 # Continual Learning

@@ -3,9 +3,9 @@ title: "State-of-the-Art Review: Brain-Inspired Architectures for Abstract Reaso
 type: query
 tags: [review, state-of-the-art, abstract-reasoning, latent-graph-discovery, brain-inspired-ai, rationale]
 created: 2026-07-02
-updated: 2026-07-08
+updated: 2026-07-10
 sources: []
-related: [wiki/overview.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/factorized-representations.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/planning-as-inference.md, wiki/concepts/neural-manifolds.md, wiki/concepts/shortcut-reasoning.md, wiki/concepts/intelligence-density.md, wiki/concepts/memory-schemas.md, wiki/concepts/world-models.md, wiki/concepts/refinement-loops.md, wiki/entities/tem-model.md, wiki/entities/arc-agi.md, wiki/entities/spacetime-attractor.md, wiki/entities/vsa-model.md, wiki/entities/jepa-model.md, wiki/entities/vl-jepa-model.md, wiki/entities/dinov2-model.md, wiki/entities/dinov3-model.md, wiki/entities/equilibrium-propagation.md, wiki/entities/baba-is-ai.md, wiki/entities/frontiermath-benchmark.md, wiki/entities/pgm-benchmark.md, wiki/entities/gpqa-benchmark.md, wiki/entities/olymmath.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/queries/brain-inspired-vs-solver-approach.md, wiki/papers/math-reasoning-survey-2026.md, wiki/queries/reasoning-as-coupled-navigation-strategizing.md, wiki/concepts/relational-reinterpretation.md, wiki/concepts/recursion.md, wiki/concepts/core-knowledge.md]
+related: [wiki/queries/central-framing-epistemic-audit.md, wiki/queries/mec-abstract-codes-vs-declarative-rules.md, wiki/overview.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/factorized-representations.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/planning-as-inference.md, wiki/concepts/neural-manifolds.md, wiki/concepts/shortcut-reasoning.md, wiki/concepts/intelligence-density.md, wiki/concepts/memory-schemas.md, wiki/concepts/world-models.md, wiki/concepts/refinement-loops.md, wiki/entities/tem-model.md, wiki/entities/arc-agi.md, wiki/entities/spacetime-attractor.md, wiki/entities/vsa-model.md, wiki/entities/jepa-model.md, wiki/entities/vl-jepa-model.md, wiki/entities/dinov2-model.md, wiki/entities/dinov3-model.md, wiki/entities/equilibrium-propagation.md, wiki/entities/baba-is-ai.md, wiki/entities/frontiermath-benchmark.md, wiki/entities/pgm-benchmark.md, wiki/entities/gpqa-benchmark.md, wiki/entities/olymmath.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/queries/brain-inspired-vs-solver-approach.md, wiki/papers/math-reasoning-survey-2026.md, wiki/queries/reasoning-as-coupled-navigation-strategizing.md, wiki/concepts/relational-reinterpretation.md, wiki/concepts/recursion.md, wiki/concepts/core-knowledge.md, wiki/entities/dnc-model.md, wiki/entities/vector-hash-model.md, wiki/entities/mlc-model.md, wiki/entities/cscg-model.md]
 ---
 
 # State-of-the-Art Review: Brain-Inspired Architectures for Abstract Reasoning via Latent Graph Discovery
@@ -17,6 +17,12 @@ related: [wiki/overview.md, wiki/concepts/latent-graph-discovery.md, wiki/concep
 ## Abstract
 
 Deep learning has saturated most i.i.d. benchmarks yet still fails at out-of-distribution *systematic generalization* — the ability to recombine known structure in novel ways. Human and animal brains do not share this failure. This review argues that (i) the diverse tasks grouped under "abstract reasoning" reduce to a single computational problem, **latent graph discovery** — inferring the hidden relational structure of a domain from observations and then navigating it; (ii) the reason current architectures fail is not scale or data but a missing *inductive structure* — specifically the factorization of relational structure from sensory content, which places the required generalization outside a monolithic model's reachable manifold *by construction*; and (iii) the mammalian entorhinal–hippocampal–prefrontal (MEC/HC/PFC) system provides a validated, convergent blueprint for the missing structure. We review the benchmark evidence isolating the bottleneck (ARC-AGI, FrontierMath, PGM, ConceptARC, Baba Is AI), the brain-inspired principles that address it, and the biologically-plausible learning algorithms that could train such a system. We conclude that the highest-leverage direction is a **factorized, two-timescale world model in the lineage of the Tolman–Eichenbaum Machine (TEM; Whittington et al. 2020), extended with an inverse path-integration module ("Transformation Inferrer") to close the single largest gap — inferring latent transformation rules from before/after pairs (the ARC-AGI/Type-2 regime).** We further show that the two leading *non*-brain-inspired programs — self-supervised world models (JEPA/DINO, §4.5) and solver-plus-external-verifier stacks (§4.6) — are complementary rather than competing: each empirically corroborates part of the thesis while leaving the core gap (latent transformation inference / vocabulary co-discovery) open, and the brain-inspired generator can plug into the same external verifier the solver stack already uses. The rationale for each choice is stated explicitly.
+
+---
+
+## Part I — The State of the Field
+
+*A survey of where the field stands — the target capability, the problem framing, the benchmark evidence, why the three leading approach families fall short, and what neuroscience contributes — laid out before any recommendation (Part II).*
 
 ---
 
@@ -76,6 +82,8 @@ Nodes = states; edges = transformations/actions; edge labels = the rule applied 
 ---
 
 ## 3. The Benchmark Landscape: Isolating the Bottleneck
+
+**The landscape first.** The reasoning-benchmark space spans five families — *visual-analogy* (ARC-AGI, PGM, Raven's Matrices), *competition/research math* (MATH, AIME, MiniF2F, FrontierMath), *science QA* (GPQA, MMLU), *agentic/interactive* (ARC-AGI-3, Baba Is AI), and *compositional-generalization suites* (SCAN, COGS, PCFG). They differ almost entirely in *how much auxiliary capability* (§3.1) they load onto the reasoning signal. The subset below is selected because it isolates *structural inference* with the least confound; the rest measure the same axes with more knowledge, language, or perception baked in, and are placed on the confound map in §3.1.
 
 The strongest empirical argument that the bottleneck is *latent structure inference* — not knowledge, scale, or data — is the **convergence of two opposite design extremes**:
 
@@ -138,6 +146,8 @@ The §3 tables rank benchmarks by the **hardness source** they probe. For valida
 ---
 
 ## 4. Why Current Architectures Fail — A Structural, Not Empirical, Verdict
+
+**The landscape first.** Existing approaches to abstract reasoning fall into four paradigm families: (i) token-generative LLMs/LRMs (this section), (ii) self-supervised world models (JEPA/DINO, §4.5), (iii) generator + external-verifier solver stacks (§4.6), and (iv) neuro-symbolic / program-synthesis / vector-symbolic systems (VSA, DSL-search à la DreamCoder; rostered in §8.0) — atop the engineered HC/PFC memory line (DNC, Vector-HaSH, MLC) that the brain blueprint (§5) descends from. §4–§4.6 deep-dive the three paradigm-level *contenders*; §8.0 scores every class against the latent-graph-discovery requirement set. This section takes the first and largest: LLMs.
 
 The most important claim in this review is that transformer/LLM failure on ARC-AGI is **architectural, not a data or scale problem**. Three independent lines of evidence:
 
@@ -229,6 +239,24 @@ The residual work — comprehension, path proposal, autoformalization — is exa
 
 Neuroscience contributes not vague inspiration but a *specific, convergent, and increasingly formalized* solution to exactly the constraints above. Six principles, each with a computational justification and a validated substrate.
 
+### 5.0 The evidence base: which brain regions are recruited for *reasoning*
+
+Before the principles, the receipts. The blueprint rests on a specific empirical claim — that the brain's spatial-memory and cognitive-control machinery is *re-recruited for abstract, non-spatial reasoning*, not merely its textbook sensorimotor role. Consolidated from the region pages, the direct evidence:
+
+| Region | Evidence of engagement in *abstract* reasoning (beyond native task) | Computational role | Maps to block |
+|---|---|---|---|
+| **MEC grid code** ([[wiki/entities/grid-cells.md]]) | Hexagonal grid-like fMRI signal during abstract 2D *conceptual* navigation, non-spatial (Constantinescu et al. 2016) | Structural code `g`; path-integration basis | 1A/1B |
+| **Hippocampus** ([[wiki/entities/hippocampal-entorhinal-system.md]]) | Transitive/relational inference, schema-based one-shot generalization; TEM zero-shot structural transfer (Whittington et al. 2020) | Bind `p = f(g,x)`; fast instance-graph memory M | 2A–2D |
+| **vmPFC / mPFC schemas** ([[wiki/entities/prefrontal-cortex.md]], [[wiki/concepts/memory-schemas.md]]) | *Strongest* abstract grid signal sits in vmPFC (Constantinescu 2016); schemas support transitive inference + assimilation/accommodation (de Sousa et al. 2026) | Slow-W meta-graph; schema selection/update | 3B/3C context |
+| **Lateral PFC** (rostro-caudal BA-8→9/46→10) ([[wiki/entities/prefrontal-cortex.md]]) | Parallel hierarchical rule search with step-wise (compression) learning curves (Badre et al. 2010); abstract remappable category tuning in 5–15 trials (Miller et al. 2002); model-based behavior emergent from model-free training (Wang et al. 2018) | Hierarchical rule-of-rules control; edge-label / vocabulary induction | 3A/3C |
+| **Basal ganglia** ([[wiki/entities/basal-ganglia.md]]) | Go/NoGo gating of WM updates; neuromodulators as RL metaparameters (Doya 2002); dual-loop hypothesis-testing vs. procedural (COVIS) | Gating, credit assignment, exploration temperature | 3B/3D |
+| **DMN** ([[wiki/entities/default-mode-network.md]]) | Hosts abstract grid-code signals; integrates episodic + semantic + self into "frames of thought"; uniquely broadcasts to all cortical types (Paquola et al. 2025) | Contextual buffer integrating meta-graph context | 3B |
+| **Insect central complex** ([[wiki/entities/insect-central-complex.md]]) | Ring-attractor heading + path integration confirmed in vivo (Seelig & Jayaraman 2015); convergent validation of the structural-update motif | Path-integration substrate (structural-code update) | 1B |
+
+**Reading it.** The load-bearing pattern is that the *same* metric/structural machinery (grid code, path integration) that evolved for physical navigation carries an fMRI signature during *conceptual* navigation — and the signal is strongest in vmPFC/DMN, i.e. it migrates into the prefrontal hierarchy for the most abstract tasks. This is the empirical warrant for treating spatial-reasoning circuitry as a reasoning blueprint, and it is why the six principles below are organized around *factorization + path integration + hierarchical control* rather than any region in isolation.
+
+**Provenance caveat — there is no privileged host; the localization question dissolved (central-framing audit, [[wiki/queries/central-framing-epistemic-audit.md]], sub-claim B).** Do *not* read this table as "the Hippocampal Formation generalizes navigation to reasoning." The abstract relational code is **distributed and task-dependent**, not HC-centric: (i) it is a **parallel bank of separable maps along the HC long axis** — transition/statistical structure → anterior EC, taxonomic-semantic → posterior HC — not one conjunctive locus (Zheng et al. 2024); (ii) it runs as an **EC-schema → mPFC-map pipeline** that recruits DMN / social-brain (TPJ, STS) into a *shared grid frame* for active tasks (Qu et al. 2026; Park et al. 2021); (iii) grid-like L6 coding is a **candidate universal cortical primitive** (Chen 2022 / Thousand-Brains), and a serious rival routes the map-like computation through **posterior parietal, not entorhinal, cortex** (Butz 2016); (iv) even *physical* navigation is a multi-region pipeline of **coding / anchoring / planning** operations (Epstein et al. 2017) — and the abstract evidence supports only the **coding** pillar (there is no demonstrated abstract analog of boundary/landmark *anchoring*). So the blueprint's warrant is that a *domain-general structural primitive* recurs wherever the computational problem (continuous-coordinate assignment + cross-instance graph-matching) arises — which is exactly why the principles below are organized by *computation* (factorization + path integration + hierarchical control) rather than by region. The `mec-abstract-codes-vs-declarative-rules` query states this distributed reading in full.
+
 ### 5.1 Factorize structural code from sensory content — the keystone
 
 The MEC grid code `g` (structural) and LEC content code `x` (sensory) are bound in HC as `p = f(g, x)` (Whittington et al. 2020). **TEM is the reference proof-of-concept**: it demonstrates zero-shot structural generalization, and its emergent grid/place cells reproduce biology. Two unifications elevate this from analogy to theory:
@@ -236,7 +264,7 @@ The MEC grid code `g` (structural) and LEC content code `x` (sensory) are bound 
 - **TEM = transformer** (Whittington et al. 2022): the factorized key/value structure (Q=K=f(g), V=f(x)) follows *necessarily* from outer-product memory, and Hopfield↔attention is grounded in the Boltzmann distribution (softmax *is* P∝exp(−E/T)).
 - **Grid cells = successor-representation eigenvectors = optimal path-integration bases**; place cells = SR rows = p=f(g,x). Periodic codes make graph-matching (NP-hard in general) a phase shift, because all positions are treated equivalently and the code can be *shifted* to register any new environment.
 
-Human fMRI confirms the structural code generalizes beyond space: hexagonal grid-like signals appear during abstract 2D "conceptual navigation," strongest in vmPFC (Constantinescu et al. 2016). **Caveat / open controversy:** HC uniquely engages *metric or sequential* relational graphs, not topology-matched *social/declarative* ones (Kumaran & Maguire 2005) — implying the meta-graph may be **two representational formats** (continuous/metric via MEC→HC; discrete/declarative via PFC hierarchy + mPFC schemas) that must gate each other. This is a genuine design fork, addressed below.
+Human fMRI confirms the structural code generalizes beyond space: hexagonal grid-like signals appear during abstract 2D "conceptual navigation," strongest in vmPFC (Constantinescu et al. 2016). **Caveat / open controversy:** Kumaran & Maguire 2005 found HC engages *metric or sequential* relational graphs but not their topology-matched *social* control — implying the meta-graph may be **two representational formats** (continuous/metric via MEC→HC; discrete/declarative via PFC hierarchy + mPFC schemas) that must gate each other. **Refinement (central-framing audit):** the routing key is **embeddability**, not spatial-vs-social or metric-vs-declarative content — a *social* hierarchy (Park et al. 2021) and a *lifetime, explicit taxonomic* structure (Zheng et al. 2024) both recruit EC/HC grid-and-map coding once they are 2D-embeddable and inferentially traversed. This narrows the Kumaran & Maguire negative to *non-embeddable* declarative graphs specifically. The design fork therefore survives but is drawn at **embeddable (→ System-1 map) vs. non-embeddable-symbolic (→ System-2 rule/program search)**, addressed below.
 
 ### 5.2 Two-timescale learning — the W/M split
 
@@ -308,6 +336,12 @@ The strongest evidence that the expansion→compression, factorized world-model 
 
 ---
 
+## Part II — The Direction This Justifies
+
+*Given the Part I survey, the specific architectural direction the evidence supports — the localized gap, the requirements matrix, the recommended architecture and build order, the rationale for each choice, and the open problems it must confront.*
+
+---
+
 ## 8. Synthesis — The Gap, and the Direction This Justifies
 
 Pulling the review together, the field's state can be stated as a single sentence: **we have a validated blueprint for representing and navigating a *known* structural graph (TEM and its unifications), but no trained architecture that *infers latent transformation rules* (Type-2 / ARC-AGI edges) while retaining cross-environment meta-graph transfer.**
@@ -335,6 +369,18 @@ Consolidating the scattered checklists (§1, §4.5, §4.6, §5) into one matrix.
 | Per-instance correctness guarantee (§4.6) | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
 
 *Legend:* ✅ satisfies · ~ partial · ◐ planned in build order (§8.1) · ext externalized to human infrastructure · n/a not applicable to substrate · ❌ absent. *Superscripts:* ᴹ fast Hebbian M only, no slow learned W · ᵍ vocabulary *given* (mathlib/DSL), not inferred → Tao ceiling (§4.6) · ˢ via the Spacetime Attractor planner (§5.7) · ᴰ via a DINO/JEPA SSL front-end (Blocks 1A/2A, §4.5).
+
+**Wider approaches roster.** The matrix above scores the six model classes that map cleanly onto every LGD requirement. For completeness, the engineered HC/PFC-memory line and the neuro-symbolic/program-synthesis family are positioned here against the *single decisive row* — latent transformation inference (Block 3A, source 2) — since that is where each ultimately stalls:
+
+| Approach class | Key mechanism | Position on the decisive row (Block 3A / source 2) |
+|---|---|---|
+| **DNC** ([[wiki/entities/dnc-model.md]]) | LSTM controller + external read-write memory; 98.8% graph traversal | Engineered HC/PFC analog with an M-like store, but *no* factorized `g/x`, no slow-W meta-graph, vocabulary given → no transformation inference |
+| **Vector-HaSH** ([[wiki/entities/vector-hash-model.md]]) | Grid *scaffold* + content factorization; exponential capacity | Closest existing memory model to TEM's factorization and a strong Block-2A substrate candidate — but binds a *given* code, learns no transformation vocabulary |
+| **MLC** ([[wiki/entities/mlc-model.md]]) | Episodic meta-learning transformer (Lake & Baroni lineage) | Demonstrates the *meta-training route* to the W/M split, but no explicit `g/x` factorization and hits a 100% error ceiling on productivity/structural — no 3A |
+| **CSCG** ([[wiki/entities/cscg-model.md]]) | Clone cells + Bayesian EM | Solves observation aliasing (source 3) cleanly, but is fast/local with *no* cross-environment W transfer → no meta-graph, no 3A |
+| **Program synthesis / DSL search** (DreamCoder, icecuber; *no wiki page*) | Induction over a hand/library-built DSL; the actual ARC-AGI-1 winners | The neuro-symbolic sibling of the solver (§4.6): vocabulary *given or library-learned*, so it hits the same source-2 wall; DreamCoder's library learning is the closest existing stab at vocabulary co-discovery, but domain-specific |
+
+Every row lands on the same verdict as the main matrix: the Block-3A cell — latent transformation inference *with* cross-environment transfer — stays empty across the entire existing-approaches landscape. That vacancy is §9's Open Problem #2 and the review's novelty site.
 
 ### 8.1 The recommended architecture
 

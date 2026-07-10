@@ -3,9 +3,9 @@ title: "A Proposed Brain-Inspired Reasoning Model: Per-Block Architecture Menus 
 type: query
 tags: [architecture, reasoning-model, building-blocks, arc-agi-3, path-integration, transformation-inferrer, schema, planning, curiosity, latent-graph-discovery]
 created: 2026-07-06
-updated: 2026-07-08
+updated: 2026-07-10
 sources: []
-related: [wiki/queries/building-blocks-mec-hc-pfc.md, wiki/queries/building-blocks-declarative-subsystem.md, wiki/queries/reasoning-as-coupled-navigation-strategizing.md, wiki/queries/mec-abstract-codes-vs-declarative-rules.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/path-integration.md, wiki/concepts/planning-as-inference.md, wiki/concepts/prospective-coding.md, wiki/concepts/refinement-loops.md, wiki/concepts/memory-schemas.md, wiki/concepts/neuromodulation.md, wiki/concepts/differentiable-plasticity.md, wiki/concepts/energy-based-models.md, wiki/concepts/relational-reinterpretation.md, wiki/concepts/recursion.md, wiki/concepts/core-knowledge.md, wiki/entities/tem-model.md, wiki/entities/spacetime-attractor.md, wiki/entities/vector-hash-model.md, wiki/entities/vsa-model.md, wiki/entities/trnn-model.md, wiki/entities/arc-agi.md]
+related: [wiki/queries/central-framing-epistemic-audit.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/queries/building-blocks-declarative-subsystem.md, wiki/queries/reasoning-as-coupled-navigation-strategizing.md, wiki/queries/mec-abstract-codes-vs-declarative-rules.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/path-integration.md, wiki/concepts/planning-as-inference.md, wiki/concepts/prospective-coding.md, wiki/concepts/refinement-loops.md, wiki/concepts/memory-schemas.md, wiki/concepts/neuromodulation.md, wiki/concepts/differentiable-plasticity.md, wiki/concepts/energy-based-models.md, wiki/concepts/relational-reinterpretation.md, wiki/concepts/recursion.md, wiki/concepts/core-knowledge.md, wiki/entities/tem-model.md, wiki/entities/spacetime-attractor.md, wiki/entities/vector-hash-model.md, wiki/entities/vsa-model.md, wiki/entities/trnn-model.md, wiki/entities/arc-agi.md]
 ---
 
 # A Proposed Brain-Inspired Reasoning Model — Per-Block Architecture Menus
@@ -59,6 +59,7 @@ The Navigator core: update the structural code `g` under a *latent, compositiona
 |---|---|---|---|
 | **#1** | **SSP fractional binding** (`φ(x)⊛φ(d)=φ(x+d)`, Eliasmith) | Operator = one convolution; **inverse is analytic** (`φ⁻¹=φ(−x)` → free reverse edges for 3A); composable; grid periodicity *emergent* from Θ; **Θ learnable end-to-end**. Ceiling: operators are translation-like (abelian) — non-abelian rules need #2. | [exists] |
 | **#2** | **Learned Lie-group / SO(N) generator** `g'=norm(g+R(v)g)`, `R` skew-symmetric conditioned on action vector `v` | Most general: exact manifold constraint, novel action *magnitudes*, non-abelian operators. But training the `v→R` map for a *latent* operator set is unsolved — the hard part. | [semi] |
+| **#2-alt** | **Invertible cross-attention flow** — operator latent `a` conditions a coupling-layer update `g'=g+Attn(Q=g, K=V=a)` (`g` asks *which slots change*, `a` answers *how*); split-coupling gives an analytic inverse | The **trainable** stand-in for #2: attention learns the latent conditional map that `v→R` can't, and content-routes updates to *part* of `g` → native localized/conditional (non-abelian) operators SSP can't express. Coupling restores invertibility (free 3A inverse); needs norm-projection for the manifold, and `a`-space must be trained to compose. **Risk:** an unconstrained attention block reverts to shortcut chunking (cf. 3A #4) — the coupling/norm constraints are what prevent it. | [semi] |
 | **#3** | **KAN-ODE / Neural ODE flow** `dg/dt=f(g,v)` | Continuous, param-efficient (KAN-ODE ~N⁻⁴ scaling), operator **symbolically recoverable** post-hoc. Weaker composition/inversion guarantees. | [exists] |
 | **#4** | **A-CANN** (cosine-connectivity continuous attractor, traveling-wave modes) | Biologically exact substrate (fly CX-validated); but weights hand-tuned, not learned — poor fit for abstract latent operators. | [exists] |
 | ✗ | TEM discrete `W(a)` lookup | Baseline. Closed vocabulary, no novel magnitudes, no invertibility → rejected for ARC-AGI-3. | [exists] |
@@ -112,12 +113,21 @@ The Navigator core: update the structural code `g` under a *latent, compositiona
 
 | Rank | Architecture | Why | Status |
 |---|---|---|---|
-| **#1** | **Slow-weight associative store + conflict-*triggered* update** — EWC-style consolidation, but a *learned conflict detector* (schema-graph prediction error) fires assimilate (reuse engram) vs. accommodate (allocate + modify) | This is exactly the mPFC assimilation/accommodation mechanism ([[wiki/concepts/memory-schemas.md]]); the *trigger* is the missing piece — no ML system gates the update this way. | [INVENT] |
+| **#1** | **Slow-weight associative store + conflict-*triggered* update** — EWC-style consolidation, but a *learned conflict detector* (schema-graph prediction error) fires assimilate (reuse engram) vs. accommodate (allocate + modify) | This is exactly the mPFC assimilation/accommodation mechanism ([[wiki/concepts/memory-schemas.md]]); the *trigger* is the missing piece — no ML system gates the update this way. **Addressing implementation:** cross-attention (new-experience `Q` → schema-slot `K/V`) supplies the *which-part-of-the-store-changes* routing natively — high slot-overlap ⇒ small targeted edit (assimilate), low ⇒ allocate (accommodate); the conflict detector only has to gate write *magnitude*. | [INVENT] |
 | **#2** | **Differentiable plasticity / fast-weight programmers** (Miconi; Schmidhuber) | Slow outer loop meta-learns the plasticity rule; inner loop writes the schema via local Hebbian. Retroactive-neuromod variant = three-factor (eligibility + DA) matches accommodation timing. | [exists] |
 | **#3** | **Context-modular / modern Hopfield** as schema store | Schemas = attractors; a context signal gates which schema is retrievable (Podlaski neuronal/synaptic gating). Clean, but no principled accommodation. | [exists] |
 | **#4** | **GNN with editable adjacency** (explicit meta-graph) | Most literal meta-graph; but declarative graphs have *no metric hash* (the whole System-2 difficulty), so matching reverts to NP-hard search. | [exists] |
 
 **Why #1 is worth inventing:** D2 is System 2's analog of Block 3A — the highest-value addition. The store itself is easy; the *conflict-gated write schedule* (assimilate vs. accommodate) is where structural generalization without forgetting lives.
+
+**Two under-specified stages the store *reads through* — configurator + orientation (central-framing audit, [[wiki/queries/central-framing-epistemic-audit.md]]).** The block list above treats D2 as one always-active meta-graph, but the biology says the store is a **bank of parallel latent graphs** (Zheng 2024: transition vs. taxonomic maps coexist, separable, *not fused*) traversed via two operations the current diagram conflates ([[wiki/concepts/memory-schemas.md]], §Parallel Schemas + §Context Retrieval vs. Orientation):
+
+| Stage | Job | Spatial analog | Where it lands here |
+|---|---|---|---|
+| **Configurator** (which-map selection) | Pick the task-relevant graph from the parallel bank *before* navigating | Context retrieval (PPA→HC) | Upstream of the gate — the VQ selector token (§codec #1) is the seed, but it must select *among stored schemas*, not just quantize position |
+| **Orientation / anchoring** | Locate & align the current instance *onto* the selected map (fix coordinates + axes) | RSC local↔global reference-frame transform; Park's cross-session grid-angle realignment | **A genuinely missing block** — no current block registers a novel instance onto a retrieved schema |
+
+The Navigator's graph-matching (SSP grid-phase shift, Block 1B) *is* the System-1 orientation op for embeddable structure; System 2 lacks its declarative counterpart. This is why the audit flags anchoring as the pillar with **no demonstrated abstract analog** — and marks the configurator+orientation pair as a required addition, not an optional refinement.
 
 ### Blocks 3C + D3 — Rule hierarchy + planner (the Strategist search)  ★ DEEP
 

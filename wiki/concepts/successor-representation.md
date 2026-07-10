@@ -5,7 +5,7 @@ tags: [successor-representation, reinforcement-learning, predictive-map, plannin
 created: 2026-06-12
 updated: 2026-06-28
 sources: [cognitivemap]
-related: [wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/temporal-context.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/tem-model.md, wiki/entities/cscg-model.md, wiki/papers/whittington-cognitive-map-2022.md, wiki/papers/tem-whittington-2020.md, wiki/entities/spacetime-attractor.md, wiki/concepts/planning-as-inference.md, wiki/papers/mechanistic-planning-pfc-jensen-2026.md, wiki/papers/tcm-mtl-howard-2005.md]
+related: [wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/temporal-context.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/tem-model.md, wiki/entities/cscg-model.md, wiki/papers/whittington-cognitive-map-2022.md, wiki/papers/tem-whittington-2020.md, wiki/entities/spacetime-attractor.md, wiki/concepts/planning-as-inference.md, wiki/papers/mechanistic-planning-pfc-jensen-2026.md, wiki/papers/tcm-mtl-howard-2005.md, wiki/papers/garvert-abstract-relational-map-2017.md, wiki/concepts/latent-graph-discovery.md]
 ---
 
 # Successor Representation (SR)
@@ -30,6 +30,16 @@ Value decomposes cleanly: **v = S r** (map × reward vector). SR (Successor Repr
 Since eigenvectors are identical for all powers of T (T^n = VΛⁿV^T — same V), grid codes support *multi-step* planning with the same representations as 1-step transitions. A single grid code works for local and non-local inference.
 
 **Intuitive planning** (Baram et al., 2018): with start and goal grid representations, navigation reduces to vector operations — no trajectory search needed. Grid codes are metric and uniformly distributed.
+
+---
+
+## Direct Human Evidence: SR as the Native Metric of an Abstract Graph
+
+Garvert, Dolan & Behrens 2017 ([[wiki/papers/garvert-abstract-relational-map-2017.md]]) provide the most direct human confirmation that the brain represents a relational graph with an **SR-like predictive metric rather than a veridical/Euclidean one**. Subjects implicitly learned a hidden graph from random-walk object sequences (no explicit awareness); next-day entorhinal/subicular fMRI adaptation reconstructed the graph, and the best predictor of both the neural signal and behavioral RT was **communicability** $-e^{A}$ / the **successor representation** $(I-\gamma A)^{-1}$ — a weighted sum of future states — beating Euclidean distance in direct competition.
+
+- This is the SR object itself (the RL-navigation representation) recovered for a **discrete, non-spatial** structure, learned **unconsciously** from experienced transitions.
+- **Communicability** ($\sum_n A^n/n!$, the graph-theoretic matrix exponential) and the SR ($\sum_n \gamma^n A^n$) are near-equivalent weighted-future-state measures; communicability needs no free $\gamma$. Both **warp** the graph — shortening links on many random-walk paths, lengthening rarely-traversed ones — exactly the non-Euclidean distortion the SR predicts and a Euclidean map cannot.
+- Trigger condition: the SR code appears when the graph is **sampled via transitions** (random walks), not merely known declaratively — see the metric-vs-declarative boundary in [[wiki/entities/hippocampal-entorhinal-system.md]].
 
 ---
 
@@ -91,3 +101,5 @@ The move from TCM to SR (and then to TEM's learned W) is the move from an unstru
 - **[[wiki/entities/spacetime-attractor.md]]** — STA is the PFC complement to HC's SR: SR collapses future occupancy across time into time-averaged value; STA maintains a separate representation per future timestep, extending SR's power to within-trial dynamic rewards.
 - **[[wiki/concepts/planning-as-inference.md]]** — SR is a special case of planning as inference where the future is compressed into a single time-averaged representation (v = Sr); STA generalizes this by maintaining per-timestep representations and using attractor dynamics rather than a dot product.
 - **[[wiki/concepts/recursion.md]]** — the successor function that generates discrete infinity (natural numbers, recursive count list) is the same iterated operation the SR applies (γT); Hauser-Chomsky-Fitch's domain-general-recursion hypothesis proposes this navigation/number machinery is what became the uniquely-human combinatorial engine.
+- **[[wiki/papers/garvert-abstract-relational-map-2017.md]]** — direct human evidence that entorhinal cortex represents an implicitly-learned abstract graph with an SR/communicability metric (weighted sum of future states), not a Euclidean one; the SR object recovered for discrete non-spatial structure.
+- **[[wiki/concepts/latent-graph-discovery.md]]** — the SR is the brain's native distance metric over a discovered latent graph; Garvert 2017 shows this metric is recovered unconsciously from random-walk experience, making SR the read-out of the discovery process.

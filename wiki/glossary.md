@@ -141,12 +141,10 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | JEPA | Joint Embedding Predictive Architecture | [[wiki/entities/jepa-model.md]] |
 | VCO | Velocity-Coupled Oscillator | [[wiki/concepts/path-integration.md]] |
 | VLA | Vision-Language-Action | [[wiki/concepts/hierarchical-representations.md]] |
-
 | DSI | Diffusion Spectrum Imaging | [[wiki/papers/mapping-structural-core-hagmann-2008.md]] |
 | DTI | Diffusion Tensor Imaging | [[wiki/papers/mapping-structural-core-hagmann-2008.md]] |
 | ODF | Orientation Distribution Function | [[wiki/papers/mapping-structural-core-hagmann-2008.md]] |
 | rCBF | Regional Cerebral Blood Flow | [[wiki/papers/mapping-structural-core-hagmann-2008.md]] |
-
 | FC | Functional Connectivity (statistical dependence between BOLD time series) | [[wiki/concepts/connectivity-gradients.md]] |
 | SC | Structural Connectivity (white-matter tract strength from diffusion MRI) | [[wiki/papers/mapping-structural-core-hagmann-2008.md]] |
 | PCC | Posterior Cingulate Cortex | [[wiki/entities/default-mode-network.md]] |
@@ -161,5 +159,30 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | VoE | Violation of Expectation (probing whether a world model has internalized rules) | [[wiki/concepts/world-models.md]] |
 | SLM | Stratum Lacunosum-Moleculare (hippocampal layer receiving long-range entorhinal input) | [[wiki/entities/hippocampal-entorhinal-system.md]] |
 | NGF | Neurogliaform cell (interneuron in the vmPFC→MEC→NGF memory-allocation circuit) | [[wiki/entities/hippocampal-entorhinal-system.md]] |
+| DMN | Default Mode Network | [[wiki/entities/default-mode-network.md]] |
+| ACh | Acetylcholine | [[wiki/concepts/neuromodulation.md]] |
+| NE | Norepinephrine (= NA / Noradrenaline) | [[wiki/concepts/neuromodulation.md]] |
+| VTA | Ventral Tegmental Area (midbrain dopaminergic nucleus) | [[wiki/entities/basal-ganglia.md]] |
+| SNc | Substantia Nigra pars compacta (midbrain dopaminergic nucleus) | [[wiki/entities/basal-ganglia.md]] |
+| RPE | Reward Prediction Error | [[wiki/concepts/neuromodulation.md]] |
+| NAc | Nucleus Accumbens (also abbreviated NAcc) | [[wiki/entities/basal-ganglia.md]] |
+| BLA | Basolateral Amygdala | [[wiki/entities/hippocampal-entorhinal-system.md]] |
+| TPJ | Temporoparietal Junction | [[wiki/entities/default-mode-network.md]] |
+| RSC | Retrosplenial Cortex | [[wiki/entities/grid-cells.md]] |
+| SMA | Supplementary Motor Area (pre-SMA = pre-supplementary motor area) | [[wiki/entities/basal-ganglia.md]] |
+| BPTT | Backpropagation Through Time | [[wiki/concepts/credit-assignment.md]] |
+| HCN | Hyperpolarization-activated Cyclic Nucleotide-gated channel | [[wiki/concepts/pfc-dynamic-network-connectivity.md]] |
+| KCNQ | KCNQ / Kv7 potassium channel | [[wiki/concepts/pfc-dynamic-network-connectivity.md]] |
+| RSN | Resting-State Network | [[wiki/concepts/criticality.md]] |
+| MCTS | Monte Carlo Tree Search | [[wiki/concepts/planning-as-inference.md]] |
+| RSA | Representational Similarity Analysis | [[wiki/concepts/representational-geometry.md]] |
+| ANN | Artificial Neural Network (non-spiking / rate-coded) | [[wiki/entities/hnn-framework.md]] |
+| MLP | Multilayer Perceptron | [[wiki/concepts/dendritic-computation.md]] |
+| VAE | Variational Autoencoder | [[wiki/entities/boltzmann-machine.md]] |
+| VLM | Vision-Language Model | [[wiki/papers/vlm-intro-bordes-2024.md]] |
+| VICReg | Variance-Invariance-Covariance Regularization | [[wiki/papers/vicreg-bardes-2022.md]] |
+| SIGReg | Sketched Isotropic Gaussian Regularization (LeJEPA collapse-prevention) | [[wiki/papers/lejepa-balestriero-lecun-2025.md]] |
+| OOD | Out-Of-Distribution | [[wiki/concepts/shortcut-reasoning.md]] |
+| IID | Independent and Identically Distributed (i.i.d.) | [[wiki/concepts/shortcut-reasoning.md]] |
 
 *This table is maintained by the lint pass. When lint reports a missing abbreviation, add it here.*

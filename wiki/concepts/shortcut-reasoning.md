@@ -3,9 +3,9 @@ title: "Shortcut Reasoning"
 type: concept
 tags: [shortcut-learning, generalization, abstract-reasoning, ARC, inductive-bias, objectness]
 created: 2026-06-24
-updated: 2026-07-08
-sources: [adversarial-nli-nie-2020, penn-darwins-mistake-2008]
-related: [wiki/concepts/core-knowledge.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/relational-reinterpretation.md, wiki/concepts/energy-based-models.md, wiki/concepts/meta-learning.md, wiki/entities/arc-agi.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/papers/shortcut-suite-yuan-2024.md, wiki/papers/beger-conceptarc-multimodal-2025.md, wiki/papers/odouard-2022-concept-evaluation.md, wiki/papers/math-perturb-2025.md, wiki/papers/adversarial-nli-nie-2020.md, wiki/papers/fact-finding-factual-recall-nanda-2023.md, wiki/papers/penn-darwins-mistake-2008.md]
+updated: 2026-07-09
+sources: [adversarial-nli-nie-2020, penn-darwins-mistake-2008, johnson-human-program-induction-arc-2021]
+related: [wiki/concepts/core-knowledge.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/compositional-generalization.md, wiki/concepts/relational-reinterpretation.md, wiki/concepts/energy-based-models.md, wiki/concepts/meta-learning.md, wiki/entities/grid-cells.md, wiki/entities/arc-agi.md, wiki/papers/qu-grid-code-development-intelligence-2026.md, wiki/papers/shortcut-learning-geirhos-2020.md, wiki/papers/shortcut-suite-yuan-2024.md, wiki/papers/beger-conceptarc-multimodal-2025.md, wiki/papers/odouard-2022-concept-evaluation.md, wiki/papers/math-perturb-2025.md, wiki/papers/adversarial-nli-nie-2020.md, wiki/papers/fact-finding-factual-recall-nanda-2023.md, wiki/papers/penn-darwins-mistake-2008.md, wiki/papers/emergent-linear-world-models-nanda-2023.md, wiki/papers/johnson-human-program-induction-arc-2021.md, wiki/concepts/world-models.md]
 ---
 
 # Shortcut Reasoning
@@ -82,6 +82,8 @@ Humans apply Spelke's Core Knowledge "objectness" prior (objects persist, move c
 
 **Architectural implication:** standard discriminative training on token sequences does not produce objectness representations; a structured world model that explicitly represents discrete entities (as in TEM's factorized p = f(g, x)) is required.
 
+**Behavioral error signature (Johnson et al. 2021, [[wiki/papers/johnson-human-program-induction-arc-2021.md]]):** the earliest ARC datapoint that *human* errors obey object priors while *machine* errors do not. On the box-alignment task, human errors keep correct shapes/colors and one alignment axis (near-misses); the Kaggle program-synthesis winner's errors violate object-like priors — shapes egregiously elongated, one wrapping around the grid. A solver searching a program space with no objectness prior produces outputs that are not even *object-shaped* — the shortcut is not a wrong rule but the absence of the discrete-entity parse. Precursor to ConceptARC's near-miss/concept-failure dissociation and Beger 2025's missing-objectness result.
+
 ---
 
 ## Evidence Across Papers
@@ -103,6 +105,17 @@ Humans apply Spelke's Core Knowledge "objectness" prior (objects persist, move c
 **Inverse scaling paradox (Yuan 2024):** larger LLMs are *more* susceptible to shortcut learning under in-context learning (ICL) — scale amplifies exploitation of spurious context patterns, not resistance to them. This is a direct empirical counter-evidence against the "scale solves generalization" hypothesis.
 
 ---
+
+## Developmental Heuristic→Structure Shift (Qu et al. 2026)
+
+A rare *neural* demonstration of a reasoner starting on a shortcut and being carried off it by a maturing structural code ([[wiki/papers/qu-grid-code-development-intelligence-2026.md]]). In a 2D non-spatial inference task (attack/defense-power "monsters"), trials split into:
+
+- **Congruent** (one item dominates both dimensions): solvable by a **model-free / statistical-learning heuristic** — "memorize which monster usually wins" — without any 2D structure.
+- **Incongruent** (each item wins on a different dimension): the single-dimension heuristic fails; success *requires* the structured 2D representation.
+
+8-year-olds are above chance on congruent trials but **at chance on incongruent** ones — the signature of a learner riding the shortcut. A three-way age × grid-code-strength × congruency interaction shows the congruency gap closes with age **only in high-grid-code participants**. The maturing **entorhinal grid code** ([[wiki/entities/grid-cells.md]]) is the substrate that defeats the shortcut and installs structured inference.
+
+**Why this matters for design:** it makes the shortcut→structure transition *mechanistic*, not just behavioral. The congruent/incongruent split is a clean diagnostic — a system that passes congruent but fails incongruent is using the entropy/frequency chunk, not the relation (cf. Penn's same/different set-size signature above). And it identifies *what* has to be built for the transition: an environment-invariant relational (grid/graph) code, not more data. A statistical learner without such a code stays permanently on the congruent-only solution.
 
 ## Open Problems
 
@@ -130,3 +143,7 @@ Humans apply Spelke's Core Knowledge "objectness" prior (objects persist, move c
 - **[[wiki/papers/fact-finding-factual-recall-nanda-2023.md]]** — the micro/macrofeature distinction formalizes when shortcuts are possible at all: no macrofeature exists ⟹ no shortcut is learnable, only pure memorization; this bounds the shortcut-reasoning phenomenon to tasks that have generalizable structure to exploit or ignore.
 - **[[wiki/concepts/relational-reinterpretation.md]]** — supplies the representational-level root: conceptual chunking + segmentation (analog-scalar substitution for relational structure) is the mechanism underlying every specific shortcut in the catalogue; feature-based systematicity is the System-1 competence a shortcut learner never transcends.
 - **[[wiki/papers/penn-darwins-mistake-2008.md]]** — comparative-cognition source for chunking/segmentation and the entropy-substitution signature (same/different set-size effects).
+- **[[wiki/papers/qu-grid-code-development-intelligence-2026.md]]** — developmental source: the congruent/incongruent dissociation is a clean shortcut diagnostic, and a maturing entorhinal grid code is what carries children off the model-free "which-item-wins" heuristic onto structured 2D inference.
+- **[[wiki/entities/grid-cells.md]]** — identifies the structural substrate whose maturation defeats the statistical shortcut: an environment-invariant relational (grid) code is what a permanent-shortcut learner lacks.
+- **[[wiki/papers/johnson-human-program-induction-arc-2021.md]]** — behavioral objectness signature: human ARC errors obey object priors (near-misses), a program-synthesis solver's errors violate them (elongated / grid-wrapping shapes) — the missing discrete-entity parse is the shortcut, and it shows up in error *shape*, not just error rate.
+- **[[wiki/papers/emergent-linear-world-models-nanda-2023.md]]** — mechanistic ML datapoint that a shortcut can coexist with a correct world model *inside one network*: OthelloGPT has a genuine, causally-used board model yet in end-games computes moves via simpler non-navigational circuits ("MoveFirst") whenever they suffice (when nearly every empty tile is legal). Shows shortcut selection is not just a data-distribution artifact but the network's default when a cheaper sufficient circuit exists — presence of the structured representation does not guarantee it is used.

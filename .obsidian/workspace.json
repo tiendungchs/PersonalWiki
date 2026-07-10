@@ -4,81 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "aeda3a2722607e5d",
+        "id": "08116ce64fc40ad2",
         "type": "tabs",
         "children": [
           {
-            "id": "516e16f2e20639ec",
+            "id": "f7f8ed32112b4293",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/queries/sota-review-brain-inspired-abstract-reasoning.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "sota-review-brain-inspired-abstract-reasoning"
-            }
-          },
-          {
-            "id": "57e89bbc1967e615",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/concepts/latent-graph-discovery.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "latent-graph-discovery"
-            }
-          },
-          {
-            "id": "4192752cc02945b8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/queries/reasoning-as-coupled-navigation-strategizing.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "reasoning-as-coupled-navigation-strategizing"
-            }
-          },
-          {
-            "id": "6496a6562b220a0d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/queries/proposed-reasoning-model-block-architectures.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "proposed-reasoning-model-block-architectures"
-            }
-          },
-          {
-            "id": "21734a843b28d617",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/queries/proposed-reasoning-model-block-architectures.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "proposed-reasoning-model-block-architectures"
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "vertical"
@@ -213,13 +152,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/queries/proposed-reasoning-model-block-architectures.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of proposed-reasoning-model-block-architectures"
+              "title": "Outline"
             }
           }
         ],
@@ -227,8 +165,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -241,48 +178,48 @@
       "bases:Create new base": false
     }
   },
-  "active": "21734a843b28d617",
+  "active": "f7f8ed32112b4293",
   "lastOpenFiles": [
-    "wiki/architectural-gaps.md.tmp.28557.00555523e701",
-    "wiki/concepts/cultural-learning.md",
-    "wiki/papers/tomasello-rakoczy-human-cognition-2003.md",
-    "wiki/queries/sota-review-brain-inspired-abstract-reasoning.md",
-    "wiki/papers/hauser-chomsky-fitch-2002.md",
-    "wiki/concepts/recursion.md",
-    "raw/Core knowledge.md",
-    "wiki/papers/revencu-csibra-what-babies-know-2023.md",
-    "wiki/papers/penn-darwins-mistake-2008.md",
+    "wiki/papers/butz-unified-subsymbolic-cognition-2016.md",
+    "wiki/papers/epstein-cognitive-map-humans-2017.md",
+    "wiki/papers/structured-maze-transformers-2023.md",
+    "wiki/papers/zheng-parallel-cognitive-maps-2024.md",
+    "wiki/papers/linear-spatial-world-models-tehenan-2025.md",
+    "wiki/papers/park-social-hierarchy-grid-code-2021.md",
+    "wiki/concepts/latent-graph-discovery.md.tmp.95876.a723f78dd6f3",
+    "wiki/concepts/probabilistic-language-of-thought.md",
+    "wiki/papers/goodman-plot-probabilistic-programs-2024.md",
+    "wiki/concepts/abstract-reasoning.md.tmp.95876.ab2dca70abc2",
+    "wiki/papers/johnson-human-program-induction-arc-2021.md",
+    "wiki/papers/emergent-linear-world-models-nanda-2023.md",
+    "wiki/papers/qu-grid-code-development-intelligence-2026.md",
+    "tools/qmd.db",
+    "tools/qmd_shim.py",
     "wiki/concepts/relational-reinterpretation.md",
-    "wiki/papers/spelke-kinzler-core-knowledge-2007.md",
-    "wiki/concepts/core-knowledge.md",
-    "wiki/papers/somel-transcriptional-neoteny-2009.md",
-    "wiki/concepts/cognitive-control.md.tmp.28557.b80a98921488",
-    "wiki/papers/sherwood-natural-history-mind-2008.md",
-    "wiki/concepts/neoteny.md",
-    "wiki/papers/maclean-human-cognition-evolution-2016.md",
-    "raw/Transcriptional neoteny in the human brain.md",
-    "raw/A natural history of the human mind tracing evolutionary changes in brain and cognition.md",
-    "raw/Unraveling the evolution of uniquely human cognition.md",
-    "raw/Review of Elizabeth Spelkes What babies know.md",
-    "raw/What Makes Human Cognition Unique_.md",
-    "raw/The Faculty of Languag.md",
-    "raw/Darwins mistake.md",
-    "CLAUDE.md",
-    "wiki/concepts/latent-graph-discovery.md",
     "wiki/queries/proposed-reasoning-model-block-architectures.md",
+    "wiki/queries/reasoning-as-coupled-navigation-strategizing.md",
+    "wiki/concepts/latent-graph-discovery.md",
+    "raw/Inferences on a Multidimensional Social Hierarchy Use a Grid-like Code.md",
+    "tools/qmd-shim.py",
+    "raw/Emergent Linear Representations in World Models of Self-Supervised Sequence Models.md",
+    "wiki/papers/grid-like-all-perception-chen-2022.md",
+    "wiki/queries/mec-abstract-codes-vs-declarative-rules.md.tmp.47634.d45f0d6acb0b",
+    "wiki/papers/garvert-abstract-relational-map-2017.md",
+    "raw/Linear Spatial World Models Emerge in Large Language Models.md",
+    "raw/Structured World Representations in Maze-Solving Transformers.md",
+    "raw/The cognitive map in humans- spatial navigation and beyond.md",
+    "raw/Fast and flexible- Human program induction in abstract reasoning tasks.md",
+    "raw/goodman2024probabilistic.md",
+    "raw/Development of non-spatial grid-like neural codes tracks inference and intelligence.md",
+    "raw/Are Grid-Like Representations a Component of All Perception and Cognition?.md",
+    "wiki/architectural-gaps.md.tmp.28557.00555523e701",
+    "wiki/concepts/cognitive-control.md.tmp.28557.b80a98921488",
     "test.txt",
     "test.xxt",
     "case4_topology_edges_latent.png",
     "case3_node_content_latent.png",
     "case2_path_latent.png",
     "case1_edges_latent.png",
-    "test2.py",
-    "test.py",
-    "wiki/concepts/memory-schemas.md.tmp.15309.81a97118401f",
-    "wiki/queries/reasoning-as-coupled-navigation-strategizing.md.tmp.15309.d420f3a85a81",
-    "wiki/entities/tem-model.md.tmp.88683.3dded26f5307",
-    "wiki/entities/frontiermath-benchmark.md.tmp.79901.eef27464c843",
-    "wiki/entities/vl-jepa-model.md.tmp.79901.7ba342e51e1f",
     "Untitled.canvas",
     "raw/assets/gaps1.png",
     "raw/assets/gaps.png",

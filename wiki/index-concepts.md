@@ -3,18 +3,19 @@ title: "Concepts Index"
 type: overview
 tags: [index]
 created: 2026-06-20
-updated: 2026-07-08
+updated: 2026-07-09
 sources: []
 related: []
 ---
 
-# Concepts Index — 63 pages
+# Concepts Index — 64 pages
 
 Each entry: `[Title](path) — one-line description`. Updated when a new concept page is created.
 
 ---
 
 - [Latent Graph Discovery](wiki/concepts/latent-graph-discovery.md) — **CORE PROBLEM FRAMING** — Unified problem: infer hidden graph structure from observations and navigate it; four sources of hardness; why current architectures fail
+- [Probabilistic Language of Thought (PLoT) / Program Induction](wiki/concepts/probabilistic-language-of-thought.md) — **RIVAL REDUCTION** — concepts = stochastic functions in a universal PPL; reasoning = conditional inference (`query`); learning = program induction; universality theorem; the non-navigational competitor to LGD's "one problem" claim, resolved as a cross-Marr-level stack
 - [Structural Generalization](wiki/concepts/structural-generalization.md) — **CORE** — Extract relational structure, transfer to new content; graph formalism; why transformers fail; 5 minimum ingredients
 - [Abstract Reasoning](wiki/concepts/abstract-reasoning.md) — **TARGET CAPABILITY** — causal model-building vs. pattern recognition; three required ingredients; diagnostic criteria; open problems
 - [Recursion / Discrete Infinity](wiki/concepts/recursion.md) — FLB/FLN split (Hauser-Chomsky-Fitch 2002); recursion as the uniquely-human combinatorial core; Chomsky hierarchy (finite-state vs. phrase-structure); AₙBₙ tamarin result; domain-general-recursion hypothesis; discrete infinity ≅ natural numbers

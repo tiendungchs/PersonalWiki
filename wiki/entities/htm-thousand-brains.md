@@ -3,9 +3,9 @@ title: "Thousand Brains Theory / HTM"
 type: entity
 tags: [thousand-brains, htm, cortical-columns, sensorimotor, numenta, hawkins]
 created: 2026-06-12
-updated: 2026-06-20
+updated: 2026-07-09
 sources: [150000-mini-brain-transcript, convergence-wiring-transcript, reservoir-computing-transcript, sparse_representations]
-related: [wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/small-world-networks.md, wiki/concepts/canonical-microcircuit.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/grid-cells.md, wiki/entities/tem-model.md, wiki/entities/reservoir-computing.md, wiki/concepts/predictive-coding.md, wiki/concepts/sparse-distributed-representations.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/ahmad-hawkins-sdr-2016.md]
+related: [wiki/concepts/factorized-representations.md, wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/small-world-networks.md, wiki/concepts/canonical-microcircuit.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/grid-cells.md, wiki/entities/tem-model.md, wiki/entities/reservoir-computing.md, wiki/concepts/predictive-coding.md, wiki/concepts/sparse-distributed-representations.md, wiki/papers/150000-mini-brain-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/ahmad-hawkins-sdr-2016.md, wiki/papers/grid-like-all-perception-chen-2022.md]
 ---
 
 # Thousand Brains Theory / HTM
@@ -58,7 +58,7 @@ Both independently arrive at g/x/p factorization: TEM from the outer-product mem
 
 - No computational validation at the claimed 150,000-column scale.
 - Consensus voting convergence properties unproven.
-- Efference copy as path integration driver confirmed in motor cortex; unconfirmed in sensory/association cortex.
+- Efference copy as path integration driver confirmed in motor cortex; unconfirmed in sensory/association cortex. **Partial support (Chen et al. 2022 [[wiki/papers/grid-like-all-perception-chen-2022.md]]):** grid cells *are* found in rat S1 and V2 and persist under darkness/whisker-trimming — consistent with a self-generated (efference/proprioceptive) "where" signal, not the theory's *derivation*. But these grids are sparse and heterogeneous, and the paper cautions that grid detection is false-positive-prone, so the columnar-grid claim remains suggestive, not confirmed.
 - Evolutionary HC→column claim is interpretive; significant circuit differences exist between HC and neocortex.
 
 ---
@@ -70,6 +70,7 @@ Both independently arrive at g/x/p factorization: TEM from the outer-product mem
 - **[[wiki/concepts/structural-generalization.md]]** — if every column runs the factorized world-model circuit, structural generalization is the organizing principle of the entire neocortex, not a specialization; strengthens the universality of the feasibility argument.
 - **[[wiki/entities/hippocampal-entorhinal-system.md]]** — TBT (Thousand Brains Theory) proposes the HC formation as evolutionary template; each cortical column recapitulates MEC/LEC/HC as L6/L4/L2-3 with an added L5 efference copy loop.
 - **[[wiki/entities/grid-cells.md]]** — TBT (Thousand Brains Theory) proposes grid-cell-like L6 neurons in every cortical column; if confirmed, grid-like path integration is universal rather than an MEC specialization.
+- **[[wiki/papers/grid-like-all-perception-chen-2022.md]]** — supplies the strongest single-unit evidence for TBT's universal-column-grid claim (rat S1/V2 grid cells) while cautioning that grid detection is false-positive-prone; endorses the Hawkins column-reference-frame proposal explicitly.
 - **[[wiki/entities/tem-model.md]]** — complementary derivations of the same architecture; TEM provides formal validation (emergent cell types, zero-shot transfer); TBT (Thousand Brains Theory) provides anatomical grounding and evolutionary motivation.
 - **[[wiki/concepts/predictive-coding.md]]** — TBT's L1 (top-down prediction) vs. L4 (sensory input) circuit is structurally identical to PC's two-population architecture (representational vs. error neurons); the frameworks converge on the same cortical organization from different starting points.
 - **[[wiki/papers/150000-mini-brain-transcript.md]]** — primary source.
