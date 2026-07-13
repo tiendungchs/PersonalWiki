@@ -11,10 +11,14 @@
             "id": "f7f8ed32112b4293",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "wiki/queries/sota-review-brain-inspired-abstract-reasoning.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "sota-review-brain-inspired-abstract-reasoning"
             }
           }
         ]
@@ -152,12 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "wiki/queries/sota-review-brain-inspired-abstract-reasoning.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of sota-review-brain-inspired-abstract-reasoning"
             }
           }
         ],
@@ -180,6 +185,24 @@
   },
   "active": "f7f8ed32112b4293",
   "lastOpenFiles": [
+    "wiki/queries/sota-review-brain-inspired-abstract-reasoning-fr.md",
+    "wiki/queries/mec-abstract-codes-vs-declarative-rules-fr.md",
+    "wiki/queries/revue-vulgarisee-raisonnement-abstrait-inspire-cerveau.md",
+    "wiki/entities/prefrontal-cortex.md.tmp.55416.e75fb48527ef",
+    "wiki/papers/heidbreder-groenewegen-mpfc-dorsoventral-2003.md",
+    "wiki/entities/prefrontal-cortex.md.tmp.55416.714bcf64ed6c",
+    "wiki/papers/lieberman-meyer-mpfc-subdivisions-2019.md",
+    "raw/Social, self, (situational), and affective processes in medial prefrontal cortex (MPFC) Causal, multivariate, and reverse inference evidence.md",
+    "wiki/papers/das-compositional-neurosymbolic-arc-2025.md",
+    "raw/Compositional Neuro-Symbolic Reasoning.md",
+    "raw/Know thy SEFL Fear sensitization and its relevance to stressor-related disorders.md",
+    "raw/Influences of social reward experience on behavioral responses to drugs of abuse Review of shared and divergent neural plasticity mechanisms for sexual reward and drugs of abuse.md",
+    "raw/The default self feeling good or being right?.md",
+    "raw/The medial prefrontal cortex in the rat evidence for a dorso-ventral distinction based upon functional and anatomical characteristics.md",
+    "wiki/queries/reasoning-as-coupled-navigation-strategizing.md",
+    "wiki/reasoning-as-coupled-navigation-strategizing.md",
+    "wiki/overview.md.tmp.33543.ea5f9c067b1d",
+    "wiki/overview.md.tmp.33543.996c95e1f86c",
     "wiki/papers/butz-unified-subsymbolic-cognition-2016.md",
     "wiki/papers/epstein-cognitive-map-humans-2017.md",
     "wiki/papers/structured-maze-transformers-2023.md",
@@ -196,26 +219,8 @@
     "tools/qmd.db",
     "tools/qmd_shim.py",
     "wiki/concepts/relational-reinterpretation.md",
-    "wiki/queries/proposed-reasoning-model-block-architectures.md",
-    "wiki/queries/reasoning-as-coupled-navigation-strategizing.md",
-    "wiki/concepts/latent-graph-discovery.md",
-    "raw/Inferences on a Multidimensional Social Hierarchy Use a Grid-like Code.md",
     "tools/qmd-shim.py",
-    "raw/Emergent Linear Representations in World Models of Self-Supervised Sequence Models.md",
-    "wiki/papers/grid-like-all-perception-chen-2022.md",
     "wiki/queries/mec-abstract-codes-vs-declarative-rules.md.tmp.47634.d45f0d6acb0b",
-    "wiki/papers/garvert-abstract-relational-map-2017.md",
-    "raw/Linear Spatial World Models Emerge in Large Language Models.md",
-    "raw/Structured World Representations in Maze-Solving Transformers.md",
-    "raw/The cognitive map in humans- spatial navigation and beyond.md",
-    "raw/Fast and flexible- Human program induction in abstract reasoning tasks.md",
-    "raw/goodman2024probabilistic.md",
-    "raw/Development of non-spatial grid-like neural codes tracks inference and intelligence.md",
-    "raw/Are Grid-Like Representations a Component of All Perception and Cognition?.md",
-    "wiki/architectural-gaps.md.tmp.28557.00555523e701",
-    "wiki/concepts/cognitive-control.md.tmp.28557.b80a98921488",
-    "test.txt",
-    "test.xxt",
     "case4_topology_edges_latent.png",
     "case3_node_content_latent.png",
     "case2_path_latent.png",

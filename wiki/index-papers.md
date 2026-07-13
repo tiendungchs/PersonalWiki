@@ -3,12 +3,12 @@ title: "Papers Index"
 type: overview
 tags: [index]
 created: 2026-06-20
-updated: 2026-07-10
+updated: 2026-07-13
 sources: []
 related: []
 ---
 
-# Papers Index — 205 stubs
+# Papers Index — 206 stubs
 
 Each entry: `[Title](path) — one-line description`. Updated after each ingest.
 
@@ -197,6 +197,7 @@ Each entry: `[Title](path) — one-line description`. Updated after each ingest.
 - [Vector Symbolic Algebras for the Abstraction and Reasoning Corpus — Joffe & Eliasmith, Waterloo CTN, 2025](wiki/papers/joffe-vsa-arc-2025.md) — neurosymbolic ARC solver using HRRs for invertible role-filler binding and SSPs for continuous spatial encoding (emergent grid cells); isolates vocabulary co-discovery as the bottleneck (94.5% Sort-of-ARC → 3% ARC-AGI-1-Eval)
 - [ARC Prize 2024: Technical Report — Chollet, Kamradt, Knoop 2024](wiki/papers/arc-prize-2024-technical-report.md) — establishes TTT (Test-Time Training)as the breakthrough paradigm (MindsAI 55.5%); three disjoint solution families; ensemble necessity; ARC-AGI-1 saturation signal (~49% brute-force solvable)
 - [ARC-AGI-2: A New Challenge for Frontier AI Reasoning Systems — ARC Prize Foundation 2025](wiki/papers/arc-agi-2-paper.md) — compositional generalization design; human calibration (407 participants, 62% solve rate, demographic-independent); brute-force resistance; SOTA collapse 56%→<3%
+- [Compositional Neuro-Symbolic Reasoning — Das et al. (CoreThink AI / Stanford) 2025](wiki/papers/das-compositional-neurosymbolic-arc-2025.md) — four-stage ARC-AGI-2 pipeline (object abstraction → fixed 22-pattern DSL proposal → cross-example consistency intersection → guided LLM generation); 24.4% standalone / 30.8% ensemble; ablation: symbolic hints +6.9pp ≫ self-consistency +3.9pp (bias beats sampling); objectness + DSL hand-supplied
 - [Understanding and Benchmarking Artificial Intelligence: OpenAI's o3 Is Not AGI](wiki/papers/o3-not-agi.md) — skills vs. intelligence formal distinction; exploitation/exploration gap in ARC-AGI format; unrestricted trialling structural critique; No Free Lunch grounding
 - [Adversarial NLI — Nie et al. 2020](wiki/papers/adversarial-nli-nie-2020.md) — hypothesis-only baseline 72%→42–51% quantifies spurious H→label edge in NLI; inference taxonomy maps which edge types models fail; NLI instantiation of spurious-edge covariate shift (LGD hardness source 5)
 - [20 Years of the Default Mode Network: A Review and Synthesis — Menon 2024](wiki/papers/dmn-20years-menon.md) — integrate-and-broadcast model; frames of thought; triple-network switching (salience network causally suppresses DMN); PCC as causal hub with net outflow; slow timescale integration
@@ -221,3 +222,5 @@ Each entry: `[Title](path) — one-line description`. Updated after each ingest.
 - [The Human Hippocampus: Cognitive Maps or Relational Memory? — Kumaran & Maguire 2005](wiki/papers/kumaran-maguire-2005-hippocampus.md) — factorial fMRI: HC activates only for spatial relational graph traversal, not for topology-matched social relational graph; domain × task interaction uniquely localizes to hippocampus; supports cognitive map theory; PHG/RSC/PPC support general spatial processing; mPFC/STS/TPJ support social relational processing
 - [Spatial Learning and Action Planning in a Prefrontal Cortical Network Model — Martinet et al. 2011](wiki/papers/spatial-learning-pfc-martinet-2011.md) — PFC columnar model: Hebbian topological graph learning from HC place-cell input; spreading activation as biologically plausible BFS; four functionally distinct PFC neuron types (location, distance-to-goal, prospective, state-action value); multilevel hierarchical maps via recurrent dynamics; Tolman insight as schema-based planning; HC→PFC as compression step
 - [From descriptive connectome to mechanistic connectome — Li & Yap 2022](wiki/papers/li-yap-mechanistic-connectome-2022.md) — review of DCM, BNM, and DNM generative modeling frameworks for fMRI effective connectivity; defines mechanistic connectome (directed, signed EC) as the successor to descriptive FC; MOU-EC/MNMI as whole-brain E/I estimation methods; MDD E/I disruption as clinical application
+- [Social, self, (situational), and affective processes in MPFC: Causal, multivariate, and reverse inference evidence — Lieberman et al. 2019](wiki/papers/lieberman-meyer-mpfc-subdivisions-2019.md) — multi-method reverse/causal-inference map of MPFC subdivisions (DMPFC=social, AMPFC=self+value, VMPFC=affect); reverse≠forward inference principle; AMPFC amodal common-value scale + DMPFC amodal mental-state code (CCGP instances); VMPFC situational processing as integrated latent-context/scene node
+- [The medial prefrontal cortex in the rat: evidence for a dorso-ventral distinction — Heidbreder & Groenewegen 2003](wiki/papers/heidbreder-groenewegen-mpfc-dorsoventral-2003.md) — rodent dorso-ventral mPFC split orthogonal to the rostro-caudal hierarchy: dorsal (ACd/PLd/FR2)=temporal sequencing/response-set, ventral (PLv/IL/MO)=flexible rule-switching + internal-state integration; PL=goal-directed / IL=habit; HC→mPFC unidirectionality; dorso-ventral DA/ACh/5-HT neuromodulatory gradient (ventral=System-2 high-DA/ACh-WM pole)

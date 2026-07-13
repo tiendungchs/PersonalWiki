@@ -304,3 +304,17 @@
 ## 2026-07-10 | query | Central-framing epistemic audit closed — terminal re-score of A/B/C after all 12 sources | filed: central-framing-epistemic-audit
 
 ## 2026-07-10 | update | Propagated central-framing audit terminal upgrades to core pages | updated: wiki/concepts/latent-graph-discovery.md (top-level epistemic caveat), wiki/queries/sota-review-brain-inspired-abstract-reasoning.md (§5.0 no-privileged-host + §5.1 embeddability refinement), wiki/queries/proposed-reasoning-model-block-architectures.md (configurator + orientation stages)
+
+## 2026-07-10 | edit | Reframe SOTA review: drop 3A/inverse-path-integration as "single largest gap" | updated: queries/sota-review-brain-inspired-abstract-reasoning.md, overview.md, queries/brain-inspired-vs-solver-approach.md
+
+## 2026-07-10 | query | Is the "what is latent" taxonomy thorough/mutually-exclusive? | filed: no; updated: concepts/latent-graph-discovery (recast taxonomy as independent latent-variable bit-vectors + edges-vs-path clarifier + difficulty-ladder reframing), queries/sota-review-brain-inspired-abstract-reasoning, overview
+
+## 2026-07-10 | update | Replace LGD difficulty-ladder table with benchmark × what-is-latent matrix | updated: overview, sota-review-brain-inspired-abstract-reasoning
+
+## 2026-07-10 | query | What is "topology given" in the Benchmarks×latent table (ARC-AGI-1/2 unbounded transforms; ARC-AGI-3 per-task action semantics) | filed: no (clarified in-page)
+## 2026-07-13 | ingest | Compositional Neuro-Symbolic Reasoning (Das et al. 2025) | created: wiki/papers/das-compositional-neurosymbolic-arc-2025.md; updated: refinement-loops, shortcut-reasoning, arc-agi, latent-graph-discovery, architectural-gaps (#1,#3,#9), index-papers
+## 2026-07-13 | ingest | Social, self, (situational), and affective processes in MPFC (Lieberman et al. 2019) | created: papers/lieberman-meyer-mpfc-subdivisions-2019; updated: entities/prefrontal-cortex, concepts/memory-schemas, entities/default-mode-network, concepts/representational-geometry, index-papers, glossary
+## 2026-07-13 | ingest | The default self: feeling good or being right? (Beer 2007) | light-touch, no paper page; created: none; updated: default-mode-network, prefrontal-cortex, refinement-loops
+## 2026-07-13 | ingest | The medial prefrontal cortex in the rat: dorso-ventral distinction (Heidbreder & Groenewegen 2003) | created: papers/heidbreder-groenewegen-mpfc-dorsoventral-2003; updated: entities/prefrontal-cortex, concepts/memory-schemas, concepts/neuromodulation, glossary, index-papers
+## 2026-07-13 | query | Do last 4 ingests add to SOTA review? | filed: no (updated existing) — appended Das 2025 (§4 structural-not-scale ablation, §8.0 program-synthesis roster), Lieberman 2019 (§5.0 amodal codes), Heidbreder 2003 (§5.4 PL/IL model-based/model-free); updated: queries/sota-review-brain-inspired-abstract-reasoning + 3 paper related backlinks
+## 2026-07-13 | query | Translate SOTA brain-inspired abstract-reasoning review to French (abbrevs expanded, terms explained) | filed: sota-review-brain-inspired-abstract-reasoning-fr

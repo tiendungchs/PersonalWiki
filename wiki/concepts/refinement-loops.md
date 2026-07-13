@@ -3,9 +3,9 @@ title: "Refinement Loops (Test-Time Compute)"
 type: concept
 tags: [refinement-loop, test-time-training, evolutionary-program-synthesis, test-time-compute, abstract-reasoning, ARC-AGI, program-synthesis, MDL]
 created: 2026-06-23
-updated: 2026-06-23
-sources: [ARC Prize 2025 Technical Report.md, "Artificial Intelligence for Mathematical Reasoning An Integrated Survey of Language Models, Neuro-symbolic Systems, and Verified Discovery"]
-related: [wiki/concepts/meta-learning.md, wiki/concepts/information-theory.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/world-models.md, wiki/concepts/credit-assignment.md, wiki/entities/arc-agi.md, wiki/papers/arc-prize-2025-technical-report.md, wiki/papers/verifiers-math-cobbe-2021.md, wiki/papers/math-reasoning-survey-2026.md, wiki/queries/brain-inspired-vs-solver-approach.md, wiki/queries/sota-review-brain-inspired-abstract-reasoning.md, wiki/queries/reasoning-as-coupled-navigation-strategizing.md]
+updated: 2026-07-13
+sources: [ARC Prize 2025 Technical Report.md, "Artificial Intelligence for Mathematical Reasoning An Integrated Survey of Language Models, Neuro-symbolic Systems, and Verified Discovery", Compositional Neuro-Symbolic Reasoning, "The default self feeling good or being right?"]
+related: [wiki/concepts/meta-learning.md, wiki/concepts/information-theory.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/world-models.md, wiki/concepts/credit-assignment.md, wiki/entities/arc-agi.md, wiki/papers/arc-prize-2025-technical-report.md, wiki/papers/verifiers-math-cobbe-2021.md, wiki/papers/math-reasoning-survey-2026.md, wiki/papers/das-compositional-neurosymbolic-arc-2025.md, wiki/queries/brain-inspired-vs-solver-approach.md, wiki/queries/sota-review-brain-inspired-abstract-reasoning.md, wiki/queries/reasoning-as-coupled-navigation-strategizing.md, wiki/entities/default-mode-network.md, wiki/entities/prefrontal-cortex.md]
 ---
 
 # Refinement Loops (Test-Time Compute)
@@ -41,6 +41,8 @@ The verifier is task-provided (ARC-AGI: exact grid match on training pairs). Wit
 | **Application-layer CoT (Chain of Thought) harness** | Natural language chain | LLM prior | Verifier comparison (exact grid match) | Poetiq harness: Gemini 3 Pro 31%→54%, Claude Opus 4.5 comparable |
 
 All four share the generate-verify-update skeleton; they differ in what is being optimized and how the gradient/update is computed.
+
+**Fifth variant — structured neuro-symbolic hint pipeline (Das et al. 2025, [[wiki/papers/das-compositional-neurosymbolic-arc-2025.md]]).** Rather than searching weight/program/NL space, the generate step proposes compositions over a *fixed, hand-curated DSL* (22 object-level "Unit Patterns"), and the verify step is **cross-example consistency filtering** — keep only programs reproducing the output on every demonstration (`Π* = ∩_i {π : π ⊨_i}`), tie-broken by minimal program depth. Self-consistency voting sits on top as a secondary robustness layer. Its ablation is the key datapoint for this whole concept page: on ARC-AGI-2 the **symbolic structure (object abstraction + DSL constraint) contributes +6.9pp vs. only +3.9pp from self-consistency sampling** (24.4% standalone, 30.8% ensembled) — i.e., constraining the search space with the right inductive bias dominates scaling the number of samples. This inverts the pure application-layer-CoT emphasis on test-time sampling budget: most of the gain is in *what* is searched, not *how much*.
 
 ---
 
@@ -115,6 +117,8 @@ Iterate over LLM reasoning chains with verifier feedback at the application laye
 
 **Key prediction:** refinement loops are currently bounded by verifier availability. Domains with verifiable feedback signals (math, code, visual puzzle) are directly addressable; open-ended domains (creative writing, general world knowledge) are not, unless a learned verifier can substitute.
 
+**(brainstorm) Biological variant — bias-correction, not sample-pruning.** The mPFC default self-evaluation (Beer 2007) is a case where the *generator emits a systematically biased default* (a positivity-inflated self-model) rather than random candidates, and the corrective module (OFC) reconciles it against external ground truth — OFC lesions leave the inflated prior uncorrected (self-views detached from expert ratings). This reframes the verifier's role in two ways: (i) the generator's error is a *known-direction structured bias*, not sampling noise, so the corrector can be a fixed contrastive term rather than a search over candidates; (ii) this is closer to predictive-coding error correction (subtract a biased prior) than to the GSM8K/ARC generate-and-filter loop. A design corollary: a reasoning system's default generator may be *reliably wrong in a learnable direction*, in which case a cheap always-on debiasing monitor beats expensive resampling. See [[wiki/entities/default-mode-network.md]] and [[wiki/entities/prefrontal-cortex.md]].
+
 ---
 
 ## Relationship to Test-Time Scaling
@@ -180,4 +184,7 @@ This reframes refinement loops as the solver community's way of **externalizing 
 - **[[wiki/queries/brain-inspired-vs-solver-approach.md]]** — argues refinement loops = *externalized* verification: a way to prune an unreliable generator with a cheap external checker instead of learning a correct internal world model; frames where this paradigm owns the problem and where it hits a ceiling.
 - **[[wiki/queries/sota-review-brain-inspired-abstract-reasoning.md]]** — §4.6 folds the refinement-loop / supervision-ladder paradigm into the state-of-the-art review as the "solver pivot," the second non-brain-inspired response (alongside JEPA) to the LLM-failure verdict; scores it against the review's requirements and locates its verifier-availability ceiling on the same seam the brain-inspired program targets.
 - **[[wiki/queries/reasoning-as-coupled-navigation-strategizing.md]]** — gives the biological realization of the generate→verify→update loop: HC/DMN replay is the generator (sampled candidate sequences), vmPFC/ACC value-evaluation is the verifier; also frames Phase 3 of the training curriculum (verifier-gated practice on the agent's own rollouts) as the fix for imitation's covariate-shift and self-poisoning failure modes.
+- **[[wiki/papers/das-compositional-neurosymbolic-arc-2025.md]]** — a structured neuro-symbolic instance of the generate-verify-refine skeleton: generate = DSL-primitive composition proposal, verify = cross-example consistency intersection, refine = self-consistency vote; its ablation supplies the concept page's strongest evidence that inductive-bias-on-the-search-space (+6.9pp) beats sampling budget (+3.9pp).
+- **[[wiki/entities/default-mode-network.md]]** — the mPFC default self-evaluation is a biological generate-verify pair with a *biased* generator (positivity-inflated self-model) and OFC as corrector (Beer 2007); supplies the bias-correction variant where the verifier attenuates a known-direction structured prior rather than pruning random samples.
+- **[[wiki/entities/prefrontal-cortex.md]]** — mPFC/OFC are the biological substrate of that biased-default + corrector pair; OFC lesions leave the inflated self-prior uncorrected, isolating the corrector module empirically.
 - **[[wiki/papers/verifiers-math-cobbe-2021.md]]** — Cobbe et al. 2021 is the earliest large-scale empirical demonstration of the generate-verify-update loop: 30× effective size multiplier from separating path generation from path evaluation; token-level value functions and test-time compute scaling quantified. — source: verifier training methodology, token-level vs solution-level verifier comparison, test-time compute scaling, and the generator/verifier separation principle.

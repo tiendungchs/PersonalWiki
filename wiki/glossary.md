@@ -5,7 +5,7 @@ tags:
   - reference
   - glossary
 created: 2026-06-20
-updated: 2026-07-08
+updated: 2026-07-13
 sources: []
 related: []
 ---
@@ -23,6 +23,7 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | ALIF| Adaptive Leaky Integrate-and-Fire neuron | [[wiki/concepts/spike-frequency-adaptation.md]] |
 | LIF | Leaky Integrate-and-Fire (neuron model) | [[wiki/entities/snn.md]] |
 | **AMPA** | α-amino-3-hydroxy-5-methyl-4-isoxazolepropionic acid receptor | [[wiki/entities/gwt-model.md]] |
+| AMPFC | Anteromedial Prefrontal Cortex (medial BA 10) | [[wiki/entities/prefrontal-cortex.md]] |
 | ARC-AGI | Abstraction and Reasoning Corpus (AGI edition) | [[wiki/entities/arc-agi.md]] |
 | ART | Adaptive Resonance Theory | — |
 | BA | Brodmann Area | [[wiki/entities/prefrontal-cortex.md]] |
@@ -41,8 +42,10 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | **CWSG** | Copy-With-Substitution-and-Generation | [[wiki/concepts/analogical-reasoning.md]] |
 | CX (Central Complex) | Central Complex (insect brain) | [[wiki/entities/insect-central-complex.md]] |
 | DA | Dopamine | [[wiki/concepts/neuromodulation.md]] |
+| DAT | Dopamine Transporter (reuptake protein; sets extracellular DA clearance) | [[wiki/concepts/neuromodulation.md]] |
 | DG | Dentate Gyrus | [[wiki/concepts/pattern-separation.md]] |
 | **DLPFC** | Dorsolateral Prefrontal Cortex | [[wiki/entities/prefrontal-cortex.md]] |
+| DMPFC | Dorsomedial Prefrontal Cortex (medial BA 9) | [[wiki/entities/prefrontal-cortex.md]] |
 | DMC | Delayed Match-to-Category (task) | [[wiki/papers/pfc-categories-concepts-miller-2002.md]] |
 | ITC | Inferior Temporal Cortex | [[wiki/papers/pfc-categories-concepts-miller-2002.md]] |
 | FEF | Frontal Eye Field | [[wiki/entities/prefrontal-cortex.md]] |
@@ -59,6 +62,7 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | HC | Hippocampus | [[wiki/entities/hippocampal-entorhinal-system.md]] |
 | HPC | Hippocampus (alternate abbreviation for HC) | [[wiki/entities/hippocampal-entorhinal-system.md]] |
 | HTM | Hierarchical Temporal Memory | [[wiki/entities/htm-thousand-brains.md]] |
+| IL | Infralimbic cortex (ventral rat mPFC; ≈ Brodmann area 25) | [[wiki/entities/prefrontal-cortex.md]] |
 | KL | Kullback-Leibler (divergence) | [[wiki/concepts/information-theory.md]] |
 | LEC | Lateral Entorhinal Cortex | [[wiki/entities/hippocampal-entorhinal-system.md]] |
 | **LISA** | Language-Invariant Structural Alignment model (Hummel & Holyoak) | [[wiki/entities/lisa-model.md]] |
@@ -70,6 +74,8 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | MEC | Medial Entorhinal Cortex | [[wiki/entities/hippocampal-entorhinal-system.md]] |
 | MECII | Medial Entorhinal Cortex Layer II | [[wiki/entities/hippocampal-entorhinal-system.md]] |
 | MECIII | Medial Entorhinal Cortex Layer III | [[wiki/entities/hippocampal-entorhinal-system.md]] |
+| MPFC | Medial Prefrontal Cortex | [[wiki/entities/prefrontal-cortex.md]] |
+| VMPFC | Ventromedial Prefrontal Cortex (medial BA 11) | [[wiki/entities/prefrontal-cortex.md]] |
 | MHN | Modern Hopfield Network | [[wiki/concepts/associative-memory.md]] |
 | MLC | Meta-Learning as Compositional (model) | [[wiki/entities/mlc-model.md]] |
 | **MSPRT** | Multihypothesis Sequential Probability Ratio Test | [[wiki/entities/basal-ganglia.md]] |
@@ -80,6 +86,7 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | PC | Predictive Coding | [[wiki/concepts/predictive-coding.md]] |
 | PFC | Prefrontal Cortex | [[wiki/entities/prefrontal-cortex.md]] |
 | PGM | Progressive Generalization Matrix (Barrett 2018) | [[wiki/papers/pgm-barrett-2018.md]] |
+| PL | Prelimbic cortex (rat mPFC; ≈ Brodmann area 32) | [[wiki/entities/prefrontal-cortex.md]] |
 | PSP | Post-Synaptic Potential | [[wiki/papers/gardner-gruning-supervised-snn.md]] |
 | PSS | Physical Symbol System (Newell) | [[wiki/concepts/relational-reinterpretation.md]] |
 | **PVLV** | Primary Value and Learned Value (DA learning algorithm) | [[wiki/concepts/meta-learning.md]] |

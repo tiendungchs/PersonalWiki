@@ -3,7 +3,7 @@ title: "Why Brain-Inspired Latent Graph Discovery Rather Than the Solver (Genera
 type: query
 tags: [solver, verifier, mathematical-reasoning, latent-graph-discovery, brain-inspired-ai, neuro-symbolic, rationale]
 created: 2026-07-02
-updated: 2026-07-02
+updated: 2026-07-10
 sources: ["Artificial Intelligence for Mathematical Reasoning An Integrated Survey of Language Models, Neuro-symbolic Systems, and Verified Discovery"]
 related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/refinement-loops.md, wiki/concepts/abstract-reasoning.md, wiki/queries/sota-review-brain-inspired-abstract-reasoning.md, wiki/entities/frontiermath-benchmark.md, wiki/entities/arc-agi.md, wiki/entities/vsa-model.md, wiki/papers/math-reasoning-survey-2026.md, wiki/papers/verifiers-math-cobbe-2021.md]
 ---
@@ -69,7 +69,7 @@ The survey's own **convergence hypothesis** — generator + verifier + search co
 ## Implications
 
 - **Do not benchmark the wiki's model against solvers on saturated verifiable math** (AIME, MiniF2F) — that measures externalized infrastructure, not model-building. Benchmark on the seam: ARC-AGI-2/3, FrontierMath Tier-4, novel-primitive PGM regimes, with rule-quality (dual-channel) scoring.
-- **Vocabulary co-discovery (source 2 / Gap #3) is the shared frontier** of both literatures — the solver's Tao-ceiling and the wiki's isolated gap are the same wall from opposite sides. This is where a novelty claim should sit.
+- **Vocabulary co-discovery (source 2 / Gap #3) is a shared frontier** of both literatures — the solver's Tao-ceiling and the wiki's gap are the same wall from opposite sides. It is one genuine frontier a brain-inspired model faces, not the only gap it must close.
 - **Adopt the external verifier where it exists.** The brain-inspired contribution is the *generator/world-model*; a kernel/fitness verifier is complementary infrastructure to reuse, not a rival paradigm to beat.
 
 ## Follow-up questions
