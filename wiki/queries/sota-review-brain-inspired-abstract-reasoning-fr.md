@@ -3,9 +3,9 @@ title: "Revue de l'état de l'art : architectures inspirées du cerveau pour le 
 type: query
 tags: [review, state-of-the-art, abstract-reasoning, latent-graph-discovery, brain-inspired-ai, rationale, francais]
 created: 2026-07-13
-updated: 2026-07-13
+updated: 2026-07-15
 sources: []
-related: [wiki/queries/sota-review-brain-inspired-abstract-reasoning.md, wiki/queries/central-framing-epistemic-audit.md, wiki/queries/mec-abstract-codes-vs-declarative-rules.md, wiki/queries/mec-abstract-codes-vs-declarative-rules-fr.md, wiki/overview.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/factorized-representations.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/planning-as-inference.md, wiki/concepts/neural-manifolds.md, wiki/concepts/shortcut-reasoning.md, wiki/concepts/intelligence-density.md, wiki/concepts/memory-schemas.md, wiki/concepts/world-models.md, wiki/concepts/refinement-loops.md, wiki/entities/tem-model.md, wiki/entities/arc-agi.md, wiki/entities/spacetime-attractor.md, wiki/entities/vsa-model.md, wiki/entities/jepa-model.md, wiki/entities/vl-jepa-model.md, wiki/entities/dinov2-model.md, wiki/entities/dinov3-model.md, wiki/entities/equilibrium-propagation.md, wiki/entities/baba-is-ai.md, wiki/entities/frontiermath-benchmark.md, wiki/entities/pgm-benchmark.md, wiki/entities/gpqa-benchmark.md, wiki/entities/olymmath.md, wiki/glossary.md]
+related: [wiki/queries/sota-review-brain-inspired-abstract-reasoning.md, wiki/queries/central-framing-epistemic-audit.md, wiki/queries/mec-abstract-codes-vs-declarative-rules.md, wiki/queries/mec-abstract-codes-vs-declarative-rules-fr.md, wiki/overview.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/abstract-reasoning.md, wiki/concepts/factorized-representations.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/planning-as-inference.md, wiki/concepts/neural-manifolds.md, wiki/concepts/shortcut-reasoning.md, wiki/concepts/intelligence-density.md, wiki/concepts/memory-schemas.md, wiki/concepts/world-models.md, wiki/concepts/refinement-loops.md, wiki/entities/tem-model.md, wiki/entities/arc-agi.md, wiki/entities/spacetime-attractor.md, wiki/entities/vsa-model.md, wiki/entities/jepa-model.md, wiki/entities/vl-jepa-model.md, wiki/entities/dinov2-model.md, wiki/entities/dinov3-model.md, wiki/entities/equilibrium-propagation.md, wiki/entities/baba-is-ai.md, wiki/entities/frontiermath-benchmark.md, wiki/entities/pgm-benchmark.md, wiki/entities/gpqa-benchmark.md, wiki/entities/olymmath.md, wiki/queries/proposed-reasoning-model-block-architectures.md, wiki/glossary.md]
 ---
 
 # Revue de l'état de l'art : architectures inspirées du cerveau pour le raisonnement abstrait via la découverte de graphe latent
@@ -375,12 +375,12 @@ Consolidant les listes éparses (§1, §4.5, §4.6, §5) en une matrice. Les lig
 | Intégration de chemin en état latent (§5.3) | ❌ | ❌ | ❌ | n/a | ✅ | ✅ |
 | **Inférence de transformation latente (Bloc 3A ; source 2)** | ❌ | ❌ | ❌ | ❌ᵍ | ❌ | ❌ |
 | Contrôle hiérarchique en règles-de-règles (§5.5) | ~ | ❌ | ❌ | ext | ~ | ❌ |
-| Planification-comme-inférence, non déroulé (§5.7) | ❌ | ~ | ❌ | ext | ❌ | ❌ |
-| Front-end objectité / Connaissances-Cœur (§3, §8.3) | ❌ | ~ | ✅ | n/a | ❌ | ❌ |
+| Planification-comme-inférence, non déroulé (§5.7) | ❌ | ~ | ❌ | ext | ❌ | ❌ˢ |
+| Front-end objectité / Connaissances-Cœur (§3, §8.3) | ❌ | ~ | ✅ | n/a | ❌ | ❌ᴰ |
 | Fonctionnement sans vérificateur (ARC-AGI-3, découverte ouverte) | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ |
 | Garantie de correction par instance (§4.6) | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
 
-*Légende :* ✅ satisfait · ~ partiel · ◐ prévu dans l'ordre de construction (§8.1) · ext externalisé vers l'infrastructure humaine · n/a non applicable au substrat · ❌ absent. *Exposants :* ᴹ M hebbienne rapide seulement, pas de W lent appris · ᵍ vocabulaire *donné* (mathlib/DSL), non inféré → plafond de Tao (§4.6) · ˢ via le planificateur Attracteur Spatio-Temporel (§5.7) · ᴰ via un front-end SSL DINO/JEPA (Blocs 1A/2A, §4.5).
+*Légende :* ✅ satisfait · ~ partiel · ext externalisé vers l'infrastructure humaine · n/a non applicable au substrat · ❌ absent. *Exposants :* ᴹ M hebbienne rapide seulement, pas de W lent appris · ᵍ vocabulaire *donné* (mathlib/DSL), non inféré → plafond de Tao (§4.6) · ˢ absent dans le TEM *de base*, fourni via le planificateur Attracteur Spatio-Temporel (§5.7) dans la construction recommandée · ᴰ absent dans le TEM *de base*, fourni via un front-end SSL DINO/JEPA (Blocs 1A/2A, §4.5) dans la construction recommandée.
 
 **Panorama élargi des approches.** La matrice ci-dessus note les six classes de modèles qui se projettent proprement sur chaque exigence LGD. Pour être complet, la lignée de mémoire HC/PFC ingéniérée et la famille neuro-symbolique/synthèse-de-programme sont positionnées ici contre *une exigence décisive* — l'inférence de transformation latente avec transfert inter-environnements (Bloc 3A, source 2) — puisque c'est là que chacune finit par caler (c'est l'une des lacunes ci-dessus, non l'unique étalon) :
 

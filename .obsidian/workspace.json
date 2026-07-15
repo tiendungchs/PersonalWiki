@@ -185,6 +185,7 @@
   },
   "active": "f7f8ed32112b4293",
   "lastOpenFiles": [
+    "main.tex",
     "wiki/queries/sota-review-brain-inspired-abstract-reasoning-fr.md",
     "wiki/queries/mec-abstract-codes-vs-declarative-rules-fr.md",
     "wiki/queries/revue-vulgarisee-raisonnement-abstrait-inspire-cerveau.md",
@@ -218,7 +219,6 @@
     "wiki/papers/qu-grid-code-development-intelligence-2026.md",
     "tools/qmd.db",
     "tools/qmd_shim.py",
-    "wiki/concepts/relational-reinterpretation.md",
     "tools/qmd-shim.py",
     "wiki/queries/mec-abstract-codes-vs-declarative-rules.md.tmp.47634.d45f0d6acb0b",
     "case4_topology_edges_latent.png",

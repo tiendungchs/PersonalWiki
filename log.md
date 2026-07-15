@@ -318,3 +318,5 @@
 ## 2026-07-13 | ingest | The medial prefrontal cortex in the rat: dorso-ventral distinction (Heidbreder & Groenewegen 2003) | created: papers/heidbreder-groenewegen-mpfc-dorsoventral-2003; updated: entities/prefrontal-cortex, concepts/memory-schemas, concepts/neuromodulation, glossary, index-papers
 ## 2026-07-13 | query | Do last 4 ingests add to SOTA review? | filed: no (updated existing) — appended Das 2025 (§4 structural-not-scale ablation, §8.0 program-synthesis roster), Lieberman 2019 (§5.0 amodal codes), Heidbreder 2003 (§5.4 PL/IL model-based/model-free); updated: queries/sota-review-brain-inspired-abstract-reasoning + 3 paper related backlinks
 ## 2026-07-13 | query | Translate SOTA brain-inspired abstract-reasoning review to French (abbrevs expanded, terms explained) | filed: sota-review-brain-inspired-abstract-reasoning-fr
+
+## 2026-07-15 | lint | Fixed §8.0 matrix legend/TEM inconsistencies in SOTA review (EN+FR) | created: ; updated: wiki/queries/sota-review-brain-inspired-abstract-reasoning.md, wiki/queries/sota-review-brain-inspired-abstract-reasoning-fr.md
