@@ -183,8 +183,9 @@
       "bases:Create new base": false
     }
   },
-  "active": "f7f8ed32112b4293",
+  "active": "176ff8f16fa0fe90",
   "lastOpenFiles": [
+    "wiki/queries/operator-collapse-in-fused-structural-codes.md",
     "main.tex",
     "wiki/queries/sota-review-brain-inspired-abstract-reasoning-fr.md",
     "wiki/queries/mec-abstract-codes-vs-declarative-rules-fr.md",
@@ -220,7 +221,6 @@
     "tools/qmd.db",
     "tools/qmd_shim.py",
     "tools/qmd-shim.py",
-    "wiki/queries/mec-abstract-codes-vs-declarative-rules.md.tmp.47634.d45f0d6acb0b",
     "case4_topology_edges_latent.png",
     "case3_node_content_latent.png",
     "case2_path_latent.png",

@@ -191,5 +191,7 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | SIGReg | Sketched Isotropic Gaussian Regularization (LeJEPA collapse-prevention) | [[wiki/papers/lejepa-balestriero-lecun-2025.md]] |
 | OOD | Out-Of-Distribution | [[wiki/concepts/shortcut-reasoning.md]] |
 | IID | Independent and Identically Distributed (i.i.d.) | [[wiki/concepts/shortcut-reasoning.md]] |
+| JEA | Joint Embedding Architecture | [[wiki/concepts/energy-based-models.md]] |
+| BYOL | Bootstrap Your Own Latent | [[wiki/entities/jepa-model.md]] |
 
 *This table is maintained by the lint pass. When lint reports a missing abbreviation, add it here.*

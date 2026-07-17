@@ -3,9 +3,9 @@ title: "Energy-Based Models (EBM)"
 type: concept
 tags: [energy-based-models, self-supervised-learning, contrastive-learning, world-models, reasoning, optimization]
 created: 2026-06-23
-updated: 2026-06-25
+updated: 2026-07-16
 sources: [A Path Towards Autonomous Machine Intelligence, barlow_twins, vicreg]
-related: [wiki/entities/jepa-model.md, wiki/concepts/world-models.md, wiki/concepts/predictive-coding.md, wiki/entities/boltzmann-machine.md, wiki/concepts/associative-memory.md, wiki/concepts/abstract-reasoning.md, wiki/entities/fcann.md, wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md, wiki/papers/barlow-twins-zbontar-2021.md, wiki/papers/vicreg-bardes-2022.md, wiki/papers/lejepa-balestriero-lecun-2025.md, wiki/papers/weak-sigreg-akbar-2026.md, wiki/papers/fcann-attractor-dynamics-englert-2026.md]
+related: [wiki/entities/jepa-model.md, wiki/concepts/world-models.md, wiki/concepts/predictive-coding.md, wiki/entities/boltzmann-machine.md, wiki/concepts/associative-memory.md, wiki/concepts/abstract-reasoning.md, wiki/entities/fcann.md, wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md, wiki/papers/barlow-twins-zbontar-2021.md, wiki/papers/vicreg-bardes-2022.md, wiki/papers/lejepa-balestriero-lecun-2025.md, wiki/papers/weak-sigreg-akbar-2026.md, wiki/papers/fcann-attractor-dynamics-englert-2026.md, wiki/queries/operator-collapse-in-fused-structural-codes.md]
 ---
 
 # Energy-Based Models (EBM)
@@ -167,3 +167,4 @@ The EBM (Energy-Based Model) framework unifies several architectures already in 
 - **[[wiki/concepts/shortcut-reasoning.md]]** — discriminative EBMs (cross-entropy classifiers) are maximally shortcut-prone because the energy is minimized as soon as any sufficient discriminative predictor is found; generative/reconstruction EBMs must model all training variation, forcing representations onto causally relevant features and making shortcuts structurally harder to exploit.
 - **[[wiki/entities/fcann.md]]** — fcANN instantiates the EBM at whole-brain scale: J = −Σ⁻¹ is the biologically derived energy function; the Kanter-Sompolinsky orthogonality result shows how FEP-ANN learning drives the EBM toward the collapse-free maximum-capacity regime through self-orthogonalization.
 - **[[wiki/papers/carandini-early-visual-2005.md]]** — source for the V1 complex cell energy model (Adelson & Bergen 1985) and divisive normalization (Heeger 1992); the biological fixed-weight EBM row in the unification table above.
+- **[[wiki/queries/operator-collapse-in-fused-structural-codes.md]]** — the JEA collapse row instantiated on a measured TEM-lineage world model: eff-dim 4.80/128, action-driven signal 8.9% of code norm, yet 98.5% per-cell reconstruction — *partial* collapse survives a reconstruction objective because a decoder with free gain amplifies the residual. Also records the connection this page and TEM's prior loss had not made: **TEM's `lx_gt` and VICReg's variance term are the same anti-collapse mechanism derived twice**, from neuroscience and from SSL.
