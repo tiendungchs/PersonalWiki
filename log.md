@@ -320,3 +320,5 @@
 ## 2026-07-13 | query | Translate SOTA brain-inspired abstract-reasoning review to French (abbrevs expanded, terms explained) | filed: sota-review-brain-inspired-abstract-reasoning-fr
 
 ## 2026-07-15 | lint | Fixed §8.0 matrix legend/TEM inconsistencies in SOTA review (EN+FR) | created: ; updated: wiki/queries/sota-review-brain-inspired-abstract-reasoning.md, wiki/queries/sota-review-brain-inspired-abstract-reasoning-fr.md
+
+## 2026-07-17 | query | Neuroscience mechanism for changing action semantics (ARC-AGI-3 / HICAAR action_to_v) | filed: action-semantics-contextual-inference

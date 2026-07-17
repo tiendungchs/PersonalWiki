@@ -1,5 +1,5 @@
 ---
-updated: 2026-07-08
+updated: 2026-07-17
 ---
 
 # Wiki Index — Brain-Inspired Models for Abstract Reasoning
@@ -33,3 +33,4 @@ updated: 2026-07-08
 - [Revue vulgarisée (FR) : modèles inspirés du cerveau pour le raisonnement abstrait](wiki/queries/revue-vulgarisee-raisonnement-abstrait-inspire-cerveau.md) — Version française simplifiée de la revue SOTA, pensée pour être facile à expliquer; références aux articles plutôt qu'aux pages du wiki
 - [Reasoning as Coupled Path-Integration ⇄ Strategizing](wiki/queries/reasoning-as-coupled-navigation-strategizing.md) — Information-flow account of reasoning as a Navigator⇄Strategist loop; how DA-double-duty bootstraps latent goals; a pretrain→imitate→practice curriculum
 - [A Proposed Reasoning Model: Per-Block Architecture Menus](wiki/queries/proposed-reasoning-model-block-architectures.md) — Ranked candidate architectures for every block (ARC-AGI-3 target); the ~5 inventions the model reduces to; a concrete v1 build stack
+- [How Does the Brain Adapt to Changing Action Semantics?](wiki/queries/action-semantics-contextual-inference.md) — Contextual inference (COIN/MOSAIC) as the brain-inspired replacement for a trained `action_to_v`: the action index is a pointer, its effect a latent variable inferred per game; buys vocabulary *selection*, not invention
