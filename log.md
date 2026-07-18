@@ -322,3 +322,33 @@
 ## 2026-07-15 | lint | Fixed §8.0 matrix legend/TEM inconsistencies in SOTA review (EN+FR) | created: ; updated: wiki/queries/sota-review-brain-inspired-abstract-reasoning.md, wiki/queries/sota-review-brain-inspired-abstract-reasoning-fr.md
 
 ## 2026-07-17 | query | Neuroscience mechanism for changing action semantics (ARC-AGI-3 / HICAAR action_to_v) | filed: action-semantics-contextual-inference
+
+## 2026-07-17 | ingest | Arbitrary associations between antecedents and actions (Wise & Murray 2000) | created: wiki/papers/wise-murray-arbitrary-mapping-2000.md, wiki/concepts/arbitrary-mapping.md; updated: wiki/index-papers.md, wiki/index-concepts.md, wiki/glossary.md, wiki/architectural-gaps.md, wiki/empirical-tensions.md, wiki/queries/action-semantics-contextual-inference.md, wiki/concepts/two-learning-timescales.md, wiki/entities/prefrontal-cortex.md, wiki/entities/basal-ganglia.md, wiki/entities/hippocampal-entorhinal-system.md
+## 2026-07-17 | ingest | Contextual inference underlies the learning of sensorimotor repertoires (COIN, Heald/Lengyel/Wolpert 2021) | created: wiki/papers/heald-coin-contextual-inference-2021.md, wiki/concepts/contextual-inference.md; updated: wiki/queries/action-semantics-contextual-inference.md, wiki/concepts/arbitrary-mapping.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/memory-schemas.md, wiki/concepts/working-memory.md, wiki/architectural-gaps.md, wiki/empirical-tensions.md, wiki/index-papers.md, wiki/index-concepts.md
+## 2026-07-17 | ingest | Frontal Networks for Learning and Executing Arbitrary Stimulus-Response Associations (Boettiger & D'Esposito 2005) | created: wiki/papers/boettiger-desposito-sr-rule-learning-2005.md; updated: wiki/index-papers.md, wiki/glossary.md, wiki/architectural-gaps.md, wiki/concepts/arbitrary-mapping.md, wiki/concepts/contextual-inference.md, wiki/concepts/cognitive-control.md, wiki/entities/prefrontal-cortex.md, wiki/entities/basal-ganglia.md, wiki/queries/action-semantics-contextual-inference.md
+
+## 2026-07-17 | ingest | Learning by neural reassociation (Golub et al. 2018) | created: wiki/papers/golub-neural-reassociation-2018.md; updated: wiki/concepts/neural-manifolds.md, wiki/concepts/contextual-inference.md, wiki/concepts/arbitrary-mapping.md, wiki/queries/action-semantics-contextual-inference.md, wiki/architectural-gaps.md, wiki/empirical-tensions.md, wiki/index-papers.md
+
+## 2026-07-17 | ingest | Neural constraints on learning (Sadtler et al. 2014) | created: wiki/papers/sadtler-neural-constraints-learning-2014.md; updated: wiki/concepts/neural-manifolds.md, wiki/concepts/two-learning-timescales.md, wiki/concepts/contextual-inference.md, wiki/queries/action-semantics-contextual-inference.md, wiki/architectural-gaps.md, wiki/empirical-tensions.md, wiki/index-papers.md, wiki/papers/golub-neural-reassociation-2018.md
+
+## 2026-07-17 | ingest | Role of prefrontal cortex in a network for arbitrary visuomotor mapping (Murray, Bussey & Wise 2000) | created: wiki/papers/murray-bussey-wise-pfc-arbitrary-mapping-2000.md; updated: wiki/concepts/arbitrary-mapping.md, wiki/queries/action-semantics-contextual-inference.md, wiki/concepts/working-memory.md, wiki/concepts/meta-learning.md, wiki/entities/prefrontal-cortex.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/empirical-tensions.md, wiki/glossary.md, wiki/index-papers.md, wiki/index-concepts.md
+
+## 2026-07-17 | query | Update SOTA review from action-semantics/contextual-inference | filed: no; updated: sota-review-brain-inspired-abstract-reasoning, action-semantics-contextual-inference
+
+## 2026-07-17 | query | Propagate action-semantics/contextual-inference update to French SOTA review | filed: no; updated: sota-review-brain-inspired-abstract-reasoning-fr
+
+## 2026-07-18 | edit | Added missing (Author et al. year) citations to SOTA review | updated: wiki/queries/sota-review-brain-inspired-abstract-reasoning.md
+
+## 2026-07-18 | edit | Mirrored citation additions into French SOTA review | updated: wiki/queries/sota-review-brain-inspired-abstract-reasoning-fr.md
+
+## 2026-07-18 | edit | Make SOTA review self-contained (strip all wiki-page pointers) | updated: wiki/queries/sota-review-brain-inspired-abstract-reasoning.md
+
+## 2026-07-18 | query | HRL goal-decomposition / PBWM gating / temporal discounting / MB-MF coverage in proposed model | filed: hrl-goal-decomposition-coverage
+
+## 2026-07-18 | ingest | Cognitive control over learning: creating, clustering, generalizing task-set structure (Collins & Frank 2013) | created: papers/collins-frank-cts-task-set-2013; updated: entities/basal-ganglia, concepts/cognitive-control, concepts/contextual-inference, queries/hrl-goal-decomposition-coverage, index-papers
+
+## 2026-07-18 | ingest | Hierarchically organized behavior and its neural foundations (Botvinick, Niv & Barto 2009) | created: wiki/concepts/hierarchical-reinforcement-learning.md, wiki/papers/botvinick-niv-barto-hrl-2009.md; updated: index-concepts, index-papers, cognitive-control, basal-ganglia, successor-representation, architectural-gaps (Gap #2), queries/hrl-goal-decomposition-coverage
+
+## 2026-07-18 | ingest | Uncertainty-based competition between prefrontal and dorsolateral striatal systems (Daw, Niv & Dayan 2005) | created: wiki/papers/daw-niv-dayan-uncertainty-arbitration-2005.md; updated: wiki/concepts/successor-representation.md, wiki/concepts/meta-learning.md, wiki/concepts/hierarchical-reinforcement-learning.md, wiki/queries/hrl-goal-decomposition-coverage.md, wiki/queries/proposed-reasoning-model-block-architectures.md, wiki/index-papers.md
+
+## 2026-07-18 | ingest | The neural correlates of subjective value during intertemporal choice (Kable & Glimcher 2007) | created: wiki/papers/kable-glimcher-subjective-value-2007.md; updated: wiki/concepts/neuromodulation.md, wiki/queries/hrl-goal-decomposition-coverage.md, wiki/queries/proposed-reasoning-model-block-architectures.md, wiki/index-papers.md

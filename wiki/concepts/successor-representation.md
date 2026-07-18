@@ -3,9 +3,9 @@ title: "Successor Representation (SR)"
 type: concept
 tags: [successor-representation, reinforcement-learning, predictive-map, planning]
 created: 2026-06-12
-updated: 2026-06-28
+updated: 2026-07-18
 sources: [cognitivemap]
-related: [wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/temporal-context.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/tem-model.md, wiki/entities/cscg-model.md, wiki/papers/whittington-cognitive-map-2022.md, wiki/papers/tem-whittington-2020.md, wiki/entities/spacetime-attractor.md, wiki/concepts/planning-as-inference.md, wiki/papers/mechanistic-planning-pfc-jensen-2026.md, wiki/papers/tcm-mtl-howard-2005.md, wiki/papers/garvert-abstract-relational-map-2017.md, wiki/concepts/latent-graph-discovery.md]
+related: [wiki/concepts/path-integration.md, wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/temporal-context.md, wiki/entities/grid-cells.md, wiki/entities/place-cells.md, wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/tem-model.md, wiki/entities/cscg-model.md, wiki/papers/whittington-cognitive-map-2022.md, wiki/papers/tem-whittington-2020.md, wiki/entities/spacetime-attractor.md, wiki/concepts/planning-as-inference.md, wiki/papers/mechanistic-planning-pfc-jensen-2026.md, wiki/papers/tcm-mtl-howard-2005.md, wiki/papers/garvert-abstract-relational-map-2017.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/hierarchical-reinforcement-learning.md, wiki/papers/daw-niv-dayan-uncertainty-arbitration-2005.md]
 ---
 
 # Successor Representation (SR)
@@ -71,6 +71,23 @@ SR fails on within-trial dynamic tasks because the successor matrix collapses fu
 
 Design implication: SR and STA are complementary, not competing. SR provides efficient planning when environment structure is stable and rewards change between but not within trials. STA takes over when rewards change within a single trial or episode.
 
+## The MB/MF Online Arbiter (Daw, Niv & Dayan 2005)
+
+The taxonomy above says *which* algorithm is accurate in which regime; **Daw, Niv & Dayan 2005** ([[wiki/papers/daw-niv-dayan-uncertainty-arbitration-2005.md]]) supply the missing runtime rule for *choosing between them per decision*. Two controllers sit at opposite ends of one trade-off — **tree-search** (model-based, PFC + dorsomedial striatum: value built on the fly by chaining transition/reward models, flexible but search-expensive) vs. **caching** (model-free TD, dorsolateral striatum: cached scalar values, cheap but bootstrapping-delayed and outcome-insensitive). SR is the *middle ground* — a cached predictive map that is still model-free but stores multi-step structure — so it sits *between* Daw's two poles rather than being one of them.
+
+**Arbitration rule: run each controller's approximate-Bayesian version, track its posterior uncertainty (variance) over values, and let the *more certain* controller drive the response** (not the higher-value one). Uncertainty ≠ risk: it is ignorance about true values and asymptotes at a finite floor because the task can change (finite effective data-horizon).
+
+| Regime | Lower-uncertainty controller | Behavior |
+|---|---|---|
+| Early training | MB (data propagate immediately; no bootstrap delay) | goal-directed / devaluation-sensitive |
+| Over-trained, distal action, simple task | MF (MB accrues "computational noise" per search step; cache recalls) | habitual / devaluation-insensitive |
+| Action proximal to reward | MB (fewer search steps → less accrued noise) | stays goal-directed |
+| Complex task (data spread thin) | MB (data-efficiency edge preserved) | stays goal-directed |
+
+**Partial evaluation:** search partway, substitute cached values for unexplored sub-trees, comparing uncertainties at each node to decide *expand-tree vs. fall-back-on-cache* — the same expand/skip decision that HRL option models make ([[wiki/concepts/hierarchical-reinforcement-learning.md]] saltatory search).
+
+**Design implication (fills mechanism #4 of the HRL coverage audit / the D3 arbiter):** the proposed reasoning model handles MB/MF by *offline consolidation* only (replay-MCTS → STA weights). Daw adds the complementary *online* mechanism: a per-decision, uncertainty-gated switch between the deliberative planner (explore mode) and the cached policy (exploit mode). The gate is the **calibrated posterior variance** each controller already needs — the Neural-Process 3A encoder (diffuse K=1 → sharp K≥3) supplies exactly this signal, so the arbiter is a comparison of two uncertainties the model computes anyway rather than a new module.
+
 ## Temporal Precursor: The Temporal Context Model
 
 SR did not appear in isolation. The Temporal Context Model (TCM; Howard & Kahana 2002; Howard et al. 2005 [[wiki/papers/tcm-mtl-howard-2005.md]]) is its conceptual ancestor: a leaky integrator `t_i = ρ_i t_{i-1} + β t_iᴵᴺ` whose similarity structure `t_i·t_j = ρ^{|i−j|}` is a decaying trace of past experience — exactly the object SR generalizes.
@@ -103,3 +120,5 @@ The move from TCM to SR (and then to TEM's learned W) is the move from an unstru
 - **[[wiki/concepts/recursion.md]]** — the successor function that generates discrete infinity (natural numbers, recursive count list) is the same iterated operation the SR applies (γT); Hauser-Chomsky-Fitch's domain-general-recursion hypothesis proposes this navigation/number machinery is what became the uniquely-human combinatorial engine.
 - **[[wiki/papers/garvert-abstract-relational-map-2017.md]]** — direct human evidence that entorhinal cortex represents an implicitly-learned abstract graph with an SR/communicability metric (weighted sum of future states), not a Euclidean one; the SR object recovered for discrete non-spatial structure.
 - **[[wiki/concepts/latent-graph-discovery.md]]** — the SR is the brain's native distance metric over a discovered latent graph; Garvert 2017 shows this metric is recovered unconsciously from random-walk experience, making SR the read-out of the discovery process.
+- **[[wiki/concepts/hierarchical-reinforcement-learning.md]]** — SR/DR is the *flat* predictive map (per-primitive-step occupancy); HRL option models are its temporally-abstract counterpart (multi-step outcome/reward/duration predictions), letting model-based planning skip over primitive sub-sequences (saltatory search) — the temporal-abstraction extension of the same predictive-map idea.
+- **[[wiki/papers/daw-niv-dayan-uncertainty-arbitration-2005.md]]** — supplies the *online* arbiter (uncertainty-gated per-decision switch) between pure model-based tree-search and pure model-free caching; SR sits as the cached-predictive-map middle ground between Daw's two poles, and the arbiter reuses the same calibrated posterior variance the model already tracks.

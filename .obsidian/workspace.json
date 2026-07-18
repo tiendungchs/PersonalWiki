@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/queries/sota-review-brain-inspired-abstract-reasoning.md",
+                "file": "raw/The neural correlates of subjective value during intertemporal choice.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "sota-review-brain-inspired-abstract-reasoning"
+              "title": "The neural correlates of subjective value during intertemporal choice"
             }
           }
         ]
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/queries/sota-review-brain-inspired-abstract-reasoning.md",
+                "file": "raw/The neural correlates of subjective value during intertemporal choice.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of sota-review-brain-inspired-abstract-reasoning"
+              "title": "Outline of The neural correlates of subjective value during intertemporal choice"
             }
           }
         ],
@@ -183,44 +183,44 @@
       "bases:Create new base": false
     }
   },
-  "active": "176ff8f16fa0fe90",
+  "active": "f7f8ed32112b4293",
   "lastOpenFiles": [
+    "raw/Cognitive control over learning Creating, clustering and generalizing task-set structure.md",
+    "raw/The neural correlates of subjective value during intertemporal choice.md",
+    "raw/Uncertainty-based competition between prefrontal and dorsolateral striatal systems for behavioral control.md",
+    "raw/Hierarchically organized behavior and its neural foundations A reinforcement learning perspective.md",
+    "wiki/queries/proposed-reasoning-model-block-architectures.md.tmp.2641627.02ece400f5a8",
+    "raw/Frontal Networks for Learning and Executing Arbitrary Stimulus-Response Associations.md",
+    "wiki/concepts/meta-learning.md.tmp.2114140.35272d4eb2b5",
+    "wiki/index-concepts.md.tmp.2114140.247f799b396e",
+    "wiki/index-papers.md.tmp.2114140.73a63f6b1761",
+    "wiki/glossary.md.tmp.2114140.d3bf38e29757",
+    "wiki/glossary.md.tmp.2114140.f45add5dd577",
+    "wiki/glossary.md.tmp.2114140.8a84bd180945",
+    "wiki/concepts/meta-learning.md.tmp.2114140.b9ba2c10c4b2",
+    "wiki/concepts/meta-learning.md.tmp.2114140.3f544fdd2d9c",
+    "wiki/empirical-tensions.md.tmp.2114140.af26509beea1",
+    "wiki/papers/murray-bussey-wise-pfc-arbitrary-mapping-2000.md",
+    "wiki/papers/sadtler-neural-constraints-learning-2014.md",
+    "raw/Neural constraints on learning 1.md",
+    "wiki/papers/golub-neural-reassociation-2018.md",
+    "raw/Role of prefrontal cortex in a network for arbitrary.md",
+    "wiki/papers/boettiger-desposito-sr-rule-learning-2005.md",
+    "wiki/concepts/contextual-inference.md",
+    "wiki/papers/heald-coin-contextual-inference-2021.md",
+    "wiki/papers/wise-murray-arbitrary-mapping-2000.md",
+    "wiki/concepts/arbitrary-mapping.md",
+    "raw/Neural constraints on learning.md",
+    "raw/Learning by neural reassociation.md",
+    "raw/Arbitrary associations between antecedents and actions.md",
+    "raw/Contextual inference underlies the learning of sensorimotor repertoires.md",
+    "wiki/queries/sota-review-brain-inspired-abstract-reasoning.md",
     "wiki/queries/operator-collapse-in-fused-structural-codes.md",
-    "main.tex",
     "wiki/queries/sota-review-brain-inspired-abstract-reasoning-fr.md",
     "wiki/queries/mec-abstract-codes-vs-declarative-rules-fr.md",
     "wiki/queries/revue-vulgarisee-raisonnement-abstrait-inspire-cerveau.md",
-    "wiki/entities/prefrontal-cortex.md.tmp.55416.e75fb48527ef",
     "wiki/papers/heidbreder-groenewegen-mpfc-dorsoventral-2003.md",
-    "wiki/entities/prefrontal-cortex.md.tmp.55416.714bcf64ed6c",
     "wiki/papers/lieberman-meyer-mpfc-subdivisions-2019.md",
-    "raw/Social, self, (situational), and affective processes in medial prefrontal cortex (MPFC) Causal, multivariate, and reverse inference evidence.md",
-    "wiki/papers/das-compositional-neurosymbolic-arc-2025.md",
-    "raw/Compositional Neuro-Symbolic Reasoning.md",
-    "raw/Know thy SEFL Fear sensitization and its relevance to stressor-related disorders.md",
-    "raw/Influences of social reward experience on behavioral responses to drugs of abuse Review of shared and divergent neural plasticity mechanisms for sexual reward and drugs of abuse.md",
-    "raw/The default self feeling good or being right?.md",
-    "raw/The medial prefrontal cortex in the rat evidence for a dorso-ventral distinction based upon functional and anatomical characteristics.md",
-    "wiki/queries/reasoning-as-coupled-navigation-strategizing.md",
-    "wiki/reasoning-as-coupled-navigation-strategizing.md",
-    "wiki/overview.md.tmp.33543.ea5f9c067b1d",
-    "wiki/overview.md.tmp.33543.996c95e1f86c",
-    "wiki/papers/butz-unified-subsymbolic-cognition-2016.md",
-    "wiki/papers/epstein-cognitive-map-humans-2017.md",
-    "wiki/papers/structured-maze-transformers-2023.md",
-    "wiki/papers/zheng-parallel-cognitive-maps-2024.md",
-    "wiki/papers/linear-spatial-world-models-tehenan-2025.md",
-    "wiki/papers/park-social-hierarchy-grid-code-2021.md",
-    "wiki/concepts/latent-graph-discovery.md.tmp.95876.a723f78dd6f3",
-    "wiki/concepts/probabilistic-language-of-thought.md",
-    "wiki/papers/goodman-plot-probabilistic-programs-2024.md",
-    "wiki/concepts/abstract-reasoning.md.tmp.95876.ab2dca70abc2",
-    "wiki/papers/johnson-human-program-induction-arc-2021.md",
-    "wiki/papers/emergent-linear-world-models-nanda-2023.md",
-    "wiki/papers/qu-grid-code-development-intelligence-2026.md",
-    "tools/qmd.db",
-    "tools/qmd_shim.py",
-    "tools/qmd-shim.py",
     "case4_topology_edges_latent.png",
     "case3_node_content_latent.png",
     "case2_path_latent.png",

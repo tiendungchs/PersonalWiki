@@ -3,9 +3,9 @@ title: "A Proposed Brain-Inspired Reasoning Model: Per-Block Architecture Menus 
 type: query
 tags: [architecture, reasoning-model, building-blocks, arc-agi-3, path-integration, transformation-inferrer, schema, planning, curiosity, latent-graph-discovery]
 created: 2026-07-06
-updated: 2026-07-10
+updated: 2026-07-18
 sources: []
-related: [wiki/queries/central-framing-epistemic-audit.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/queries/building-blocks-declarative-subsystem.md, wiki/queries/reasoning-as-coupled-navigation-strategizing.md, wiki/queries/mec-abstract-codes-vs-declarative-rules.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/path-integration.md, wiki/concepts/planning-as-inference.md, wiki/concepts/prospective-coding.md, wiki/concepts/refinement-loops.md, wiki/concepts/memory-schemas.md, wiki/concepts/neuromodulation.md, wiki/concepts/differentiable-plasticity.md, wiki/concepts/energy-based-models.md, wiki/concepts/relational-reinterpretation.md, wiki/concepts/recursion.md, wiki/concepts/core-knowledge.md, wiki/entities/tem-model.md, wiki/entities/spacetime-attractor.md, wiki/entities/vector-hash-model.md, wiki/entities/vsa-model.md, wiki/entities/trnn-model.md, wiki/entities/arc-agi.md]
+related: [wiki/papers/daw-niv-dayan-uncertainty-arbitration-2005.md, wiki/papers/kable-glimcher-subjective-value-2007.md, wiki/queries/hrl-goal-decomposition-coverage.md, wiki/queries/central-framing-epistemic-audit.md, wiki/queries/building-blocks-mec-hc-pfc.md, wiki/queries/building-blocks-declarative-subsystem.md, wiki/queries/reasoning-as-coupled-navigation-strategizing.md, wiki/queries/mec-abstract-codes-vs-declarative-rules.md, wiki/concepts/latent-graph-discovery.md, wiki/concepts/structural-generalization.md, wiki/concepts/path-integration.md, wiki/concepts/planning-as-inference.md, wiki/concepts/prospective-coding.md, wiki/concepts/refinement-loops.md, wiki/concepts/memory-schemas.md, wiki/concepts/neuromodulation.md, wiki/concepts/differentiable-plasticity.md, wiki/concepts/energy-based-models.md, wiki/concepts/relational-reinterpretation.md, wiki/concepts/recursion.md, wiki/concepts/core-knowledge.md, wiki/entities/tem-model.md, wiki/entities/spacetime-attractor.md, wiki/entities/vector-hash-model.md, wiki/entities/vsa-model.md, wiki/entities/trnn-model.md, wiki/entities/arc-agi.md]
 ---
 
 # A Proposed Brain-Inspired Reasoning Model — Per-Block Architecture Menus
@@ -154,6 +154,8 @@ Two coupled things: **3C** = the hierarchical *representation*; **D3** = the *se
 
 **Recommendation:** run **both #1s** — STA as the fast cached planner once `W` is learned, replay-MCTS as the deliberative fallback while structure is still latent. This is the brain's own dual (STA exploit ⇄ HC-preplay explore, Jensen 2026) and the compilation story: repeated MCTS solutions consolidate (offline replay) into STA weights = System-2 search becoming System-1 intuition.
 
+**Online arbiter (the missing per-decision switch — Daw, Niv & Dayan 2005, [[wiki/papers/daw-niv-dayan-uncertainty-arbitration-2005.md]]):** the compilation story above is an *offline* MB→MF path only; it never decides *at act-time* whether to deliberate (replay-MCTS, model-based tree-search) or fire the cached policy (model-free). Daw's rule supplies it: track each controller's **posterior variance** over values and let the *more certain* one drive the response. This is nearly free here — the Neural-Process 3A encoder already emits calibrated uncertainty (diffuse K=1 → deliberate; sharp K≥3 → cache), and its **partial-evaluation** form (expand-tree-vs-fall-back-on-cache by uncertainty at each node) is the same expand/skip decision as HRL option models. Adding it turns D3 from "compile offline" into "compile offline **and** gate online." See [[wiki/queries/hrl-goal-decomposition-coverage.md]] mechanism #4 and Follow-up 2.
+
 ### Blocks D1 / D4 — encoder + write gate (compressed)
 
 | Block | #1 pick | Why | Alternates | Status |
@@ -195,6 +197,8 @@ Verifier-free + latent goal means the goal must be **bootstrapped**. Two parts:
 | Rank | Architecture | Why | Status |
 |---|---|---|---|
 | **#1** | **Learned value head `V(g)` over structural space**, sharpened by DA-stamped reward into a structured `g_goal` target; action = `argmin_a ‖f(W g,a) − g_goal‖` | vmPFC mechanism; unifies with the Transformation Inferrer when before/after is given. `g_goal` starts as scalar valence, becomes a g-space target. | [semi] |
+
+**Biological grounding for `V(g)` (Kable & Glimcher 2007, [[wiki/papers/kable-glimcher-subjective-value-2007.md]]):** vmPFC/ventral-striatum/PCC explicitly encode a **common-currency subjective value** — one continuous scale for rewards at all delays, `SV=A/(1+kD)`, with the *neural* discount rate matching each subject's *behavioral* rate. Three design cues for this block: (a) the value head is a **single common-currency node**, not one head per reward-type or per-delay-regime (falsifies the β–δ two-system valuation split); (b) the discount `k` (= 5-HT/γ) is a **per-agent latent read out of `V(g)`**, not a global hyperparameter — so temporal discounting and planning-depth γ can share one dial (Follow-up in [[wiki/queries/hrl-goal-decomposition-coverage.md]]); (c) it confirms valuation is **single even where control is dual** (System 1/2, MB/MF), so only one `V(g)` head is needed regardless of how many planners consume it. *Not yet wired:* an explicit smaller-sooner-vs-larger-later inter-temporal **choice operator** — the value signal exists, the modeled decision over competing delayed rewards does not.
 
 **(b) Intrinsic reward that bootstraps the goal** — the single most important design choice:
 
@@ -262,3 +266,4 @@ Pull the #1 from each block into one system, and sequence the build by the prior
 - [[wiki/concepts/latent-graph-discovery.md]] — the core problem this model targets; ARC-AGI-3 = latent edges + latent goal + non-stationary state.
 - [[wiki/entities/spacetime-attractor.md]] / [[wiki/concepts/planning-as-inference.md]] — the D3 exploit-mode planner.
 - [[wiki/concepts/refinement-loops.md]] — the D3 explore-mode generate→verify→update loop.
+- [[wiki/queries/hrl-goal-decomposition-coverage.md]] — coverage audit of this model against HRL goal-decomposition, corticostriatal PBWM gating, temporal discounting, and MB/MF arbitration; flags the missing options/subgoal mechanism and tracks the next 4 ingests.

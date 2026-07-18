@@ -3,12 +3,12 @@ title: "Concepts Index"
 type: overview
 tags: [index]
 created: 2026-06-20
-updated: 2026-07-09
+updated: 2026-07-17
 sources: []
 related: []
 ---
 
-# Concepts Index — 64 pages
+# Concepts Index — 67 pages
 
 Each entry: `[Title](path) — one-line description`. Updated when a new concept page is created.
 
@@ -24,6 +24,7 @@ Each entry: `[Title](path) — one-line description`. Updated when a new concept
 - [Factorized Representations](wiki/concepts/factorized-representations.md) — g (MEC) / x (LEC) / p (HC) split; TEM generative equation; factorized vs. entangled phase; disentanglement ≠ abstraction
 - [Predictive Coding / Free Energy Principle](wiki/concepts/predictive-coding.md) — F = −ELBO; generative + recognition model; two-timescale minimization; active inference; biologically plausible backpropagation
 - [Meta-Learning](wiki/concepts/meta-learning.md) — slow outer loop trains weights; fast inner loop in activation dynamics; PFC/BG canonical instantiation; PVLV; AIXI (AI with (X) induction (I)) as formal ceiling
+- [Hierarchical Reinforcement Learning (HRL) / Options](wiki/concepts/hierarchical-reinforcement-learning.md) — temporal abstraction (options = mini-policies) attacks RL's scaling problem; SMDP + pseudo-reward + option-specific value; subgoal/option discovery problem (bottleneck/graph-partition/intrinsic-motivation); actor-critic → DLPFC/DLS/OFC + boundary DA; the temporal (vs. representational) abstraction axis missing from Block 3C
 - [Compositional Generalization](wiki/concepts/compositional-generalization.md) — five facets (Hupkes 2020); chunking failure; localism hardest; MLC (Meta-Learning as Compositional) episodic meta-training; LRM (Large Reasoning Model) knowledge-boundedness ceiling
 - [Working Memory](wiki/concepts/working-memory.md) — five fast WM mechanisms; attractor vs. transient trajectory; STSP (Short-Term Synaptic Plasticity) structural robustness; transformer entropy limit; BG (Basal Ganglia) gating architectures
 - [Cognitive Control](wiki/concepts/cognitive-control.md) — goal maintenance as unified CC (Cognitive Control) mechanism; three CC (Cognitive Control) components; hierarchical PFC (Prefrontal Cortex) (BA-8→9/46→10) as Block 3C template; ACC (Anterior Cingulate Cortex) prediction error
@@ -78,3 +79,5 @@ Each entry: `[Title](path) — one-line description`. Updated when a new concept
 - [Core Knowledge](wiki/concepts/core-knowledge.md) — Spelke's four (+1) innate domain-specific systems (objects/agents/number/geometry/social); individuation principles + signature limits (~4 set-size, Weber ratio); origin of ARC's Core Knowledge Priors and the objectness gap; the "start-up software" extreme-prior end of slow-W
 - [Temporal Context (Contextual Drift)](wiki/concepts/temporal-context.md) — TCM's leaky self-normalizing integrator `t_i = ρ_i t_{i-1} + β t_iᴵᴺ` as sole recall cue; two-component retrieved context (forward vs. backward/transitive via α_N); "memory space" recovers latent graph distance from co-occurrence; the scalar-ρ ancestor of SR's γT and TEM's learned W
 - [Cultural Learning / Shared Intentionality](wiki/concepts/cultural-learning.md) — the social *acquisition channel* (Tomasello & Rakoczy): imitation (copy intention) vs. emulation (copy surface); self-other equivalence + perspective + normativity; shared→collective intentionality two-step; sentential-complement syntax bootstraps meta-representation; supplies the mechanism behind "cumulative culture is the engine" and bears on vocabulary co-discovery (Gap #3)
+- [Arbitrary Mapping (Conditional Motor Learning)](wiki/concepts/arbitrary-mapping.md) — the biological form of content-free action pointers: standard/transformational/arbitrary taxonomy; asymmetric circuit dissociation (HC acquires novel mappings and drops out; premotor executes throughout); the three-level mappings/rules/**strategies** decomposition and the RS/CS dissociation; cortical-BG modules as the operator bank; PF as route vs. store; ~3 trials/cue binding rate; cue×action conjunctive coding in PFC; the "selection not invention" boundary on Gap #3
+- [Contextual Inference](wiki/concepts/contextual-inference.md) — one computation (posterior over active context) controls memory creation, expression, and updating; COIN generative model (sticky HDP contexts + per-context linear-Gaussian state + cue/feedback channels); **proper vs. apparent learning** — behaviour changes with no write to any store; responsibility-scaled updating of all memories; predicted-probability (expression) vs. responsibility (creation/updating); selection-not-invention boundary on Gap #3

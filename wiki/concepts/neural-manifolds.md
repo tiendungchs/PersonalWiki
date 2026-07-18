@@ -3,14 +3,16 @@ title: "Neural Manifolds and Intrinsic Dynamics"
 type: concept
 tags: [neural-manifolds, intrinsic-dynamics, learning-constraints, architecture, motor-cortex]
 created: 2026-06-12
-updated: 2026-06-27
-sources: [brain-learning-limits-transcript, memory-gate-transcript, convergence-wiring-transcript, reservoir-computing-transcript, Recurrent neural networks with transient trajectory explain working memory encoding mechanisms, How does the brain solve visual object recognition, nieh-hippocampal-geometry-2021, sun-hippocampal-osm-2025, vohryzek-2024-lr-connections]
-related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/predictive-coding.md, wiki/concepts/replay.md, wiki/concepts/small-world-networks.md, wiki/concepts/working-memory.md, wiki/concepts/hierarchical-representations.md, wiki/entities/reservoir-computing.md, wiki/papers/brain-learning-limits-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/trnn-liu-2025.md, wiki/papers/dicarlo-visual-object-recognition-2012.md, wiki/papers/nieh-hippocampal-geometry-2021.md, wiki/concepts/latent-states.md, wiki/entities/place-cells.md, wiki/papers/friston-kiebel-pc-2009.md, wiki/papers/sun-hippocampal-osm-2025.md, wiki/papers/vohryzek-2024-lr-connections.md, wiki/concepts/neural-field-theory.md]
+updated: 2026-07-17
+sources: [brain-learning-limits-transcript, memory-gate-transcript, convergence-wiring-transcript, reservoir-computing-transcript, Recurrent neural networks with transient trajectory explain working memory encoding mechanisms, How does the brain solve visual object recognition, nieh-hippocampal-geometry-2021, sun-hippocampal-osm-2025, vohryzek-2024-lr-connections, Learning by neural reassociation, Neural constraints on learning]
+related: [wiki/concepts/structural-generalization.md, wiki/concepts/factorized-representations.md, wiki/concepts/predictive-coding.md, wiki/concepts/replay.md, wiki/concepts/small-world-networks.md, wiki/concepts/working-memory.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/contextual-inference.md, wiki/concepts/arbitrary-mapping.md, wiki/concepts/two-learning-timescales.md, wiki/entities/reservoir-computing.md, wiki/papers/sadtler-neural-constraints-learning-2014.md, wiki/papers/golub-neural-reassociation-2018.md, wiki/papers/brain-learning-limits-transcript.md, wiki/papers/memory-gate-transcript.md, wiki/papers/convergence-wiring-transcript.md, wiki/papers/reservoir-computing-transcript.md, wiki/papers/trnn-liu-2025.md, wiki/papers/dicarlo-visual-object-recognition-2012.md, wiki/papers/nieh-hippocampal-geometry-2021.md, wiki/concepts/latent-states.md, wiki/entities/place-cells.md, wiki/papers/friston-kiebel-pc-2009.md, wiki/papers/sun-hippocampal-osm-2025.md, wiki/papers/vohryzek-2024-lr-connections.md, wiki/concepts/neural-field-theory.md]
 ---
 
 # Neural Manifolds and Intrinsic Dynamics
 
-**Neural activity occupies a low-dimensional manifold within the high-dimensional neural state space, determined by physical wiring; patterns outside this manifold are structurally unreachable regardless of training or motivation.**
+**Neural activity occupies a low-dimensional manifold within the high-dimensional neural state space, shaped by physical wiring; patterns outside this manifold are not learned on the timescales tested, regardless of training or motivation.**
+
+*Scope caveat (Sadtler et al. 2014, the primary source below).* Every manifold in this page is **estimated from recorded activity during a particular behaviour**, not read off anatomy. Sadtler's authors explicitly decline to call their intrinsic manifold M1's true dimensionality, since it "likely depends on considerations such as the behaviours the animal is performing and perhaps its level of skill." Read "determined by wiring" as a hypothesis about *why* the estimate is stable, not as something any of these studies measured. See [[wiki/empirical-tensions.md]].
 
 ---
 
@@ -26,6 +28,46 @@ Experiment (Nature Neuroscience): monkeys controlled a cursor via linear project
 Left and right movements are **not mirror images** at the neural level — entirely different patterns, different manifold regions.
 
 Critical test: monkeys were required to **time-reverse a neural trajectory** to stay in a narrow reward corridor. With strong incentive, visual feedback, and extended training, they **consistently failed**. The manifold boundary could not be crossed.
+
+### The primary source: within vs. outside the manifold (Sadtler et al. 2014)
+
+Sadtler et al. 2014 ([[wiki/papers/sadtler-neural-constraints-learning-2014.md]]) is the experiment that established the manifold as a constraint on *learning* rather than a description of activity. Both perturbations are **permutations** of the same BCI decoder, applied mid-session without cue:
+
+| Perturbation | Permutes | Requires | Learned in ~hours? |
+|---|---|---|---|
+| **Within-manifold** | the 10 factors | re-associating existing co-modulation patterns with new kinematics | **Yes** — and leaves aftereffects |
+| **Outside-manifold** | the ~90 units | generating *new* co-modulation patterns | **No** — and leaves no aftereffects |
+
+**What makes this evidence rather than an observation is the control set.** Five alternative explanations were equated across the two perturbation types: initial performance impairment, principal angles between intuitive and perturbed control spaces, required preferred-direction changes per unit, search-space size (monkey L), and hand movement. The perturbations were also not workspace rotations. With all five matched, IM membership is the parsimonious remaining explanation for the learnability difference.
+
+**Dimensionality, measured:** 9.81 ± 0.31 across 88 days (per-day range 4–16) among ~90 units, by cross-validated factor-analysis model selection — the source of this page's "~10D" figure.
+
+**The design was deliberately uncued and blinded.** Animals were given no indication which perturbation type was coming, and the order was randomized. This matters beyond methodology: it is the condition the pointer/no-pointer reconciler in [[wiki/empirical-tensions.md]] turns on.
+
+### The constraint is tighter than the manifold: Reassociation (Golub et al. 2018)
+
+The manifold boundary is not the binding constraint. Golub et al. 2018 ([[wiki/papers/golub-neural-reassociation-2018.md]]) perturbed the BCI mapping **within** the intrinsic manifold — permuting the columns of $B$ in $v_t = A v_{t-1} + B z_t + c$, so every activity pattern the animal needed was already reachable — and animals *still* did not produce the required novel patterns:
+
+| Strategy | Predicts | Verdict |
+|---|---|---|
+| **Realignment** (optimal) — grow novel patterns aligned to the new mapping | repertoire expansion along perturbed-mapping dimensions | Refuted ($p<10^{-10}$) |
+| **Rescaling** — per-dimension gain adaptation (visuomotor-gain analog) | repertoire expansion along intuitive-mapping dimensions | Refuted ($p<10^{-10}$) |
+| **Subselection** — keep only each movement's still-correct patterns | movement-specific contraction | Refuted |
+| **Reassociation** — same repertoire, re-bound to different intents | no repertoire change at all | **Matches** ($p=0.55$) |
+
+Within 1–2 hours, the **overall repertoire of activity patterns is preserved**; what changes is which movement intent each pattern is associated with — and the re-binding is genuinely cross-pointer (a movement recruits patterns that previously belonged to *other* movements, which is why Subselection fails). Reassociation is suboptimal by construction and predicts the animals' **incomplete** behavioral recovery. Animals showed no more Realignment when the incentive to realign was larger, so this is a constraint, not a motivational shortfall.
+
+**Two nested boundaries, not one:**
+
+| Boundary | Timescale | Evidence |
+|---|---|---|
+| Re-bind existing patterns to new intents | hours | Golub 2018 — the routine case |
+| Produce novel patterns *inside* the manifold (Realignment) | days–weeks (proposed; only a subtle hint at 1–2 h) | Golub 2018 discussion |
+| Produce patterns *outside* the manifold | not learned in ~hours; **no upper bound established** | Sadtler 2014; BCI reversal failure above |
+
+**The outer boundary is unlocated, not merely distant.** Sadtler's outside-manifold result is a *failure to learn within a session* (~600/400 perturbed trials). The frequently-repeated "outside-manifold learning takes days" is the authors' **proposal** in their discussion ("could benefit from multi-day exposure... might require the IM to expand or change orientation"), never a measurement. Their cross-session analysis does not fill the gap either: it shows the monkeys did not get better at *learning-to-learn* across days on which a **different** perturbation was used each day, which does not test repeated exposure to one outside-manifold mapping. So the honest statement of the outer wall is "not crossed in hours, unknown thereafter."
+
+**The mechanistic reading (authors' inference, not a measurement):** repertoire preservation is more consistent with learning-related changes to M1's **inputs** than to connectivity *within* M1 — rewiring M1 internally would have changed the repertoire it can generate. The executor's weights are untouched; what is rewritten sits upstream.
 
 ---
 
@@ -241,7 +283,9 @@ The SFM is conceptually distinct from type 7 (structural-functional manifold): t
 
 ## Open Problems
 
-- **Manifold modification by learning:** plasticity changes the landscape — can it make previously unreachable patterns reachable, or is reshaping itself bounded by a meta-manifold?
+- **Manifold modification by learning:** plasticity changes the landscape — can it make previously unreachable patterns reachable, or is reshaping itself bounded by a meta-manifold? **Sharpened by Golub 2018:** the question is now two questions, because the manifold is not the operative limit on the hours timescale — the *repertoire within it* is. Reaching a novel inside-manifold pattern and reaching an outside-manifold one are both slow, and no account says whether they are slow for the same reason.
+- **What sets the repertoire, if not the manifold?** Golub's animals declined to produce patterns that were reachable, useful, and incentivized. Something narrower than the intrinsic manifold defines what M1 will actually emit — a distribution over it, not a support constraint. Nothing in the wiki's manifold taxonomy (types 1–8) names this object; all eight characterize *where activity can live*, none *which of the reachable points get used*.
+- **Is the "hard anatomical" manifold actually anatomical?** The type-1/type-2 contrast this page draws (rigid motor manifold vs. task-plastic HC manifold) may be partly an artifact of measurement rather than a fact about the two regions. Sadtler's IM is estimated per-day, from one calibration behaviour, with a linear 10-D model chosen by fiat — and its authors explicitly say the dimensionality depends on what the animal is doing and how skilled it is. Nothing in the BCI literature measures a manifold *across* behaviours in the same population, which is what "determined by wiring" predicts should be invariant. The rigid/plastic contrast is currently confounded with a paradigm difference (one task, hours, motor vs. many task states, days, HC). See [[wiki/empirical-tensions.md]].
 - **What controls manifold dimensionality?** E/I balance, recurrent connectivity, and modulatory inputs all affect effective dimensionality — unclear how to engineer this.
 - **Generalization beyond motor cortex:** motor cortex constraints are hard (BCI reversal failure). HC manifold is task-plastic but converges on a canonical geometry (~70% cross-animal sharing, Nieh 2021) — neither fully hard nor fully arbitrary. Whether certain abstract patterns are structurally unreachable in HC (analogous to BCI reversal patterns in motor cortex) remains untested.
 
@@ -253,6 +297,10 @@ The SFM is conceptually distinct from type 7 (structural-functional manifold): t
 - **[[wiki/concepts/factorized-representations.md]]** — the factorized g/x split is a manifold-design choice: it carves representational space so structural codes occupy a separable submanifold, placing zero-shot generalization inside the reachable manifold by construction.
 - **[[wiki/concepts/predictive-coding.md]]** — PC's energy landscape over neural state space defines the intrinsic manifold: energy minima are the attractors that correspond to inside-manifold patterns; the two-population architecture shapes which activity patterns are stable and reachable.
 - **[[wiki/papers/brain-learning-limits-transcript.md]]** — source: BCI reversal task demonstrates hard manifold constraints; two-projection analysis reveals hidden neural structure.
+- **[[wiki/papers/sadtler-neural-constraints-learning-2014.md]]** — the primary source for the within/outside-manifold learnability contrast, the ≈10-D estimate, and the five matched controls that make IM membership the parsimonious explanation; also the source of this page's task-dependence caveat, since its authors decline to read the estimated IM as M1's true dimensionality.
+- **[[wiki/papers/golub-neural-reassociation-2018.md]]** — source for the Reassociation result: within-manifold perturbations show the repertoire, not the manifold, is the operative constraint on the hours timescale; supplies the refutations of Realignment/Rescaling/Subselection and the inputs-not-connectivity inference.
+- **[[wiki/concepts/contextual-inference.md]]** — the manifold is the hard boundary on contextual inference (re-weighting a repertoire stays inside it; inventing an operator leaves it), and Reassociation is what COIN's *apparent learning* looks like at the population level: behaviour changes with the repertoire held fixed.
+- **[[wiki/concepts/arbitrary-mapping.md]]** — the ~3-trials/cue binding rate applies to rebinding within an existing repertoire; the intrinsic-manifold constraint is the same boundary from the other side. The two numbers do not agree (see [[wiki/empirical-tensions.md]]).
 - **[[wiki/papers/memory-gate-transcript.md]]** — UMAP of ~400 HC neurons provides empirical HC manifold evidence: low-D structure encodes both position and learning progress; off-manifold SWRs correspond to other cognitive content.
 - **[[wiki/concepts/replay.md]]** — UMAP manifold is the reference frame for decoding SWR (Sharp Wave Ripple) replay content; the two-stage SWR (Sharp Wave Ripple) architecture (awake bookmark → sleep consolidate) operates within the HC manifold structure revealed here.
 - **[[wiki/concepts/small-world-networks.md]]** — physical wiring topology (clustering + path length) directly determines the intrinsic manifold: small-world architecture's finite wiring budget is the hard constraint that makes manifold boundaries structurally fixed; wiring cost minimization and manifold boundary hardness are two descriptions of the same phenomenon.

@@ -29,9 +29,14 @@ find_qmd() {
     if [[ -n "${QMD:-}" ]]; then command -v "$QMD" 2>/dev/null && return 0; fi
     # 2) on PATH
     if command -v qmd >/dev/null 2>&1; then command -v qmd; return 0; fi
-    # 3) common install locations on either OS
+    # 3) common install locations on either OS.
+    #    Includes conda envs: qmd is often installed into one (its bin lands in
+    #    the env prefix), and that env may not be active in this shell.
     local c
     for c in \
+        "${CONDA_PREFIX:-/nonexistent}"/bin/qmd \
+        "$HOME"/{miniconda3,miniforge3,mambaforge,anaconda3}/envs/*/bin/qmd \
+        /opt/{miniconda3,miniforge3,anaconda3}/envs/*/bin/qmd \
         "$HOME"/.nvm/versions/node/*/bin/qmd \
         "$HOME"/src/qmd/bin/qmd \
         /usr/local/bin/qmd \
@@ -44,6 +49,22 @@ find_qmd() {
     return 1
 }
 
+# qmd's launcher is `#!/usr/bin/env node` (falling back to bun), so a runtime
+# must be on PATH even when the binary is found via an absolute path above.
+require_node_runtime() {
+    command -v node >/dev/null 2>&1 && return 0
+    command -v bun  >/dev/null 2>&1 && return 0
+    echo "error: found qmd at $QMD_BIN, but no 'node' (>=22) or 'bun' on PATH." >&2
+    echo "  qmd is a Node CLI; activate the environment that provides its runtime." >&2
+    case "$QMD_BIN" in
+        */envs/*/bin/qmd)
+            # Extract the env name from .../envs/<name>/bin/qmd
+            local env_path="${QMD_BIN%/bin/qmd}"
+            echo "  Looks like a conda env — try: conda activate ${env_path##*/}" >&2 ;;
+    esac
+    return 1
+}
+
 if ! QMD_BIN="$(find_qmd)"; then
     echo "error: 'qmd' not found." >&2
     echo "  Install: git clone https://github.com/tobi/qmd && cd qmd \\" >&2
@@ -51,6 +72,8 @@ if ! QMD_BIN="$(find_qmd)"; then
     echo "  Or set QMD=/path/to/qmd" >&2
     exit 1
 fi
+
+require_node_runtime || exit 1
 
 # Run everything from the repo root so qmd uses the project-local ./.qmd index.
 cd "$REPO_ROOT"

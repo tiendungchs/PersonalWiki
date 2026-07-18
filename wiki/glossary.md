@@ -5,7 +5,7 @@ tags:
   - reference
   - glossary
 created: 2026-06-20
-updated: 2026-07-13
+updated: 2026-07-17
 sources: []
 related: []
 ---
@@ -17,7 +17,9 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | Abbreviation | Full Term | Page |
 |---|---|---|
 | ACC | Anterior Cingulate Cortex | [[wiki/concepts/cognitive-control.md]] |
+| AGi | Agranular Insular cortex (rat) | [[wiki/concepts/arbitrary-mapping.md]] |
 | AGI | Artificial General Intelligence | [[wiki/entities/arc-agi.md]] |
+| AGm | Medial Agranular cortex (rat; = Fr2) | [[wiki/concepts/arbitrary-mapping.md]] |
 | AHP | AfterHyperPolarization | [[wiki/concepts/engrams.md]] |
 | AIXI | AI with (X) induction (I) Universal AI agent (Hutter 2000) | [[wiki/concepts/information-theory.md]] |
 | ALIF| Adaptive Leaky Integrate-and-Fire neuron | [[wiki/concepts/spike-frequency-adaptation.md]] |
@@ -60,6 +62,8 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | GNW | Global Neuronal Workspace (Dehaene's formulation of GWT) | [[wiki/entities/gwt-model.md]] |
 | GWT | Global Workspace Theory (Baars; implemented as GNW) | [[wiki/entities/gwt-model.md]] |
 | HC | Hippocampus | [[wiki/entities/hippocampal-entorhinal-system.md]] |
+| HS | Hippocampal System (hippocampal formation + underlying parahippocampal cortex; Murray/Bussey/Wise notation) | [[wiki/entities/hippocampal-entorhinal-system.md]] |
+| IT | Inferior Temporal cortex (object vision; includes area TE + perirhinal cortex) | [[wiki/concepts/arbitrary-mapping.md]] |
 | HPC | Hippocampus (alternate abbreviation for HC) | [[wiki/entities/hippocampal-entorhinal-system.md]] |
 | HTM | Hierarchical Temporal Memory | [[wiki/entities/htm-thousand-brains.md]] |
 | IL | Infralimbic cortex (ventral rat mPFC; ≈ Brodmann area 25) | [[wiki/entities/prefrontal-cortex.md]] |
@@ -85,8 +89,16 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | **PBWM** | Prefrontal-Basal Ganglia Working Memory model | [[wiki/entities/prefrontal-cortex.md]] |
 | PC | Predictive Coding | [[wiki/concepts/predictive-coding.md]] |
 | PFC | Prefrontal Cortex | [[wiki/entities/prefrontal-cortex.md]] |
+| PF | PreFrontal cortex (Murray/Bussey/Wise notation, where PFC is used elsewhere in this wiki) | [[wiki/concepts/arbitrary-mapping.md]] |
+| PFdl | Dorsolateral Prefrontal cortex (Wise & Murray's notation for dlPFC) | [[wiki/concepts/arbitrary-mapping.md]] |
+| PFo | Orbital Prefrontal cortex | [[wiki/concepts/arbitrary-mapping.md]] |
+| PFv | Ventral Prefrontal cortex | [[wiki/concepts/arbitrary-mapping.md]] |
+| PFv+o | Ventral **and** orbital prefrontal cortex together (the lesion site in Murray/Bussey/Wise 2000) | [[wiki/concepts/arbitrary-mapping.md]] |
 | PGM | Progressive Generalization Matrix (Barrett 2018) | [[wiki/papers/pgm-barrett-2018.md]] |
 | PL | Prelimbic cortex (rat mPFC; ≈ Brodmann area 32) | [[wiki/entities/prefrontal-cortex.md]] |
+| PM | PreMotor cortex | [[wiki/concepts/arbitrary-mapping.md]] |
+| PMd | Dorsal Premotor cortex | [[wiki/concepts/arbitrary-mapping.md]] |
+| PMv | Ventral Premotor cortex | [[wiki/concepts/arbitrary-mapping.md]] |
 | PSP | Post-Synaptic Potential | [[wiki/papers/gardner-gruning-supervised-snn.md]] |
 | PSS | Physical Symbol System (Newell) | [[wiki/concepts/relational-reinterpretation.md]] |
 | **PVLV** | Primary Value and Learned Value (DA learning algorithm) | [[wiki/concepts/meta-learning.md]] |
@@ -99,9 +111,11 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | SDM | Sparse Distributed Memory | [[wiki/entities/sdm-model.md]] |
 | SDR | Sparse Distributed Representations | [[wiki/concepts/sparse-distributed-representations.md]] |
 | SEC | Structured Event Complex | [[wiki/entities/prefrontal-cortex.md]] |
+| SEF | Supplementary Eye Field | [[wiki/concepts/arbitrary-mapping.md]] |
 | SFA | Spike Frequency Adaptation | [[wiki/concepts/spike-frequency-adaptation.md]] |
 | SFG | Superior Frontal Gyrus (prefrontal region) | [[wiki/papers/somel-transcriptional-neoteny-2009.md]] |
 | FA | Feedback Alignment | [[wiki/papers/bartunov-scalability-bio-dl-2018.md]] |
+| BCI | Brain-Computer Interface (here: the paradigm in which the experimenter defines the neural-activity→behavior map exactly, making learning hypotheses falsifiable) | [[wiki/papers/golub-neural-reassociation-2018.md]], [[wiki/concepts/neural-manifolds.md]] |
 | TP | Target-propagation | [[wiki/papers/bartunov-scalability-bio-dl-2018.md]] |
 | DTP | Difference Target Propagation | [[wiki/papers/bartunov-scalability-bio-dl-2018.md]] |
 | SDTP | Simplified Difference Target Propagation | [[wiki/papers/bartunov-scalability-bio-dl-2018.md]] |
@@ -193,5 +207,12 @@ Abbreviations used across this wiki. Each entry links to the relevant concept or
 | IID | Independent and Identically Distributed (i.i.d.) | [[wiki/concepts/shortcut-reasoning.md]] |
 | JEA | Joint Embedding Architecture | [[wiki/concepts/energy-based-models.md]] |
 | BYOL | Bootstrap Your Own Latent | [[wiki/entities/jepa-model.md]] |
+| MFG | Middle Frontal Gyrus (the dlPFC landmark in human imaging) | [[wiki/papers/boettiger-desposito-sr-rule-learning-2005.md]] |
+| IFG | Inferior Frontal Gyrus (the vlPFC landmark in human imaging) | [[wiki/papers/boettiger-desposito-sr-rule-learning-2005.md]] |
+| PCG | Precentral Gyrus (ventral premotor landmark) | [[wiki/papers/boettiger-desposito-sr-rule-learning-2005.md]] |
+| IFS | Inferior Frontal Sulcus | [[wiki/papers/boettiger-desposito-sr-rule-learning-2005.md]] |
+| FP | Fronto-Polar cortex (anterior BA-10) | [[wiki/entities/prefrontal-cortex.md]] |
+| PMv | Ventral Premotor cortex (also written vPM) | [[wiki/concepts/arbitrary-mapping.md]] |
+| BOLD | Blood Oxygenation Level-Dependent (the fMRI contrast signal) | [[wiki/papers/boettiger-desposito-sr-rule-learning-2005.md]] |
 
 *This table is maintained by the lint pass. When lint reports a missing abbreviation, add it here.*
