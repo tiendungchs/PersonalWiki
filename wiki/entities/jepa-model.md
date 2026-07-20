@@ -4,8 +4,8 @@ type: entity
 tags: [world-models, self-supervised-learning, energy-based-models, non-contrastive, hierarchical-planning, representation-learning]
 created: 2026-06-23
 updated: 2026-07-16
-sources: [A Path Towards Autonomous Machine Intelligence, barlow_twins, jepa, V-JEPA 2 Self-Supervised Video Models Enable Understanding, Prediction and Planning, vicreg, LeJEPA, LeWorldModel Stable End-to-End Joint-Embedding Predictive Architecture from Pixels, HiT-JEPA A Hierarchical Self-supervised Trajectory Embedding Framework for Similarity Computation, "Critical review of LeCun's Introductory JEPA paper"]
-related: [wiki/concepts/energy-based-models.md, wiki/concepts/world-models.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/predictive-coding.md, wiki/entities/tem-model.md, wiki/entities/vl-jepa-model.md, wiki/entities/dinov2-model.md, wiki/entities/dinov3-model.md, wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md, wiki/papers/barlow-twins-zbontar-2021.md, wiki/papers/assran-ijepa-2023.md, wiki/papers/v-jepa-2-assran-2026.md, wiki/papers/vicreg-bardes-2022.md, wiki/papers/lejepa-balestriero-lecun-2025.md, wiki/papers/leworldmodel-maes-2026.md, wiki/papers/hit-jepa-li-2025.md, wiki/papers/dinov2-oquab-2023.md, wiki/papers/dinov3-simeoni-2025.md, wiki/papers/lecun-jepa-critical-review-lett-2025.md, wiki/queries/operator-collapse-in-fused-structural-codes.md]
+sources: [A Path Towards Autonomous Machine Intelligence, barlow_twins, jepa, V-JEPA 2 Self-Supervised Video Models Enable Understanding, Prediction and Planning, vicreg, LeJEPA, LeWorldModel Stable End-to-End Joint-Embedding Predictive Architecture from Pixels, HiT-JEPA A Hierarchical Self-supervised Trajectory Embedding Framework for Similarity Computation]
+related: [wiki/concepts/energy-based-models.md, wiki/concepts/world-models.md, wiki/concepts/hierarchical-representations.md, wiki/concepts/predictive-coding.md, wiki/entities/tem-model.md, wiki/entities/vl-jepa-model.md, wiki/entities/dinov2-model.md, wiki/entities/dinov3-model.md, wiki/papers/lecun-path-towards-autonomous-intelligence-2022.md, wiki/papers/barlow-twins-zbontar-2021.md, wiki/papers/assran-ijepa-2023.md, wiki/papers/v-jepa-2-assran-2026.md, wiki/papers/vicreg-bardes-2022.md, wiki/papers/lejepa-balestriero-lecun-2025.md, wiki/papers/leworldmodel-maes-2026.md, wiki/papers/hit-jepa-li-2025.md, wiki/papers/dinov2-oquab-2023.md, wiki/papers/dinov3-simeoni-2025.md, wiki/queries/operator-collapse-in-fused-structural-codes.md]
 ---
 
 # JEPA / H-JEPA
@@ -29,24 +29,6 @@ related: [wiki/concepts/energy-based-models.md, wiki/concepts/world-models.md, w
 **Multi-modality** — two sources of multi-modal uncertainty:
 1. Encoder invariance: s_y = Enc_y(y) maps a set of y's to the same code → same energy for all of them
 2. Latent variable: when z varies over set Z, Pred(s_x, Z) traces a set of plausible predictions in representation space
-
----
-
-## JEPA as Contrastive Model (Lett 2025 critique)
-
-JEPA is fundamentally a **siamese/contrastive architecture**: z represents the *relationship between x and y*, not the latent state of x alone. This has a critical operational consequence: in single-input settings (no y available), z is undefined and cannot be inferred from x alone.
-
-Three deployment options for single-input settings:
-
-| Option | Mechanism | Example |
-|---|---|---|
-| **Drop z** | Remove z term entirely; run as feedforward | Downstream linear probe |
-| **Hand-craft z** | Give z an externally interpretable meaning | I-JEPA: z = spatial position of masked patch relative to context |
-| **Marginalize over z** | Sample multiple z values; weight or select best | Uncertainty estimation; possible for generation |
-
-**Contrast with Predictive Coding:** PC (Predictive Coding) operates on a *single* moment-to-moment observation and performs iterative recurrent inference — no second input required. JEPA requires (x, y) pairs to define z and perform its error computation; it cannot do the same online single-observation inference. JEPA is aligned with PC's goal (minimize prediction error in abstract space) but is architecturally a contrastive learner, not a recurrent inferencer.
-
-**H-JEPA stacking does not map cleanly to PC (Predictive Coding) hierarchy:** In PC, each higher level provides top-down predictions (and receives bottom-up errors) from the level below. In H-JEPA, it is unclear how a higher-level JEPA provides z for the level below — the inter-level communication mechanism is not specified in the original design (see HiT-JEPA for one concrete implementation: top-down attention spotlight).
 
 ---
 
@@ -241,7 +223,6 @@ The first JEPA trained stably end-to-end from raw pixels for continuous control,
 - H-JEPA's intermediate abstract action vocabulary is pre-specified, not learned — directly related to Gap 3 (vocabulary co-discovery) in open-problems.md
 - Configurator mechanism for configuring the H-JEPA for a task at hand is the most underspecified component
 - LeJEPA's isotropic Gaussian optimality proof assumes continuous data manifolds; whether N(0,I) is optimal for abstract/discrete/graph-structured representation spaces is unproven
-- **Mode-2 is not System II (Lett 2025):** MPC planning with a hard-wired search algorithm (CEM, gradient descent, beam search) is "stochastically deterministic" — the same world model + same algorithm = same plan. Both Mode-1 and Mode-2 are System I in Kahneman's sense. True System II would require *learning* the planning/search/reasoning algorithm alongside the world model and cost function — a more radical open problem than the configurator subgoal gap alone.
 
 ---
 
@@ -279,5 +260,4 @@ The first JEPA trained stably end-to-end from raw pixels for continuous control,
 - **[[wiki/papers/dinov2-oquab-2023.md]]** — DINOv2 is the direct architectural ancestor of I-JEPA: the EMA (Exponential Moving Average) teacher-student design, momentum schedule (0.994→1.0), and masked patch prediction (iBOT) are all inherited by I-JEPA; DINOv2's KoLeo regularizer (nearest-neighbor entropy spread) is the conceptual predecessor of LeJEPA's SIGReg (formal N(0,I) test).
 - **[[wiki/entities/dinov2-model.md]]** — DINOv2 is the architectural ancestor of the JEPA family: EMA (Exponential Moving Average) teacher-student, masked patch prediction, and KoLeo regularizer all flow into I-JEPA/V-JEPA 2; the comparison table row traces this heritage.
 - **[[wiki/entities/dinov3-model.md]]** — DINOv3 extends DINOv2 with Gram anchoring; LeJEPA's finding that SIGReg beats DINOv3 in-domain (11K vs. hundreds of millions of images) establishes the scale-vs.-principled-SSL boundary relevant to abstract reasoning data regimes.
-- **[[wiki/papers/lecun-jepa-critical-review-lett-2025.md]]** — identifies z as a relational encoding (x–y relationship, not latent state of x alone), reframes JEPA as a siamese/contrastive model requiring pair inputs, critiques Mode-2 as System I (hard-wired search algorithm on learned model ≠ learned planning algorithm), and distinguishes JEPA's operational single-input limitations from PC's online recurrent inference.
 - **[[wiki/queries/operator-collapse-in-fused-structural-codes.md]]** — the VICReg criteria applied outside SSL, to a neuroscience-lineage world model whose codes collapsed to eff-dim 4.80/128; the std-dev-not-variance detail above is the operative recommendation. Records the convergence: TEM's prior loss (`lx_gt`) and JEPA's variance term are the same anti-collapse mechanism reached from neuroscience and from SSL independently.

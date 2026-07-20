@@ -10,7 +10,7 @@ related: [wiki/concepts/latent-graph-discovery.md, wiki/concepts/refinement-loop
 
 # Why Brain-Inspired, Not "Just a Solver"?
 
-> **The challenge (a reviewer will ask this).** The solver stack — a strong LLM generator + an external verifier (Python, a geometry DSL, a Lean 4 kernel, a fitness function) — demonstrably *works*: IMO gold (Gemini Deep Think 2025), silver via AlphaProof+AlphaGeometry (2024), MiniF2F 25%→93% and PutnamBench 0→60%+ in a year, AlphaEvolve improving best-known bounds, four Erdős problems solved and Lean-verified. If generation-plus-verification already produces research-grade mathematics, **why pursue a brain-inspired latent-graph-discovery model at all?**
+> **The challenge (a reviewer will ask this).** The solver stack — a strong LLM generator + an external verifier (Python, a geometry DSL, a Lean 4 kernel, a fitness function) — demonstrably *works*: IMO gold (huang et al. 2025), silver via AlphaProof+AlphaGeometry (2024), MiniF2F 25%→93% and PutnamBench 0→60%+ in a year, AlphaEvolve improving best-known bounds, four Erdős problems solved and Lean-verified. If generation-plus-verification already produces research-grade mathematics, **why pursue a brain-inspired latent-graph-discovery model at all?**
 
 ## Answer in one sentence
 

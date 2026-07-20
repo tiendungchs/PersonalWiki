@@ -10,7 +10,7 @@ related: [wiki/entities/hippocampal-entorhinal-system.md, wiki/entities/place-ce
 
 # Neuronal Computation Underlying Inferential Reasoning in Humans and Mice
 
-**Citation:** Behrens HC et al. (Dupret lab), *Cell* 183(1): 228–243, 2020. doi:10.1016/j.cell.2020.08.035
+**Citation:** Barron, H. C. et al. (Dupret lab), *Cell* 183(1): 228–243, 2020. doi:10.1016/j.cell.2020.08.035
 
 ---
 
