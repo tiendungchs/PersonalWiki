@@ -1,3 +1,4 @@
 tools/qmd.db
 .qmd/
 .DS_Store
+.vscode
