@@ -163,7 +163,6 @@ Use WebSearch/WebFetch when:
 - The user asks for it explicitly
 - A lint pass reveals a factual gap that a quick search could fill
 - A lint pass identifies important sub-topics that need follow-up sources
-- A paper references a model or dataset with no wiki page and details are sparse
 
 After fetching, treat the result as an ephemeral source: extract relevant facts into existing wiki pages rather than creating a `raw/` file (which is for curated sources only).
 
