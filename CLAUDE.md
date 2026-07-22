@@ -170,21 +170,15 @@ After fetching, treat the result as an ephemeral source: extract relevant facts 
 
 ## Search (qmd)
 
-All search goes through `tools/qmd-index.sh`, run from the repo root. **Never hardcode a path to the `qmd` binary** — it lives somewhere different on every machine (conda env, npm global, `~/src/qmd`). The script locates it at runtime and is the single source of truth for that; this file must stay machine-independent.
+**Re-index all wiki pages:**
+```bash
+./tools/qmd-index.sh
+```
 
 **To search at the start of any INGEST or QUERY:**
 ```bash
 ./tools/qmd-index.sh search "query terms"
 ```
-
-**When updating `wiki/overview.md`** (every 5 ingests or on major insight), re-index all wiki pages:
-```bash
-./tools/qmd-index.sh
-```
-
-- Collection name: `brain-wiki`, covering `wiki/`. Index location is chosen by qmd itself (2.x uses a per-user cache), so treat it as an implementation detail — check `./tools/qmd-index.sh status` rather than assuming a path.
-- Hybrid BM25 + vector search with on-device LLM reranking. Model choice belongs to qmd's defaults and changes across versions — `status` reports the current ones.
-- If the script reports `qmd not found`, it prints install instructions; its own header comment carries the details. On a machine where qmd sits outside the search path, set `QMD=/path/to/qmd` (or activate the env holding it) instead of editing this file.
 
 Fall back to `grep -r "terms" wiki/` if qmd errors.
 
